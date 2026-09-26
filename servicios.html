@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      name="description"
+      content="Servicios comunitarios, préstamos, cronograma de salas y aforo vecinal de la Biblioteca Comunitaria 'Leer nos une'."
+    />
+    <meta
+      name="keywords"
+      content="biblioteca comunitaria, servicios comunitarios, salas de lectura, aforo, cronograma, prestamo de libros, San José"
+    />
+    <meta name="author" content="Biblioteca Comunitaria Leer nos une" />
+    <title>Servicios Comunitarios - Leer nos une | Biblioteca Comunitaria</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body class="cuerpo-sitio">
+    <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
+    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <!-- MENÚS (ENCABEZADO Y NAVEGACIÓN CON FLEXBOX) -->
+    <header class="encabezado">
+      <div class="contenedor-encabezado">
+        <a class="marca-sitio" href="index.html" data-path="inicio">
+          <div class="icono-marca">
+            <span class="material-symbols-outlined">local_florist</span>
+          </div>
+          <div class="texto-marca">
+            <span class="nombre-marca">Leer nos une</span>
+            <span class="subtitulo-marca">Biblioteca Comunitaria</span>
+          </div>
+        </a>
+
+        <nav class="navegacion-principal" aria-label="Navegación principal">
+          <a class="enlace-nav" href="index.html" data-path="inicio">Inicio</a>
+          <a class="enlace-nav" href="libros.html" data-path="libros">Libros</a>
+          <a class="enlace-nav activo" href="servicios.html" aria-current="page" data-path="servicios">Servicios</a>
+          <a class="enlace-nav" href="registro.html" data-path="registro">Registro</a>
+          <a class="enlace-nav" href="contacto.html" data-path="contacto">Contacto</a>
+        </nav>
+
+        <div class="acciones-usuario">
+          <a class="boton-carnet animacion-pulso" href="registro.html" data-path="carnet-digital">
+            <span class="material-symbols-outlined">badge</span>
+            <span>Carnet Digital</span>
+          </a>
+          <div class="avatar-perfil">
+            <img
+              alt="Perfil de usuario"
+              src="img/tresLibrosPlantitas.png"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido-principal" id="contenido-principal">
+      <div class="contenedor-flotante">
+        <div class="resplandor-fondo resplandor-superior"></div>
+        <div class="resplandor-fondo resplandor-medio"></div>
+
+        <!-- SECCIÓN: SERVICIOS COMUNITARIOS -->
+        <section class="seccion-servicios-inicio" id="servicios">
+          <div class="cabecera-seccion-centrada">
+            <div class="insignia-subtitulo-centrada">
+              <span class="material-symbols-outlined">spa</span>
+              <span>Compromiso con el Barrio</span>
+            </div>
+            <h2 class="titulo-seccion-inicio">Nuestros Servicios Comunitarios</h2>
+            <p class="descripcion-seccion-inicio">
+              Servicios pensados para enriquecer la vida cotidiana de nuestros vecinos, fomentar el estudio y cultivar la lectura colectiva.
+            </p>
+          </div>
+
+          <div class="rejilla-servicios-inicio">
+            <!-- Cuadrícula de 4 Tarjetas de Servicios -->
+            <div class="cuadricula-tarjetas-servicio">
+              <div class="tarjeta-servicio-inicio">
+                <div class="icono-servicio-circulo">
+                  <span class="material-symbols-outlined">local_library</span>
+                </div>
+                <h3 class="titulo-servicio-inicio">Préstamo de Libros</h3>
+                <p class="descripcion-servicio-inicio">
+                  Lleva hasta 3 libros a tu hogar durante 14 días corridos. Servicio sin costo con renovación en línea mediante WhatsApp o en mostrador.
+                </p>
+                <ul class="lista-puntos-servicio">
+                  <li>
+                    <span class="material-symbols-outlined">check</span>
+                    <span>Renovación por 7 días adicionales</span>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">check</span>
+                    <span>Separadores botánicos de regalo</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tarjeta-servicio-inicio">
+                <div class="icono-servicio-circulo icono-ambar-servicio">
+                  <span class="material-symbols-outlined">yard</span>
+                </div>
+                <h3 class="titulo-servicio-inicio">Salas y Jardín Botánico</h3>
+                <p class="descripcion-servicio-inicio">
+                  Espacios de lectura silenciosa, mesas para estudio individual y un patio verde al aire libre con iluminación natural y wifi comunitario.
+                </p>
+                <ul class="lista-puntos-servicio">
+                  <li>
+                    <span class="material-symbols-outlined">check</span>
+                    <span>Conexión Wi-Fi de alta velocidad</span>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">check</span>
+                    <span>Ambiente silencioso y climatizado</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tarjeta-servicio-inicio">
+                <div class="icono-servicio-circulo">
+                  <span class="material-symbols-outlined">groups</span>
+                </div>
+                <h3 class="titulo-servicio-inicio">Clubes y Talleres Culturales</h3>
+                <p class="descripcion-servicio-inicio">
+                  Encuentros semanales de debate literario, talleres de encuadernación artesanal, poesía y clubes de lectura guiados por mediadores.
+                </p>
+                <ul class="lista-puntos-servicio">
+                  <li>
+                    <span class="material-symbols-outlined">check</span>
+                    <span>Clubes juveniles y para adultos</span>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">check</span>
+                    <span>Participación 100% gratuita</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tarjeta-servicio-inicio">
+                <div class="icono-servicio-circulo icono-ambar-servicio">
+                  <span class="material-symbols-outlined">child_care</span>
+                </div>
+                <h3 class="titulo-servicio-inicio">Rincón Infantil y Cuentacuentos</h3>
+                <p class="descripcion-servicio-inicio">
+                  Área dedicada a los más pequeños con cuentos ilustrados, cojines cómodos y sesiones de narración oral para cultivar la imaginación.
+                </p>
+                <ul class="lista-puntos-servicio">
+                  <li>
+                    <span class="material-symbols-outlined">check</span>
+                    <span>Cuentacuentos los fines de semana</span>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">check</span>
+                    <span>Material didáctico y juegos de letras</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tarjeta Ilustración Inspiradora -->
+            <div class="tarjeta-ilustracion-servicios">
+              <img
+                alt="Libro botánico animado con plantas"
+                class="imagen-ilustracion-servicios"
+                src="img/libroAnimadoPlantitas.png"
+              />
+              <blockquote class="cita-botanica-servicios">
+                "Un libro es una semilla que germina en el pensamiento y hace florecer a toda una comunidad."
+              </blockquote>
+              <cite class="autor-cita-servicios">— Proyecto "Leer nos une"</cite>
+              <a class="boton-heroe-primario" href="contacto.html">
+                <span class="material-symbols-outlined">mail</span>
+                <span>Consultar por un Servicio</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN: TABLA DE CRONOGRAMA SEMANAL Y AFORO DE SALAS -->
+        <section class="seccion-tablas-datos">
+          <div class="tarjeta-tabla-contenedor">
+            <div class="cabecera-seccion-centrada">
+              <div class="insignia-subtitulo-centrada">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <span>Organización Semanal</span>
+              </div>
+              <h2 class="titulo-seccion-inicio">Cronograma de Salas y Aforo Vecinal</h2>
+              <p class="descripcion-seccion-inicio">
+                Horarios de disponibilidad, actividades fijas y capacidad máxima de cada uno de los espacios de la biblioteca.
+              </p>
+            </div>
+
+            <div class="contenedor-tabla-responsiva">
+              <table class="tabla-botanica">
+                <caption>Horario Semanal de Apertura, Actividades y Aforo por Espacio Comunitario</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Día</th>
+                    <th scope="col">Espacio / Sala</th>
+                    <th scope="col">Horario</th>
+                    <th scope="col">Actividad Principal</th>
+                    <th scope="col">Aforo</th>
+                    <th scope="col">Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Lunes a Viernes</strong></td>
+                    <td>Sala de Lectura Silenciosa</td>
+                    <td>08:30 - 19:30 hrs</td>
+                    <td>Estudio individual, lectura e investigación</td>
+                    <td>35 personas</td>
+                    <td><span class="insignia-tabla-estado tabla-disponible"><span class="punto-pulso"></span> Abierto</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Lunes a Viernes</strong></td>
+                    <td>Jardín Botánico & Mesas de Trabajo</td>
+                    <td>09:00 - 18:30 hrs</td>
+                    <td>Lectura al aire libre, wifi y tertulias</td>
+                    <td>45 personas</td>
+                    <td><span class="insignia-tabla-estado tabla-disponible"><span class="punto-pulso"></span> Abierto</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Miércoles</strong></td>
+                    <td>Rincón Infantil</td>
+                    <td>16:00 - 17:30 hrs</td>
+                    <td>Taller infantil de cuentacuentos y títeres</td>
+                    <td>20 niños + tutores</td>
+                    <td><span class="insignia-tabla-estado tabla-sala">Taller Especial</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sábados</strong></td>
+                    <td>Sala Botánica Principal</td>
+                    <td>09:00 - 16:00 hrs</td>
+                    <td>Clubes de lectura y café literario</td>
+                    <td>30 personas</td>
+                    <td><span class="insignia-tabla-estado tabla-disponible"><span class="punto-pulso"></span> Club Activo</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Domingos</strong></td>
+                    <td>Patio Exterior</td>
+                    <td>10:00 - 14:00 hrs</td>
+                    <td>Intercambio de libros y donaciones vecinales</td>
+                    <td>50 personas</td>
+                    <td><span class="insignia-tabla-estado tabla-prestamo">Dominical</span></td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="4"><strong>Capacidad Máxima Simultánea de la Sede:</strong> 130 personas</td>
+                    <td colspan="2"><strong>Acceso:</strong> Libre y gratuito</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ¿AÚN NO TIENES TU CARNET VECINAL? -->
+        <section class="seccion-normas" style="padding-top: 0;">
+          <div class="contenedor-normas">
+            <div class="tarjeta-llamado-accion">
+              <div class="texto-llamado">
+                <span class="material-symbols-outlined icono-llamado">card_membership</span>
+                <div>
+                  <h4 class="titulo-llamado">
+                    ¿Aún no tienes tu Carnet Vecinal?
+                  </h4>
+                  <p class="subtitulo-llamado">
+                    Actívalo hoy mismo y empieza a pedir tus libros favoritos en un solo clic.
+                  </p>
+                </div>
+              </div>
+              <a class="boton-llamado" href="contacto.html">Solicitar Carnet Digital Gratis</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER (PIE DE PÁGINA) -->
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="rejilla-pie">
+          <div>
+            <div class="marca-pie">
+              <span class="material-symbols-outlined">menu_book</span>
+              <span class="nombre-marca-pie">Leer nos une</span>
+            </div>
+            <p class="descripcion-pie">
+              Un espacio botánico y acogedor para cultivar el conocimiento, la
+              imaginación y la convivencia vecinal en armonía.
+            </p>
+            <div class="insignia-semillero">
+              <span class="material-symbols-outlined">eco</span>
+              <span>Semillero de saberes comunitarios</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="titulo-columna-pie">Horarios de Atención</h4>
+            <ul class="lista-horarios">
+              <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
+              <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
+              <li>
+                <strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs
+              </li>
+              <li class="estado-salas">
+                <span class="punto-estado"></span>
+                <span>Salas de lectura abiertas</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
+            <ul class="enlaces-pie">
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="index.html" data-path="inicio">Inicio</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="libros.html" data-path="libros">Libros</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html" data-path="servicios">Servicios</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="registro.html" data-path="registro">Solicitar Carnet</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="contacto.html" data-path="contacto">Contáctanos</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="titulo-columna-pie">Sede Comunitaria</h4>
+            <p class="direccion-pie">
+              Sector San José<br />
+              Al costado de la SUNAT
+            </p>
+            <p class="contacto-pie">
+              ejemplo@utpvirtual.edu<br />
+              +51 1234-5678
+            </p>
+          </div>
+        </div>
+
+        <div class="pie-inferior">
+          <p class="derechos-pie">
+            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de Taller de Programación Web (Avance 2).
+          </p>
+          <div class="enlaces-legales">
+            <a href="contacto.html">Soporte Vecinal</a>
+            <a href="libros.html">Catálogo Abierto</a>
+            <a href="registro.html">Carnet Digital</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

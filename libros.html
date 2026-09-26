@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      name="description"
+      content="Catálogo de libros de la Biblioteca Comunitaria 'Leer nos une'. Búsqueda y filtrado de más de 2,500 títulos para préstamo libre y gratuito."
+    />
+    <meta
+      name="keywords"
+      content="catálogo de libros, biblioteca comunitaria, préstamo, novelas, clásicos, poesía, San José"
+    />
+    <meta name="author" content="Biblioteca Comunitaria Leer nos une" />
+    <title>Libros - Leer nos une | Biblioteca Comunitaria</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body class="cuerpo-sitio">
+    <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
+    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <!-- MENÚS (ENCABEZADO Y NAVEGACIÓN CON FLEXBOX) -->
+    <header class="encabezado">
+      <div class="contenedor-encabezado">
+        <a class="marca-sitio" href="index.html" data-path="inicio">
+          <div class="icono-marca">
+            <span class="material-symbols-outlined">local_florist</span>
+          </div>
+          <div class="texto-marca">
+            <span class="nombre-marca">Leer nos une</span>
+            <span class="subtitulo-marca">Biblioteca Comunitaria</span>
+          </div>
+        </a>
+
+        <nav class="navegacion-principal" aria-label="Navegación principal">
+          <a class="enlace-nav" href="index.html" data-path="inicio">Inicio</a>
+          <a class="enlace-nav activo" href="libros.html" aria-current="page" data-path="libros">Libros</a>
+          <a class="enlace-nav" href="servicios.html" data-path="servicios">Servicios</a>
+          <a class="enlace-nav" href="registro.html" data-path="registro">Registro</a>
+          <a class="enlace-nav" href="contacto.html" data-path="contacto">Contacto</a>
+        </nav>
+
+        <div class="acciones-usuario">
+          <a class="boton-carnet animacion-pulso" href="registro.html" data-path="carnet-digital">
+            <span class="material-symbols-outlined">badge</span>
+            <span>Carnet Digital</span>
+          </a>
+          <div class="avatar-perfil">
+            <img
+              alt="Perfil de usuario"
+              src="img/tresLibrosPlantitas.png"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido-principal" id="contenido-principal">
+      <div class="contenedor-flotante">
+        <div class="resplandor-fondo resplandor-superior"></div>
+        <div class="resplandor-fondo resplandor-medio"></div>
+
+        <!-- BARRA DE BÚSQUEDA DE LIBROS -->
+        <section class="seccion-busqueda-libros">
+          <div class="contenedor-busqueda-libros">
+            <div class="barra-busqueda">
+              <div class="campo-criterio">
+                <span class="material-symbols-outlined">tune</span>
+                <select
+                  aria-label="Criterio de búsqueda"
+                  class="selector-criterio"
+                >
+                  <option value="todos">Todos los campos</option>
+                  <option value="titulo">Título de la obra</option>
+                  <option value="autor">Autor / Ilustrador</option>
+                  <option value="tema">Tema o Etiqueta</option>
+                  <option value="isbn">Código ISBN</option>
+                </select>
+              </div>
+              <div class="campo-texto">
+                <span class="material-symbols-outlined">search</span>
+                <input
+                  class="entrada-busqueda"
+                  id="busquedaCatalogoInput"
+                  placeholder="¿Qué semilla literaria deseas cosechar hoy? Ej: Macondo, Rolón, Botánica..."
+                  type="text"
+                />
+              </div>
+              <button class="boton-buscar" type="button">
+                <span>Buscar</span>
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+            </div>
+
+            <div class="etiquetas-sugeridas">
+              <span class="titulo-sugerencias">
+                <span class="material-symbols-outlined">trending_up</span>
+                Populares:
+              </span>
+              <button class="boton-etiqueta" type="button">
+                Gabriel García Márquez
+              </button>
+              <button class="boton-etiqueta" type="button">
+                Poesía Latinoamericana
+              </button>
+              <button class="boton-etiqueta" type="button">
+                Botánica & Huertos
+              </button>
+              <button class="boton-etiqueta" type="button">
+                Cuentos Infantiles
+              </button>
+              <button class="boton-etiqueta" type="button">Clásicos</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- FILTRAR COLECCIÓN Y MOSTRAR LIBROS -->
+        <div class="contenedor-catalogo">
+          <div class="rejilla-principal">
+            <!-- FILTRAR COLECCIÓN -->
+            <aside class="columna-filtros">
+              <div class="tarjeta-filtros">
+                <div class="cabecera-filtros">
+                  <div class="titulo-con-icono">
+                    <span class="material-symbols-outlined">filter_alt</span>
+                    <h2 class="titulo-panel">Filtrar Colección</h2>
+                  </div>
+                  <button
+                    class="boton-limpiar"
+                    title="Restablecer filtros"
+                    type="button"
+                  >
+                    Limpiar
+                  </button>
+                </div>
+
+                <div class="seccion-filtro">
+                  <span class="subtitulo-filtro">Categorías y Géneros</span>
+                  <ul class="lista-categorias">
+                    <li>
+                      <button class="item-categoria activo" type="button">
+                        <span>Todos los géneros</span>
+                        <span class="contador-categoria">2,540</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button class="item-categoria" type="button">
+                        <span>Novela y Narrativa</span>
+                        <span class="contador-categoria">840</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button class="item-categoria" type="button">
+                        <span>Psicoanálisis y Crecimiento</span>
+                        <span class="contador-categoria">320</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button class="item-categoria" type="button">
+                        <span>Clásicos Universales</span>
+                        <span class="contador-categoria">410</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button class="item-categoria" type="button">
+                        <span>Infantil & Juvenil</span>
+                        <span class="contador-categoria">390</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button class="item-categoria" type="button">
+                        <span>Ciencia, Botánica & Huertos</span>
+                        <span class="contador-categoria">280</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button class="item-categoria" type="button">
+                        <span>Poesía & Teatro</span>
+                        <span class="contador-categoria">180</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button class="item-categoria" type="button">
+                        <span>Historia & Comunidad</span>
+                        <span class="contador-categoria">120</span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="seccion-filtro">
+                  <span class="subtitulo-filtro">Disponibilidad en Sede</span>
+                  <div class="grupo-casillas">
+                    <label class="opcion-casilla">
+                      <input checked type="checkbox" />
+                      <span>Disponibles para llevar hoy</span>
+                    </label>
+                    <label class="opcion-casilla">
+                      <input type="checkbox" />
+                      <span>Consulta en sala de lectura</span>
+                    </label>
+                    <label class="opcion-casilla">
+                      <input type="checkbox" />
+                      <span>Nuevas donaciones del mes</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="seccion-filtro">
+                  <span class="subtitulo-filtro">Formato del Recurso</span>
+                  <div class="grupo-pildoras-formato">
+                    <button class="pildora-formato activa" type="button">
+                      Libro Impreso
+                    </button>
+                    <button class="pildora-formato" type="button">
+                      Audiolibro
+                    </button>
+                    <button class="pildora-formato" type="button">
+                      Letra Grande
+                    </button>
+                    <button class="pildora-formato" type="button">
+                      Ilustrado
+                    </button>
+                  </div>
+                </div>
+
+                <div class="tarjeta-consejo">
+                  <span class="material-symbols-outlined">local_florist</span>
+                  <div>
+                    <span class="titulo-consejo">Préstamos solidarios</span>
+                    <p class="texto-consejo">
+                      Lleva hasta 3 libros a casa por 14 días con renovación en
+                      línea sencilla.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <!-- LA PARTE DONDE SE MUESTRAN LOS LIBROS -->
+            <section class="columna-catalogo">
+              <div class="barra-controles">
+                <div class="estado-exploracion">
+                  <span class="texto-explorando">Explorando</span>
+                  <span class="insignia-conteo"
+                    >Mostrando 9 de 2,540 títulos</span
+                  >
+                </div>
+                <div class="ajustes-vista">
+                  <div class="selector-orden">
+                    <span class="etiqueta-orden">Ordenar por:</span>
+                    <select aria-label="Ordenar libros por" class="menu-orden">
+                      <option>Más populares del barrio</option>
+                      <option>Recién llegados / Donaciones</option>
+                      <option>Título (A - Z)</option>
+                      <option>Autor (A - Z)</option>
+                    </select>
+                  </div>
+                  <div class="conmutador-vistas">
+                    <button
+                      class="boton-vista activo"
+                      title="Vista en cuadrícula"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined">grid_view</span>
+                    </button>
+                    <button
+                      class="boton-vista"
+                      title="Vista en lista detallada"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined"
+                        >format_list_bulleted</span
+                      >
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rejilla-libros">
+                <!-- Libro 1 -->
+                <article class="tarjeta-libro">
+                  <div class="cuerpo-tarjeta">
+                    <div class="contenedor-portada">
+                      <div
+                        class="imagen-portada"
+                        data-alt="Portada de Cien años de soledad de Gabriel García Márquez"
+                        style="background-image: url('img/cien-años-soledad.jpg');"
+                      ></div>
+                      <div class="sombra-lomo"></div>
+                      <div class="insignia-disponibilidad disponible">
+                        <span class="punto-estado"></span>
+                        <span>3 Disponibles</span>
+                      </div>
+                    </div>
+                    <div class="genero-libro">
+                      <span class="material-symbols-outlined">menu_book</span>
+                      <span>Novela / Realismo Mágico</span>
+                    </div>
+                    <h3 class="titulo-libro">Cien años de soledad</h3>
+                    <p class="autor-libro">Gabriel García Márquez</p>
+                    <div class="calificacion-libro">
+                      <div class="estrellas">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                      </div>
+                      <span class="texto-lectores">4.9 (48 lectores)</span>
+                    </div>
+                    <p class="descripcion-libro">
+                      La épica historia de la familia Buendía a lo largo de siete generaciones en el mítico pueblo de Macondo. Edición conmemorativa ilustrada.
+                    </p>
+                  </div>
+                  <div class="acciones-tarjeta">
+                    <button class="boton-accion-primario" type="button">
+                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span>Reservar</span>
+                    </button>
+                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
+                      <span class="material-symbols-outlined">info</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Libro 2 -->
+                <article class="tarjeta-libro">
+                  <div class="cuerpo-tarjeta">
+                    <div class="contenedor-portada">
+                      <div
+                        class="imagen-portada"
+                        data-alt="Portada del libro La felicidad de Gabriel Rolón"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3t7UebnA1ihuXHCDBdjB2jju0-y0B4UFBrUsFFZ8_Cu1HNXOom71TLG9c6hNCL96qARz8IVrQPOoClgU__kH0pGgOCYl85hIYiaE7RI93c7CiN39XHH3VAP64Cv5ZdpkrKm7TxWCVqSspNoiljPzW6Sc9e_zkN5MZDFYwDydhuE4xnRui0sUVivcN3etV7FG5SDKqvYenmPrPi3IMCfB0Blje9-arb9R-bsmmvVU5kpex5B-3PqDB');"
+                      ></div>
+                      <div class="sombra-lomo"></div>
+                      <div class="insignia-disponibilidad disponible">
+                        <span class="punto-estado"></span>
+                        <span>2 Disponibles</span>
+                      </div>
+                    </div>
+                    <div class="genero-libro">
+                      <span class="material-symbols-outlined">psychology</span>
+                      <span>Psicoanálisis & Vida</span>
+                    </div>
+                    <h3 class="titulo-libro">La felicidad</h3>
+                    <p class="autor-libro">Gabriel Rolón</p>
+                    <div class="calificacion-libro">
+                      <div class="estrellas">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star_half</span>
+                      </div>
+                      <span class="texto-lectores">4.7 (31 lectores)</span>
+                    </div>
+                    <p class="descripcion-libro">
+                      Una lúcida indagación sobre el anhelo más universal: desentrañar la dicha desde la emoción, el duelo y los vínculos humanos.
+                    </p>
+                  </div>
+                  <div class="acciones-tarjeta">
+                    <button class="boton-accion-primario" type="button">
+                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span>Reservar</span>
+                    </button>
+                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
+                      <span class="material-symbols-outlined">info</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Libro 3 -->
+                <article class="tarjeta-libro">
+                  <div class="cuerpo-tarjeta">
+                    <div class="contenedor-portada">
+                      <div
+                        class="imagen-portada"
+                        data-alt="Edición clásica encuadernada de Don Quijote de la Mancha"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWRHTqq6wIfeJA7HUx5TV_MThSgWHg8tHcpgf7E9OlQCufLqSOSP0EqgBrtklrkXnefjIqYn22XjASfQXHEeESPkSBEWWpcRvJHptMSNXXJD9i_Xtqzg3gSh0QmpQaTQlZ_K-oyh1M8noaMfJNpDVq7X9zozC2pNts6CepK3qMuOF2Byoa2j_elEe_kOh6XF49-3ZOC5b5ZNpqSwUSeoxGcHmsWQg0OsNzE_uXXooYU190QrMmW8mb');"
+                      ></div>
+                      <div class="sombra-lomo"></div>
+                      <div class="insignia-disponibilidad sala">
+                        <span class="material-symbols-outlined">menu_book</span>
+                        <span>En Sala de Lectura</span>
+                      </div>
+                    </div>
+                    <div class="genero-libro">
+                      <span class="material-symbols-outlined">history_edu</span>
+                      <span>Clásico Universal</span>
+                    </div>
+                    <h3 class="titulo-libro">Don Quijote de la Mancha</h3>
+                    <p class="autor-libro">Miguel de Cervantes</p>
+                    <div class="calificacion-libro">
+                      <div class="estrellas">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                      </div>
+                      <span class="texto-lectores">5.0 (64 lectores)</span>
+                    </div>
+                    <p class="descripcion-libro">
+                      La cumbre de la literatura en castellano, en una magnífica edición disponible para consulta en mesas de estudio y jardín.
+                    </p>
+                  </div>
+                  <div class="acciones-tarjeta">
+                    <button class="boton-accion-secundario" type="button">
+                      <span class="material-symbols-outlined">chair</span>
+                      <span>Pedir en Sala</span>
+                    </button>
+                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
+                      <span class="material-symbols-outlined">info</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Libro 4 -->
+                <article class="tarjeta-libro">
+                  <div class="cuerpo-tarjeta">
+                    <div class="contenedor-portada">
+                      <div
+                        class="imagen-portada"
+                        data-alt="Portada en acuarela de El Principito"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4NZSAD09AAdhuD_zdm8k4pw26pp8MJw9UpEuha78tt_LnNEi8GxE4kxbeg4FNj_rSKTXAxnsv8xBVA4f5VZQU9yMT2Awf3KIJDJsIaMahoFxmy27p0sAN72DaPlMFDO6hqcGkYrSQ2fhm5Gw-EOGJhL98nXYsXKKcJX_xuDwLLuC7PZU9uGfsfR9KFlkaVRX5tgmCKGKefVyP3_cWM7swMobeDjVsQ1bKz81zVhh-VnRh8otdhXk9');"
+                      ></div>
+                      <div class="sombra-lomo"></div>
+                      <div class="insignia-disponibilidad disponible">
+                        <span class="punto-estado"></span>
+                        <span>5 Disponibles</span>
+                      </div>
+                    </div>
+                    <div class="genero-libro">
+                      <span class="material-symbols-outlined">child_care</span>
+                      <span>Infantil / Filosofía</span>
+                    </div>
+                    <h3 class="titulo-libro">El principito</h3>
+                    <p class="autor-libro">Antoine de Saint-Exupéry</p>
+                    <div class="calificacion-libro">
+                      <div class="estrellas">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                      </div>
+                      <span class="texto-lectores">5.0 (92 lectores)</span>
+                    </div>
+                    <p class="descripcion-libro">
+                      "Lo esencial es invisible a los ojos". Una fábula inmortal con las acuarelas originales del autor para disfrutar en familia.
+                    </p>
+                  </div>
+                  <div class="acciones-tarjeta">
+                    <button class="boton-accion-primario" type="button">
+                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span>Reservar</span>
+                    </button>
+                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
+                      <span class="material-symbols-outlined">info</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Libro 5 -->
+                <article class="tarjeta-libro">
+                  <div class="cuerpo-tarjeta">
+                    <div class="contenedor-portada">
+                      <div
+                        class="imagen-portada"
+                        data-alt="Portada de El murmullo de las abejas"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-tZyj--g-hPNsmlHUKm_yqgcWmTwClzJLCFb90m7Mf5P4u7MdYgQoN8TWkYmZlrj7bybOoe9geKSBfQLNdhp5XUAWw6ICCLzoRNy_gvTZxR3zJfVOZxiHFnEHsDtj-_qiX6hxdAuV7sQqxvgqbVHzoBpcDI3L47juhv8jH4xPUDjLL_4qUNcxp_TYEzdR6GJW4GlHJQInE_siYyuUImiw2o7XyVrj3mO8XhOz0Vqxz-HuVZeAsEt5');"
+                      ></div>
+                      <div class="sombra-lomo"></div>
+                      <div class="insignia-disponibilidad novedad">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        <span>Novedad Donada</span>
+                      </div>
+                    </div>
+                    <div class="genero-libro">
+                      <span class="material-symbols-outlined">menu_book</span>
+                      <span>Ficción Histórica</span>
+                    </div>
+                    <h3 class="titulo-libro">El murmullo de las abejas</h3>
+                    <p class="autor-libro">Sofía Segovia</p>
+                    <div class="calificacion-libro">
+                      <div class="estrellas">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star_half</span>
+                      </div>
+                      <span class="texto-lectores">4.8 (19 lectores)</span>
+                    </div>
+                    <p class="descripcion-libro">
+                      En medio de la Revolución mexicana, un niño con un velo de abejas transforma para siempre el destino de una familia en Linares.
+                    </p>
+                  </div>
+                  <div class="acciones-tarjeta">
+                    <button class="boton-accion-primario" type="button">
+                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span>Reservar</span>
+                    </button>
+                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
+                      <span class="material-symbols-outlined">info</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Libro 6 -->
+                <article class="tarjeta-libro">
+                  <div class="cuerpo-tarjeta">
+                    <div class="contenedor-portada">
+                      <div
+                        class="imagen-portada"
+                        data-alt="Portada del libro La vida secreta de las plantas"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCaQwMxAV0ZocxnrseHEyP908TJ-KXE3w4uN_fyEA4I0pl0iZ6DY1tYa80eoqJOAHlFJ6bS4f6oAz84ZIJWTwlq-J-rPQEuhNLzSt5PuTjTornpjovMf_mdFDTM3NxyCgiPrZNqnOsJTnwSdl7ydPW5nMpAkQUXJpKvWg5AZqH4g-Tum5tqA1s9G5tciDisMGNtxP2bx5e8m-dqRYZmvDsS8sLqZFptCWer3jYt2_cE4l4_DJMAxP4A');"
+                      ></div>
+                      <div class="sombra-lomo"></div>
+                      <div class="insignia-disponibilidad disponible">
+                        <span class="punto-estado"></span>
+                        <span>1 Disponible</span>
+                      </div>
+                    </div>
+                    <div class="genero-libro">
+                      <span class="material-symbols-outlined">eco</span>
+                      <span>Botánica & Naturaleza</span>
+                    </div>
+                    <h3 class="titulo-libro">La vida secreta de las plantas</h3>
+                    <p class="autor-libro">Peter Tompkins & Christopher Bird</p>
+                    <div class="calificacion-libro">
+                      <div class="estrellas">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star_outline</span>
+                      </div>
+                      <span class="texto-lectores">4.3 (22 lectores)</span>
+                    </div>
+                    <p class="descripcion-libro">
+                      Fascinante viaje por las relaciones físicas y emocionales entre plantas y seres humanos. La inspiración de nuestro jardín.
+                    </p>
+                  </div>
+                  <div class="acciones-tarjeta">
+                    <button class="boton-accion-primario" type="button">
+                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span>Reservar</span>
+                    </button>
+                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
+                      <span class="material-symbols-outlined">info</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Libro 7 -->
+                <article class="tarjeta-libro">
+                  <div class="cuerpo-tarjeta">
+                    <div class="contenedor-portada">
+                      <div
+                        class="imagen-portada"
+                        data-alt="Portada de Rayuela de Julio Cortázar"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDS0LmqRZ5IlVztwQCWrvHB9Wuvi-hlwcfyxJQwW_IuV90qDantP77miRWH2ayUxhAZyTh-q0uhXY-dqjmGoFQSJ633XdwZmFsNVhum2BC8vjDpuGdlY-uXQ5ww0_PXnCYMT1TXibanWaXx8b4ZlCRKYm-2Rx88d0-Wecw8hzoHSwo-eiTrK-xq-RTq0-l43yFoOD_jsxIljeggkbh7jk37Ma9hhjpuBiy3kSwl1DbZRJHV6ClEyNrY');"
+                      ></div>
+                      <div class="sombra-lomo"></div>
+                      <div class="insignia-disponibilidad disponible">
+                        <span class="punto-estado"></span>
+                        <span>2 Disponibles</span>
+                      </div>
+                    </div>
+                    <div class="genero-libro">
+                      <span class="material-symbols-outlined">menu_book</span>
+                      <span>Literatura Latinoamericana</span>
+                    </div>
+                    <h3 class="titulo-libro">Rayuela</h3>
+                    <p class="autor-libro">Julio Cortázar</p>
+                    <div class="calificacion-libro">
+                      <div class="estrellas">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                      </div>
+                      <span class="texto-lectores">4.9 (53 lectores)</span>
+                    </div>
+                    <p class="descripcion-libro">
+                      Un contranovelón lúdico y deslumbrante entre París y Buenos Aires, donde cada lector elige su propio laberinto de lectura.
+                    </p>
+                  </div>
+                  <div class="acciones-tarjeta">
+                    <button class="boton-accion-primario" type="button">
+                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span>Reservar</span>
+                    </button>
+                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
+                      <span class="material-symbols-outlined">info</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Libro 8 -->
+                <article class="tarjeta-libro">
+                  <div class="cuerpo-tarjeta">
+                    <div class="contenedor-portada">
+                      <div
+                        class="imagen-portada"
+                        data-alt="Portada de Veinte poemas de amor y una canción desesperada"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwTez6L4ZLEbKSiNEUuEP9yVowQHGid3HB2_dVuz0RBSs40P5BpT5ZwWsTYutJwJNsvaje4potlE9k-Gh26qgNNGOH6jgFHnljb6dJcVCaRP5YWIDD-ldfRM5p9xMN4CzPBmFUzEgiTDpb6NFES11nvcvQywJ7ARPkfVkA5_r5xIbyQm96WGQTkNo5d7qNCIsqA8RBQ8_TxjyxPBXYfvHxaWjDnVtEQErs7qH772kw-_mj-NCvN9Kh');"
+                      ></div>
+                      <div class="sombra-lomo"></div>
+                      <div class="insignia-disponibilidad disponible">
+                        <span class="punto-estado"></span>
+                        <span>1 Disponible</span>
+                      </div>
+                    </div>
+                    <div class="genero-libro">
+                      <span class="material-symbols-outlined">draw</span>
+                      <span>Poesía Iberoamericana</span>
+                    </div>
+                    <h3 class="titulo-libro">Veinte poemas de amor</h3>
+                    <p class="autor-libro">Pablo Neruda</p>
+                    <div class="calificacion-libro">
+                      <div class="estrellas">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star_half</span>
+                      </div>
+                      <span class="texto-lectores">4.8 (41 lectores)</span>
+                    </div>
+                    <p class="descripcion-libro">
+                      El libro lírico más leído y compartido del siglo XX. Incluye versos célebres como "Puedo escribir los versos más tristes esta noche".
+                    </p>
+                  </div>
+                  <div class="acciones-tarjeta">
+                    <button class="boton-accion-primario" type="button">
+                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span>Reservar</span>
+                    </button>
+                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
+                      <span class="material-symbols-outlined">info</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Libro 9 -->
+                <article class="tarjeta-libro">
+                  <div class="cuerpo-tarjeta">
+                    <div class="contenedor-portada">
+                      <div
+                        class="imagen-portada"
+                        data-alt="Portada de El jardín secreto con rosas y hiedra"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBIyF6nsw1ZWlkQBNf5pYDx6sip_6CtwpYBeA_NLxLq5cdvtzlSDgQvr0OrjpsntlSgoC3PsVvw_4BRlF7cme0E9U8IPBQPcu6Hz4CbGJfguhiTTNTdqZzgPRBCcaroxE4azYKGjNUaYirjqKpg6-34YqJ7JFPAxsMp_QWx25LL26hrbpHQ3T0JC_BArelZ4WfhT49riUd8PNxLNNpBhVydOCazVVY7g6xZYVF9j_Y9xcrWeNgupWq6');"
+                      ></div>
+                      <div class="sombra-lomo"></div>
+                      <div class="insignia-disponibilidad disponible">
+                        <span class="punto-estado"></span>
+                        <span>3 Disponibles</span>
+                      </div>
+                    </div>
+                    <div class="genero-libro">
+                      <span class="material-symbols-outlined">yard</span>
+                      <span>Infantil & Juvenil</span>
+                    </div>
+                    <h3 class="titulo-libro">El jardín secreto</h3>
+                    <p class="autor-libro">Frances Hodgson Burnett</p>
+                    <div class="calificacion-libro">
+                      <div class="estrellas">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                      </div>
+                      <span class="texto-lectores">4.9 (38 lectores)</span>
+                    </div>
+                    <p class="descripcion-libro">
+                      El poder curativo de la naturaleza y la amistad contado a través de un jardín olvidado que vuelve a la vida gracias a tres niños.
+                    </p>
+                  </div>
+                  <div class="acciones-tarjeta">
+                    <button class="boton-accion-primario" type="button">
+                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span>Reservar</span>
+                    </button>
+                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
+                      <span class="material-symbols-outlined">info</span>
+                    </button>
+                  </div>
+                </article>
+              </div>
+
+              <!-- CRECIMIENTO COLABORATIVO ... -->
+              <div class="banner-comunitario">
+                <div class="contenido-banner">
+                  <div class="icono-banner">
+                    <img
+                      alt="Libros floreciendo con hojas verdes"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVe35Z6UCpesLuQ6XXmyn8RLZSCwc8FLNR51kg0EEYA6Zbkk5v0cJx4u8THbAG_NOS6sdLcKKXvLrfkwFjIPQLI_ow7R2BffQuCtXMaeK2QB9vI081HWrc6s3F96Hq9XxRAh3m6Idb_6sOoVgzuWwLmJii3iXR6mAP5OpHU_gbTt5RfE8G790axuCENBLX00QAt-_-vdoi5RRmfn3PX2cYylGgalDmFWUIP2-maajoN6BRXG-19njsIw2CuFkKzMKGHQ"
+                    />
+                  </div>
+                  <div class="texto-banner">
+                    <span class="etiqueta-banner">
+                      <span class="material-symbols-outlined">volunteer_activism</span>
+                      <span>Crecimiento Colaborativo</span>
+                    </span>
+                    <h3 class="titulo-banner">
+                      ¿No encuentras el libro que buscas?
+                    </h3>
+                    <p class="descripcion-banner">
+                      Sugiere nuevas adquisiciones al comité de vecinos o dona ejemplares que ya leíste para que nuestra biblioteca siga floreciendo día a día.
+                    </p>
+                  </div>
+                </div>
+                <div class="botones-banner">
+                  <a class="boton-banner-primario" href="contacto.html">Sugerir un Título</a>
+                  <a class="boton-banner-secundario" href="contacto.html">Donar Libros</a>
+                </div>
+              </div>
+
+              <!-- PÁGINA 1 DE 283 (2,540 OBRAS) ... -->
+              <nav
+                aria-label="Navegación del catálogo"
+                class="paginacion-catalogo"
+              >
+                <p class="texto-paginacion">
+                  Página <span class="pagina-actual">1</span> de 283 (2,540 obras)
+                </p>
+                <div class="botones-paginacion">
+                  <button class="boton-pagina inactivo" disabled type="button">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                  </button>
+                  <button class="boton-pagina activo" type="button">1</button>
+                  <button class="boton-pagina" type="button">2</button>
+                  <button class="boton-pagina" type="button">3</button>
+                  <span class="separador-pagina">...</span>
+                  <button class="boton-pagina" type="button">283</button>
+                  <button class="boton-pagina" type="button">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                  </button>
+                </div>
+              </nav>
+            </section>
+          </div>
+        </div>
+
+        <!-- ¿AÚN NO TIENES TU CARNET VECINAL? -->
+        <section class="seccion-normas" style="padding-top: 0;">
+          <div class="contenedor-normas">
+            <div class="tarjeta-llamado-accion">
+              <div class="texto-llamado">
+                <span class="material-symbols-outlined icono-llamado">card_membership</span>
+                <div>
+                  <h4 class="titulo-llamado">
+                    ¿Aún no tienes tu Carnet Vecinal?
+                  </h4>
+                  <p class="subtitulo-llamado">
+                    Actívalo hoy mismo y empieza a pedir tus libros favoritos en un solo clic.
+                  </p>
+                </div>
+              </div>
+              <a class="boton-llamado" href="contacto.html">Solicitar Carnet Digital Gratis</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER (PIE DE PÁGINA) -->
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="rejilla-pie">
+          <div>
+            <div class="marca-pie">
+              <span class="material-symbols-outlined">menu_book</span>
+              <span class="nombre-marca-pie">Leer nos une</span>
+            </div>
+            <p class="descripcion-pie">
+              Un espacio botánico y acogedor para cultivar el conocimiento, la
+              imaginación y la convivencia vecinal en armonía.
+            </p>
+            <div class="insignia-semillero">
+              <span class="material-symbols-outlined">eco</span>
+              <span>Semillero de saberes comunitarios</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="titulo-columna-pie">Horarios de Atención</h4>
+            <ul class="lista-horarios">
+              <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
+              <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
+              <li>
+                <strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs
+              </li>
+              <li class="estado-salas">
+                <span class="punto-estado"></span>
+                <span>Salas de lectura abiertas</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
+            <ul class="enlaces-pie">
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="libros.html" data-path="libros">Catálogo de Libros</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html" data-path="servicios">Servicios</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="registro.html" data-path="registro">Solicitar Carnet</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="contacto.html" data-path="contacto">Contáctanos</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html#actividades" data-path="actividades">Clubes de Lectura</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="titulo-columna-pie">Sede Comunitaria</h4>
+            <p class="direccion-pie">
+              Sector San José<br />
+              Al costado de la SUNAT
+            </p>
+            <p class="contacto-pie">
+              ejemplo@utpvirtual.edu<br />
+              +51 1234-5678
+            </p>
+          </div>
+        </div>
+
+        <div class="pie-inferior">
+          <p class="derechos-pie">
+            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de Taller de Programación Web (Avance 2).
+          </p>
+          <div class="enlaces-legales">
+            <a href="contacto.html">Soporte Vecinal</a>
+            <a href="libros.html">Catálogo Abierto</a>
+            <a href="registro.html">Carnet Digital</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

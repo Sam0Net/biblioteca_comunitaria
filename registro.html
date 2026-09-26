@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      name="description"
+      content="Solicitud y registro de carnet digital vecinal de la Biblioteca Comunitaria 'Leer nos une'. Préstamo gratuito de libros, acceso a salas y talleres culturales."
+    />
+    <meta
+      name="keywords"
+      content="registro usuario, carnet digital, biblioteca comunitaria, formulario accesible, prestamo gratuito, San José, afiliacion vecinal"
+    />
+    <meta name="author" content="Biblioteca Comunitaria Leer nos une" />
+    <title>Registro de Usuario y Carnet Digital - Leer nos une | Biblioteca Comunitaria</title>
+
+    <!-- FUENTES EXTERNAS (Google Fonts): Tipografía display (Fredoka) y cuerpo (Plus Jakarta Sans) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ÍCONOS Y VECTORES: Google Material Symbols Outlined -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+
+    <!-- HOJA DE ESTILOS EXTERNA -->
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body class="cuerpo-sitio">
+    <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO -->
+    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <!-- MENÚS (ENCABEZADO Y NAVEGACIÓN PRINCIPAL CON FLEXBOX) -->
+    <header class="encabezado">
+      <div class="contenedor-encabezado">
+        <a class="marca-sitio" href="index.html" data-path="inicio">
+          <div class="icono-marca">
+            <span class="material-symbols-outlined">local_florist</span>
+          </div>
+          <div class="texto-marca">
+            <span class="nombre-marca">Leer nos une</span>
+            <span class="subtitulo-marca">Biblioteca Comunitaria</span>
+          </div>
+        </a>
+
+        <nav class="navegacion-principal" aria-label="Navegación principal">
+          <a class="enlace-nav" href="index.html" data-path="inicio">Inicio</a>
+          <a class="enlace-nav" href="libros.html" data-path="libros">Libros</a>
+          <a class="enlace-nav" href="servicios.html" data-path="servicios">Servicios</a>
+          <a class="enlace-nav activo" href="registro.html" aria-current="page" data-path="registro">Registro</a>
+          <a class="enlace-nav" href="contacto.html" data-path="contacto">Contacto</a>
+        </nav>
+
+        <div class="acciones-usuario">
+          <a class="boton-carnet animacion-pulso" href="#formularioRegistro" data-path="carnet-digital">
+            <span class="material-symbols-outlined">badge</span>
+            <span>Carnet Digital</span>
+          </a>
+          <div class="avatar-perfil">
+            <img
+              alt="Perfil de usuario de la biblioteca"
+              src="img/tresLibrosPlantitas.png"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido-principal" id="contenido-principal">
+      <div class="contenedor-flotante">
+        <div class="resplandor-fondo resplandor-superior"></div>
+        <div class="resplandor-fondo resplandor-medio"></div>
+
+        <!-- SECCIÓN HÉROE DEL FORMULARIO DE REGISTRO -->
+        <section class="seccion-heroe">
+          <div class="tarjeta-heroe">
+            <div class="silueta-botanica">
+              <img
+                alt="Emblema botánico comunitario"
+                src="img/tresLibrosPlantitas.png"
+              />
+            </div>
+
+            <div class="contenido-heroe animacion-aparecer">
+              <div class="insignia-tema">
+                <span class="material-symbols-outlined">badge</span>
+                <span>Afiliación Vecinal Gratuita</span>
+              </div>
+
+              <h1 class="titulo-heroe">Formulario de Registro y Carnet Digital</h1>
+              <p class="descripcion-heroe">
+                Completa tus datos para afiliarte al sistema comunitario de préstamos. Obtendrás tu
+                <mark style="background-color: #d4e6dd; padding: 2px 6px; border-radius: 4px;"><strong>Carnet Digital Vecinal</strong></mark>
+                en menos de 2 minutos, con acceso libre a más de 2,540 obras y reservas de salas de estudio.
+              </p>
+
+              <div class="fila-metricas">
+                <div class="pildora-metrica">
+                  <span class="material-symbols-outlined icono-verde">bolt</span>
+                  <span class="valor-metrica">Inmediato</span>
+                  <span class="etiqueta-metrica">Trámite digital</span>
+                </div>
+                <div class="pildora-metrica">
+                  <span class="material-symbols-outlined icono-ambar">verified_user</span>
+                  <span class="valor-metrica">100% Gratis</span>
+                  <span class="etiqueta-metrica">Sin costo vecinal</span>
+                </div>
+                <div class="pildora-metrica">
+                  <span class="material-symbols-outlined icono-verde">menu_book</span>
+                  <span class="valor-metrica">Hasta 3</span>
+                  <span class="etiqueta-metrica">Libros simultáneos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- DISPOSICIÓN EN DOS COLUMNAS (GRID LAYOUT: FORMULARIO + VISTA PREVIA Y DIAGNÓSTICO) -->
+        <section class="seccion-formulario-registro">
+          <div class="rejilla-contacto">
+            <!-- COLUMNA IZQUIERDA: FORMULARIO BOTÁNICO DE AFILIACIÓN (ESTILIZADO IGUAL A CONTACTO) -->
+            <div class="tarjeta-formulario-contacto" id="formularioRegistro">
+              <div class="encabezado-formulario">
+                <h2 class="titulo-formulario">Solicitud de Carnet Vecinal</h2>
+                <p class="descripcion-formulario">
+                  Completa este formulario oficial estructurado para afiliarte a la biblioteca comunitaria y obtener tu carnet digital inmediato.
+                </p>
+              </div>
+
+              <form class="formulario-botanico" id="formRegistroCarnet" onsubmit="registrarCarnet(event)">
+                <!-- Fieldset 1: Datos Personales del Lector -->
+                <fieldset class="fieldset-botanico">
+                  <legend class="legend-botanico">
+                    <span class="material-symbols-outlined">person</span>
+                    <span>1. Información Personal del Lector</span>
+                  </legend>
+
+                  <div class="fila-campos-doble">
+                    <div class="grupo-campo">
+                      <label class="etiqueta-campo" for="nombres">
+                        <span class="material-symbols-outlined icono-etiqueta">badge</span>
+                        <span>Nombres completos</span>
+                        <span class="campo-obligatorio">*</span>
+                      </label>
+                      <div class="contenedor-input-icono">
+                        <span class="material-symbols-outlined icono-en-campo">person</span>
+                        <input
+                          class="input-contacto"
+                          id="nombres"
+                          name="nombres"
+                          placeholder="Ej: Carmen Rosa"
+                          required
+                          type="text"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                      <label class="etiqueta-campo" for="apellidos">
+                        <span class="material-symbols-outlined icono-etiqueta">badge</span>
+                        <span>Apellidos completos</span>
+                        <span class="campo-obligatorio">*</span>
+                      </label>
+                      <div class="contenedor-input-icono">
+                        <span class="material-symbols-outlined icono-en-campo">person_outline</span>
+                        <input
+                          class="input-contacto"
+                          id="apellidos"
+                          name="apellidos"
+                          placeholder="Ej: Silva Paredes"
+                          required
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="fila-campos-doble" style="margin-top: var(--espacio-sm);">
+                    <div class="grupo-campo">
+                      <label class="etiqueta-campo" for="dni">
+                        <span class="material-symbols-outlined icono-etiqueta">pin</span>
+                        <span>DNI (8 dígitos)</span>
+                        <span class="campo-obligatorio">*</span>
+                      </label>
+                      <div class="contenedor-input-icono">
+                        <span class="material-symbols-outlined icono-en-campo">credit_card</span>
+                        <input
+                          aria-describedby="ayuda-dni-registro"
+                          class="input-contacto"
+                          id="dni"
+                          maxlength="8"
+                          name="dni"
+                          pattern="[0-9]{8}"
+                          placeholder="Ej: 72458912"
+                          required
+                          type="text"
+                        />
+                      </div>
+                      <small id="ayuda-dni-registro" style="font-size: 12px; color: var(--secondary); margin-top: 4px; padding-left: 4px;">
+                        Ingresa los 8 dígitos numéricos de tu documento nacional de identidad.
+                      </small>
+                    </div>
+
+                    <div class="grupo-campo">
+                      <label class="etiqueta-campo" for="fecha_nacimiento">
+                        <span class="material-symbols-outlined icono-etiqueta">calendar_today</span>
+                        <span>Fecha de Nacimiento</span>
+                        <span class="campo-obligatorio">*</span>
+                      </label>
+                      <div class="contenedor-input-icono">
+                        <span class="material-symbols-outlined icono-en-campo">event</span>
+                        <input
+                          class="input-contacto"
+                          id="fecha_nacimiento"
+                          name="fecha_nacimiento"
+                          required
+                          type="date"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="fila-campos-doble" style="margin-top: var(--espacio-sm);">
+                    <div class="grupo-campo">
+                      <label class="etiqueta-campo" for="correo">
+                        <span class="material-symbols-outlined icono-etiqueta">mail</span>
+                        <span>Correo Electrónico</span>
+                        <span class="campo-obligatorio">*</span>
+                      </label>
+                      <div class="contenedor-input-icono">
+                        <span class="material-symbols-outlined icono-en-campo">alternate_email</span>
+                        <input
+                          class="input-contacto"
+                          id="correo"
+                          name="correo"
+                          placeholder="ejemplo@correo.com"
+                          required
+                          type="email"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                      <label class="etiqueta-campo" for="telefono">
+                        <span class="material-symbols-outlined icono-etiqueta">phone</span>
+                        <span>Teléfono / WhatsApp</span>
+                        <span class="campo-obligatorio">*</span>
+                      </label>
+                      <div class="contenedor-input-icono">
+                        <span class="material-symbols-outlined icono-en-campo">call</span>
+                        <input
+                          class="input-contacto"
+                          id="telefono"
+                          maxlength="9"
+                          name="telefono"
+                          pattern="[0-9]{9}"
+                          placeholder="987 654 321"
+                          required
+                          type="tel"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <!-- Fieldset 2: Domicilio y Preferencias Lectoras -->
+                <fieldset class="fieldset-botanico">
+                  <legend class="legend-botanico">
+                    <span class="material-symbols-outlined">home_pin</span>
+                    <span>2. Domicilio y Preferencias Lectoras</span>
+                  </legend>
+
+                  <div class="fila-campos-doble">
+                    <div class="grupo-campo">
+                      <label class="etiqueta-campo" for="direccion">
+                        <span class="material-symbols-outlined icono-etiqueta">location_on</span>
+                        <span>Dirección o Calle</span>
+                        <span class="campo-obligatorio">*</span>
+                      </label>
+                      <div class="contenedor-input-icono">
+                        <span class="material-symbols-outlined icono-en-campo">home</span>
+                        <input
+                          class="input-contacto"
+                          id="direccion"
+                          name="direccion"
+                          placeholder="Ej: Jr. Los Sauces 450"
+                          required
+                          type="text"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                      <label class="etiqueta-campo" for="sector_vecinal">
+                        <span class="material-symbols-outlined icono-etiqueta">location_city</span>
+                        <span>Sector Vecinal</span>
+                        <span class="campo-obligatorio">*</span>
+                      </label>
+                      <div class="contenedor-input-icono">
+                        <span class="material-symbols-outlined icono-en-campo">map</span>
+                        <select class="select-contacto" id="sector_vecinal" name="sector_vecinal" required>
+                          <option disabled selected value="">Selecciona tu sector...</option>
+                          <option value="san_jose">Sector San José (Sede Principal)</option>
+                          <option value="el_porvenir">Barrio El Porvenir</option>
+                          <option value="zona_central">Casco Central / Plaza</option>
+                          <option value="otros">Otro sector del distrito</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="grupo-campo" style="margin-top: var(--espacio-sm);">
+                    <label class="etiqueta-campo">
+                      <span class="material-symbols-outlined icono-etiqueta">favorite</span>
+                      <span>Géneros o temas de mayor interés (opcional):</span>
+                    </label>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 6px;">
+                      <label class="grupo-casilla" style="margin-top: 0;">
+                        <input name="intereses[]" type="checkbox" value="novela" />
+                        <span>Novela y Narrativa</span>
+                      </label>
+                      <label class="grupo-casilla" style="margin-top: 0;">
+                        <input checked name="intereses[]" type="checkbox" value="infantil" />
+                        <span>Literatura Infantil y Juvenil</span>
+                      </label>
+                      <label class="grupo-casilla" style="margin-top: 0;">
+                        <input name="intereses[]" type="checkbox" value="historia" />
+                        <span>Historia y Memoria Vecinal</span>
+                      </label>
+                      <label class="grupo-casilla" style="margin-top: 0;">
+                        <input name="intereses[]" type="checkbox" value="ecologia" />
+                        <span>Botánica y Medio Ambiente</span>
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <!-- Fieldset 3: Compromiso Vecinal y Normas -->
+                <fieldset class="fieldset-botanico">
+                  <legend class="legend-botanico">
+                    <span class="material-symbols-outlined">handshake</span>
+                    <span>3. Compromiso y Convivencia Vecinal</span>
+                  </legend>
+
+                  <label class="grupo-casilla" for="acepto-normas-registro" style="margin-bottom: var(--espacio-sm);">
+                    <input
+                      id="acepto-normas-registro"
+                      name="acepto_normas"
+                      required
+                      type="checkbox"
+                    />
+                    <span>
+                      Acepto el reglamento vecinal: me comprometo a cuidar las obras prestadas, devolverlas dentro del plazo de 14 días y respetar las áreas silenciosas de estudio.
+                      <span class="campo-obligatorio">*</span>
+                    </span>
+                  </label>
+
+                  <label class="grupo-casilla" for="notificaciones-registro">
+                    <input
+                      checked
+                      id="notificaciones-registro"
+                      name="notificaciones"
+                      type="checkbox"
+                    />
+                    <span>
+                      Deseo recibir recordatorios de renovación de préstamos y avisos de talleres culturales por WhatsApp o correo.
+                    </span>
+                  </label>
+                </fieldset>
+
+                <!-- Botones de Acción -->
+                <div class="fila-botones-formulario">
+                  <button class="boton-enviar-contacto" id="btnEmitirCarnet" type="submit">
+                    <span>Emitir mi Carnet Digital</span>
+                    <span class="material-symbols-outlined">badge</span>
+                  </button>
+                  <button class="boton-secundario-contacto" type="reset">
+                    <span class="material-symbols-outlined">restart_alt</span>
+                    <span>Restablecer</span>
+                  </button>
+                </div>
+              </form>
+
+              <!-- Notificación de Éxito al Registrarse (Idéntica a Contacto) -->
+              <div class="alerta-exito-contacto" id="alertaExitoCarnet">
+                <span class="material-symbols-outlined icono-exito">check_circle</span>
+                <div>
+                  <h4>¡Carnet Vecinal Emitido con Éxito!</h4>
+                  <p>
+                    Tu solicitud ha sido procesada satisfactoriamente.
+                    <br />
+                    Tus datos han quedado vinculados al sistema comunitario. Ya puedes solicitar en sala el préstamo de hasta 3 libros presentando tu documento de identidad.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: MOCKUP INTERACTIVO DEL CARNET + CANALES DE AYUDA -->
+            <div class="panel-canales-contacto">
+              <!-- MOCKUP DEL CARNET DIGITAL (TRANSFORM, GRADIENT Y FLEXBOX) -->
+              <div class="tarjeta-carnet-mockup animacion-flotacion">
+                <div class="cabecera-carnet-mockup">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-outlined" style="font-size: 28px; color: var(--warm-amber);">local_florist</span>
+                    <div>
+                      <h3 style="font-family: var(--font-display); font-size: 16px; margin: 0; color: #ffffff;">Leer nos une</h3>
+                      <p style="font-size: 11px; margin: 0; color: var(--sage-container);">Biblioteca Comunitaria San José</p>
+                    </div>
+                  </div>
+                  <span class="badge-carnet-tipo">Lector Vecinal</span>
+                </div>
+
+                <div class="cuerpo-carnet-mockup">
+                  <div class="avatar-carnet-mockup">
+                    <img alt="Foto o avatar del titular del carnet" src="img/tresLibrosPlantitas.png" />
+                  </div>
+                  <div class="datos-carnet-mockup">
+                    <span class="nombre-titular-mockup">Carmen Rosa Silva P.</span>
+                    <span class="dni-titular-mockup">DNI: 72458912</span>
+                    <span class="afiliacion-mockup">Afiliación: 2026 - Activo</span>
+                  </div>
+                </div>
+
+                <div class="pie-carnet-mockup">
+                  <div class="codigo-barras-simulado">
+                    <span>||| | | |||| | || | |||| || |</span>
+                  </div>
+                  <span style="font-size: 11px; color: var(--sage-container); font-family: var(--font-display);">ID: BC-2026-0428</span>
+                </div>
+              </div>
+
+              <!-- TARJETA: BENEFICIOS DEL CARNET VECINAL -->
+              <div class="tarjeta-canal">
+                <div class="icono-canal-contenedor">
+                  <span class="material-symbols-outlined">card_membership</span>
+                </div>
+                <div class="contenido-canal">
+                  <h3 class="titulo-canal">Beneficios del Carnet Vecinal</h3>
+                  <p class="descripcion-canal">
+                    Accede a todos los servicios gratuitos de la biblioteca comunitaria presentando tu carnet o número de DNI:
+                  </p>
+                  <ul class="lista-puntos-servicio" style="margin-top: 8px;">
+                    <li>
+                      <span class="material-symbols-outlined">check_circle</span>
+                      <span>Hasta 3 libros en préstamo a domicilio por 14 días corridos.</span>
+                    </li>
+                    <li>
+                      <span class="material-symbols-outlined">check_circle</span>
+                      <span>Acceso preferente a salas de estudio silencioso y mediateca.</span>
+                    </li>
+                    <li>
+                      <span class="material-symbols-outlined">check_circle</span>
+                      <span>Inscripción anticipada a clubes de lectura y talleres infantiles.</span>
+                    </li>
+                  </ul>
+                  <span class="dato-destacado-canal">Trámite 100% Gratuito y Libre</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- PIE DE PÁGINA (FOOTER) BOTÁNICO -->
+    <footer class="pie-sitio">
+      <div class="contenedor-pie">
+        <div class="rejilla-pie">
+          <div>
+            <div class="marca-pie">
+              <div class="icono-marca">
+                <span class="material-symbols-outlined">local_florist</span>
+              </div>
+              <span class="nombre-marca">Leer nos une</span>
+            </div>
+            <p class="descripcion-pie">
+              Biblioteca Comunitaria del Sector San José. Fomentando la lectura libre,
+              la educación compartida y el cuidado vecinal.
+            </p>
+            <div class="lema-botanico">
+              <span class="material-symbols-outlined">eco</span>
+              <span>Semillero de saberes comunitarios</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="titulo-columna-pie">Horarios de Atención</h4>
+            <ul class="lista-horarios">
+              <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
+              <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
+              <li><strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs</li>
+              <li class="estado-salas">
+                <span class="punto-estado"></span>
+                <span>Salas de lectura abiertas</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
+            <ul class="enlaces-pie">
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="index.html" data-path="inicio">Página de Inicio</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="libros.html" data-path="libros">Catálogo de Libros</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html" data-path="servicios">Servicios Comunitarios</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="registro.html" data-path="registro">Solicitar Carnet Vecinal</a>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="contacto.html" data-path="contacto">Canales de Contacto</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="titulo-columna-pie">Sede Comunitaria</h4>
+            <p class="direccion-pie">
+              Sector San José<br />
+              Al costado de la SUNAT
+            </p>
+            <p class="contacto-pie">
+              ejemplo@utpvirtual.edu<br />
+              +51 1234-5678
+            </p>
+          </div>
+        </div>
+
+        <div class="pie-inferior">
+          <p class="derechos-pie">
+            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de Taller de Programación Web (Avance 2).
+          </p>
+          <div class="enlaces-legales">
+            <a href="contacto.html">Soporte Vecinal</a>
+            <a href="libros.html">Catálogo Abierto</a>
+            <a href="registro.html">Carnet Digital</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- INTERACCIÓN DEL FORMULARIO DE CARNET -->
+    <script>
+      function registrarCarnet(event) {
+        event.preventDefault();
+        const btn = document.getElementById("btnEmitirCarnet");
+        const alerta = document.getElementById("alertaExitoCarnet");
+        const form = document.getElementById("formRegistroCarnet");
+
+        // Estado de carga temporal
+        const textoOriginal = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined">hourglass_top</span><span>Emitiendo carnet...</span>';
+
+        setTimeout(() => {
+          btn.innerHTML = '<span class="material-symbols-outlined">check</span><span>¡Carnet Emitido!</span>';
+          alerta.classList.add("visible");
+          form.reset();
+
+          // Desplazar suavemente hacia la alerta
+          alerta.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+          // Restaurar botón después de unos segundos
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.innerHTML = textoOriginal;
+          }, 3500);
+        }, 800);
+      }
+    </script>
+  </body>
+</html>
