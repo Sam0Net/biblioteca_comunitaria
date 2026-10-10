@@ -25,7 +25,9 @@
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
-    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+    <a class="saltar-enlace" href="#contenido-principal"
+      >Saltar al contenido principal</a
+    >
 
     <!-- MENÚS (ENCABEZADO Y NAVEGACIÓN CON FLEXBOX) -->
     <header class="encabezado">
@@ -41,25 +43,95 @@
         </a>
 
         <nav class="navegacion-principal" aria-label="Navegación principal">
-          <a class="enlace-nav activo" href="index.html" aria-current="page" data-path="inicio">Inicio</a>
+          <a
+            class="enlace-nav activo"
+            href="index.html"
+            aria-current="page"
+            data-path="inicio"
+            >Inicio</a
+          >
           <a class="enlace-nav" href="libros.html" data-path="libros">Libros</a>
-          <a class="enlace-nav" href="servicios.html" data-path="servicios">Servicios</a>
-          <a class="enlace-nav" href="registro.html" data-path="registro">Registro</a>
-          <a class="enlace-nav" href="contacto.html" data-path="contacto">Contacto</a>
+          <a class="enlace-nav" href="servicios.html" data-path="servicios"
+            >Servicios</a
+          >
+          <a class="enlace-nav" href="contacto.html" data-path="contacto"
+            >Contacto</a
+          >
         </nav>
 
         <div class="acciones-usuario">
-          <a class="boton-carnet animacion-pulso" href="registro.html" data-path="carnet-digital">
+          <a
+            class="boton-carnet animacion-pulso"
+            href="login.html"
+            data-path="carnet-digital"
+          >
             <span class="material-symbols-outlined">badge</span>
             <span>Carnet Digital</span>
           </a>
-          <div class="avatar-perfil">
-            <img
-              alt="Perfil de usuario"
-              src="img/tresLibrosPlantitas.png"
-            />
-          </div>
+          <a
+            class="avatar-perfil"
+            href="login.html"
+            title="Mi Cuenta e Inicio de Sesión"
+            aria-label="Mi Cuenta"
+          >
+            <img alt="Perfil de usuario" src="img/tresLibrosPlantitas.png" />
+          </a>
+          <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
+          <button
+            class="boton-menu-movil"
+            id="btnMenuMovil"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            type="button"
+          >
+            <span class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span class="material-symbols-outlined icono-menu-cerrar"
+              >close</span
+            >
+          </button>
         </div>
+      </div>
+
+      <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
+      <div
+        class="menu-movil-desplegable"
+        id="menuMovilDesplegable"
+        aria-hidden="true"
+      >
+        <nav class="navegacion-movil">
+          <a
+            class="enlace-nav-movil activo"
+            href="index.html"
+            aria-current="page"
+          >
+            <span class="material-symbols-outlined">home</span>
+            <span>Inicio</span>
+            <span class="material-symbols-outlined flecha-nav"
+              >chevron_right</span
+            >
+          </a>
+          <a class="enlace-nav-movil" href="libros.html">
+            <span class="material-symbols-outlined">auto_stories</span>
+            <span>Libros</span>
+            <span class="material-symbols-outlined flecha-nav"
+              >chevron_right</span
+            >
+          </a>
+          <a class="enlace-nav-movil" href="servicios.html">
+            <span class="material-symbols-outlined">spa</span>
+            <span>Servicios</span>
+            <span class="material-symbols-outlined flecha-nav"
+              >chevron_right</span
+            >
+          </a>
+          <a class="enlace-nav-movil" href="contacto.html">
+            <span class="material-symbols-outlined">chat</span>
+            <span>Contacto</span>
+            <span class="material-symbols-outlined flecha-nav"
+              >chevron_right</span
+            >
+          </a>
+        </nav>
       </div>
     </header>
 
@@ -76,17 +148,39 @@
               <div class="contenido-heroe">
                 <div class="insignia-tema">
                   <!-- VECTOR SVG (Tema Avance 2: Gráficos vectoriales e íconos) -->
-                  <svg class="icono-vector-svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right: 4px;">
-                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z"/>
+                  <svg
+                    class="icono-vector-svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    style="margin-right: 4px"
+                  >
+                    <path
+                      d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z"
+                    />
                   </svg>
                   <span>Semillero de Lecturas Comunitarias</span>
                 </div>
 
-                <h1 class="titulo-heroe">¡Bienvenido a nuestra Biblioteca Comunitaria!</h1>
+                <h1 class="titulo-heroe">
+                  ¡Bienvenido a nuestra Biblioteca Comunitaria!
+                </h1>
                 <p class="descripcion-heroe">
-                  Un espacio abierto para todos, donde los libros conectan personas, ideas y sueños.
+                  Un espacio abierto para todos, donde los libros conectan
+                  personas, ideas y sueños.
                   <br />
-                  Cultivamos el saber, la imaginación y la convivencia vecinal en un entorno botánico cálido, acogedor y <mark style="background-color: #d4e6dd; padding: 2px 6px; border-radius: 4px;"><strong>100% gratuito</strong></mark>.
+                  Cultivamos el saber, la imaginación y la convivencia vecinal
+                  en un entorno botánico cálido, acogedor y
+                  <mark
+                    style="
+                      background-color: #d4e6dd;
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                    "
+                    ><strong>100% gratuito</strong></mark
+                  >.
                 </p>
 
                 <div class="fila-botones-heroe">
@@ -102,37 +196,50 @@
 
                 <div class="fila-metricas">
                   <div class="pildora-metrica">
-                    <span class="material-symbols-outlined icono-verde">menu_book</span>
+                    <span class="material-symbols-outlined icono-verde"
+                      >menu_book</span
+                    >
                     <span class="valor-metrica">2,540+</span>
                     <span class="etiqueta-metrica">Libros libres</span>
                   </div>
                   <div class="pildora-metrica">
-                    <span class="material-symbols-outlined icono-ambar">groups</span>
+                    <span class="material-symbols-outlined icono-ambar"
+                      >groups</span
+                    >
                     <span class="valor-metrica">1,200+</span>
                     <span class="etiqueta-metrica">Vecinos lectores</span>
                   </div>
                   <div class="pildora-metrica">
-                    <span class="material-symbols-outlined icono-verde">yard</span>
+                    <span class="material-symbols-outlined icono-verde"
+                      >yard</span
+                    >
                     <span class="valor-metrica">3</span>
                     <span class="etiqueta-metrica">Salas & Jardín</span>
                   </div>
                   <div class="pildora-metrica pildora-disponible">
                     <span class="punto-pulso"></span>
-                    <span class="texto-disponible">Préstamo Libre y Gratuito</span>
+                    <span class="texto-disponible"
+                      >Préstamo Libre y Gratuito</span
+                    >
                   </div>
                 </div>
               </div>
 
               <div class="marco-visual-heroe">
                 <div class="insignia-flotante-heroe insignia-superior-derecha">
-                  <span class="material-symbols-outlined icono-verde">local_florist</span>
+                  <span class="material-symbols-outlined icono-verde"
+                    >local_florist</span
+                  >
                   <span>Lectura Libre</span>
                 </div>
 
                 <!-- IMAGEN RESPONSIVA Y FIGURA SEMÁNTICA (Tema Avance 2: picture y animaciones) -->
-                <figure class="contenedor-imagen-heroe" style="margin: 0;">
+                <figure class="contenedor-imagen-heroe" style="margin: 0">
                   <picture>
-                    <source media="(max-width: 600px)" srcset="img/librosenBibloteca.png" />
+                    <source
+                      media="(max-width: 600px)"
+                      srcset="img/librosenBibloteca.png"
+                    />
                     <img
                       alt="Libros y plantas en la biblioteca comunitaria"
                       class="imagen-destacada-heroe animacion-flotacion"
@@ -140,11 +247,17 @@
                       loading="lazy"
                     />
                   </picture>
-                  <figcaption style="position: absolute; left: -9999px;">Rincón de lectura botánico en la biblioteca comunitaria</figcaption>
+                  <figcaption style="position: absolute; left: -9999px">
+                    Rincón de lectura botánico en la biblioteca comunitaria
+                  </figcaption>
                 </figure>
 
-                <div class="insignia-flotante-heroe insignia-inferior-izquierda">
-                  <span class="material-symbols-outlined icono-ambar">badge</span>
+                <div
+                  class="insignia-flotante-heroe insignia-inferior-izquierda"
+                >
+                  <span class="material-symbols-outlined icono-ambar"
+                    >badge</span
+                  >
                   <span>Carnet Digital Gratuito</span>
                 </div>
               </div>
@@ -159,9 +272,13 @@
               <span class="material-symbols-outlined">trending_up</span>
               <span>Lecturas Favoritas del Barrio</span>
             </div>
-            <h2 class="titulo-seccion-inicio">Libros Más Leídos de la Comunidad</h2>
+            <h2 class="titulo-seccion-inicio">
+              Libros Más Leídos de la Comunidad
+            </h2>
             <p class="descripcion-seccion-inicio">
-              Obras que inspiran, emocionan y abren diálogos entre vecinos. Disponibles para préstamo a domicilio o consulta en nuestro jardín botánico.
+              Obras que inspiran, emocionan y abren diálogos entre vecinos.
+              Disponibles para préstamo a domicilio o consulta en nuestro jardín
+              botánico.
             </p>
           </div>
 
@@ -173,7 +290,9 @@
                   <div
                     class="imagen-portada"
                     data-alt="Portada de Cien años de soledad de Gabriel García Márquez"
-                    style="background-image: url('img/cien-años-soledad.jpg');"
+                    style="
+                      background-image: url(&quot;img/cien-años-soledad.jpg&quot;);
+                    "
                   ></div>
                   <div class="sombra-lomo"></div>
                   <div class="insignia-disponibilidad disponible">
@@ -198,7 +317,8 @@
                   <span class="texto-lectores">4.9 (48 lectores)</span>
                 </div>
                 <p class="descripcion-libro">
-                  La saga inmortal de la familia Buendía en Macondo. Una de las obras maestras más amadas por nuestros lectores vecinos.
+                  La saga inmortal de la familia Buendía en Macondo. Una de las
+                  obras maestras más amadas por nuestros lectores vecinos.
                 </p>
               </div>
               <div class="acciones-tarjeta">
@@ -216,7 +336,9 @@
                   <div
                     class="imagen-portada"
                     data-alt="Portada del libro La felicidad de Gabriel Rolón"
-                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3t7UebnA1ihuXHCDBdjB2jju0-y0B4UFBrUsFFZ8_Cu1HNXOom71TLG9c6hNCL96qARz8IVrQPOoClgU__kH0pGgOCYl85hIYiaE7RI93c7CiN39XHH3VAP64Cv5ZdpkrKm7TxWCVqSspNoiljPzW6Sc9e_zkN5MZDFYwDydhuE4xnRui0sUVivcN3etV7FG5SDKqvYenmPrPi3IMCfB0Blje9-arb9R-bsmmvVU5kpex5B-3PqDB');"
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuD3t7UebnA1ihuXHCDBdjB2jju0-y0B4UFBrUsFFZ8_Cu1HNXOom71TLG9c6hNCL96qARz8IVrQPOoClgU__kH0pGgOCYl85hIYiaE7RI93c7CiN39XHH3VAP64Cv5ZdpkrKm7TxWCVqSspNoiljPzW6Sc9e_zkN5MZDFYwDydhuE4xnRui0sUVivcN3etV7FG5SDKqvYenmPrPi3IMCfB0Blje9-arb9R-bsmmvVU5kpex5B-3PqDB&quot;);
+                    "
                   ></div>
                   <div class="sombra-lomo"></div>
                   <div class="insignia-disponibilidad disponible">
@@ -241,7 +363,9 @@
                   <span class="texto-lectores">4.7 (31 lectores)</span>
                 </div>
                 <p class="descripcion-libro">
-                  Una lúcida indagación sobre el anhelo más universal: desentrañar la dicha desde la emoción, el duelo y los vínculos humanos.
+                  Una lúcida indagación sobre el anhelo más universal:
+                  desentrañar la dicha desde la emoción, el duelo y los vínculos
+                  humanos.
                 </p>
               </div>
               <div class="acciones-tarjeta">
@@ -259,7 +383,9 @@
                   <div
                     class="imagen-portada"
                     data-alt="Edición clásica encuadernada de Don Quijote de la Mancha"
-                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWRHTqq6wIfeJA7HUx5TV_MThSgWHg8tHcpgf7E9OlQCufLqSOSP0EqgBrtklrkXnefjIqYn22XjASfQXHEeESPkSBEWWpcRvJHptMSNXXJD9i_Xtqzg3gSh0QmpQaTQlZ_K-oyh1M8noaMfJNpDVq7X9zozC2pNts6CepK3qMuOF2Byoa2j_elEe_kOh6XF49-3ZOC5b5ZNpqSwUSeoxGcHmsWQg0OsNzE_uXXooYU190QrMmW8mb');"
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDWRHTqq6wIfeJA7HUx5TV_MThSgWHg8tHcpgf7E9OlQCufLqSOSP0EqgBrtklrkXnefjIqYn22XjASfQXHEeESPkSBEWWpcRvJHptMSNXXJD9i_Xtqzg3gSh0QmpQaTQlZ_K-oyh1M8noaMfJNpDVq7X9zozC2pNts6CepK3qMuOF2Byoa2j_elEe_kOh6XF49-3ZOC5b5ZNpqSwUSeoxGcHmsWQg0OsNzE_uXXooYU190QrMmW8mb&quot;);
+                    "
                   ></div>
                   <div class="sombra-lomo"></div>
                   <div class="insignia-disponibilidad sala">
@@ -284,7 +410,9 @@
                   <span class="texto-lectores">5.0 (64 lectores)</span>
                 </div>
                 <p class="descripcion-libro">
-                  La cumbre de la literatura en castellano. Edición conmemorativa disponible para lectura tranquila en las mesas del jardín.
+                  La cumbre de la literatura en castellano. Edición
+                  conmemorativa disponible para lectura tranquila en las mesas
+                  del jardín.
                 </p>
               </div>
               <div class="acciones-tarjeta">
@@ -302,7 +430,9 @@
                   <div
                     class="imagen-portada"
                     data-alt="Portada de El Principito con acuarelas"
-                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4NZSAD09AAdhuD_zdm8k4pw26pp8MJw9UpEuha78tt_LnNEi8GxE4kxbeg4FNj_rSKTXAxnsv8xBVA4f5VZQU9yMT2Awf3KIJDJsIaMahoFxmy27p0sAN72DaPlMFDO6hqcGkYrSQ2fhm5Gw-EOGJhL98nXYsXKKcJX_xuDwLLuC7PZU9uGfsfR9KFlkaVRX5tgmCKGKefVyP3_cWM7swMobeDjVsQ1bKz81zVhh-VnRh8otdhXk9');"
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuA4NZSAD09AAdhuD_zdm8k4pw26pp8MJw9UpEuha78tt_LnNEi8GxE4kxbeg4FNj_rSKTXAxnsv8xBVA4f5VZQU9yMT2Awf3KIJDJsIaMahoFxmy27p0sAN72DaPlMFDO6hqcGkYrSQ2fhm5Gw-EOGJhL98nXYsXKKcJX_xuDwLLuC7PZU9uGfsfR9KFlkaVRX5tgmCKGKefVyP3_cWM7swMobeDjVsQ1bKz81zVhh-VnRh8otdhXk9&quot;);
+                    "
                   ></div>
                   <div class="sombra-lomo"></div>
                   <div class="insignia-disponibilidad disponible">
@@ -327,7 +457,9 @@
                   <span class="texto-lectores">5.0 (92 lectores)</span>
                 </div>
                 <p class="descripcion-libro">
-                  "Lo esencial es invisible a los ojos". Fábula atemporal con acuarelas originales para compartir en familia y reflexionar juntos.
+                  "Lo esencial es invisible a los ojos". Fábula atemporal con
+                  acuarelas originales para compartir en familia y reflexionar
+                  juntos.
                 </p>
               </div>
               <div class="acciones-tarjeta">
@@ -355,9 +487,13 @@
                 <span class="material-symbols-outlined">event</span>
                 <span>Agenda Comunitaria</span>
               </div>
-              <h2 class="titulo-seccion-inicio">Próximas Actividades del Mes</h2>
+              <h2 class="titulo-seccion-inicio">
+                Próximas Actividades del Mes
+              </h2>
               <p class="descripcion-seccion-inicio">
-                Súmate a nuestras actividades vecinales presenciales. No se requiere inscripción previa compleja, solo ganas de aprender y compartir.
+                Súmate a nuestras actividades vecinales presenciales. No se
+                requiere inscripción previa compleja, solo ganas de aprender y
+                compartir.
               </p>
             </div>
 
@@ -371,9 +507,13 @@
                   </div>
                   <span class="insignia-modalidad-evento">Presencial</span>
                 </div>
-                <h3 class="titulo-evento-inicio">Club de Lectura: Cien años de Macondo</h3>
+                <h3 class="titulo-evento-inicio">
+                  Club de Lectura: Cien años de Macondo
+                </h3>
                 <p class="descripcion-evento-inicio">
-                  Tertulia y análisis colectivo sobre los primeros capítulos de la gran novela de García Márquez con café y té de hierbas del huerto.
+                  Tertulia y análisis colectivo sobre los primeros capítulos de
+                  la gran novela de García Márquez con café y té de hierbas del
+                  huerto.
                 </p>
                 <div class="detalles-meta-evento">
                   <span>
@@ -400,9 +540,13 @@
                   </div>
                   <span class="insignia-modalidad-evento">Familiar</span>
                 </div>
-                <h3 class="titulo-evento-inicio">Taller Infantil: Sembrando un Cuento</h3>
+                <h3 class="titulo-evento-inicio">
+                  Taller Infantil: Sembrando un Cuento
+                </h3>
                 <p class="descripcion-evento-inicio">
-                  Sesión lúdica para niñas y niños de 5 a 11 años: lectura dramatizada de fábulas botánicas y creación de su propio libro plegable.
+                  Sesión lúdica para niñas y niños de 5 a 11 años: lectura
+                  dramatizada de fábulas botánicas y creación de su propio libro
+                  plegable.
                 </p>
                 <div class="detalles-meta-evento">
                   <span>
@@ -429,9 +573,13 @@
                   </div>
                   <span class="insignia-modalidad-evento">Comunidad</span>
                 </div>
-                <h3 class="titulo-evento-inicio">Jornada de Donación e Intercambio</h3>
+                <h3 class="titulo-evento-inicio">
+                  Jornada de Donación e Intercambio
+                </h3>
                 <p class="descripcion-evento-inicio">
-                  Trae libros que ya leíste y llévate nuevas semillas literarias. Colecta vecinal para ampliar el semillero literario de la biblioteca.
+                  Trae libros que ya leíste y llévate nuevas semillas
+                  literarias. Colecta vecinal para ampliar el semillero
+                  literario de la biblioteca.
                 </p>
                 <div class="detalles-meta-evento">
                   <span>
@@ -459,9 +607,12 @@
               <span class="material-symbols-outlined">smart_display</span>
               <span>Experiencia Multimedia</span>
             </div>
-            <h2 class="titulo-seccion-inicio">Voces y Espacios de la Biblioteca</h2>
+            <h2 class="titulo-seccion-inicio">
+              Voces y Espacios de la Biblioteca
+            </h2>
             <p class="descripcion-seccion-inicio">
-              Observa el video de nuestras salas y escucha relatos grabados por lectores de la comunidad.
+              Observa el video de nuestras salas y escucha relatos grabados por
+              lectores de la comunidad.
             </p>
           </div>
 
@@ -483,9 +634,11 @@
                 </video>
               </div>
               <div class="detalles-multimedia">
-                <h3>Video: Recorrido Virtual por la Biblioteca (30 seg)</h3>
+                <h3>Video: Recorrido Virtual por la Biblioteca</h3>
                 <p>
-                  Recorrido institucional de 30 segundos por nuestras salas de estudio silencioso, estantes libres y el jardín botánico de lectura.
+                  Recorrido institucional de 8 segundos por nuestras salas de
+                  estudio silencioso, estantes libres y el jardín botánico de
+                  lectura.
                 </p>
                 <div class="pie-multimedia-meta">
                   <span>
@@ -505,14 +658,33 @@
               <div class="contenedor-audio-botanico">
                 <div class="cabecera-audio-info">
                   <div class="icono-disco-audio">
-                    <span class="material-symbols-outlined">self_improvement</span>
+                    <span class="material-symbols-outlined"
+                      >self_improvement</span
+                    >
                   </div>
                   <div>
-                    <h3 style="font-size: 16px; margin: 0; color: var(--primary);">Música Relajante para Lectura y Estudio</h3>
-                    <p style="font-size: 13px; margin: 0; color: var(--on-surface-variant);">Ambiente sonoro tranquilo y contemplativo para acompañar tu lectura</p>
+                    <h3
+                      style="font-size: 16px; margin: 0; color: var(--primary)"
+                    >
+                      Música Relajante para Lectura y Estudio
+                    </h3>
+                    <p
+                      style="
+                        font-size: 13px;
+                        margin: 0;
+                        color: var(--on-surface-variant);
+                      "
+                    >
+                      Ambiente sonoro tranquilo y contemplativo para acompañar
+                      tu lectura
+                    </p>
                   </div>
                 </div>
-                <audio class="audio-reproductor-botanico" controls preload="metadata">
+                <audio
+                  class="audio-reproductor-botanico"
+                  controls
+                  preload="metadata"
+                >
                   <source
                     src="multimedia/musica_relajante.mp3"
                     type="audio/mpeg"
@@ -523,7 +695,8 @@
               <div class="detalles-multimedia">
                 <h3>Música Relajante: Armonía Botánica para Concentración</h3>
                 <p>
-                  Composición relajante con notas suaves de piano y acordes cálidos para crear una atmósfera serena de lectura individual.
+                  Composición relajante con notas suaves de piano y acordes
+                  cálidos para crear una atmósfera serena de lectura individual.
                 </p>
                 <div class="pie-multimedia-meta">
                   <span>
@@ -565,7 +738,8 @@
                 <h3 class="titulo-regla">Hasta 3 Libros a la Vez</h3>
                 <p class="texto-regla">
                   Cada vecino acreditado puede retirar hasta 3 ejemplares por un
-                  periodo de 14 días corridos con renovación rápida desde su Carnet Digital.
+                  periodo de 14 días corridos con renovación rápida desde su
+                  Carnet Digital.
                 </p>
               </div>
 
@@ -575,7 +749,9 @@
                 </div>
                 <h3 class="titulo-regla">Cuidado Orgánico y Amoroso</h3>
                 <p class="texto-regla">
-                  Trata cada página como una planta viva. Utiliza los separadores botánicos gratuitos en recepción y protégelos de líquidos y humedad.
+                  Trata cada página como una planta viva. Utiliza los
+                  separadores botánicos gratuitos en recepción y protégelos de
+                  líquidos y humedad.
                 </p>
               </div>
 
@@ -586,7 +762,20 @@
                 <h3 class="titulo-regla">Obtén tu Carnet en 2 Minutos</h3>
                 <p class="texto-regla">
                   Presenta solo tu documento de identidad y comprobante de
-                  domicilio vecinal, o solicítalo en línea con validación comunitaria gratuita.
+                  domicilio vecinal, o solicítalo en línea con validación
+                  comunitaria gratuita.
+                </p>
+              </div>
+
+              <div class="tarjeta-norma">
+                <div class="icono-norma verde-claro">
+                  <span class="material-symbols-outlined">volume_off</span>
+                </div>
+                <h3 class="titulo-regla">Silencio y Armonía Compartida</h3>
+                <p class="texto-regla">
+                  Mantén el tono de voz bajo en las salas de estudio silencioso
+                  y aprovecha las áreas del jardín botánico para tertulias y
+                  diálogo vecinal.
                 </p>
               </div>
             </div>
@@ -663,7 +852,7 @@
               </li>
               <li>
                 <span class="material-symbols-outlined">chevron_right</span>
-                <a href="registro.html" data-path="registro">Solicitar Carnet</a>
+                <a href="login.html" data-path="login">Carnet Digital</a>
               </li>
               <li>
                 <span class="material-symbols-outlined">chevron_right</span>
@@ -671,7 +860,9 @@
               </li>
               <li>
                 <span class="material-symbols-outlined">chevron_right</span>
-                <a href="servicios.html#actividades" data-path="actividades">Clubes de Lectura</a>
+                <a href="servicios.html#actividades" data-path="actividades"
+                  >Clubes de Lectura</a
+                >
               </li>
             </ul>
           </div>
@@ -691,15 +882,42 @@
 
         <div class="pie-inferior">
           <p class="derechos-pie">
-            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de Taller de Programación Web (Avance 2).
+            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de
+            Taller de Programación Web (Avance 2).
           </p>
           <div class="enlaces-legales">
             <a href="contacto.html">Soporte Vecinal</a>
             <a href="libros.html">Catálogo Abierto</a>
-            <a href="registro.html">Carnet Digital</a>
+            <a href="login.html">Carnet Digital</a>
           </div>
         </div>
       </div>
     </footer>
+
+    <!-- INTERACCIÓN DEL MENÚ MÓVIL ESTILO APPLE -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btnMenu = document.getElementById("btnMenuMovil");
+        const menuMovil = document.getElementById("menuMovilDesplegable");
+        if (btnMenu && menuMovil) {
+          btnMenu.addEventListener("click", () => {
+            const abierto = menuMovil.classList.toggle("abierto");
+            btnMenu.classList.toggle("activo", abierto);
+            btnMenu.setAttribute("aria-expanded", abierto);
+            menuMovil.setAttribute("aria-hidden", !abierto);
+          });
+
+          // Cerrar al presionar Escape o hacer clic fuera
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
+              menuMovil.classList.remove("abierto");
+              btnMenu.classList.remove("activo");
+              btnMenu.setAttribute("aria-expanded", "false");
+              menuMovil.setAttribute("aria-hidden", "true");
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>

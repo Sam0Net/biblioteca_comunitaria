@@ -44,22 +44,57 @@
           <a class="enlace-nav" href="index.html" data-path="inicio">Inicio</a>
           <a class="enlace-nav" href="libros.html" data-path="libros">Libros</a>
           <a class="enlace-nav activo" href="servicios.html" aria-current="page" data-path="servicios">Servicios</a>
-          <a class="enlace-nav" href="registro.html" data-path="registro">Registro</a>
           <a class="enlace-nav" href="contacto.html" data-path="contacto">Contacto</a>
         </nav>
 
         <div class="acciones-usuario">
-          <a class="boton-carnet animacion-pulso" href="registro.html" data-path="carnet-digital">
+          <a class="boton-carnet animacion-pulso" href="login.html" data-path="carnet-digital">
             <span class="material-symbols-outlined">badge</span>
             <span>Carnet Digital</span>
           </a>
-          <div class="avatar-perfil">
+          <a
+            class="avatar-perfil"
+            href="login.html"
+            title="Mi Cuenta e Inicio de Sesión"
+            aria-label="Mi Cuenta"
+          >
             <img
               alt="Perfil de usuario"
               src="img/tresLibrosPlantitas.png"
             />
-          </div>
+          </a>
+          <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
+          <button class="boton-menu-movil" id="btnMenuMovil" aria-label="Abrir menú" aria-expanded="false" type="button">
+            <span class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span class="material-symbols-outlined icono-menu-cerrar">close</span>
+          </button>
         </div>
+      </div>
+
+      <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
+      <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
+        <nav class="navegacion-movil">
+          <a class="enlace-nav-movil" href="index.html">
+            <span class="material-symbols-outlined">home</span>
+            <span>Inicio</span>
+            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+          <a class="enlace-nav-movil" href="libros.html">
+            <span class="material-symbols-outlined">auto_stories</span>
+            <span>Libros</span>
+            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+          <a class="enlace-nav-movil activo" href="servicios.html" aria-current="page">
+            <span class="material-symbols-outlined">spa</span>
+            <span>Servicios</span>
+            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+          <a class="enlace-nav-movil" href="contacto.html">
+            <span class="material-symbols-outlined">chat</span>
+            <span>Contacto</span>
+            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+        </nav>
       </div>
     </header>
 
@@ -338,7 +373,7 @@
               </li>
               <li>
                 <span class="material-symbols-outlined">chevron_right</span>
-                <a href="registro.html" data-path="registro">Solicitar Carnet</a>
+                <a href="login.html" data-path="login">Carnet Digital</a>
               </li>
               <li>
                 <span class="material-symbols-outlined">chevron_right</span>
@@ -367,10 +402,35 @@
           <div class="enlaces-legales">
             <a href="contacto.html">Soporte Vecinal</a>
             <a href="libros.html">Catálogo Abierto</a>
-            <a href="registro.html">Carnet Digital</a>
+            <a href="login.html">Carnet Digital</a>
           </div>
         </div>
       </div>
     </footer>
+
+    <!-- INTERACCIÓN DEL MENÚ MÓVIL ESTILO APPLE -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btnMenu = document.getElementById("btnMenuMovil");
+        const menuMovil = document.getElementById("menuMovilDesplegable");
+        if (btnMenu && menuMovil) {
+          btnMenu.addEventListener("click", () => {
+            const abierto = menuMovil.classList.toggle("abierto");
+            btnMenu.classList.toggle("activo", abierto);
+            btnMenu.setAttribute("aria-expanded", abierto);
+            menuMovil.setAttribute("aria-hidden", !abierto);
+          });
+
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
+              menuMovil.classList.remove("abierto");
+              btnMenu.classList.remove("activo");
+              btnMenu.setAttribute("aria-expanded", "false");
+              menuMovil.setAttribute("aria-hidden", "true");
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
