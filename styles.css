@@ -1613,8 +1613,16 @@ button:active,
 }
 
 .estado-exploracion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
   font-size: 0.875rem;
   color: var(--text-secondary);
+}
+
+.estado-exploracion .insignia-conteo {
+  margin-bottom: 0;
 }
 
 .texto-explorando strong {
@@ -1629,11 +1637,6 @@ button:active,
   gap: 0.85rem;
 }
 
-.menu-orden {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-}
 
 .etiqueta-orden {
   font-size: 0.8rem;
@@ -3627,8 +3630,7 @@ button.pildora-formato[aria-pressed="true"] {
 /* ==========================================================================
    19. PIE DE PÁGINA (GLOBAL APPLE FOOTER)
    ========================================================================== */
-.pie-pagina,
-.pie-sitio {
+.pie-pagina {
   background-color: #0b1510;
   color: rgba(255, 255, 255, 0.7);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -3778,35 +3780,7 @@ button.pildora-formato[aria-pressed="true"] {
    20. ANIMACIONES (@keyframes), TRANSICIONES Y TRANSFORMACIONES (Avance 2)
    ========================================================================== */
 
-/* 1. Animación de flotación botánica suave */
-@keyframes flotacionBotanica {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-/* Retirado: la flotacion infinita distraia de la lectura. Se mantiene el nombre de clase por compatibilidad. */
-.animacion-flotacion {
-  animation: none;
-}
-
-/* 2. Animación de pulso sutil para botones de llamado a la acción */
-@keyframes pulsoBoton {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.035);
-  }
-}
-
-/* Retirado: el pulso infinito pisaba el :hover (la animacion gana sobre transform) y era movimiento constante. */
-.animacion-pulso {
-  animation: none;
-}
+/* (El pulso y la flotación infinitos se retiraron: movimiento constante que distraía de la lectura) */
 
 /* 3. Animación de aparición suave (Fade-in-up) para cargas de sección */
 @keyframes aparecerSuave {
@@ -3854,8 +3828,6 @@ button.pildora-formato[aria-pressed="true"] {
     scroll-behavior: auto !important;
   }
 
-  .animacion-flotacion,
-  .animacion-pulso,
   .animacion-aparecer {
     animation: none !important;
   }
@@ -4508,5 +4480,43 @@ section[id] {
 }
 
 .entra-suave {
-  animation: aparecerTexto 420ms var(--ease-out) both;
+  animation: aparecerTexto 560ms var(--ease-out) 120ms both;
+}
+
+/* Mientras los paneles se deslizan, el formulario nuevo espera 140 ms y aparece con un fundido más largo */
+.tarjeta-auth-split.deslizando .seccion-form-login,
+.tarjeta-auth-split.deslizando .seccion-form-registro {
+  animation-duration: 560ms;
+  animation-delay: 140ms;
+}
+
+/* ==========================================================================
+   29. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
+   ========================================================================== */
+.pagina-redireccion {
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.tarjeta-redireccion {
+  max-width: 480px;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border: 1px solid var(--border-hairline);
+  border-radius: 1.5rem;
+  box-shadow: var(--sombra-media);
+}
+
+.titulo-redireccion {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.texto-redireccion {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
 }
