@@ -31,52 +31,53 @@
    ========================================================================== */
 :root {
   /* Lienzo y Superficies de Fondo */
-  --canvas: #fbfbfd;
-  --surface: #fbfbfd;
+  --canvas: #fef9f0;
+  --surface: #fef9f0;
   --surface-card: #ffffff;
-  --surface-glass: rgba(251, 251, 253, 0.82);
-  --surface-secondary: #f5f5f7;
-  --surface-tertiary: #ebebf0;
+  --surface-glass: rgba(254, 249, 240, 0.88);
+  --surface-secondary: #f4efe6;
+  --surface-tertiary: #ece8df;
   --surface-dim: #ded9d1;
   --surface-bright: #ffffff;
   --surface-container-lowest: #ffffff;
-  --surface-container-low: #fbfbfd;
-  --surface-container: #f5f5f7;
-  --surface-container-high: #eeeff2;
-  --surface-container-highest: #e5e5ea;
+  --surface-container-low: #f8f3ea;
+  --surface-container: #f2ede4;
+  --surface-container-high: #ece8df;
+  --surface-container-highest: #e7e2d9;
 
   /* Textos y Contrastes (Jerarquía de Contraste Apple WCAG AAA) */
-  --text-primary: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-tertiary: #86868b;
-  --on-surface: #1d1d1f;
-  --on-surface-variant: #6e6e73;
-  --inverse-surface: #1d1d1f;
-  --inverse-on-surface: #f5f5f7;
+  --text-primary: #1d1c16;
+  --text-secondary: #404944;
+  --text-tertiary: #5b635e;
+  --on-surface: #1d1c16;
+  --on-surface-variant: #404944;
+  --inverse-surface: #32302a;
+  --inverse-on-surface: #f5f0e7;
 
   /* Paleta Botánica Refinada (Apple Forest & Vibrant Emerald) */
-  --forest-dark: #0b3323;
-  --forest-deep: #12402e;
-  --primary: #007a52;
-  --primary-hover: #006342;
-  --primary-container: #0b3323;
+  --forest-dark: #123b2d;
+  --forest-deep: #1a4d3b;
+  --primary: #1a4d3b;
+  --primary-hover: #123b2d;
+  --primary-container: #1a4d3b;
   --on-primary: #ffffff;
   --on-primary-container: #a3e6cb;
   --primary-fixed: #c6f2df;
   --primary-fixed-dim: #a3e6cb;
   --on-primary-fixed: #002619;
-  --primary-subtle: #eef8f3;
-  --verde-salvia: #e8f4ed;
-  --verde-claro: #d1ebd9;
-  --sage-subtle: #e8f4ed;
-  --sage-container: #d4eade;
+  --primary-subtle: #e8f3ee;
+  --verde-salvia: #e8f3ee;
+  --verde-claro: #d4e6dd;
+  --sage-subtle: #e8f3ee;
+  --sage-container: #d4e6dd;
 
   /* Acentos Secundarios y Cálidos (Ámbar, Miel y Dorado) */
   --secondary: #52625b;
   --on-secondary: #ffffff;
   --secondary-container: #d2e4db;
   --on-secondary-container: #56665f;
-  --warm-amber: #d97706;
+  --warm-amber: #c48849;
+  --amber-strong: #a9672a; /* ámbar accesible: 4.3:1 sobre pergamino, para iconos y subrayados */
   --amber-hover: #b45309;
   --amber-subtle: #fef3c7;
   --ambar-claro: #fffbeb;
@@ -84,23 +85,23 @@
   --tertiary-container: #fef3c7;
 
   /* Estados de Disponibilidad */
-  --status-available: #007a52;
-  --status-borrowed: #d97706;
-  --status-reserved: #0284c7;
+  --status-available: #2b6e4e;
+  --status-borrowed: #b45309;
+  --status-reserved: #2f5c78;
 
   /* Bordes Hairline y Separadores Físicos */
-  --border-hairline: rgba(0, 0, 0, 0.08);
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --border-strong: rgba(0, 0, 0, 0.16);
+  --border-hairline: rgba(26, 77, 59, 0.15);
+  --border-subtle: rgba(26, 77, 59, 0.1);
+  --border-strong: rgba(26, 77, 59, 0.3);
   --outline: rgba(0, 0, 0, 0.12);
   --outline-variant: rgba(0, 0, 0, 0.06);
-  --parchment-base: #f5f5f7;
-  --parchment-sheet: #ffffff;
+  --parchment-base: #f4efe6;
+  --parchment-sheet: #fbf9f5;
   --paper-white: #ffffff;
 
   /* Tipografías: Prioridad Sistema Nativo Apple (SF Pro) con Respaldo Google Fonts */
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Plus Jakarta Sans", system-ui, -system-ui, sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Plus Jakarta Sans", system-ui, -system-ui, sans-serif;
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   /* Espaciados Proporcionales */
@@ -114,6 +115,8 @@
   --espacio-2xl: 2.5rem;
   --espacio-3xl: 3.5rem;
   --espacio-4xl: 5rem;
+  /* Margen lateral fluido compartido por encabezado y contenido (1rem móvil, 2.5rem escritorio) */
+  --gutter: clamp(1rem, 4vw, 2.5rem);
 
   /* Radios de Borde Continuo (Squircles de Apple) */
   --radio-xs: 6px;
@@ -126,12 +129,13 @@
 
   /* Sombras de Oclusión Ambiental Multicapa */
   --sombra-suave: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
-  --sombra-media: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-  --sombra-elevada: 0 12px 32px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --sombra-media: 0 4px 16px rgba(26, 77, 59, 0.07), 0 1px 3px rgba(26, 77, 59, 0.04);
+  --sombra-elevada: 0 20px 45px -10px rgba(26, 77, 59, 0.18), 0 2px 6px rgba(26, 77, 59, 0.05);
   --sombra-card-hover: 0 16px 36px -8px rgba(11, 51, 35, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
   --sombra-flotante: 0 24px 48px -12px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.04);
 
   /* Curvas de Movimiento Físico (Spring-like Transitions) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --spring-default: cubic-bezier(0.16, 1, 0.3, 1);
   --spring-snappy: cubic-bezier(0.25, 1, 0.5, 1);
   --spring-bounce: cubic-bezier(0.34, 1.4, 0.64, 1);
@@ -237,8 +241,9 @@ img, picture, video {
 /* Enlace de Salto Accesible (Skip Link para lectores de pantalla y teclado) */
 .saltar-enlace {
   position: absolute;
-  top: -100px;
+  top: 1rem;
   left: 1rem;
+  transform: translateY(-250%);
   z-index: 9999;
   background-color: var(--primary);
   color: #ffffff;
@@ -247,19 +252,32 @@ img, picture, video {
   font-family: var(--font-body);
   font-weight: 600;
   box-shadow: var(--sombra-flotante);
-  transition: top 200ms var(--spring-snappy);
+  transition: transform 200ms var(--ease-out);
 }
 
 .saltar-enlace:focus {
-  top: 1rem;
+  transform: none;
   outline: 3px solid var(--primary-fixed);
 }
 
 /* Indicador de Foco Visible Estilo Apple (Focus Ring) */
+/* Contorno sólido de 3px (#1a4d3b: 9.2:1 sobre pergamino) con separación; respeta la forma del control */
 :focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.28), 0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Texto solo para lectores de pantalla (reemplaza el estilo en línea left:-9999px) */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* RESPUESTA TÁCTIL INMEDIATA (:active { transform: scale(0.975); })
@@ -311,11 +329,26 @@ button:active,
 .contenedor-encabezado {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0.75rem 1.25rem;
-  display: flex;
+  padding: 0.75rem var(--gutter);
+  /* Grid 1fr auto 1fr: el menú queda centrado en la página sin importar el ancho de la marca o de los botones */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  column-gap: 1.5rem;
+}
+
+.contenedor-encabezado .marca-sitio {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.contenedor-encabezado .navegacion-principal {
+  grid-column: 2;
+}
+
+.contenedor-encabezado .acciones-usuario {
+  grid-column: 3;
+  justify-self: end;
 }
 
 /* Marca e Identidad */
@@ -335,8 +368,8 @@ button:active,
 .icono-marca {
   width: 40px;
   height: 40px;
-  border-radius: var(--radio-sm);
-  background: linear-gradient(135deg, var(--forest-dark) 0%, var(--primary) 100%);
+  border-radius: var(--radio-completo);
+  background-color: var(--primary);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -370,38 +403,57 @@ button:active,
   letter-spacing: 0.02em;
 }
 
-/* Navegación Principal (Estilo Segmented Control de Apple) */
+/* Navegación principal editorial: texto con subrayado ámbar en la página activa */
 .navegacion-principal {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  background-color: rgba(0, 0, 0, 0.03);
-  padding: 4px;
-  border-radius: var(--radio-completo);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  gap: 1.75rem;
 }
 
 .enlace-nav {
-  padding: 0.45rem 1.05rem;
+  position: relative;
+  padding: 0.5rem 0.15rem;
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-secondary);
-  border-radius: var(--radio-completo);
-  transition: all 180ms var(--spring-snappy);
+  border-bottom: 3px solid transparent;
+  transition: color 180ms ease;
   white-space: nowrap;
 }
 
-.enlace-nav:hover {
-  color: var(--text-primary);
-  background-color: rgba(0, 0, 0, 0.04);
+/* Subrayado animado: se dibuja con transform (no cambia el layout) */
+.enlace-nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 3px;
+  background-color: var(--border-strong);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms var(--ease-out), background-color 180ms ease;
 }
 
 .enlace-nav.activo {
   color: var(--primary);
-  background-color: #ffffff;
-  font-weight: 600;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  font-weight: 700;
+}
+
+.enlace-nav.activo::after {
+  background-color: var(--amber-strong);
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .enlace-nav:hover {
+    color: var(--primary);
+  }
+
+  .enlace-nav:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 /* Acciones de Usuario y Botón Carnet */
@@ -416,22 +468,24 @@ button:active,
   align-items: center;
   gap: 0.45rem;
   padding: 0.5rem 1.15rem;
-  background: linear-gradient(135deg, var(--forest-dark) 0%, var(--primary) 100%);
+  background-color: var(--primary);
   color: #ffffff;
   border-radius: var(--radio-completo);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  box-shadow: 0 2px 8px rgba(0, 122, 82, 0.24);
+  box-shadow: 0 2px 8px rgba(26, 77, 59, 0.24);
   transition: transform 180ms var(--spring-snappy), box-shadow 180ms ease, opacity 180ms ease;
   text-decoration: none;
 }
 
-.boton-carnet:hover {
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 122, 82, 0.35);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .boton-carnet:hover {
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(26, 77, 59, 0.35);
+    transform: translateY(-1px);
+  }
 }
 
 .boton-carnet .material-symbols-outlined {
@@ -467,13 +521,22 @@ button:active,
   border: 1px solid var(--border-hairline);
   color: var(--text-primary);
   cursor: pointer;
-  transition: all 180ms var(--spring-snappy);
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
   padding: 0;
   flex-shrink: 0;
+  position: relative;
 }
 
-.boton-menu-movil:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+@media (hover: hover) and (pointer: fine) {
+  .boton-menu-movil:hover {
+    background-color: rgba(26, 77, 59, 0.08);
+  }
+}
+
+/* Los dos iconos se apilan y se alternan con opacity + transform */
+.boton-menu-movil .material-symbols-outlined {
+  position: absolute;
+  transition: opacity 160ms ease, transform 200ms var(--ease-out);
 }
 
 .boton-menu-movil:active {
@@ -481,21 +544,24 @@ button:active,
 }
 
 .boton-menu-movil .icono-menu-cerrar {
-  display: none;
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
 }
 
 .boton-menu-movil.activo {
   background-color: var(--primary-subtle);
   color: var(--primary);
-  border-color: rgba(0, 122, 82, 0.2);
+  border-color: rgba(26, 77, 59, 0.2);
 }
 
 .boton-menu-movil.activo .icono-menu-abrir {
-  display: none;
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
 }
 
 .boton-menu-movil.activo .icono-menu-cerrar {
-  display: inline-block;
+  opacity: 1;
+  transform: none;
 }
 
 /* Menú Desplegable Móvil (Drawer Translúcido Apple con Blur & Vibrancy) */
@@ -505,28 +571,30 @@ button:active,
   top: 100%;
   left: 0;
   right: 0;
-  background-color: rgba(251, 251, 253, 0.96);
+  background-color: rgba(254, 249, 240, 0.96);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid var(--border-hairline);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
   padding: 1rem 1.25rem 1.5rem;
   z-index: 999;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 180ms ease, transform 180ms var(--ease-out), display 180ms allow-discrete;
 }
 
+/* Si el navegador no soporta display discreto, el menu aparece y desaparece sin animar */
 .menu-movil-desplegable.abierto {
   display: block;
-  animation: aparecerMenuMovil 260ms var(--spring-default) forwards;
+  opacity: 1;
+  transform: none;
+  transition-duration: 220ms, 260ms, 260ms;
 }
 
-@keyframes aparecerMenuMovil {
-  from {
+@starting-style {
+  .menu-movil-desplegable.abierto {
     opacity: 0;
     transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -547,12 +615,14 @@ button:active,
   font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
-  transition: all 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease;
   border: 1px solid transparent;
 }
 
-.enlace-nav-movil:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+@media (hover: hover) and (pointer: fine) {
+  .enlace-nav-movil:hover {
+    background-color: rgba(26, 77, 59, 0.06);
+  }
 }
 
 .enlace-nav-movil:active {
@@ -563,7 +633,7 @@ button:active,
   background-color: var(--primary-subtle);
   color: var(--primary);
   font-weight: 600;
-  border-color: rgba(0, 122, 82, 0.12);
+  border-color: rgba(26, 77, 59, 0.12);
 }
 
 .enlace-nav-movil .flecha-nav {
@@ -586,8 +656,19 @@ button:active,
     display: flex;
   }
 
+  /* Sin menú central: el grid pasa a marca + acciones para no desperdiciar una columna vacía */
   .contenedor-encabezado {
-    padding: 0.65rem 1rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 0.75rem;
+    padding-block: 0.65rem;
+  }
+
+  .contenedor-encabezado .acciones-usuario {
+    grid-column: 2;
+  }
+
+  .nombre-marca {
+    white-space: nowrap;
   }
 
   .boton-carnet span:last-child {
@@ -608,6 +689,8 @@ button:active,
   flex: 1;
   position: relative;
   width: 100%;
+  /* Recorta los resplandores decorativos que sobresalen, sin crear scroll horizontal */
+  overflow-x: clip;
 }
 
 .contenedor-flotante {
@@ -615,7 +698,7 @@ button:active,
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.25rem 4rem;
+  padding: 0 var(--gutter) 4rem;
 }
 
 /* Resplandores Sutiles de Luz (Ambient Lighting) */
@@ -633,7 +716,7 @@ button:active,
   right: -80px;
   width: 480px;
   height: 480px;
-  background: radial-gradient(circle, rgba(163, 230, 203, 0.35) 0%, rgba(251, 251, 253, 0) 70%);
+  background: radial-gradient(circle, rgba(163, 230, 203, 0.35) 0%, rgba(254, 249, 240, 0) 70%);
 }
 
 .resplandor-medio {
@@ -641,7 +724,7 @@ button:active,
   left: -100px;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, rgba(254, 243, 199, 0.3) 0%, rgba(251, 251, 253, 0) 70%);
+  background: radial-gradient(circle, rgba(254, 243, 199, 0.3) 0%, rgba(254, 249, 240, 0) 70%);
 }
 
 /* ==========================================================================
@@ -663,14 +746,14 @@ button:active,
 
 .rejilla-heroe-inicio {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem;
   align-items: center;
 }
 
 @media (min-width: 1024px) {
   .rejilla-heroe-inicio {
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
     gap: 3.5rem;
   }
 }
@@ -694,13 +777,13 @@ button:active,
   padding: 0.35rem 0.85rem;
   border-radius: var(--radio-completo);
   margin-bottom: 1.25rem;
-  border: 1px solid rgba(0, 122, 82, 0.12);
+  border: 1px solid rgba(26, 77, 59, 0.12);
 }
 
 .titulo-heroe {
   font-size: clamp(2.2rem, 4.2vw, 3.4rem);
-  line-height: 1.08;
-  letter-spacing: -0.028em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
 }
@@ -734,26 +817,28 @@ button:active,
   background-color: var(--primary);
   color: #ffffff;
   border-radius: var(--radio-completo);
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   border: 1px solid transparent;
-  box-shadow: 0 2px 8px rgba(0, 122, 82, 0.2);
+  box-shadow: 0 2px 8px rgba(26, 77, 59, 0.2);
   transition: transform 240ms var(--spring-default), box-shadow 240ms ease, background-color 180ms ease;
   cursor: pointer;
   text-decoration: none;
 }
 
-.boton-heroe-primario:hover,
-.boton-accion-primario:hover,
-.boton-banner-primario:hover,
-.boton-enviar-contacto:hover,
-.boton-buscar:hover {
-  background-color: var(--primary-hover);
-  box-shadow: 0 4px 14px rgba(0, 122, 82, 0.32);
-  transform: translateY(-2px);
-  color: #ffffff;
+@media (hover: hover) and (pointer: fine) {
+  .boton-heroe-primario:hover,
+  .boton-accion-primario:hover,
+  .boton-banner-primario:hover,
+  .boton-enviar-contacto:hover,
+  .boton-buscar:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 4px 14px rgba(26, 77, 59, 0.32);
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
 }
 
 .boton-heroe-secundario,
@@ -767,10 +852,10 @@ button:active,
   justify-content: center;
   gap: 0.5rem;
   padding: 0.8rem 1.5rem;
-  background-color: var(--surface-secondary);
-  color: var(--text-primary);
+  background-color: var(--sage-container);
+  color: var(--primary);
   border-radius: var(--radio-completo);
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -781,42 +866,62 @@ button:active,
   text-decoration: none;
 }
 
-.boton-heroe-secundario:hover,
-.boton-accion-secundario:hover,
-.boton-banner-secundario:hover,
-.boton-secundario-contacto:hover,
-.boton-limpiar:hover,
-.boton-etiqueta:hover {
-  background-color: #ffffff;
-  border-color: rgba(0, 0, 0, 0.14);
-  transform: translateY(-2px);
-  color: var(--text-primary);
+@media (hover: hover) and (pointer: fine) {
+  .boton-heroe-secundario:hover,
+  .boton-accion-secundario:hover,
+  .boton-banner-secundario:hover,
+  .boton-secundario-contacto:hover,
+  .boton-limpiar:hover,
+  .boton-etiqueta:hover {
+    background-color: #c5dbcf;
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+    color: var(--primary);
+  }
 }
 
-/* Píldoras de Métricas Translúcidas (Fila de Métricas) */
+/* Columna de texto del héroe: el espacio vertical lo define el gap del contenedor, no el margin de cada hijo */
+.contenido-heroe {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.contenido-heroe > * {
+  margin: 0;
+}
+
+.contenido-heroe > .fila-botones-heroe {
+  margin-top: 0.75rem;
+}
+
+/* Píldoras de Métricas: datos de apoyo, con menos peso visual que los botones */
 .fila-metricas {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem 1.5rem;
   align-items: center;
+}
+
+.contenido-heroe > .fila-metricas {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-hairline);
 }
 
 .pildora-metrica {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.45rem 0.95rem;
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-hairline);
+  padding: 0.25rem 0;
+  background-color: transparent;
+  border: 1px solid transparent;
   border-radius: var(--radio-completo);
   font-size: 0.85rem;
   color: var(--text-secondary);
   transition: transform 200ms var(--spring-snappy), background-color 180ms ease;
-}
-
-.pildora-metrica:hover {
-  background-color: #ffffff;
-  border-color: rgba(0, 0, 0, 0.12);
 }
 
 .pildora-metrica .valor-metrica {
@@ -831,13 +936,14 @@ button:active,
 }
 
 .icono-ambar {
-  color: var(--warm-amber);
+  color: var(--amber-strong);
   font-size: 18px;
 }
 
 .pildora-disponible {
+  padding: 0.25rem 0.85rem;
   background-color: var(--primary-subtle);
-  border-color: rgba(0, 122, 82, 0.15);
+  border-color: rgba(26, 77, 59, 0.15);
   color: var(--primary);
   font-weight: 600;
 }
@@ -847,7 +953,7 @@ button:active,
   height: 8px;
   border-radius: var(--radio-completo);
   background-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 122, 82, 0.2);
+  box-shadow: 0 0 0 3px rgba(26, 77, 59, 0.2);
   display: inline-block;
 }
 
@@ -989,10 +1095,12 @@ button:active,
   cursor: pointer;
 }
 
-.tarjeta-libro:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sombra-card-hover);
-  border-color: rgba(0, 122, 82, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-libro:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-card-hover);
+    border-color: rgba(26, 77, 59, 0.2);
+  }
 }
 
 .cuerpo-tarjeta {
@@ -1021,8 +1129,10 @@ button:active,
   transition: transform 400ms var(--spring-default);
 }
 
-.tarjeta-libro:hover .imagen-portada {
-  transform: scale(1.04);
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-libro:hover .imagen-portada {
+    transform: scale(1.04);
+  }
 }
 
 .sombra-lomo {
@@ -1055,7 +1165,7 @@ button:active,
 .insignia-disponibilidad.disponible {
   background-color: rgba(255, 255, 255, 0.92);
   color: var(--status-available);
-  border: 1px solid rgba(0, 122, 82, 0.2);
+  border: 1px solid rgba(26, 77, 59, 0.2);
 }
 
 .insignia-disponibilidad.prestamo {
@@ -1267,7 +1377,7 @@ button:active,
 .selector-criterio:focus {
   background-color: #ffffff;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.18);
+  box-shadow: 0 0 0 3.5px rgba(26, 77, 59, 0.18);
   outline: none;
 }
 
@@ -1306,14 +1416,14 @@ button:active,
 .menu-orden:focus {
   background-color: #ffffff;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.18);
+  box-shadow: 0 0 0 3.5px rgba(26, 77, 59, 0.18);
   outline: none;
 }
 
 .entrada-busqueda:focus {
   background-color: #ffffff;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.18);
+  box-shadow: 0 0 0 3.5px rgba(26, 77, 59, 0.18);
   outline: none;
 }
 
@@ -1715,9 +1825,11 @@ button:active,
   transition: transform 300ms var(--spring-default), box-shadow 300ms var(--spring-default);
 }
 
-.tarjeta-evento-inicio:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sombra-card-hover);
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-evento-inicio:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-card-hover);
+  }
 }
 
 .cabecera-evento-inicio {
@@ -1736,7 +1848,7 @@ button:active,
   width: 52px;
   height: 52px;
   background-color: var(--primary-subtle);
-  border: 1px solid rgba(0, 122, 82, 0.15);
+  border: 1px solid rgba(26, 77, 59, 0.15);
   border-radius: var(--radio-md);
   color: var(--primary);
   flex-shrink: 0;
@@ -1883,7 +1995,7 @@ button:active,
   background: linear-gradient(135deg, var(--surface-secondary) 0%, var(--primary-subtle) 100%);
   border-radius: var(--radio-md);
   padding: 1.5rem;
-  border: 1px solid rgba(0, 122, 82, 0.15);
+  border: 1px solid rgba(26, 77, 59, 0.15);
   margin-bottom: 1.25rem;
 }
 
@@ -1904,7 +2016,7 @@ button:active,
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 122, 82, 0.28);
+  box-shadow: 0 4px 12px rgba(26, 77, 59, 0.28);
 }
 
 .icono-disco-audio .material-symbols-outlined {
@@ -2078,10 +2190,12 @@ button:active,
   transition: transform 300ms var(--spring-default), box-shadow 300ms var(--spring-default);
 }
 
-.tarjeta-servicio-inicio:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sombra-card-hover);
-  border-color: rgba(0, 122, 82, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-servicio-inicio:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-card-hover);
+    border-color: rgba(26, 77, 59, 0.2);
+  }
 }
 
 .icono-servicio-circulo {
@@ -2102,7 +2216,7 @@ button:active,
 
 .icono-ambar-servicio {
   background-color: var(--amber-subtle);
-  color: var(--warm-amber);
+  color: var(--amber-strong);
 }
 
 .titulo-servicio-inicio {
@@ -2297,7 +2411,7 @@ button:active,
 .tabla-disponible {
   background-color: var(--primary-subtle);
   color: var(--status-available);
-  border: 1px solid rgba(0, 122, 82, 0.15);
+  border: 1px solid rgba(26, 77, 59, 0.15);
 }
 
 .tabla-sala {
@@ -2377,7 +2491,7 @@ button:active,
 
 .legend-botanico .material-symbols-outlined {
   font-size: 18px;
-  color: var(--warm-amber);
+  color: var(--amber-strong);
 }
 
 .grupo-campo {
@@ -2458,7 +2572,7 @@ button:active,
 .textarea-contacto:focus {
   background-color: #ffffff;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.18);
+  box-shadow: 0 0 0 3.5px rgba(26, 77, 59, 0.18);
   outline: none;
 }
 
@@ -2533,7 +2647,7 @@ button:active,
 .alerta-exito-contacto {
   display: none;
   background-color: var(--primary-subtle);
-  border: 1px solid rgba(0, 122, 82, 0.2);
+  border: 1px solid rgba(26, 77, 59, 0.2);
   border-radius: var(--radio-lg);
   padding: 1.25rem 1.5rem;
   margin-top: 1.5rem;
@@ -2590,7 +2704,7 @@ button:active,
 }
 
 .badge-carnet-tipo {
-  background-color: var(--warm-amber);
+  background-color: var(--amber-strong);
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 0.7rem;
@@ -2688,9 +2802,11 @@ button:active,
   color: inherit;
 }
 
-.tarjeta-canal:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--sombra-card-hover);
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-canal:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-card-hover);
+  }
 }
 
 .icono-canal-contenedor {
@@ -2707,7 +2823,7 @@ button:active,
 
 .icono-canal-ambar {
   background-color: var(--amber-subtle);
-  color: var(--warm-amber);
+  color: var(--amber-strong);
 }
 
 .contenido-canal {
@@ -2859,7 +2975,7 @@ button:active,
   padding: 1.5rem;
   background-color: #f7f9f8;
   background-image: 
-    radial-gradient(at 12% 15%, rgba(0, 122, 82, 0.09) 0px, transparent 50%),
+    radial-gradient(at 12% 15%, rgba(26, 77, 59, 0.09) 0px, transparent 50%),
     radial-gradient(at 88% 85%, rgba(217, 119, 6, 0.06) 0px, transparent 50%);
   display: flex;
   align-items: center;
@@ -3116,7 +3232,7 @@ button:active,
 .caja-input-auth:focus-within {
   background-color: #ffffff;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 122, 82, 0.12);
+  box-shadow: 0 0 0 3px rgba(26, 77, 59, 0.12);
 }
 
 .caja-input-auth .material-symbols-outlined {
@@ -3317,7 +3433,7 @@ button:active,
 .alerta-auth-flotante {
   display: none;
   background-color: var(--primary-subtle);
-  border: 1px solid rgba(0, 122, 82, 0.25);
+  border: 1px solid rgba(26, 77, 59, 0.25);
   border-radius: 12px;
   padding: 0.75rem 1rem;
   margin-top: 1rem;
@@ -3436,8 +3552,8 @@ button:active,
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--primary-fixed) !important;
-  background-color: rgba(0, 122, 82, 0.15) !important;
-  border: 1px solid rgba(0, 122, 82, 0.25) !important;
+  background-color: rgba(26, 77, 59, 0.15) !important;
+  border: 1px solid rgba(26, 77, 59, 0.25) !important;
   padding: 0.35rem 0.75rem;
   border-radius: var(--radio-completo);
   margin-top: 0.5rem;
@@ -3539,8 +3655,9 @@ button:active,
   }
 }
 
+/* Retirado: la flotacion infinita distraia de la lectura. Se mantiene el nombre de clase por compatibilidad. */
 .animacion-flotacion {
-  animation: flotacionBotanica 4.5s ease-in-out infinite;
+  animation: none;
 }
 
 /* 2. Animación de pulso sutil para botones de llamado a la acción */
@@ -3553,8 +3670,9 @@ button:active,
   }
 }
 
+/* Retirado: el pulso infinito pisaba el :hover (la animacion gana sobre transform) y era movimiento constante. */
 .animacion-pulso {
-  animation: pulsoBoton 2.8s ease-in-out infinite;
+  animation: none;
 }
 
 /* 3. Animación de aparición suave (Fade-in-up) para cargas de sección */
@@ -3571,6 +3689,23 @@ button:active,
 
 .animacion-aparecer {
   animation: aparecerSuave 0.5s var(--spring-default) forwards;
+}
+
+/* 4. Entrada del heroe: una sola vez al cargar, con escalonado de 60 ms.
+   Solo con prefers-reduced-motion: no-preference; si no, el contenido se ve directamente. */
+@media (prefers-reduced-motion: no-preference) {
+  .contenido-heroe > * {
+    animation: aparecerSuave 420ms var(--ease-out) both;
+  }
+
+  .contenido-heroe > :nth-child(2) { animation-delay: 60ms; }
+  .contenido-heroe > :nth-child(3) { animation-delay: 120ms; }
+  .contenido-heroe > :nth-child(4) { animation-delay: 180ms; }
+  .contenido-heroe > :nth-child(5) { animation-delay: 240ms; }
+
+  .marco-visual-heroe {
+    animation: aparecerSuave 480ms var(--ease-out) 150ms both;
+  }
 }
 
 /* ==========================================================================
@@ -3669,15 +3804,17 @@ button:active,
   color: var(--text-secondary);
   border: 1px solid var(--border-hairline);
   cursor: pointer;
-  transition: all 180ms var(--spring-snappy);
+  transition: transform 180ms var(--spring-snappy), background-color 180ms ease, color 180ms ease, border-color 180ms ease;
   flex-shrink: 0;
 }
 
-.boton-accion-info:hover {
-  background-color: #ffffff;
-  color: var(--primary);
-  border-color: rgba(0, 122, 82, 0.25);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .boton-accion-info:hover {
+    background-color: #ffffff;
+    color: var(--primary);
+    border-color: rgba(26, 77, 59, 0.25);
+    transform: translateY(-1px);
+  }
 }
 
 .boton-accion-info:active {
@@ -3748,7 +3885,7 @@ button:active,
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--primary-fixed);
-  background-color: rgba(0, 122, 82, 0.15);
+  background-color: rgba(26, 77, 59, 0.15);
   padding: 0.35rem 0.75rem;
   border-radius: var(--radio-completo);
   margin-top: 0.35rem;
@@ -3846,7 +3983,7 @@ button:active,
   align-items: flex-start;
   gap: 0.85rem;
   background-color: var(--primary-subtle);
-  border: 1px solid rgba(0, 122, 82, 0.15);
+  border: 1px solid rgba(26, 77, 59, 0.15);
   border-radius: var(--radio-md);
   padding: 1.15rem;
   margin-top: 1.5rem;
@@ -3914,7 +4051,7 @@ button:active,
   padding: 0.35rem 0.85rem;
   border-radius: var(--radio-completo);
   margin-bottom: 0.75rem;
-  border: 1px solid rgba(0, 122, 82, 0.12);
+  border: 1px solid rgba(26, 77, 59, 0.12);
 }
 
 .titulo-faq-seccion {
@@ -3952,7 +4089,7 @@ button:active,
   }
 
   .fila-metricas {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .insignia-flotante-heroe {
