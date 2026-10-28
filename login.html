@@ -389,9 +389,49 @@
         }
       }
 
+      // Entrada en cascada: cada elemento sube 14px y aparece con 40 ms de diferencia (solo transform y opacity).
+      // Al terminar se quita la clase: la animación no deja estilos residuales, así que no hay parpadeo.
+      let entradaActual = 0;
+
+      // Quita la entrada de TODOS los elementos (también de los del formulario que quedó oculto)
+      function limpiarEntrada() {
+        entradaActual++;
+        document.querySelectorAll(".entra-suave").forEach((elemento) => {
+          elemento.classList.remove("entra-suave");
+          elemento.style.removeProperty("--orden");
+        });
+      }
+
+      function entradaEnCascada(...grupos) {
+        limpiarEntrada();
+        const id = entradaActual;
+        grupos.forEach((grupo) =>
+          grupo.forEach((elemento, i) => {
+            elemento.style.setProperty("--orden", i);
+            void elemento.offsetWidth;
+            elemento.classList.add("entra-suave");
+          })
+        );
+        const espera = Math.max(...grupos.map((grupo) => grupo.length)) * 40 + 600;
+        setTimeout(() => {
+          if (id === entradaActual) limpiarEntrada();
+        }, espera);
+      }
+
+      // Elementos que entran: los bloques del formulario visible (los campos van uno a uno) y el texto del panel oscuro
+      function elementosDelFormulario() {
+        const seccion = document.querySelector(modoActual === "registro" ? ".seccion-form-registro" : ".seccion-form-login");
+        return [...seccion.children].flatMap((hijo) => (hijo.tagName === "FORM" ? [...hijo.children] : [hijo]));
+      }
+
+      function elementosDelPanelVisual() {
+        return ["tituloVisual", "descVisual", "btnCambiarAuth"].map((id) => document.getElementById(id));
+      }
+
       // Alternar entre Iniciar sesión y Crear cuenta: los dos paneles se deslizan al lado contrario (técnica FLIP)
       function alternarModoAuth() {
         const nuevoModo = modoActual === "login" ? "registro" : "login";
+        limpiarEntrada();
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           aplicarModoAuth(nuevoModo);
           return;
@@ -399,25 +439,14 @@
 
         const paneles = [document.querySelector(".panel-auth-lado"), document.getElementById("panelVisual")];
 
-        // Mientras se desliza, el contenido nuevo espera un instante antes de aparecer (ver .deslizando en el CSS)
-        const tarjeta = document.getElementById("tarjetaAuth");
-        clearTimeout(Number(tarjeta.dataset.limpieza));
-        tarjeta.classList.add("deslizando");
-        tarjeta.dataset.limpieza = String(setTimeout(() => tarjeta.classList.remove("deslizando"), 800));
-
         // 1. Dónde está cada panel ahora (si había una animación en curso, se parte de donde va)
         const posicionAntes = paneles.map((panel) => panel.getBoundingClientRect().left);
 
         // 2. Se aplica el modo nuevo: el diseño ya deja cada panel en su lado definitivo
         aplicarModoAuth(nuevoModo);
 
-        // El texto nuevo del panel oscuro entra con un fundido
-        ["tituloVisual", "descVisual", "btnCambiarAuth"].forEach((id) => {
-          const elemento = document.getElementById(id);
-          elemento.classList.remove("entra-suave");
-          void elemento.offsetWidth;
-          elemento.classList.add("entra-suave");
-        });
+        // El contenido nuevo (formulario y texto del panel oscuro) entra en cascada
+        entradaEnCascada(elementosDelFormulario(), elementosDelPanelVisual());
 
         // 3. Se cancela cualquier transición en curso para medir la posición definitiva, sin desplazamiento
         paneles.forEach((panel) => {
@@ -427,7 +456,7 @@
         });
         const desplazamientos = paneles.map((panel, i) => posicionAntes[i] - panel.getBoundingClientRect().left);
 
-        // 4. Cada panel vuelve a su posición anterior y se desliza hasta la nueva (ease-in-out, 700 ms)
+        // 4. Cada panel vuelve a su posición anterior y se desliza hasta la nueva (arranque inmediato y frenada suave, 650 ms)
         paneles.forEach((panel, i) => {
           if (!desplazamientos[i]) {
             panel.style.transition = "";
@@ -436,9 +465,9 @@
           }
           panel.style.transform = `translateX(${desplazamientos[i]}px)`;
           void panel.offsetWidth;
-          panel.style.transition = "transform 700ms cubic-bezier(0.65, 0, 0.35, 1)";
+          panel.style.transition = "transform 650ms cubic-bezier(0.22, 1, 0.36, 1)";
           panel.style.transform = "";
-          panel.dataset.limpieza = String(setTimeout(() => (panel.style.transition = ""), 760));
+          panel.dataset.limpieza = String(setTimeout(() => (panel.style.transition = ""), 720));
         });
       }
 
@@ -592,6 +621,7 @@
       // Enlaces con #crear-cuenta abren directamente el formulario de registro (sin animar al cargar)
       const modoPorDireccion = { "#crear-cuenta": "registro", "#iniciar-sesion": "login" };
       if (modoPorDireccion[location.hash] === "registro") aplicarModoAuth("registro");
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) entradaEnCascada(elementosDelFormulario());
       window.addEventListener("hashchange", () => {
         const deseado = modoPorDireccion[location.hash];
         if (deseado && deseado !== modoActual) alternarModoAuth();
