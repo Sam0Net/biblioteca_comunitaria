@@ -1048,7 +1048,7 @@ button:active,
 .rejilla-destacados-inicio,
 .rejilla-libros {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: 1.75rem;
 }
 
@@ -1388,6 +1388,8 @@ button:active,
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .etiqueta-orden {
@@ -1404,6 +1406,9 @@ button:active,
   border: 1px solid var(--border-hairline);
   border-radius: var(--radio-md);
   padding: 0.5rem 2.2rem 0.5rem 0.85rem;
+  min-width: 0;
+  max-width: 100%;
+  text-overflow: ellipsis;
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 500;
@@ -1458,14 +1463,14 @@ button:active,
 /* Disposición Principal del Catálogo (Panel Lateral y Cuadrícula) */
 .rejilla-principal {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
   align-items: start;
 }
 
 @media (min-width: 1024px) {
   .rejilla-principal {
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 280px minmax(0, 1fr);
     gap: 2.25rem;
   }
 }
@@ -1535,17 +1540,24 @@ button:active,
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   padding: 0.45rem 0.65rem;
+  border: 0;
   border-radius: var(--radio-sm);
+  background-color: transparent;
+  font-family: var(--font-body);
   font-size: 0.85rem;
+  text-align: left;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
-.item-categoria:hover {
-  background-color: var(--surface-secondary);
-  color: var(--text-primary);
+@media (hover: hover) and (pointer: fine) {
+  .item-categoria:hover {
+    background-color: var(--surface-secondary);
+    color: var(--text-primary);
+  }
 }
 
 .item-categoria.activo {
@@ -1610,6 +1622,8 @@ button:active,
 
 .ajustes-vista {
   display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
   align-items: center;
   gap: 0.85rem;
 }
@@ -1650,6 +1664,25 @@ button:active,
   background-color: #ffffff;
   color: var(--primary);
   box-shadow: var(--sombra-suave);
+}
+
+/* Objetivos táctiles de 44px en pantallas táctiles (WCAG 2.5.5); con cursor se mantienen compactos */
+@media (pointer: coarse) {
+  .item-categoria,
+  .opcion-casilla {
+    min-height: 44px;
+  }
+
+  .boton-vista {
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .boton-limpiar {
+    min-height: 44px;
+    padding-inline: 1rem;
+  }
 }
 
 /* Banner Comunitario de Donación y Colaboración */
