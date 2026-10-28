@@ -129,7 +129,7 @@
               <h1 class="titulo-heroe">Formulario de Registro y Carnet Digital</h1>
               <p class="descripcion-heroe">
                 Completa tus datos para afiliarte al sistema comunitario de préstamos. Obtendrás tu
-                <mark style="background-color: #d4e6dd; padding: 2px 6px; border-radius: 4px;"><strong>Carnet Digital Vecinal</strong></mark>
+                <mark class="marca-destacada"><strong>Carnet Digital Vecinal</strong></mark>
                 en menos de 2 minutos, con acceso libre a más de 2.540 obras y reservas de salas de estudio.
               </p>
 
@@ -215,7 +215,7 @@
                     </div>
                   </div>
 
-                  <div class="fila-campos-doble" style="margin-top: var(--espacio-sm);">
+                  <div class="fila-campos-doble separado-arriba">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="dni">
                         <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">pin</span>
@@ -236,7 +236,7 @@
                           type="text"
                         />
                       </div>
-                      <small id="ayuda-dni-registro" style="font-size: 12px; color: var(--secondary); margin-top: 4px; padding-left: 4px;">
+                      <small id="ayuda-dni-registro" class="ayuda-campo">
                         Ingresa los 8 dígitos numéricos de tu documento nacional de identidad.
                       </small>
                     </div>
@@ -260,7 +260,7 @@
                     </div>
                   </div>
 
-                  <div class="fila-campos-doble" style="margin-top: var(--espacio-sm);">
+                  <div class="fila-campos-doble separado-arriba">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="correo">
                         <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">mail</span>
@@ -349,25 +349,25 @@
                     </div>
                   </div>
 
-                  <div class="grupo-campo" style="margin-top: var(--espacio-sm);">
+                  <div class="grupo-campo separado-arriba">
                     <label class="etiqueta-campo">
                       <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">favorite</span>
                       <span>Géneros o temas de mayor interés (opcional):</span>
                     </label>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 6px;">
-                      <label class="grupo-casilla" style="margin-top: 0;">
+                    <div class="grupo-casillas-fila">
+                      <label class="grupo-casilla">
                         <input name="intereses[]" type="checkbox" value="novela" />
                         <span>Novela y Narrativa</span>
                       </label>
-                      <label class="grupo-casilla" style="margin-top: 0;">
+                      <label class="grupo-casilla">
                         <input checked name="intereses[]" type="checkbox" value="infantil" />
                         <span>Literatura Infantil y Juvenil</span>
                       </label>
-                      <label class="grupo-casilla" style="margin-top: 0;">
+                      <label class="grupo-casilla">
                         <input name="intereses[]" type="checkbox" value="historia" />
                         <span>Historia y Memoria Vecinal</span>
                       </label>
-                      <label class="grupo-casilla" style="margin-top: 0;">
+                      <label class="grupo-casilla">
                         <input name="intereses[]" type="checkbox" value="ecologia" />
                         <span>Botánica y Medio Ambiente</span>
                       </label>
@@ -382,7 +382,7 @@
                     <span>3. Compromiso y Convivencia Vecinal</span>
                   </legend>
 
-                  <label class="grupo-casilla" for="acepto-normas-registro" style="margin-bottom: var(--espacio-sm);">
+                  <label class="grupo-casilla separado-abajo" for="acepto-normas-registro">
                     <input
                       id="acepto-normas-registro"
                       name="acepto_normas"
@@ -440,11 +440,11 @@
               <!-- MOCKUP DEL CARNET DIGITAL (TRANSFORM, GRADIENT Y FLEXBOX) -->
               <div class="tarjeta-carnet-mockup animacion-flotacion">
                 <div class="cabecera-carnet-mockup">
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span aria-hidden="true" class="material-symbols-outlined" style="font-size: 28px; color: var(--warm-amber);">local_florist</span>
+                  <div class="marca-carnet-mockup">
+                    <span aria-hidden="true" class="material-symbols-outlined icono-marca-carnet">local_florist</span>
                     <div>
-                      <h3 style="font-family: var(--font-display); font-size: 16px; margin: 0; color: #ffffff;">Leer nos une</h3>
-                      <p style="font-size: 11px; margin: 0; color: var(--sage-container);">Biblioteca Comunitaria San José</p>
+                      <h3 class="nombre-carnet-mockup">Leer nos une</h3>
+                      <p class="subtitulo-carnet-mockup">Biblioteca Comunitaria San José</p>
                     </div>
                   </div>
                   <span class="badge-carnet-tipo">Lector Vecinal</span>
@@ -465,7 +465,7 @@
                   <div class="codigo-barras-simulado">
                     <span>||| | | |||| | || | |||| || |</span>
                   </div>
-                  <span style="font-size: 11px; color: var(--sage-container); font-family: var(--font-display);">ID: BC-2026-0428</span>
+                  <span class="id-carnet-mockup">ID: BC-2026-0428</span>
                 </div>
               </div>
 
@@ -479,7 +479,7 @@
                   <p class="descripcion-canal">
                     Accede a todos los servicios gratuitos de la biblioteca comunitaria presentando tu carnet o número de DNI:
                   </p>
-                  <ul class="lista-puntos-servicio" style="margin-top: 8px;">
+                  <ul class="lista-puntos-servicio margen-superior-xs">
                     <li>
                       <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                       <span>Hasta 3 libros en préstamo a domicilio por 14 días corridos.</span>
