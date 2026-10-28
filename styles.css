@@ -1,33 +1,59 @@
 /* ==========================================================================
    PORTAL WEB BIBLIOTECA COMUNITARIA - "LEER NOS UNE"
-   Taller de Programación Web | Avance 1 y Avance 2
+   Proyecto académico: Taller de Programación Web.
+   Hoja de estilos única del sitio: index, libros, servicios, contacto,
+   registro, login y las dos páginas de redirección.
    --------------------------------------------------------------------------
-   REDISEÑO INTEGRAL CON APPLE DESIGN (WWDC Human Interface Guidelines)
-   Principios de diseño aplicados:
-   1. Respuesta Inmediata y Táctil (Kill Latency): Retroalimentación física
-      instantánea en pulsación (:active { transform: scale(0.975); }).
-   2. Materiales Translúcidos y Profundidad: Superficies de cristal esmerilado
-      (backdrop-filter: blur(20px) saturate(180%)), bordes hairline de luz y
-      sombras multicapa de oclusión ambiental.
-   3. Tipografía Óptica y Jerarquía: Sistema tipográfico nativo de Apple
-      (SF Pro Display / SF Pro Text) con respaldo web; tracking óptico negativo
-      en encabezados display (-0.025em) y leading proporcional calibrado.
-   4. Comportamiento Físico y Amortiguamiento: Curvas de resorte críticamente
-      amortiguadas (cubic-bezier(0.16, 1, 0.3, 1)) para interacción continua.
-   5. Accesibilidad Integral: Soporte completo para prefers-reduced-motion
-      (sustitución de movimiento por cross-fade), prefers-reduced-transparency
-      (superficies sólidas de alto contraste) y navegación por teclado :focus-visible.
+   DIRECCIÓN DE ARTE: "biblioteca de barrio con jardín" (ver DESIGN.md)
+   - Paleta botánica: pergamino, verde bosque, salvia y ámbar accesible.
+   - Tipografía: Fredoka (títulos, marca y botones) y Plus Jakarta Sans (texto).
+   - Todo color, espacio, radio, sombra y curva de movimiento sale de las
+     variables de la sección 1 (:root): se cambian en un solo lugar.
+   PRINCIPIOS
+   - Accesibilidad: contraste AA medido, foco visible de 3px, objetivos
+     táctiles de 44px en pantallas táctiles y respeto de prefers-reduced-motion.
+   - Movimiento: transform y opacity, con fundidos cortos; sin animaciones
+     infinitas.
+   - Adaptable: consultas de medios (@media); sin desbordes de 320 a 1440px.
+   - HTML con clases semánticas en español y sin estilos en línea.
+   - Las secciones 25 a 30 van al final a propósito: al ser posteriores ganan
+     en la cascada sin necesidad de !important.
    --------------------------------------------------------------------------
-   TEMAS ACADÉMICOS EVALUADOS:
-   - HTML: Estructura semántica (header, nav, main, section, article, aside,
-     footer, figure, caption), formularios accesibles, multimedia (audio/video),
-     tablas de datos complejas.
-   - CSS: Personalización tipográfica, Box Model, Flexbox, Grid Layout,
-     Reglas AT (@media queries), Animaciones (@keyframes), Transiciones y DevTools.
+   ÍNDICE
+    1. VARIABLES DE DISEÑO (DESIGN TOKENS)
+    2. REINICIO BASE Y TIPOGRAFÍA
+    3. ACCESIBILIDAD BASE: ENLACE DE SALTO, FOCO Y PULSACIÓN
+    4. ENCABEZADO Y NAVEGACIÓN
+    5. CONTENEDOR PRINCIPAL Y RESPLANDORES AMBIENTALES
+    6. HÉROE (index.html, contacto.html y registro.html)
+    7. CABECERAS DE SECCIÓN CENTRADAS (JERARQUÍA Y TRACKING ÓPTICO)
+    8. TARJETAS DE LIBROS (index.html y libros.html)
+    9. CATÁLOGO: BÚSQUEDA, FILTROS, CONTROLES Y PAGINACIÓN (libros.html)
+   10. AGENDA COMUNITARIA Y ACTIVIDADES (index.html)
+   11. MULTIMEDIA: VIDEO Y AUDIO (index.html)
+   12. CONVIVENCIA Y NORMAS VECINALES (index.html)
+   13. SERVICIOS COMUNITARIOS Y HORARIO SEMANAL (servicios.html)
+   14. TABLAS DE DATOS (servicios.html y contacto.html)
+   15. FORMULARIOS (contacto.html y registro.html)
+   16. CARNET DE EJEMPLO (registro.html)
+   17. CANALES DE ATENCIÓN Y PREGUNTAS FRECUENTES (contacto.html)
+   18. LLAMADO A LA ACCIÓN GLOBAL (CTA BANNER)
+   19. ACCESO Y REGISTRO (login.html)
+   20. PIE DE PÁGINA (global)
+   21. ANIMACIONES (@keyframes) Y MOVIMIENTO
+   22. ACCESIBILIDAD: PREFERENCIAS DEL SISTEMA (MOVIMIENTO, TRANSPARENCIA Y CONTRASTE)
+   23. HERRAMIENTAS DE SOPORTE Y DIAGNÓSTICO EN NAVEGADORES (DEVTOOLS)
+   24. COMPONENTES ADICIONALES Y CLASES ESPECÍFICAS DE PÁGINA
+   25. REGLAS RESPONSIVAS COMPLEMENTARIAS (MÓVILES Y TABLETS)
+   26. CLASES DE APOYO (sustituyen estilos en línea del HTML)
+   27. PANEL DE FILTROS PLEGABLE EN MÓVIL (libros.html)
+   28. ESTRUCTURA HTML: dirección del pie y anclas bajo el encabezado fijo
+   29. CAMBIO ENTRE INICIAR SESIÓN Y CREAR CUENTA (login.html)
+   30. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
    ========================================================================== */
 
 /* ==========================================================================
-   1. VARIABLES DE DISEÑO (DESIGN TOKENS) - APPLE DESIGN & PALETA BOTÁNICA
+   1. VARIABLES DE DISEÑO (DESIGN TOKENS)
    ========================================================================== */
 :root {
   /* Lienzo y Superficies de Fondo */
@@ -45,7 +71,7 @@
   --surface-container-high: #ece8df;
   --surface-container-highest: #e7e2d9;
 
-  /* Textos y Contrastes (Jerarquía de Contraste Apple WCAG AAA) */
+  /* Textos y contrastes (medidos, WCAG AA) */
   --text-primary: #1d1c16;
   --text-secondary: #404944;
   --text-tertiary: #5b635e;
@@ -54,7 +80,7 @@
   --inverse-surface: #32302a;
   --inverse-on-surface: #f5f0e7;
 
-  /* Paleta Botánica Refinada (Apple Forest & Vibrant Emerald) */
+  /* Paleta botánica: verde bosque y salvia */
   --forest-dark: #123b2d;
   --forest-deep: #1a4d3b;
   --primary: #1a4d3b;
@@ -101,7 +127,7 @@
   --parchment-sheet: #fbf9f5;
   --paper-white: #ffffff;
 
-  /* Tipografías: Prioridad Sistema Nativo Apple (SF Pro) con Respaldo Google Fonts */
+  /* Tipografías: Fredoka (títulos, marca y botones) y Plus Jakarta Sans (texto), de Google Fonts */
   --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
   --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -120,7 +146,7 @@
   /* Margen lateral fluido compartido por encabezado y contenido (1rem móvil, 2.5rem escritorio) */
   --gutter: clamp(1rem, 4vw, 2.5rem);
 
-  /* Radios de Borde Continuo (Squircles de Apple) */
+  /* Radios de borde */
   --radio-xs: 6px;
   --radio-sm: 10px;
   --radio-md: 14px;
@@ -144,7 +170,7 @@
 }
 
 /* ==========================================================================
-   2. REINICIO BASE Y CONFIGURACIÓN TIPOGRÁFICA ÓPTICA
+   2. REINICIO BASE Y TIPOGRAFÍA
    ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -237,7 +263,7 @@ img, picture, video {
 }
 
 /* ==========================================================================
-   3. ACCESIBILIDAD Y RESPUESTA FÍSICA INMEDIATA (KILL LATENCY)
+   3. ACCESIBILIDAD BASE: ENLACE DE SALTO, FOCO Y PULSACIÓN
    ========================================================================== */
 
 /* Enlace de Salto Accesible (Skip Link para lectores de pantalla y teclado) */
@@ -262,7 +288,7 @@ img, picture, video {
   outline: 3px solid var(--primary-fixed);
 }
 
-/* Indicador de Foco Visible Estilo Apple (Focus Ring) */
+/* Indicador de foco visible */
 /* Contorno sólido de 3px (#1a4d3b: 9.2:1 sobre pergamino) con separación; respeta la forma del control */
 :focus-visible {
   outline: 3px solid var(--primary);
@@ -283,7 +309,7 @@ img, picture, video {
 }
 
 /* RESPUESTA TÁCTIL INMEDIATA (:active { transform: scale(0.975); })
-   Principio #1 de Apple Design: Respuesta instantánea en puntero presionado */
+   Respuesta instantánea al pulsar: el control se hunde un instante */
 button:active,
 .boton:active,
 .enlace-nav:active,
@@ -291,12 +317,10 @@ button:active,
 .tarjeta-evento-inicio:active,
 .tarjeta-servicio-inicio:active,
 .tarjeta-canal:active,
-.chip-categoria:active,
 .pildora-metrica:active,
 .boton-heroe-primario:active,
 .boton-heroe-secundario:active,
 .boton-carnet:active,
-.boton-filtro-accion:active,
 .boton-enviar-contacto:active,
 .boton-secundario-contacto:active,
 .boton-buscar:active,
@@ -314,7 +338,7 @@ button:active,
 }
 
 /* ==========================================================================
-   4. ENCABEZADO Y NAVEGACIÓN TRANSLÚCIDA (FROSTED GLASS MATERIAL)
+   4. ENCABEZADO Y NAVEGACIÓN
    ========================================================================== */
 .encabezado {
   position: sticky;
@@ -511,7 +535,7 @@ button:active,
   object-fit: cover;
 }
 
-/* Botón de Menú Hamburguesa Móvil (Apple HIG Touch Target) */
+/* Botón del menú móvil (hamburguesa) */
 .boton-menu-movil {
   display: none;
   align-items: center;
@@ -566,7 +590,7 @@ button:active,
   transform: none;
 }
 
-/* Menú Desplegable Móvil (Drawer Translúcido Apple con Blur & Vibrancy) */
+/* Menú desplegable móvil (panel translúcido con desenfoque) */
 .menu-movil-desplegable {
   display: none;
   position: absolute;
@@ -700,7 +724,7 @@ button:active,
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 var(--gutter) 4rem;
+  padding: 2.5rem var(--gutter) 4rem;
 }
 
 /* Resplandores Sutiles de Luz (Ambient Lighting) */
@@ -730,10 +754,10 @@ button:active,
 }
 
 /* ==========================================================================
-   6. HÉROE DE INICIO ESTILO APPLE KEYNOTE
+   6. HÉROE (index.html, contacto.html y registro.html)
    ========================================================================== */
 .seccion-heroe {
-  padding: 2.5rem 0 3.5rem;
+  padding: 0 0 3.5rem;
 }
 
 .tarjeta-heroe {
@@ -805,7 +829,7 @@ button:active,
   margin-bottom: 2.25rem;
 }
 
-/* Botones Apple con Física de Resorte y Esquinas Continuas */
+/* Botones principal y secundario (píldoras) */
 .boton-heroe-primario,
 .boton-accion-primario,
 .boton-banner-primario,
@@ -888,6 +912,8 @@ button:active,
   flex-direction: column;
   align-items: flex-start;
   gap: 1.25rem;
+  position: relative;
+  z-index: 1;
 }
 
 .contenido-heroe > * {
@@ -1038,7 +1064,7 @@ button:active,
 }
 
 /* ==========================================================================
-   8. CATÁLOGO Y TARJETAS DE LIBROS (APPLE FLUID CARDS)
+   8. TARJETAS DE LIBROS (index.html y libros.html)
    ========================================================================== */
 .seccion-destacados-inicio,
 .columna-catalogo {
@@ -1052,7 +1078,7 @@ button:active,
   gap: 1.75rem;
 }
 
-/* Vista Alternativa en Lista (macOS / iPadOS List View) */
+/* Vista alternativa en lista */
 .rejilla-libros.vista-lista {
   grid-template-columns: 1fr;
   gap: 1.25rem;
@@ -1111,7 +1137,7 @@ button:active,
   flex: 1;
 }
 
-/* Portada Flotante con Profundidad Apple */
+/* Portada del libro con sombra de lomo */
 .contenedor-portada {
   position: relative;
   width: 100%;
@@ -1272,7 +1298,7 @@ button:active,
 }
 
 /* ==========================================================================
-   9. BARRA DE BÚSQUEDA TIPO SPOTLIGHT Y FILTROS (libros.html)
+   9. CATÁLOGO: BÚSQUEDA, FILTROS, CONTROLES Y PAGINACIÓN (libros.html)
    ========================================================================== */
 .seccion-busqueda-libros {
   margin-bottom: 2.5rem;
@@ -1298,13 +1324,6 @@ button:active,
     flex-direction: row;
     align-items: center;
   }
-}
-
-.barra-busqueda {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
 }
 
 @media (min-width: 768px) {
@@ -1384,7 +1403,7 @@ button:active,
   outline-offset: 2px;
 }
 
-/* Control Desplegable "Ordenar por" Estilo Apple */
+/* Control desplegable "Ordenar por" */
 .selector-orden {
   display: flex;
   align-items: center;
@@ -1394,8 +1413,8 @@ button:active,
 }
 
 .etiqueta-orden {
-  font-size: 0.825rem;
-  color: var(--text-secondary);
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
   font-weight: 500;
   white-space: nowrap;
 }
@@ -1476,7 +1495,7 @@ button:active,
   }
 }
 
-/* Panel Lateral de Filtros (Estilo Inset Grouped de macOS / iPadOS) */
+/* Panel lateral de filtros */
 .tarjeta-filtros {
   background-color: var(--surface-card);
   border-radius: var(--radio-lg);
@@ -1610,6 +1629,7 @@ button:active,
   border: 1px solid var(--border-hairline);
   box-shadow: var(--sombra-suave);
   margin-bottom: 1.5rem;
+  scroll-margin-top: 5.5rem;
 }
 
 .estado-exploracion {
@@ -1637,12 +1657,6 @@ button:active,
   gap: 0.85rem;
 }
 
-
-.etiqueta-orden {
-  font-size: 0.8rem;
-  color: var(--text-tertiary);
-  font-weight: 500;
-}
 
 .conmutador-vistas {
   display: flex;
@@ -1739,6 +1753,7 @@ button:active,
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px;
 }
 
 .icono-banner img {
@@ -1751,7 +1766,10 @@ button:active,
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  margin-bottom: 0;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.55;
 }
 
 .etiqueta-banner {
@@ -1791,7 +1809,7 @@ button:active,
   flex-shrink: 0;
 }
 
-/* Paginación Estilo Apple Segmented Control */
+/* Paginación */
 .paginacion-catalogo {
   display: flex;
   flex-wrap: wrap;
@@ -1887,7 +1905,7 @@ button:active,
   margin-bottom: 1.15rem;
 }
 
-/* Chip de Fecha Calendario de Apple */
+/* Chip de fecha del evento */
 .chip-fecha-evento {
   display: flex;
   flex-direction: column;
@@ -1990,7 +2008,7 @@ button:active,
 }
 
 /* ==========================================================================
-   11. CONTENIDO MULTIMEDIA CON ESTILO QUICKTIME / APPLE TV
+   11. MULTIMEDIA: VIDEO Y AUDIO (index.html)
    ========================================================================== */
 .seccion-multimedia-comunitaria {
   margin-bottom: 4.5rem;
@@ -2018,7 +2036,7 @@ button:active,
   flex-direction: column;
 }
 
-/* Marco de Video QuickTime */
+/* Marco del reproductor de video */
 .contenedor-video-botanico {
   position: relative;
   width: 100%;
@@ -2038,7 +2056,7 @@ button:active,
   object-fit: cover;
 }
 
-/* Marco de Audio Apple Music */
+/* Marco del reproductor de audio */
 .contenedor-audio-botanico {
   background: linear-gradient(135deg, var(--surface-secondary) 0%, var(--primary-subtle) 100%);
   border-radius: var(--radio-md);
@@ -2324,6 +2342,7 @@ button:active,
 /* El boton ya tiene margenes laterales: con width:100% (regla movil) sobresalia de la tarjeta */
 .tarjeta-ilustracion-servicios .boton-heroe-primario {
   width: auto;
+  margin: auto 1.5rem 1.5rem 1.5rem;
 }
 
 .imagen-ilustracion-servicios {
@@ -2353,12 +2372,8 @@ button:active,
   margin-bottom: 1.5rem;
 }
 
-.tarjeta-ilustracion-servicios .boton-heroe-primario {
-  margin: auto 1.5rem 1.5rem 1.5rem;
-}
-
 /* ==========================================================================
-   14. TABLAS DE DATOS INSET GROUPED (TABLAS BOTÁNICAS)
+   14. TABLAS DE DATOS (servicios.html y contacto.html)
    ========================================================================== */
 .seccion-tablas-datos {
   margin-bottom: 4.5rem;
@@ -2479,7 +2494,7 @@ button:active,
 }
 
 /* ==========================================================================
-   15. FORMULARIOS INSET GROUPED Y ESTILOS ACCESIBLES (registro.html y contacto.html)
+   15. FORMULARIOS (contacto.html y registro.html)
    ========================================================================== */
 .seccion-formulario-registro,
 .seccion-contacto {
@@ -2521,7 +2536,7 @@ button:active,
   font-size: 0.95rem;
 }
 
-/* Fieldsets y Grupos Inset */
+/* Fieldsets y grupos de campos */
 .fieldset-botanico {
   border: 1px solid var(--border-hairline);
   border-radius: var(--radio-lg);
@@ -2610,7 +2625,7 @@ button:active,
   font-size: 20px;
 }
 
-/* Campos de Entrada Apple con Anillo de Foco Suave */
+/* Campos de formulario */
 .input-contacto,
 .select-contacto,
 .textarea-contacto {
@@ -2720,9 +2735,6 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* Al cambiar de página, la barra de controles queda visible bajo el encabezado fijo */
-.barra-controles {
-  scroll-margin-top: 5.5rem;
-}
 
 .pildora-formato input[type="radio"] {
   accent-color: var(--primary);
@@ -2772,7 +2784,7 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* ==========================================================================
-   16. MOCKUP INTERACTIVO DEL CARNET DIGITAL (ESTILO APPLE WALLET PASS)
+   16. CARNET DE EJEMPLO (registro.html)
    ========================================================================== */
 .tarjeta-carnet-mockup {
   background: linear-gradient(135deg, #09261a 0%, #10432f 50%, #186043 100%);
@@ -3065,8 +3077,8 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* ==========================================================================
-   18-B. AUTENTICACIÓN PROFESIONAL SPLIT-CARD (login.html)
-   Inspirado en UI Kit moderno con adaptación Apple & Paleta Botánica
+   19. ACCESO Y REGISTRO (login.html)
+   Tarjeta dividida: formulario a un lado y panel visual al otro; el cambio de modo se desliza con JavaScript.
    ========================================================================== */
 .cuerpo-auth-fullscreen {
   min-height: 100vh;
@@ -3296,7 +3308,7 @@ button.pildora-formato[aria-pressed="true"] {
 
 
 
-/* Inputs Inset Estilo Imagen de Referencia */
+/* Campos con icono (login) */
 .grupo-input-auth {
   display: flex;
   flex-direction: column;
@@ -3417,7 +3429,7 @@ button.pildora-formato[aria-pressed="true"] {
   text-decoration: underline;
 }
 
-/* Botón Principal Negro / Forest */
+/* Botón principal (verde bosque) */
 .boton-auth-submit {
   width: 100%;
   padding: 0.85rem;
@@ -3518,14 +3530,12 @@ button.pildora-formato[aria-pressed="true"] {
   display: flex;
   flex-direction: column;
   width: 100%;
-  animation: aparecerTexto 420ms var(--ease-out) both;
 }
 
 .tarjeta-auth-split:not(.modo-registro) .seccion-form-login {
   display: flex;
   flex-direction: column;
   width: 100%;
-  animation: aparecerTexto 420ms var(--ease-out) both;
 }
 
 /* Alerta de notificación flotante */
@@ -3628,7 +3638,7 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* ==========================================================================
-   19. PIE DE PÁGINA (GLOBAL APPLE FOOTER)
+   20. PIE DE PÁGINA (global)
    ========================================================================== */
 .pie-pagina {
   background-color: #0b1510;
@@ -3690,13 +3700,6 @@ button.pildora-formato[aria-pressed="true"] {
   padding: 0.35rem 0.75rem;
   border-radius: var(--radio-completo);
   margin-top: 0.5rem;
-}
-
-.lema-botanico {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 0.85rem;
-  line-height: 1.5;
 }
 
 .direccion-pie {
@@ -3777,7 +3780,7 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* ==========================================================================
-   20. ANIMACIONES (@keyframes), TRANSICIONES Y TRANSFORMACIONES (Avance 2)
+   21. ANIMACIONES (@keyframes) Y MOVIMIENTO
    ========================================================================== */
 
 /* (El pulso y la flotación infinitos se retiraron: movimiento constante que distraía de la lectura) */
@@ -3816,7 +3819,7 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* ==========================================================================
-   21. ACCESIBILIDAD: MODOS DEL SISTEMA OPERATIVO (APPLE HIG GUIDELINES)
+   22. ACCESIBILIDAD: PREFERENCIAS DEL SISTEMA (MOVIMIENTO, TRANSPARENCIA Y CONTRASTE)
    ========================================================================== */
 
 /* A. Modo de Reducción de Movimiento (prefers-reduced-motion) */
@@ -3881,7 +3884,7 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* ==========================================================================
-   22. HERRAMIENTAS DE SOPORTE Y DIAGNÓSTICO EN NAVEGADORES (DEVTOOLS)
+   23. HERRAMIENTAS DE SOPORTE Y DIAGNÓSTICO EN NAVEGADORES (DEVTOOLS)
    - Chrome DevTools y Edge DevTools (Atajo de teclado: F12 o Ctrl+Shift+I):
      1. Pestaña 'Elements': Permite inspeccionar el árbol DOM y el Modelo de Caja
         (Box Model: margin, border, padding, content).
@@ -3894,7 +3897,7 @@ button.pildora-formato[aria-pressed="true"] {
      5. Pestaña 'Console' y 'Lighthouse': Diagnóstico de accesibilidad, contraste WCAG y errores.
    ========================================================================== */
 /* ==========================================================================
-   23. COMPONENTES ADICIONALES Y CLASES ESPECÍFICAS DE PÁGINA
+   24. COMPONENTES ADICIONALES Y CLASES ESPECÍFICAS DE PÁGINA
    ========================================================================== */
 
 /* Botón de Información en Tarjetas de Catálogo */
@@ -3933,11 +3936,6 @@ button.pildora-formato[aria-pressed="true"] {
 
 .columna-filtros {
   position: relative;
-}
-
-.contenido-heroe {
-  position: relative;
-  z-index: 1;
 }
 
 /* cuadricula-tarjetas-servicio unificada en seccion 13 */
@@ -4014,10 +4012,6 @@ button.pildora-formato[aria-pressed="true"] {
 .formulario-botanico {
   display: flex;
   flex-direction: column;
-}
-
-.icono-banner {
-  font-size: 16px;
 }
 
 .icono-etiqueta {
@@ -4116,13 +4110,6 @@ button.pildora-formato[aria-pressed="true"] {
   line-height: 1.45;
 }
 
-.texto-banner {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.55;
-  margin-bottom: 1.25rem;
-}
-
 .texto-disponible {
   font-weight: 600;
   color: var(--primary);
@@ -4167,7 +4154,7 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* ==========================================================================
-   24. REGLAS RESPONSIVAS COMPLEMENTARIAS (MÓVILES Y TABLETS)
+   25. REGLAS RESPONSIVAS COMPLEMENTARIAS (MÓVILES Y TABLETS)
    ========================================================================== */
 @media (max-width: 640px) {
   .tarjeta-heroe {
@@ -4176,7 +4163,7 @@ button.pildora-formato[aria-pressed="true"] {
   }
 
   .seccion-heroe {
-    padding: 1.25rem 0 2rem;
+    padding: 0 0 2rem;
   }
 
   .titulo-heroe {
@@ -4215,9 +4202,7 @@ button.pildora-formato[aria-pressed="true"] {
   .tarjeta-agenda-contenedor,
   .contenedor-normas,
   .tarjeta-formulario-contacto,
-  .tarjeta-faq-contenedor,
-  .tarjeta-login-principal,
-  .tarjeta-login-lateral {
+  .tarjeta-faq-contenedor {
     padding: 1.5rem 1.15rem;
     border-radius: var(--radio-lg);
   }
@@ -4272,7 +4257,7 @@ button.pildora-formato[aria-pressed="true"] {
 
 
 /* ==========================================================================
-   25. CLASES DE APOYO (sustituyen estilos en línea del HTML)
+   26. CLASES DE APOYO (sustituyen estilos en línea del HTML)
    ========================================================================== */
 .separado-arriba {
   margin-top: var(--espacio-sm);
@@ -4365,7 +4350,7 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* ==========================================================================
-   26. PANEL DE FILTROS PLEGABLE EN MÓVIL (libros.html)
+   27. PANEL DE FILTROS PLEGABLE EN MÓVIL (libros.html)
    El JavaScript añade .plegable por debajo de 1024px; sin JavaScript el panel queda visible.
    ========================================================================== */
 .boton-filtros-movil,
@@ -4456,7 +4441,7 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* ==========================================================================
-   27. ESTRUCTURA HTML: dirección del pie y anclas bajo el encabezado fijo
+   28. ESTRUCTURA HTML: dirección del pie y anclas bajo el encabezado fijo
    ========================================================================== */
 .sede-pie {
   font-style: normal;
@@ -4467,31 +4452,29 @@ section[id] {
 }
 
 /* ==========================================================================
-   28. CAMBIO ENTRE INICIAR SESIÓN Y CREAR CUENTA (login.html)
-   Los paneles se deslizan con JavaScript (FLIP); el texto nuevo entra con un fundido.
+   29. CAMBIO ENTRE INICIAR SESIÓN Y CREAR CUENTA (login.html)
+   Los paneles se deslizan con JavaScript (FLIP); el contenido nuevo sube y aparece en cascada.
    ========================================================================== */
-@keyframes aparecerTexto {
+@keyframes subirSuave {
   from {
     opacity: 0;
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
+    transform: none;
   }
 }
 
+/* Entrada en cascada: el JavaScript añade .entra-suave a cada elemento nuevo y le pone --orden (0, 1, 2...).
+   Solo transform y opacity. backwards: al terminar no queda ningún estilo residual, así que al quitar la clase no hay parpadeo. */
 .entra-suave {
-  animation: aparecerTexto 560ms var(--ease-out) 120ms both;
-}
-
-/* Mientras los paneles se deslizan, el formulario nuevo espera 140 ms y aparece con un fundido más largo */
-.tarjeta-auth-split.deslizando .seccion-form-login,
-.tarjeta-auth-split.deslizando .seccion-form-registro {
-  animation-duration: 560ms;
-  animation-delay: 140ms;
+  animation: subirSuave 440ms var(--ease-out) backwards;
+  animation-delay: calc(var(--orden, 0) * 40ms + 40ms);
 }
 
 /* ==========================================================================
-   29. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
+   30. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
    ========================================================================== */
 .pagina-redireccion {
   align-items: center;
@@ -4519,4 +4502,11 @@ section[id] {
   margin-bottom: 1.5rem;
   line-height: 1.5;
   color: var(--text-secondary);
+}
+
+/* Aire bajo el encabezado: 40px en escritorio y 20px en móvil, igual en todas las páginas */
+@media (max-width: 640px) {
+  .contenedor-flotante {
+    padding-top: 1.25rem;
+  }
 }
