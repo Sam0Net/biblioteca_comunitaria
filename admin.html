@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Panel de administración de la Biblioteca Comunitaria Leer nos une." />
+    <meta name="robots" content="noindex" />
+    <meta name="author" content="Biblioteca Comunitaria Leer nos une" />
+    <title>Panel de administración - Leer nos une | Biblioteca Comunitaria</title>
+    <meta name="theme-color" content="#1a4d3b" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%231a4d3b'/%3E%3Cg transform='translate%285 5%29 scale%28.58%29'%3E%3Cpath fill='%23fef9f0' d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    
+  </head>
+  <body class="cuerpo-sitio">
+    <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
+    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <!-- MENÚS (ENCABEZADO Y NAVEGACIÓN CON FLEXBOX) -->
+    <header class="encabezado">
+      <div class="contenedor-encabezado">
+        <a class="marca-sitio" href="index.html" data-path="inicio">
+          <div class="icono-marca">
+            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
+          </div>
+          <div class="texto-marca">
+            <span class="nombre-marca">Leer nos une</span>
+            <span class="subtitulo-marca">Biblioteca Comunitaria</span>
+          </div>
+        </a>
+
+        <nav class="navegacion-principal" aria-label="Navegación principal">
+          <a class="enlace-nav" href="index.html" data-path="inicio">Inicio</a>
+          <a class="enlace-nav" href="libros.html" data-path="libros">Libros</a>
+          <a class="enlace-nav" href="servicios.html" data-path="servicios">Servicios</a>
+          <a class="enlace-nav" href="contacto.html" data-path="contacto">Contacto</a>
+        </nav>
+
+        <div class="acciones-usuario">
+          <a class="boton-carnet" href="login.html#crear-cuenta" data-path="carnet-digital" aria-label="Sacar mi carnet">
+            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+            <span>Sacar mi carnet</span>
+          </a>
+          <a
+            class="avatar-perfil"
+            href="login.html"
+            title="Mi Cuenta e Inicio de Sesión"
+            aria-label="Mi cuenta: iniciar sesión"
+          >
+            <img
+              alt=""
+              src="img/tresLibrosPlantitas.png"
+            />
+          </a>
+          <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
+          <button class="boton-menu-movil" id="btnMenuMovil" aria-controls="menuMovilDesplegable" aria-label="Abrir menú" aria-expanded="false" type="button">
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
+      <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
+        <nav class="navegacion-movil" aria-label="Navegación móvil">
+          <a class="enlace-nav-movil" href="index.html">
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
+            <span>Inicio</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+          <a class="enlace-nav-movil" href="libros.html">
+            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
+            <span>Libros</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+          <a class="enlace-nav-movil" href="servicios.html">
+            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
+            <span>Servicios</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+          <a class="enlace-nav-movil" href="contacto.html">
+            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
+            <span>Contacto</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido-principal" id="contenido-principal">
+      <div class="contenedor-flotante">
+        <h1 class="titulo-admin">Panel de administración</h1>
+
+        <!-- Visitantes sin permiso -->
+        <section class="tarjeta-admin" id="accesoDenegado" hidden aria-labelledby="tituloDenegado">
+          <h2 class="titulo-tarjeta-admin" id="tituloDenegado">Esta página es solo para administradores</h2>
+          <p class="texto-admin" id="textoDenegado">Inicia sesión con la cuenta de administrador para entrar.</p>
+          <a class="boton-heroe-primario" href="login.html">Iniciar sesión</a>
+        </section>
+
+        <!-- Panel del administrador -->
+        <div id="panelAdmin" hidden>
+          <section class="tarjeta-admin" aria-labelledby="tituloUsuarios">
+            <h2 class="titulo-tarjeta-admin" id="tituloUsuarios">Cuentas registradas</h2>
+            <p class="texto-admin">
+              Aquí aparecen las cuentas creadas en este navegador. Esta maqueta no tiene servidor, así que no se ven las que se crearon en otros equipos.
+            </p>
+            <div class="contenedor-tabla-responsiva">
+              <table class="tabla-botanica">
+                <caption>Cuentas de usuario registradas en este navegador</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Fecha de registro</th>
+                  </tr>
+                </thead>
+                <tbody id="filasUsuarios"></tbody>
+              </table>
+            </div>
+            <p class="texto-admin" id="sinUsuarios" hidden>Todavía no hay cuentas registradas. Crea una desde la página de inicio de sesión para verla aquí.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="rejilla-pie">
+          <div>
+            <div class="marca-pie">
+              <span class="nombre-marca-pie">Leer nos une</span>
+            </div>
+            <p class="descripcion-pie">
+              Un espacio botánico y acogedor para cultivar el conocimiento, la
+              imaginación y la convivencia vecinal en armonía.
+            </p>
+            <div class="insignia-semillero">
+              <span>Semillero de saberes comunitarios</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
+            <ul class="lista-horarios">
+              <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
+              <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
+              <li><strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs</li>
+              <li class="estado-salas">
+                <span class="punto-estado"></span>
+                <span>Salas de lectura abiertas</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
+            <nav aria-label="Enlaces rápidos">
+              <ul class="enlaces-pie">
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="index.html" data-path="inicio">Inicio</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="libros.html" data-path="libros">Libros</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html" data-path="servicios">Servicios</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="contacto.html" data-path="contacto">Contacto</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="login.html#crear-cuenta" data-path="crear-cuenta">Crear cuenta</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="login.html" data-path="login">Iniciar sesión</a>
+              </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div>
+            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
+            <address class="sede-pie">
+              <p class="direccion-pie">
+                Sector San José<br />
+                Al costado de la SUNAT
+              </p>
+              <p class="contacto-pie">
+                ejemplo@utpvirtual.edu<br />
+                +51 1234-5678
+              </p>
+            </address>
+          </div>
+        </div>
+
+        <div class="pie-inferior">
+          <p class="derechos-pie">
+            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de
+            Taller de Programación Web (Avance 2).
+          </p>
+          <div class="enlaces-legales">
+            <a href="contacto.html">Soporte Vecinal</a>
+            <a href="libros.html">Catálogo Abierto</a>
+            <a href="login.html#crear-cuenta">Sacar mi carnet</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const sesion = Auth.sesion();
+        const denegado = document.getElementById("accesoDenegado");
+        const panel = document.getElementById("panelAdmin");
+
+        if (!Auth.esAdmin()) {
+          if (sesion) {
+            document.getElementById("tituloDenegado").textContent = "Tu cuenta no tiene permiso para entrar aquí";
+            document.getElementById("textoDenegado").textContent = "Solo el administrador puede ver este panel. Vuelve al inicio para seguir explorando.";
+          }
+          denegado.hidden = false;
+          return;
+        }
+
+        panel.hidden = false;
+        const usuarios = Auth.usuarios();
+        const cuerpo = document.getElementById("filasUsuarios");
+        const formato = new Intl.DateTimeFormat("es", { day: "numeric", month: "long", year: "numeric" });
+        usuarios.forEach((u) => {
+          const fila = document.createElement("tr");
+          [u.nombre, u.correo, u.fecha ? formato.format(new Date(u.fecha)) : ""].forEach((texto) => {
+            const celda = document.createElement("td");
+            celda.textContent = texto; // textContent: lo que escribió el usuario nunca se interpreta como HTML
+            fila.appendChild(celda);
+          });
+          cuerpo.appendChild(fila);
+        });
+        document.getElementById("sinUsuarios").hidden = usuarios.length > 0;
+        document.querySelector(".contenedor-tabla-responsiva").hidden = usuarios.length === 0;
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const btnMenu = document.getElementById("btnMenuMovil");
+      const menuMovil = document.getElementById("menuMovilDesplegable");
+      if (btnMenu && menuMovil) {
+        btnMenu.addEventListener("click", () => {
+          const abierto = menuMovil.classList.toggle("abierto");
+          btnMenu.classList.toggle("activo", abierto);
+          btnMenu.setAttribute("aria-expanded", abierto);
+          btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+          menuMovil.setAttribute("aria-hidden", !abierto);
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
+            menuMovil.classList.remove("abierto");
+            btnMenu.classList.remove("activo");
+            btnMenu.setAttribute("aria-expanded", "false");
+            btnMenu.setAttribute("aria-label", "Abrir menú");
+            menuMovil.setAttribute("aria-hidden", "true");
+          }
+        });
+      }
+      });
+    </script>
+  </body>
+</html>

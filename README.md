@@ -30,7 +30,8 @@ y entra en `http://localhost:8000`.
 | `libros.html` | Catálogo: búsqueda, categorías, filtros, orden, paginación y vista en cuadrícula o lista |
 | `servicios.html` | Servicios, salas y jardín, cronograma semanal (tabla) |
 | `contacto.html` | Formulario de contacto, canales de atención, tabla de plazos y preguntas frecuentes |
-| `login.html` | Iniciar sesión y crear cuenta (se abre en "Crear cuenta" con `login.html#crear-cuenta`) |
+| `login.html` | Iniciar sesión y crear cuenta (se abre en "Crear cuenta" con `login.html#crear-cuenta`). Las cuentas son reales dentro del navegador, ver "Cuentas y roles" |
+| `admin.html` | Panel del administrador: lista de cuentas registradas. Solo entra el rol admin |
 | `registro.html` | Solicitud completa de carnet vecinal (con DNI y dirección). Hoy ninguna página enlaza a ella |
 | `actividades.html`, `catalogo.html` | Páginas de paso que redirigen a `servicios.html` y `libros.html` |
 
@@ -39,7 +40,8 @@ y entra en `http://localhost:8000`.
 ```
 biblioteca_comunitaria/
 ├── index.html, libros.html, servicios.html, contacto.html,
-│   login.html, registro.html, actividades.html, catalogo.html
+│   login.html, admin.html, registro.html, actividades.html, catalogo.html
+├── auth.js           Cuentas, sesión y roles (se guardan en el navegador)
 ├── styles.css        Hoja de estilos única (índice de 30 secciones al inicio)
 ├── DESIGN.md         Sistema de diseño: colores, tipografía, formas y componentes
 ├── img/              Imágenes del sitio
@@ -53,6 +55,17 @@ biblioteca_comunitaria/
 - **Encabezado y pie repetidos:** están copiados en cada página, **idénticos** (solo cambia el enlace activo del menú). Es deliberado: cargarlos con JavaScript no funciona al abrir los archivos con doble clic, y el HTML se ve completo en el código fuente.
 - **Sin estilos en línea:** todo el estilo está en `styles.css`. Las portadas de los libros son imágenes (`<img>`) con texto alternativo.
 - **JavaScript:** cada página lleva su script al final del HTML. Se usa para el menú móvil, el catálogo (filtros, orden, paginación y panel plegable), la validación de `login.html` y el deslizamiento entre "Iniciar sesión" y "Crear cuenta".
+
+## Cuentas y roles
+
+No hay servidor ni base de datos, así que las cuentas viven **en el navegador de cada persona** (`localStorage`) y la sesión dura hasta cerrar la pestaña (`sessionStorage`). Todo está en `auth.js`.
+
+- **Usuario:** cualquiera que cree su cuenta en `login.html#crear-cuenta`. No puede entrar a `admin.html`.
+- **Administrador (cuenta de demostración):** correo `admin@leernosune.org`, contraseña `Admin2025!`. Al iniciar sesión va a `admin.html`.
+- El encabezado cambia con la sesión: el botón pasa a "Cerrar sesión" y el admin ve "Panel admin".
+- `admin.html` lista las cuentas creadas **en ese mismo navegador**. No muestra las de otros equipos: eso necesita un servidor.
+- **Límite importante:** es una simulación. Las contraseñas se guardan sin cifrar y quien abra las herramientas del navegador puede cambiar los datos. Los roles con seguridad real necesitan servidor.
+- Para que las cuentas se compartan entre páginas conviene abrir el sitio con `python -m http.server` o con Chrome; algunos navegadores aíslan los archivos abiertos con doble clic.
 
 ## Accesibilidad
 
