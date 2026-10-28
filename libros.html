@@ -165,7 +165,20 @@
           <div class="rejilla-principal">
             <!-- FILTRAR COLECCIÓN -->
             <aside class="columna-filtros">
-              <div class="tarjeta-filtros">
+              <button
+                class="boton-filtros-movil"
+                id="botonFiltrosMovil"
+                type="button"
+                aria-expanded="false"
+                aria-controls="panelFiltros"
+              >
+                <span aria-hidden="true" class="material-symbols-outlined">tune</span>
+                <span>Filtrar colección</span>
+                <span class="contador-filtros-activos" hidden>0</span>
+                <span aria-hidden="true" class="material-symbols-outlined icono-chevron">expand_more</span>
+              </button>
+
+              <div class="tarjeta-filtros" id="panelFiltros">
                 <div class="cabecera-filtros">
                   <div class="titulo-con-icono">
                     <span aria-hidden="true" class="material-symbols-outlined">filter_alt</span>
@@ -280,12 +293,14 @@
                     </p>
                   </div>
                 </div>
+                <button class="boton-ver-resultados" type="button">Ver resultados</button>
               </div>
             </aside>
 
             <!-- LA PARTE DONDE SE MUESTRAN LOS LIBROS -->
             <section class="columna-catalogo">
-              <div class="barra-controles">
+              <h2 class="visualmente-oculto">Libros del catálogo</h2>
+<div class="barra-controles">
                 <div class="estado-exploracion">
                   <span class="texto-explorando">Explorando</span>
                   <span class="insignia-conteo" aria-live="polite"
@@ -1072,6 +1087,7 @@
           }
           if (estadoVacio) estadoVacio.hidden = coinciden.length > 0;
           dibujarPaginacion(totalPaginas, coinciden.length);
+          actualizarPanelFiltros(coinciden.length);
         }
 
         // Cualquier cambio de filtro u orden vuelve a la primera página
@@ -1129,6 +1145,64 @@
           barraControles?.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "start" });
           contenedorPaginas.querySelector('[aria-current="page"]')?.focus({ preventScroll: true });
         });
+
+        // Panel de filtros plegable: solo por debajo de 1024px; en escritorio siempre está visible
+        const columnaFiltros = document.querySelector(".columna-filtros");
+        const botonFiltros = document.getElementById("botonFiltrosMovil");
+        const botonVerResultados = document.querySelector(".boton-ver-resultados");
+        const contadorFiltros = document.querySelector(".contador-filtros-activos");
+        const mediaMovil = window.matchMedia("(max-width: 1023.98px)");
+
+        function abrirFiltros(abrir) {
+          columnaFiltros?.classList.toggle("filtros-abiertos", abrir);
+          botonFiltros?.setAttribute("aria-expanded", String(abrir));
+        }
+
+        // Cuenta los filtros marcados y actualiza el botón y el texto "Ver N títulos"
+        function actualizarPanelFiltros(totalResultados) {
+          const activos =
+            (categoriaActiva !== "todos" ? 1 : 0) +
+            casillasDisponibilidad.filter((c) => c.checked).length +
+            pildorasFormato.filter((p) => p.getAttribute("aria-pressed") === "true").length;
+          if (contadorFiltros) {
+            contadorFiltros.textContent = String(activos);
+            contadorFiltros.hidden = activos === 0;
+          }
+          botonFiltros?.setAttribute(
+            "aria-label",
+            activos ? `Filtrar colección, ${activos} ${activos === 1 ? "filtro activo" : "filtros activos"}` : "Filtrar colección"
+          );
+          if (botonVerResultados) {
+            botonVerResultados.textContent =
+              totalResultados === 0 ? "Cerrar filtros" : `Ver ${totalResultados} ${totalResultados === 1 ? "título" : "títulos"}`;
+          }
+        }
+
+        function ajustarPlegable() {
+          columnaFiltros?.classList.toggle("plegable", mediaMovil.matches);
+          if (!mediaMovil.matches) abrirFiltros(false);
+        }
+
+        botonFiltros?.addEventListener("click", () => {
+          abrirFiltros(!columnaFiltros.classList.contains("filtros-abiertos"));
+        });
+
+        botonVerResultados?.addEventListener("click", () => {
+          abrirFiltros(false);
+          const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          barraControles?.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "start" });
+          botonFiltros?.focus({ preventScroll: true });
+        });
+
+        document.addEventListener("keydown", (evento) => {
+          if (evento.key === "Escape" && columnaFiltros?.classList.contains("plegable") && columnaFiltros.classList.contains("filtros-abiertos")) {
+            abrirFiltros(false);
+            botonFiltros?.focus();
+          }
+        });
+
+        mediaMovil.addEventListener("change", ajustarPlegable);
+        ajustarPlegable();
 
         actualizarCatalogo();
 
