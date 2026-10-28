@@ -32,7 +32,7 @@
       <div class="contenedor-encabezado">
         <a class="marca-sitio" href="index.html" data-path="inicio">
           <div class="icono-marca">
-            <span class="material-symbols-outlined">local_florist</span>
+            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
           </div>
           <div class="texto-marca">
             <span class="nombre-marca">Leer nos une</span>
@@ -48,51 +48,51 @@
         </nav>
 
         <div class="acciones-usuario">
-          <a class="boton-carnet animacion-pulso" href="login.html" data-path="carnet-digital">
-            <span class="material-symbols-outlined">badge</span>
-            <span>Carnet Digital</span>
+          <a class="boton-carnet" href="login.html" data-path="carnet-digital" aria-label="Sacar mi carnet">
+            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+            <span>Sacar mi carnet</span>
           </a>
           <a
             class="avatar-perfil"
             href="login.html"
             title="Mi Cuenta e Inicio de Sesión"
-            aria-label="Mi Cuenta"
+            aria-label="Mi cuenta: iniciar sesión"
           >
             <img
-              alt="Perfil de usuario"
+              alt=""
               src="img/tresLibrosPlantitas.png"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
-          <button class="boton-menu-movil" id="btnMenuMovil" aria-label="Abrir menú" aria-expanded="false" type="button">
-            <span class="material-symbols-outlined icono-menu-abrir">menu</span>
-            <span class="material-symbols-outlined icono-menu-cerrar">close</span>
+          <button class="boton-menu-movil" id="btnMenuMovil" aria-controls="menuMovilDesplegable" aria-label="Abrir menú" aria-expanded="false" type="button">
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar">close</span>
           </button>
         </div>
       </div>
 
       <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
-        <nav class="navegacion-movil">
+        <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span class="material-symbols-outlined">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="libros.html">
-            <span class="material-symbols-outlined">auto_stories</span>
+            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil activo" href="servicios.html" aria-current="page">
-            <span class="material-symbols-outlined">spa</span>
+            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span class="material-symbols-outlined">chat</span>
+            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
         </nav>
       </div>
@@ -104,11 +104,13 @@
         <div class="resplandor-fondo resplandor-superior"></div>
         <div class="resplandor-fondo resplandor-medio"></div>
 
+        <h1 class="visualmente-oculto">Servicios y actividades de la biblioteca comunitaria</h1>
+
         <!-- SECCIÓN: SERVICIOS COMUNITARIOS -->
         <section class="seccion-servicios-inicio" id="servicios">
           <div class="cabecera-seccion-centrada">
             <div class="insignia-subtitulo-centrada">
-              <span class="material-symbols-outlined">spa</span>
+              <span aria-hidden="true" class="material-symbols-outlined">spa</span>
               <span>Compromiso con el Barrio</span>
             </div>
             <h2 class="titulo-seccion-inicio">Nuestros Servicios Comunitarios</h2>
@@ -122,7 +124,7 @@
             <div class="cuadricula-tarjetas-servicio">
               <div class="tarjeta-servicio-inicio">
                 <div class="icono-servicio-circulo">
-                  <span class="material-symbols-outlined">local_library</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">local_library</span>
                 </div>
                 <h3 class="titulo-servicio-inicio">Préstamo de Libros</h3>
                 <p class="descripcion-servicio-inicio">
@@ -130,11 +132,11 @@
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Renovación por 7 días adicionales</span>
                   </li>
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Separadores botánicos de regalo</span>
                   </li>
                 </ul>
@@ -142,7 +144,7 @@
 
               <div class="tarjeta-servicio-inicio">
                 <div class="icono-servicio-circulo icono-ambar-servicio">
-                  <span class="material-symbols-outlined">yard</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">yard</span>
                 </div>
                 <h3 class="titulo-servicio-inicio">Salas y Jardín Botánico</h3>
                 <p class="descripcion-servicio-inicio">
@@ -150,11 +152,11 @@
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Conexión Wi-Fi de alta velocidad</span>
                   </li>
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Ambiente silencioso y climatizado</span>
                   </li>
                 </ul>
@@ -162,7 +164,7 @@
 
               <div class="tarjeta-servicio-inicio">
                 <div class="icono-servicio-circulo">
-                  <span class="material-symbols-outlined">groups</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">groups</span>
                 </div>
                 <h3 class="titulo-servicio-inicio">Clubes y Talleres Culturales</h3>
                 <p class="descripcion-servicio-inicio">
@@ -170,11 +172,11 @@
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Clubes juveniles y para adultos</span>
                   </li>
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Participación 100% gratuita</span>
                   </li>
                 </ul>
@@ -182,7 +184,7 @@
 
               <div class="tarjeta-servicio-inicio">
                 <div class="icono-servicio-circulo icono-ambar-servicio">
-                  <span class="material-symbols-outlined">child_care</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">child_care</span>
                 </div>
                 <h3 class="titulo-servicio-inicio">Rincón Infantil y Cuentacuentos</h3>
                 <p class="descripcion-servicio-inicio">
@@ -190,11 +192,11 @@
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Cuentacuentos los fines de semana</span>
                   </li>
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Material didáctico y juegos de letras</span>
                   </li>
                 </ul>
@@ -213,7 +215,7 @@
               </blockquote>
               <cite class="autor-cita-servicios">— Proyecto "Leer nos une"</cite>
               <a class="boton-heroe-primario" href="contacto.html">
-                <span class="material-symbols-outlined">mail</span>
+                <span aria-hidden="true" class="material-symbols-outlined">mail</span>
                 <span>Consultar por un Servicio</span>
               </a>
             </div>
@@ -225,7 +227,7 @@
           <div class="tarjeta-tabla-contenedor">
             <div class="cabecera-seccion-centrada">
               <div class="insignia-subtitulo-centrada">
-                <span class="material-symbols-outlined">calendar_month</span>
+                <span aria-hidden="true" class="material-symbols-outlined">calendar_month</span>
                 <span>Organización Semanal</span>
               </div>
               <h2 class="titulo-seccion-inicio">Cronograma de Salas y Aforo Vecinal</h2>
@@ -305,11 +307,11 @@
           <div class="contenedor-normas">
             <div class="tarjeta-llamado-accion">
               <div class="texto-llamado">
-                <span class="material-symbols-outlined icono-llamado">card_membership</span>
+                <span aria-hidden="true" class="material-symbols-outlined icono-llamado">card_membership</span>
                 <div>
-                  <h4 class="titulo-llamado">
+                  <h2 class="titulo-llamado">
                     ¿Aún no tienes tu Carnet Vecinal?
-                  </h4>
+                  </h2>
                   <p class="subtitulo-llamado">
                     Actívalo hoy mismo y empieza a pedir tus libros favoritos en un solo clic.
                   </p>
@@ -328,7 +330,7 @@
         <div class="rejilla-pie">
           <div>
             <div class="marca-pie">
-              <span class="material-symbols-outlined">menu_book</span>
+              <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
@@ -336,13 +338,13 @@
               imaginación y la convivencia vecinal en armonía.
             </p>
             <div class="insignia-semillero">
-              <span class="material-symbols-outlined">eco</span>
+              <span aria-hidden="true" class="material-symbols-outlined">eco</span>
               <span>Semillero de saberes comunitarios</span>
             </div>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Horarios de Atención</h4>
+            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
             <ul class="lista-horarios">
               <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
               <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
@@ -357,33 +359,33 @@
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
+            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
             <ul class="enlaces-pie">
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Libros</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="login.html" data-path="login">Carnet Digital</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="contacto.html" data-path="contacto">Contáctanos</a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Sede Comunitaria</h4>
+            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
             <p class="direccion-pie">
               Sector San José<br />
               Al costado de la SUNAT
@@ -418,6 +420,7 @@
             const abierto = menuMovil.classList.toggle("abierto");
             btnMenu.classList.toggle("activo", abierto);
             btnMenu.setAttribute("aria-expanded", abierto);
+            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
             menuMovil.setAttribute("aria-hidden", !abierto);
           });
 
@@ -426,6 +429,7 @@
               menuMovil.classList.remove("abierto");
               btnMenu.classList.remove("activo");
               btnMenu.setAttribute("aria-expanded", "false");
+              btnMenu.setAttribute("aria-label", "Abrir menú");
               menuMovil.setAttribute("aria-hidden", "true");
             }
           });

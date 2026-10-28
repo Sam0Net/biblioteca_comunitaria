@@ -32,7 +32,7 @@
       <div class="contenedor-encabezado">
         <a class="marca-sitio" href="index.html" data-path="inicio">
           <div class="icono-marca">
-            <span class="material-symbols-outlined">local_florist</span>
+            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
           </div>
           <div class="texto-marca">
             <span class="nombre-marca">Leer nos une</span>
@@ -48,51 +48,51 @@
         </nav>
 
         <div class="acciones-usuario">
-          <a class="boton-carnet animacion-pulso" href="login.html" data-path="carnet-digital">
-            <span class="material-symbols-outlined">badge</span>
-            <span>Carnet Digital</span>
+          <a class="boton-carnet" href="login.html" data-path="carnet-digital" aria-label="Sacar mi carnet">
+            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+            <span>Sacar mi carnet</span>
           </a>
           <a
             class="avatar-perfil"
             href="login.html"
             title="Mi Cuenta e Inicio de Sesión"
-            aria-label="Mi Cuenta"
+            aria-label="Mi cuenta: iniciar sesión"
           >
             <img
-              alt="Perfil de usuario"
+              alt=""
               src="img/tresLibrosPlantitas.png"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
-          <button class="boton-menu-movil" id="btnMenuMovil" aria-label="Abrir menú" aria-expanded="false" type="button">
-            <span class="material-symbols-outlined icono-menu-abrir">menu</span>
-            <span class="material-symbols-outlined icono-menu-cerrar">close</span>
+          <button class="boton-menu-movil" id="btnMenuMovil" aria-controls="menuMovilDesplegable" aria-label="Abrir menú" aria-expanded="false" type="button">
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar">close</span>
           </button>
         </div>
       </div>
 
       <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
-        <nav class="navegacion-movil">
+        <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span class="material-symbols-outlined">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil activo" href="libros.html" aria-current="page">
-            <span class="material-symbols-outlined">auto_stories</span>
+            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="servicios.html">
-            <span class="material-symbols-outlined">spa</span>
+            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span class="material-symbols-outlined">chat</span>
+            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
         </nav>
       </div>
@@ -104,12 +104,14 @@
         <div class="resplandor-fondo resplandor-superior"></div>
         <div class="resplandor-fondo resplandor-medio"></div>
 
+        <h1 class="visualmente-oculto">Catálogo de libros de la biblioteca</h1>
+
         <!-- BARRA DE BÚSQUEDA DE LIBROS -->
         <section class="seccion-busqueda-libros">
           <div class="contenedor-busqueda-libros">
             <div class="barra-busqueda">
               <div class="campo-texto">
-                <span class="material-symbols-outlined">search</span>
+                <span aria-hidden="true" class="material-symbols-outlined">search</span>
                 <input
                   class="entrada-busqueda"
                   id="busquedaCatalogoInput"
@@ -118,7 +120,7 @@
                 />
               </div>
               <div class="campo-criterio">
-                <span class="material-symbols-outlined">tune</span>
+                <span aria-hidden="true" class="material-symbols-outlined">tune</span>
                 <select
                   aria-label="Criterio de búsqueda"
                   class="selector-criterio"
@@ -132,13 +134,13 @@
               </div>
               <button class="boton-buscar" type="button">
                 <span>Buscar</span>
-                <span class="material-symbols-outlined">arrow_forward</span>
+                <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
               </button>
             </div>
 
             <div class="etiquetas-sugeridas">
               <span class="titulo-sugerencias">
-                <span class="material-symbols-outlined">trending_up</span>
+                <span aria-hidden="true" class="material-symbols-outlined">trending_up</span>
                 Populares:
               </span>
               <button class="boton-etiqueta" type="button">
@@ -166,7 +168,7 @@
               <div class="tarjeta-filtros">
                 <div class="cabecera-filtros">
                   <div class="titulo-con-icono">
-                    <span class="material-symbols-outlined">filter_alt</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">filter_alt</span>
                     <h2 class="titulo-panel">Filtrar Colección</h2>
                   </div>
                   <button
@@ -269,7 +271,7 @@
                 </div>
 
                 <div class="tarjeta-consejo">
-                  <span class="material-symbols-outlined">local_florist</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
                   <div>
                     <span class="titulo-consejo">Préstamos solidarios</span>
                     <p class="texto-consejo">
@@ -303,17 +305,17 @@
                   <div class="conmutador-vistas">
                     <button
                       class="boton-vista activo"
-                      title="Vista en cuadrícula"
+                      title="Vista en cuadrícula" aria-label="Vista en cuadrícula"
                       type="button"
                     >
-                      <span class="material-symbols-outlined">grid_view</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">grid_view</span>
                     </button>
                     <button
                       class="boton-vista"
-                      title="Vista en lista detallada"
+                      title="Vista en lista detallada" aria-label="Vista en lista detallada"
                       type="button"
                     >
-                      <span class="material-symbols-outlined"
+                      <span aria-hidden="true" class="material-symbols-outlined"
                         >format_list_bulleted</span
                       >
                     </button>
@@ -338,18 +340,18 @@
                       </div>
                     </div>
                     <div class="genero-libro">
-                      <span class="material-symbols-outlined">menu_book</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
                       <span>Novela / Realismo Mágico</span>
                     </div>
                     <h3 class="titulo-libro">Cien años de soledad</h3>
                     <p class="autor-libro">Gabriel García Márquez</p>
                     <div class="calificacion-libro">
                       <div class="estrellas">
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
                       </div>
                       <span class="texto-lectores">4.9 (48 lectores)</span>
                     </div>
@@ -359,11 +361,11 @@
                   </div>
                   <div class="acciones-tarjeta">
                     <button class="boton-accion-primario" type="button">
-                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                       <span>Reservar</span>
                     </button>
-                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
-                      <span class="material-symbols-outlined">info</span>
+                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de Cien años de soledad" title="Ver detalles y opiniones" type="button">
+                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
                     </button>
                   </div>
                 </article>
@@ -384,18 +386,18 @@
                       </div>
                     </div>
                     <div class="genero-libro">
-                      <span class="material-symbols-outlined">psychology</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">psychology</span>
                       <span>Psicoanálisis & Vida</span>
                     </div>
                     <h3 class="titulo-libro">La felicidad</h3>
                     <p class="autor-libro">Gabriel Rolón</p>
                     <div class="calificacion-libro">
                       <div class="estrellas">
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star_half</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star_half</span>
                       </div>
                       <span class="texto-lectores">4.7 (31 lectores)</span>
                     </div>
@@ -405,11 +407,11 @@
                   </div>
                   <div class="acciones-tarjeta">
                     <button class="boton-accion-primario" type="button">
-                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                       <span>Reservar</span>
                     </button>
-                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
-                      <span class="material-symbols-outlined">info</span>
+                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de La felicidad" title="Ver detalles y opiniones" type="button">
+                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
                     </button>
                   </div>
                 </article>
@@ -425,23 +427,23 @@
                       ></div>
                       <div class="sombra-lomo"></div>
                       <div class="insignia-disponibilidad sala">
-                        <span class="material-symbols-outlined">menu_book</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
                         <span>En Sala de Lectura</span>
                       </div>
                     </div>
                     <div class="genero-libro">
-                      <span class="material-symbols-outlined">history_edu</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">history_edu</span>
                       <span>Clásico Universal</span>
                     </div>
                     <h3 class="titulo-libro">Don Quijote de la Mancha</h3>
                     <p class="autor-libro">Miguel de Cervantes</p>
                     <div class="calificacion-libro">
                       <div class="estrellas">
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
                       </div>
                       <span class="texto-lectores">5.0 (64 lectores)</span>
                     </div>
@@ -451,11 +453,11 @@
                   </div>
                   <div class="acciones-tarjeta">
                     <button class="boton-accion-secundario" type="button">
-                      <span class="material-symbols-outlined">chair</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">chair</span>
                       <span>Pedir en Sala</span>
                     </button>
-                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
-                      <span class="material-symbols-outlined">info</span>
+                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de Don Quijote de la Mancha" title="Ver detalles y opiniones" type="button">
+                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
                     </button>
                   </div>
                 </article>
@@ -476,18 +478,18 @@
                       </div>
                     </div>
                     <div class="genero-libro">
-                      <span class="material-symbols-outlined">child_care</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">child_care</span>
                       <span>Infantil / Filosofía</span>
                     </div>
                     <h3 class="titulo-libro">El principito</h3>
                     <p class="autor-libro">Antoine de Saint-Exupéry</p>
                     <div class="calificacion-libro">
                       <div class="estrellas">
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
                       </div>
                       <span class="texto-lectores">5.0 (92 lectores)</span>
                     </div>
@@ -497,11 +499,11 @@
                   </div>
                   <div class="acciones-tarjeta">
                     <button class="boton-accion-primario" type="button">
-                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                       <span>Reservar</span>
                     </button>
-                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
-                      <span class="material-symbols-outlined">info</span>
+                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de El principito" title="Ver detalles y opiniones" type="button">
+                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
                     </button>
                   </div>
                 </article>
@@ -517,23 +519,23 @@
                       ></div>
                       <div class="sombra-lomo"></div>
                       <div class="insignia-disponibilidad novedad">
-                        <span class="material-symbols-outlined">auto_awesome</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">auto_awesome</span>
                         <span>Novedad Donada</span>
                       </div>
                     </div>
                     <div class="genero-libro">
-                      <span class="material-symbols-outlined">menu_book</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
                       <span>Ficción Histórica</span>
                     </div>
                     <h3 class="titulo-libro">El murmullo de las abejas</h3>
                     <p class="autor-libro">Sofía Segovia</p>
                     <div class="calificacion-libro">
                       <div class="estrellas">
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star_half</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star_half</span>
                       </div>
                       <span class="texto-lectores">4.8 (19 lectores)</span>
                     </div>
@@ -543,11 +545,11 @@
                   </div>
                   <div class="acciones-tarjeta">
                     <button class="boton-accion-primario" type="button">
-                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                       <span>Reservar</span>
                     </button>
-                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
-                      <span class="material-symbols-outlined">info</span>
+                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de El murmullo de las abejas" title="Ver detalles y opiniones" type="button">
+                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
                     </button>
                   </div>
                 </article>
@@ -568,18 +570,18 @@
                       </div>
                     </div>
                     <div class="genero-libro">
-                      <span class="material-symbols-outlined">eco</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">eco</span>
                       <span>Botánica & Naturaleza</span>
                     </div>
                     <h3 class="titulo-libro">La vida secreta de las plantas</h3>
                     <p class="autor-libro">Peter Tompkins & Christopher Bird</p>
                     <div class="calificacion-libro">
                       <div class="estrellas">
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star_outline</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star_outline</span>
                       </div>
                       <span class="texto-lectores">4.3 (22 lectores)</span>
                     </div>
@@ -589,11 +591,11 @@
                   </div>
                   <div class="acciones-tarjeta">
                     <button class="boton-accion-primario" type="button">
-                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                       <span>Reservar</span>
                     </button>
-                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
-                      <span class="material-symbols-outlined">info</span>
+                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de La vida secreta de las plantas" title="Ver detalles y opiniones" type="button">
+                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
                     </button>
                   </div>
                 </article>
@@ -614,18 +616,18 @@
                       </div>
                     </div>
                     <div class="genero-libro">
-                      <span class="material-symbols-outlined">menu_book</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
                       <span>Literatura Latinoamericana</span>
                     </div>
                     <h3 class="titulo-libro">Rayuela</h3>
                     <p class="autor-libro">Julio Cortázar</p>
                     <div class="calificacion-libro">
                       <div class="estrellas">
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
                       </div>
                       <span class="texto-lectores">4.9 (53 lectores)</span>
                     </div>
@@ -635,11 +637,11 @@
                   </div>
                   <div class="acciones-tarjeta">
                     <button class="boton-accion-primario" type="button">
-                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                       <span>Reservar</span>
                     </button>
-                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
-                      <span class="material-symbols-outlined">info</span>
+                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de Rayuela" title="Ver detalles y opiniones" type="button">
+                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
                     </button>
                   </div>
                 </article>
@@ -660,18 +662,18 @@
                       </div>
                     </div>
                     <div class="genero-libro">
-                      <span class="material-symbols-outlined">draw</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">draw</span>
                       <span>Poesía Iberoamericana</span>
                     </div>
                     <h3 class="titulo-libro">Veinte poemas de amor</h3>
                     <p class="autor-libro">Pablo Neruda</p>
                     <div class="calificacion-libro">
                       <div class="estrellas">
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star_half</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star_half</span>
                       </div>
                       <span class="texto-lectores">4.8 (41 lectores)</span>
                     </div>
@@ -681,11 +683,11 @@
                   </div>
                   <div class="acciones-tarjeta">
                     <button class="boton-accion-primario" type="button">
-                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                       <span>Reservar</span>
                     </button>
-                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
-                      <span class="material-symbols-outlined">info</span>
+                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de Veinte poemas de amor" title="Ver detalles y opiniones" type="button">
+                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
                     </button>
                   </div>
                 </article>
@@ -706,18 +708,18 @@
                       </div>
                     </div>
                     <div class="genero-libro">
-                      <span class="material-symbols-outlined">yard</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">yard</span>
                       <span>Infantil & Juvenil</span>
                     </div>
                     <h3 class="titulo-libro">El jardín secreto</h3>
                     <p class="autor-libro">Frances Hodgson Burnett</p>
                     <div class="calificacion-libro">
                       <div class="estrellas">
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
-                        <span class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
                       </div>
                       <span class="texto-lectores">4.9 (38 lectores)</span>
                     </div>
@@ -727,11 +729,11 @@
                   </div>
                   <div class="acciones-tarjeta">
                     <button class="boton-accion-primario" type="button">
-                      <span class="material-symbols-outlined">bookmark_add</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                       <span>Reservar</span>
                     </button>
-                    <button class="boton-accion-info" title="Ver detalles y opiniones" type="button">
-                      <span class="material-symbols-outlined">info</span>
+                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de El jardín secreto" title="Ver detalles y opiniones" type="button">
+                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
                     </button>
                   </div>
                 </article>
@@ -748,7 +750,7 @@
                   </div>
                   <div class="texto-banner">
                     <span class="etiqueta-banner">
-                      <span class="material-symbols-outlined">volunteer_activism</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">volunteer_activism</span>
                       <span>Crecimiento Colaborativo</span>
                     </span>
                     <h3 class="titulo-banner">
@@ -774,16 +776,16 @@
                   Página <span class="pagina-actual">1</span> de 283 (2,540 obras)
                 </p>
                 <div class="botones-paginacion">
-                  <button class="boton-pagina inactivo" disabled type="button">
-                    <span class="material-symbols-outlined">chevron_left</span>
+                  <button class="boton-pagina inactivo" disabled type="button" aria-label="Página anterior">
+                    <span aria-hidden="true" class="material-symbols-outlined">chevron_left</span>
                   </button>
                   <button class="boton-pagina activo" type="button">1</button>
                   <button class="boton-pagina" type="button">2</button>
                   <button class="boton-pagina" type="button">3</button>
                   <span class="separador-pagina">...</span>
                   <button class="boton-pagina" type="button">283</button>
-                  <button class="boton-pagina" type="button">
-                    <span class="material-symbols-outlined">chevron_right</span>
+                  <button class="boton-pagina" type="button" aria-label="Página siguiente">
+                    <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                   </button>
                 </div>
               </nav>
@@ -796,11 +798,11 @@
           <div class="contenedor-normas">
             <div class="tarjeta-llamado-accion">
               <div class="texto-llamado">
-                <span class="material-symbols-outlined icono-llamado">card_membership</span>
+                <span aria-hidden="true" class="material-symbols-outlined icono-llamado">card_membership</span>
                 <div>
-                  <h4 class="titulo-llamado">
+                  <h2 class="titulo-llamado">
                     ¿Aún no tienes tu Carnet Vecinal?
-                  </h4>
+                  </h2>
                   <p class="subtitulo-llamado">
                     Actívalo hoy mismo y empieza a pedir tus libros favoritos en un solo clic.
                   </p>
@@ -819,7 +821,7 @@
         <div class="rejilla-pie">
           <div>
             <div class="marca-pie">
-              <span class="material-symbols-outlined">menu_book</span>
+              <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
@@ -827,13 +829,13 @@
               imaginación y la convivencia vecinal en armonía.
             </p>
             <div class="insignia-semillero">
-              <span class="material-symbols-outlined">eco</span>
+              <span aria-hidden="true" class="material-symbols-outlined">eco</span>
               <span>Semillero de saberes comunitarios</span>
             </div>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Horarios de Atención</h4>
+            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
             <ul class="lista-horarios">
               <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
               <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
@@ -848,33 +850,33 @@
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
+            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
             <ul class="enlaces-pie">
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Catálogo de Libros</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="login.html" data-path="login">Carnet Digital</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="contacto.html" data-path="contacto">Contáctanos</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html#actividades" data-path="actividades">Clubes de Lectura</a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Sede Comunitaria</h4>
+            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
             <p class="direccion-pie">
               Sector San José<br />
               Al costado de la SUNAT
@@ -991,6 +993,7 @@
             const abierto = menuMovil.classList.toggle("abierto");
             btnMenu.classList.toggle("activo", abierto);
             btnMenu.setAttribute("aria-expanded", abierto);
+            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
             menuMovil.setAttribute("aria-hidden", !abierto);
           });
 
@@ -999,6 +1002,7 @@
               menuMovil.classList.remove("abierto");
               btnMenu.classList.remove("activo");
               btnMenu.setAttribute("aria-expanded", "false");
+              btnMenu.setAttribute("aria-label", "Abrir menú");
               menuMovil.setAttribute("aria-hidden", "true");
             }
           });

@@ -38,7 +38,7 @@
       <div class="contenedor-encabezado">
         <a class="marca-sitio" href="index.html" data-path="inicio">
           <div class="icono-marca">
-            <span class="material-symbols-outlined">local_florist</span>
+            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
           </div>
           <div class="texto-marca">
             <span class="nombre-marca">Leer nos une</span>
@@ -54,51 +54,51 @@
         </nav>
 
         <div class="acciones-usuario">
-          <a class="boton-carnet animacion-pulso" href="login.html" data-path="carnet-digital">
-            <span class="material-symbols-outlined">badge</span>
-            <span>Carnet Digital</span>
+          <a class="boton-carnet" href="login.html" data-path="carnet-digital" aria-label="Sacar mi carnet">
+            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+            <span>Sacar mi carnet</span>
           </a>
           <a
             class="avatar-perfil"
             href="login.html"
             title="Mi Cuenta e Inicio de Sesión"
-            aria-label="Mi Cuenta"
+            aria-label="Mi cuenta: iniciar sesión"
           >
             <img
-              alt="Perfil de usuario de la biblioteca"
+              alt=""
               src="img/tresLibrosPlantitas.png"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
-          <button class="boton-menu-movil" id="btnMenuMovil" aria-label="Abrir menú" aria-expanded="false" type="button">
-            <span class="material-symbols-outlined icono-menu-abrir">menu</span>
-            <span class="material-symbols-outlined icono-menu-cerrar">close</span>
+          <button class="boton-menu-movil" id="btnMenuMovil" aria-controls="menuMovilDesplegable" aria-label="Abrir menú" aria-expanded="false" type="button">
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar">close</span>
           </button>
         </div>
       </div>
 
       <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
-        <nav class="navegacion-movil">
+        <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span class="material-symbols-outlined">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="libros.html">
-            <span class="material-symbols-outlined">auto_stories</span>
+            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="servicios.html">
-            <span class="material-symbols-outlined">spa</span>
+            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span class="material-symbols-outlined">chat</span>
+            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
         </nav>
       </div>
@@ -122,7 +122,7 @@
 
             <div class="contenido-heroe animacion-aparecer">
               <div class="insignia-tema">
-                <span class="material-symbols-outlined">badge</span>
+                <span aria-hidden="true" class="material-symbols-outlined">badge</span>
                 <span>Afiliación Vecinal Gratuita</span>
               </div>
 
@@ -135,17 +135,17 @@
 
               <div class="fila-metricas">
                 <div class="pildora-metrica">
-                  <span class="material-symbols-outlined icono-verde">bolt</span>
+                  <span aria-hidden="true" class="material-symbols-outlined icono-verde">bolt</span>
                   <span class="valor-metrica">Inmediato</span>
                   <span class="etiqueta-metrica">Trámite digital</span>
                 </div>
                 <div class="pildora-metrica">
-                  <span class="material-symbols-outlined icono-ambar">verified_user</span>
+                  <span aria-hidden="true" class="material-symbols-outlined icono-ambar">verified_user</span>
                   <span class="valor-metrica">100% Gratis</span>
                   <span class="etiqueta-metrica">Sin costo vecinal</span>
                 </div>
                 <div class="pildora-metrica">
-                  <span class="material-symbols-outlined icono-verde">menu_book</span>
+                  <span aria-hidden="true" class="material-symbols-outlined icono-verde">menu_book</span>
                   <span class="valor-metrica">Hasta 3</span>
                   <span class="etiqueta-metrica">Libros simultáneos</span>
                 </div>
@@ -170,19 +170,19 @@
                 <!-- Fieldset 1: Datos Personales del Lector -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
-                    <span class="material-symbols-outlined">person</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">person</span>
                     <span>1. Información Personal del Lector</span>
                   </legend>
 
                   <div class="fila-campos-doble">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="nombres">
-                        <span class="material-symbols-outlined icono-etiqueta">badge</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">badge</span>
                         <span>Nombres completos</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">person</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person</span>
                         <input
                           class="input-contacto"
                           id="nombres"
@@ -196,12 +196,12 @@
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="apellidos">
-                        <span class="material-symbols-outlined icono-etiqueta">badge</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">badge</span>
                         <span>Apellidos completos</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">person_outline</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person_outline</span>
                         <input
                           class="input-contacto"
                           id="apellidos"
@@ -217,12 +217,12 @@
                   <div class="fila-campos-doble" style="margin-top: var(--espacio-sm);">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="dni">
-                        <span class="material-symbols-outlined icono-etiqueta">pin</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">pin</span>
                         <span>DNI (8 dígitos)</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">credit_card</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">credit_card</span>
                         <input
                           aria-describedby="ayuda-dni-registro"
                           class="input-contacto"
@@ -242,12 +242,12 @@
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="fecha_nacimiento">
-                        <span class="material-symbols-outlined icono-etiqueta">calendar_today</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">calendar_today</span>
                         <span>Fecha de Nacimiento</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">event</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">event</span>
                         <input
                           class="input-contacto"
                           id="fecha_nacimiento"
@@ -262,12 +262,12 @@
                   <div class="fila-campos-doble" style="margin-top: var(--espacio-sm);">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="correo">
-                        <span class="material-symbols-outlined icono-etiqueta">mail</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">mail</span>
                         <span>Correo Electrónico</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">alternate_email</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">alternate_email</span>
                         <input
                           class="input-contacto"
                           id="correo"
@@ -281,12 +281,12 @@
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="telefono">
-                        <span class="material-symbols-outlined icono-etiqueta">phone</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">phone</span>
                         <span>Teléfono / WhatsApp</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">call</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">call</span>
                         <input
                           class="input-contacto"
                           id="telefono"
@@ -305,19 +305,19 @@
                 <!-- Fieldset 2: Domicilio y Preferencias Lectoras -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
-                    <span class="material-symbols-outlined">home_pin</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">home_pin</span>
                     <span>2. Domicilio y Preferencias Lectoras</span>
                   </legend>
 
                   <div class="fila-campos-doble">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="direccion">
-                        <span class="material-symbols-outlined icono-etiqueta">location_on</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">location_on</span>
                         <span>Dirección o Calle</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">home</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">home</span>
                         <input
                           class="input-contacto"
                           id="direccion"
@@ -331,12 +331,12 @@
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="sector_vecinal">
-                        <span class="material-symbols-outlined icono-etiqueta">location_city</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">location_city</span>
                         <span>Sector Vecinal</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">map</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">map</span>
                         <select class="select-contacto" id="sector_vecinal" name="sector_vecinal" required>
                           <option disabled selected value="">Selecciona tu sector...</option>
                           <option value="san_jose">Sector San José (Sede Principal)</option>
@@ -350,7 +350,7 @@
 
                   <div class="grupo-campo" style="margin-top: var(--espacio-sm);">
                     <label class="etiqueta-campo">
-                      <span class="material-symbols-outlined icono-etiqueta">favorite</span>
+                      <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">favorite</span>
                       <span>Géneros o temas de mayor interés (opcional):</span>
                     </label>
                     <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 6px;">
@@ -377,7 +377,7 @@
                 <!-- Fieldset 3: Compromiso Vecinal y Normas -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
-                    <span class="material-symbols-outlined">handshake</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">handshake</span>
                     <span>3. Compromiso y Convivencia Vecinal</span>
                   </legend>
 
@@ -411,10 +411,10 @@
                 <div class="fila-botones-formulario">
                   <button class="boton-enviar-contacto" id="btnEmitirCarnet" type="submit">
                     <span>Emitir mi Carnet Digital</span>
-                    <span class="material-symbols-outlined">badge</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">badge</span>
                   </button>
                   <button class="boton-secundario-contacto" type="reset">
-                    <span class="material-symbols-outlined">restart_alt</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">restart_alt</span>
                     <span>Restablecer</span>
                   </button>
                 </div>
@@ -422,9 +422,9 @@
 
               <!-- Notificación de Éxito al Registrarse (Idéntica a Contacto) -->
               <div class="alerta-exito-contacto" id="alertaExitoCarnet">
-                <span class="material-symbols-outlined icono-exito">check_circle</span>
+                <span aria-hidden="true" class="material-symbols-outlined icono-exito">check_circle</span>
                 <div>
-                  <h4>¡Carnet Vecinal Emitido con Éxito!</h4>
+                  <h3 class="titulo-alerta-exito">¡Carnet Vecinal Emitido con Éxito!</h3>
                   <p>
                     Tu solicitud ha sido procesada satisfactoriamente.
                     <br />
@@ -440,7 +440,7 @@
               <div class="tarjeta-carnet-mockup animacion-flotacion">
                 <div class="cabecera-carnet-mockup">
                   <div style="display: flex; align-items: center; gap: 8px;">
-                    <span class="material-symbols-outlined" style="font-size: 28px; color: var(--warm-amber);">local_florist</span>
+                    <span aria-hidden="true" class="material-symbols-outlined" style="font-size: 28px; color: var(--warm-amber);">local_florist</span>
                     <div>
                       <h3 style="font-family: var(--font-display); font-size: 16px; margin: 0; color: #ffffff;">Leer nos une</h3>
                       <p style="font-size: 11px; margin: 0; color: var(--sage-container);">Biblioteca Comunitaria San José</p>
@@ -471,7 +471,7 @@
               <!-- TARJETA: BENEFICIOS DEL CARNET VECINAL -->
               <div class="tarjeta-canal">
                 <div class="icono-canal-contenedor">
-                  <span class="material-symbols-outlined">card_membership</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">card_membership</span>
                 </div>
                 <div class="contenido-canal">
                   <h3 class="titulo-canal">Beneficios del Carnet Vecinal</h3>
@@ -480,15 +480,15 @@
                   </p>
                   <ul class="lista-puntos-servicio" style="margin-top: 8px;">
                     <li>
-                      <span class="material-symbols-outlined">check_circle</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                       <span>Hasta 3 libros en préstamo a domicilio por 14 días corridos.</span>
                     </li>
                     <li>
-                      <span class="material-symbols-outlined">check_circle</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                       <span>Acceso preferente a salas de estudio silencioso y mediateca.</span>
                     </li>
                     <li>
-                      <span class="material-symbols-outlined">check_circle</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                       <span>Inscripción anticipada a clubes de lectura y talleres infantiles.</span>
                     </li>
                   </ul>
@@ -507,7 +507,7 @@
         <div class="rejilla-pie">
           <div>
             <div class="marca-pie">
-              <span class="material-symbols-outlined">menu_book</span>
+              <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
@@ -515,13 +515,13 @@
               imaginación y la convivencia vecinal en armonía.
             </p>
             <div class="insignia-semillero">
-              <span class="material-symbols-outlined">eco</span>
+              <span aria-hidden="true" class="material-symbols-outlined">eco</span>
               <span>Semillero de saberes comunitarios</span>
             </div>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Horarios de Atención</h4>
+            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
             <ul class="lista-horarios">
               <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
               <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
@@ -534,33 +534,33 @@
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
+            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
             <ul class="enlaces-pie">
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="index.html" data-path="inicio">Página de Inicio</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Catálogo de Libros</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios Comunitarios</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="registro.html" data-path="registro">Solicitar Carnet Vecinal</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="contacto.html" data-path="contacto">Canales de Contacto</a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Sede Comunitaria</h4>
+            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
             <p class="direccion-pie">
               Sector San José<br />
               Al costado de la SUNAT
@@ -596,10 +596,10 @@
         // Estado de carga temporal
         const textoOriginal = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '<span class="material-symbols-outlined">hourglass_top</span><span>Emitiendo carnet...</span>';
+        btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">hourglass_top</span><span>Emitiendo carnet...</span>';
 
         setTimeout(() => {
-          btn.innerHTML = '<span class="material-symbols-outlined">check</span><span>¡Carnet Emitido!</span>';
+          btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">check</span><span>¡Carnet Emitido!</span>';
           alerta.classList.add("visible");
           form.reset();
 
@@ -623,6 +623,7 @@
             const abierto = menuMovil.classList.toggle("abierto");
             btnMenu.classList.toggle("activo", abierto);
             btnMenu.setAttribute("aria-expanded", abierto);
+            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
             menuMovil.setAttribute("aria-hidden", !abierto);
           });
 
@@ -631,6 +632,7 @@
               menuMovil.classList.remove("abierto");
               btnMenu.classList.remove("activo");
               btnMenu.setAttribute("aria-expanded", "false");
+              btnMenu.setAttribute("aria-label", "Abrir menú");
               menuMovil.setAttribute("aria-hidden", "true");
             }
           });

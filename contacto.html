@@ -32,7 +32,7 @@
       <div class="contenedor-encabezado">
         <a class="marca-sitio" href="index.html" data-path="inicio">
           <div class="icono-marca">
-            <span class="material-symbols-outlined">local_florist</span>
+            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
           </div>
           <div class="texto-marca">
             <span class="nombre-marca">Leer nos une</span>
@@ -48,51 +48,51 @@
         </nav>
 
         <div class="acciones-usuario">
-          <a class="boton-carnet animacion-pulso" href="login.html" data-path="carnet-digital">
-            <span class="material-symbols-outlined">badge</span>
-            <span>Carnet Digital</span>
+          <a class="boton-carnet" href="login.html" data-path="carnet-digital" aria-label="Sacar mi carnet">
+            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+            <span>Sacar mi carnet</span>
           </a>
           <a
             class="avatar-perfil"
             href="login.html"
             title="Mi Cuenta e Inicio de Sesión"
-            aria-label="Mi Cuenta"
+            aria-label="Mi cuenta: iniciar sesión"
           >
             <img
-              alt="Perfil de usuario"
+              alt=""
               src="img/tresLibrosPlantitas.png"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
-          <button class="boton-menu-movil" id="btnMenuMovil" aria-label="Abrir menú" aria-expanded="false" type="button">
-            <span class="material-symbols-outlined icono-menu-abrir">menu</span>
-            <span class="material-symbols-outlined icono-menu-cerrar">close</span>
+          <button class="boton-menu-movil" id="btnMenuMovil" aria-controls="menuMovilDesplegable" aria-label="Abrir menú" aria-expanded="false" type="button">
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar">close</span>
           </button>
         </div>
       </div>
 
       <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
-        <nav class="navegacion-movil">
+        <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span class="material-symbols-outlined">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="libros.html">
-            <span class="material-symbols-outlined">auto_stories</span>
+            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="servicios.html">
-            <span class="material-symbols-outlined">spa</span>
+            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil activo" href="contacto.html" aria-current="page">
-            <span class="material-symbols-outlined">chat</span>
+            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
         </nav>
       </div>
@@ -116,7 +116,7 @@
 
             <div class="contenido-heroe">
               <div class="insignia-tema">
-                <span class="material-symbols-outlined">nature</span>
+                <span aria-hidden="true" class="material-symbols-outlined">nature</span>
                 <span>Semillero de Atención y Comunidad</span>
               </div>
 
@@ -129,17 +129,17 @@
 
               <div class="fila-metricas">
                 <div class="pildora-metrica">
-                  <span class="material-symbols-outlined icono-verde">schedule</span>
+                  <span aria-hidden="true" class="material-symbols-outlined icono-verde">schedule</span>
                   <span class="valor-metrica">&lt; 24 hrs</span>
                   <span class="etiqueta-metrica">Tiempo de respuesta</span>
                 </div>
                 <div class="pildora-metrica">
-                  <span class="material-symbols-outlined icono-ambar">support_agent</span>
+                  <span aria-hidden="true" class="material-symbols-outlined icono-ambar">support_agent</span>
                   <span class="valor-metrica">Presencial & Virtual</span>
                   <span class="etiqueta-metrica">Canales abiertos</span>
                 </div>
                 <div class="pildora-metrica">
-                  <span class="material-symbols-outlined icono-verde">volunteer_activism</span>
+                  <span aria-hidden="true" class="material-symbols-outlined icono-verde">volunteer_activism</span>
                   <span class="valor-metrica">100%</span>
                   <span class="etiqueta-metrica">Comunitario</span>
                 </div>
@@ -168,19 +168,19 @@
                 <!-- Fieldset 1: Datos Personales del Lector -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
-                    <span class="material-symbols-outlined">person</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">person</span>
                     <span>1. Datos del Solicitante</span>
                   </legend>
 
                   <div class="fila-campos-doble">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="nombreContacto">
-                        <span class="material-symbols-outlined icono-etiqueta">badge</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">badge</span>
                         <span>Nombre completo</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">person</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person</span>
                         <input
                           class="input-contacto"
                           id="nombreContacto"
@@ -194,12 +194,12 @@
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="correoContacto">
-                        <span class="material-symbols-outlined icono-etiqueta">mail</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">mail</span>
                         <span>Correo electrónico</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">alternate_email</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">alternate_email</span>
                         <input
                           class="input-contacto"
                           id="correoContacto"
@@ -215,11 +215,11 @@
                   <div class="fila-campos-doble" style="margin-top: var(--espacio-sm);">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="telefonoContacto">
-                        <span class="material-symbols-outlined icono-etiqueta">phone</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">phone</span>
                         <span>Teléfono o WhatsApp</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">call</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">call</span>
                         <input
                           class="input-contacto"
                           id="telefonoContacto"
@@ -232,11 +232,11 @@
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="sectorVecindario">
-                        <span class="material-symbols-outlined icono-etiqueta">location_city</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">location_city</span>
                         <span>Zona o Sector</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">home_pin</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">home_pin</span>
                         <input
                           class="input-contacto"
                           id="sectorVecindario"
@@ -252,18 +252,18 @@
                 <!-- Fieldset 2: Asunto y Mensaje -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
-                    <span class="material-symbols-outlined">edit_note</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">edit_note</span>
                     <span>2. Motivo y Contenido del Mensaje</span>
                   </legend>
 
                   <div class="grupo-campo" style="margin-bottom: var(--espacio-sm);">
                     <label class="etiqueta-campo" for="asuntoContacto">
-                      <span class="material-symbols-outlined icono-etiqueta">topic</span>
+                      <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">topic</span>
                       <span>Motivo del contacto</span>
                       <span class="campo-obligatorio">*</span>
                     </label>
                     <div class="contenedor-input-icono">
-                      <span class="material-symbols-outlined icono-en-campo">chat_bubble</span>
+                      <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">chat_bubble</span>
                       <select class="select-contacto" id="asuntoContacto" name="asunto" required>
                         <option disabled selected value="">Selecciona una opción</option>
                         <option value="prestamo">Préstamo de libros o Carnet digital</option>
@@ -278,12 +278,12 @@
 
                   <div class="grupo-campo">
                     <label class="etiqueta-campo" for="mensajeContacto">
-                      <span class="material-symbols-outlined icono-etiqueta">notes</span>
+                      <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">notes</span>
                       <span>Mensaje detallado</span>
                       <span class="campo-obligatorio">*</span>
                     </label>
                     <div class="contenedor-input-icono">
-                      <span class="material-symbols-outlined icono-en-campo-textarea">edit</span>
+                      <span aria-hidden="true" class="material-symbols-outlined icono-en-campo-textarea">edit</span>
                       <textarea
                         class="textarea-contacto"
                         id="mensajeContacto"
@@ -303,15 +303,15 @@
 
                 <button class="boton-enviar-contacto" id="btnEnviarContacto" type="submit">
                   <span>Enviar Mensaje</span>
-                  <span class="material-symbols-outlined">send</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">send</span>
                 </button>
               </form>
 
               <!-- Notificación de Éxito -->
               <div class="alerta-exito-contacto" id="alertaExito">
-                <span class="material-symbols-outlined icono-exito">check_circle</span>
+                <span aria-hidden="true" class="material-symbols-outlined icono-exito">check_circle</span>
                 <div>
-                  <h4>¡Mensaje enviado con éxito!</h4>
+                  <h3 class="titulo-alerta-exito">¡Mensaje enviado con éxito!</h3>
                   <p>
                     Gracias por comunicarte con la Biblioteca Comunitaria <strong>"Leer nos une"</strong>.
                     <br />
@@ -326,7 +326,7 @@
               <!-- Tarjeta Sede Comunitaria Principal -->
               <div class="tarjeta-canal">
                 <div class="icono-canal-contenedor">
-                  <span class="material-symbols-outlined">location_on</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">location_on</span>
                 </div>
                 <div class="contenido-canal">
                   <h3 class="titulo-canal">Sede Comunitaria Principal</h3>
@@ -342,7 +342,7 @@
               <!-- Tarjeta Teléfono y WhatsApp Vecinal -->
               <div class="tarjeta-canal">
                 <div class="icono-canal-contenedor icono-canal-ambar">
-                  <span class="material-symbols-outlined">phone_in_talk</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">phone_in_talk</span>
                 </div>
                 <div class="contenido-canal">
                   <h3 class="titulo-canal">Teléfono y WhatsApp Vecinal</h3>
@@ -352,7 +352,7 @@
                   <span class="dato-destacado-canal">+51 1234-5678</span>
                   <a class="enlace-canal" href="https://wa.me/5112345678" rel="noopener noreferrer" target="_blank">
                     <span>Chatear por WhatsApp</span>
-                    <span class="material-symbols-outlined">open_in_new</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">open_in_new</span>
                   </a>
                 </div>
               </div>
@@ -360,7 +360,7 @@
               <!-- Tarjeta Correos Electrónicos -->
               <div class="tarjeta-canal">
                 <div class="icono-canal-contenedor">
-                  <span class="material-symbols-outlined">mail</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">mail</span>
                 </div>
                 <div class="contenido-canal">
                   <h3 class="titulo-canal">Correos Electrónicos</h3>
@@ -370,7 +370,7 @@
                   <span class="dato-destacado-canal">ejemplo@utpvirtual.edu</span>
                   <a class="enlace-canal" href="mailto:ejemplo@utpvirtual.edu">
                     <span>Enviar correo directo</span>
-                    <span class="material-symbols-outlined">arrow_forward</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
                   </a>
                 </div>
               </div>
@@ -383,7 +383,7 @@
           <div class="tarjeta-tabla-contenedor">
             <div class="cabecera-seccion-centrada">
               <div class="insignia-subtitulo-centrada">
-                <span class="material-symbols-outlined">table_chart</span>
+                <span aria-hidden="true" class="material-symbols-outlined">table_chart</span>
                 <span>Organización Comunitaria</span>
               </div>
               <h2 class="titulo-seccion-inicio">Tabla de Canales de Atención, Plazos y Responsables</h2>
@@ -454,7 +454,7 @@
         <section class="seccion-faq-contacto">
           <div class="tarjeta-faq-contenedor">
             <h2 class="titulo-faq-seccion">
-              <span class="material-symbols-outlined">help</span>
+              <span aria-hidden="true" class="material-symbols-outlined">help</span>
               <span>Preguntas Frecuentes de la Comunidad</span>
             </h2>
             <p class="subtitulo-faq-seccion">
@@ -464,7 +464,7 @@
             <div class="rejilla-faq">
               <div class="item-faq">
                 <h3 class="pregunta-faq">
-                  <span class="material-symbols-outlined">check_circle</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                   <span>¿Cómo solicito mi carnet digital de biblioteca?</span>
                 </h3>
                 <p class="respuesta-faq">
@@ -474,7 +474,7 @@
 
               <div class="item-faq">
                 <h3 class="pregunta-faq">
-                  <span class="material-symbols-outlined">check_circle</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                   <span>¿Puedo donar libros que ya no utilice en casa?</span>
                 </h3>
                 <p class="respuesta-faq">
@@ -484,7 +484,7 @@
 
               <div class="item-faq">
                 <h3 class="pregunta-faq">
-                  <span class="material-symbols-outlined">check_circle</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                   <span>¿Tienen salas para reuniones o grupos de estudio?</span>
                 </h3>
                 <p class="respuesta-faq">
@@ -494,7 +494,7 @@
 
               <div class="item-faq">
                 <h3 class="pregunta-faq">
-                  <span class="material-symbols-outlined">check_circle</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                   <span>¿Cuál es el tiempo de préstamo y cómo se renueva?</span>
                 </h3>
                 <p class="respuesta-faq">
@@ -513,7 +513,7 @@
         <div class="rejilla-pie">
           <div>
             <div class="marca-pie">
-              <span class="material-symbols-outlined">menu_book</span>
+              <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
@@ -521,13 +521,13 @@
               imaginación y la convivencia vecinal en armonía.
             </p>
             <div class="insignia-semillero">
-              <span class="material-symbols-outlined">eco</span>
+              <span aria-hidden="true" class="material-symbols-outlined">eco</span>
               <span>Semillero de saberes comunitarios</span>
             </div>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Horarios de Atención</h4>
+            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
             <ul class="lista-horarios">
               <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
               <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
@@ -542,33 +542,33 @@
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
+            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
             <ul class="enlaces-pie">
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Libros</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="login.html" data-path="login">Carnet Digital</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="contacto.html" data-path="contacto">Contáctanos</a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Sede Comunitaria</h4>
+            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
             <p class="direccion-pie">
               Sector San José<br />
               Al costado de la SUNAT
@@ -604,10 +604,10 @@
         // Estado de carga temporal
         const textoOriginal = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '<span class="material-symbols-outlined">hourglass_top</span><span>Enviando mensaje...</span>';
+        btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">hourglass_top</span><span>Enviando mensaje...</span>';
 
         setTimeout(() => {
-          btn.innerHTML = '<span class="material-symbols-outlined">check</span><span>¡Enviado!</span>';
+          btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">check</span><span>¡Enviado!</span>';
           alerta.classList.add("visible");
           form.reset();
 
@@ -631,6 +631,7 @@
             const abierto = menuMovil.classList.toggle("abierto");
             btnMenu.classList.toggle("activo", abierto);
             btnMenu.setAttribute("aria-expanded", abierto);
+            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
             menuMovil.setAttribute("aria-hidden", !abierto);
           });
 
@@ -639,6 +640,7 @@
               menuMovil.classList.remove("abierto");
               btnMenu.classList.remove("activo");
               btnMenu.setAttribute("aria-expanded", "false");
+              btnMenu.setAttribute("aria-label", "Abrir menú");
               menuMovil.setAttribute("aria-hidden", "true");
             }
           });
