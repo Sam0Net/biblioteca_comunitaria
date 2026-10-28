@@ -15,6 +15,10 @@
     <title>Registro de Usuario y Carnet Digital - Leer nos une | Biblioteca Comunitaria</title>
 
     <!-- FUENTES EXTERNAS (Google Fonts): Tipografía display (Fredoka) y cuerpo (Plus Jakarta Sans) -->
+    <meta name="theme-color" content="#1a4d3b" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%231a4d3b'/%3E%3Cg transform='translate%285 5%29 scale%28.58%29'%3E%3Cpath fill='%23fef9f0' d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -503,12 +507,11 @@
     </main>
 
     <!-- PIE DE PÁGINA (FOOTER) BOTÁNICO -->
-    <footer class="pie-sitio">
+    <footer class="pie-pagina">
       <div class="contenedor-pie">
         <div class="rejilla-pie">
           <div>
             <div class="marca-pie">
-              <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
@@ -516,7 +519,6 @@
               imaginación y la convivencia vecinal en armonía.
             </p>
             <div class="insignia-semillero">
-              <span aria-hidden="true" class="material-symbols-outlined">eco</span>
               <span>Semillero de saberes comunitarios</span>
             </div>
           </div>
@@ -536,46 +538,59 @@
 
           <div>
             <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
-            <ul class="enlaces-pie">
+            <nav aria-label="Enlaces rápidos">
+              <ul class="enlaces-pie">
               <li>
                 <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="index.html" data-path="inicio">Página de Inicio</a>
+                <a href="index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
                 <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="libros.html" data-path="libros">Catálogo de Libros</a>
+                <a href="libros.html" data-path="libros">Libros</a>
               </li>
               <li>
                 <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="servicios.html" data-path="servicios">Servicios Comunitarios</a>
+                <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
                 <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="registro.html" data-path="registro">Solicitar Carnet Vecinal</a>
+                <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
               </li>
               <li>
                 <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="contacto.html" data-path="contacto">Canales de Contacto</a>
+                <a href="contacto.html" data-path="contacto">Contacto</a>
               </li>
-            </ul>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="registro.html" data-path="registro">Solicitar carnet vecinal</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="login.html" data-path="login">Iniciar sesión</a>
+              </li>
+              </ul>
+            </nav>
           </div>
 
           <div>
             <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
-            <p class="direccion-pie">
-              Sector San José<br />
-              Al costado de la SUNAT
-            </p>
-            <p class="contacto-pie">
-              ejemplo@utpvirtual.edu<br />
-              +51 1234-5678
-            </p>
+            <address class="sede-pie">
+              <p class="direccion-pie">
+                Sector San José<br />
+                Al costado de la SUNAT
+              </p>
+              <p class="contacto-pie">
+                ejemplo@utpvirtual.edu<br />
+                +51 1234-5678
+              </p>
+            </address>
           </div>
         </div>
 
         <div class="pie-inferior">
           <p class="derechos-pie">
-            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de Taller de Programación Web (Avance 2).
+            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de
+            Taller de Programación Web (Avance 2).
           </p>
           <div class="enlaces-legales">
             <a href="contacto.html">Soporte Vecinal</a>
