@@ -26,7 +26,7 @@
       class="boton-volver-portal"
       aria-label="Volver a la página principal de la biblioteca"
     >
-      <span class="material-symbols-outlined">arrow_back</span>
+      <span aria-hidden="true" class="material-symbols-outlined">arrow_back</span>
       <span>Volver a la biblioteca</span>
     </a>
 
@@ -40,7 +40,7 @@
         <div class="seccion-form-login" id="seccionLogin">
           <div class="logo-auth-contenedor">
             <div class="logo-auth-icono">
-              <span class="material-symbols-outlined">local_florist</span>
+              <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
             </div>
             <span class="logo-auth-nombre">Leer nos une</span>
           </div>
@@ -58,7 +58,7 @@
                 Correo electrónico
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">mail</span>
+                <span aria-hidden="true" class="material-symbols-outlined">mail</span>
                 <input
                   type="email"
                   id="loginEmail"
@@ -76,7 +76,7 @@
                 Contraseña
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">lock</span>
+                <span aria-hidden="true" class="material-symbols-outlined">lock</span>
                 <input
                   type="password"
                   id="loginClave"
@@ -90,9 +90,9 @@
                   type="button"
                   class="boton-revelar-clave-auth"
                   onclick="toggleClaveInput('loginClave', this)"
-                  aria-label="Mostrar u ocultar contraseña"
+                  aria-label="Mostrar contraseña"
                 >
-                  <span class="material-symbols-outlined">visibility</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">visibility</span>
                 </button>
               </div>
             </div>
@@ -180,7 +180,7 @@
         <div class="seccion-form-registro" id="seccionRegistro">
           <div class="logo-auth-contenedor">
             <div class="logo-auth-icono">
-              <span class="material-symbols-outlined">local_florist</span>
+              <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
             </div>
             <span class="logo-auth-nombre">Leer nos une</span>
           </div>
@@ -197,7 +197,7 @@
                 Nombre completo
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">person</span>
+                <span aria-hidden="true" class="material-symbols-outlined">person</span>
                 <input
                   type="text"
                   id="registroNombre"
@@ -215,7 +215,7 @@
                 Correo electrónico
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">mail</span>
+                <span aria-hidden="true" class="material-symbols-outlined">mail</span>
                 <input
                   type="email"
                   id="registroEmail"
@@ -233,7 +233,7 @@
                 Contraseña
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">lock</span>
+                <span aria-hidden="true" class="material-symbols-outlined">lock</span>
                 <input
                   type="password"
                   id="registroClave"
@@ -247,9 +247,9 @@
                   type="button"
                   class="boton-revelar-clave-auth"
                   onclick="toggleClaveInput('registroClave', this)"
-                  aria-label="Mostrar u ocultar contraseña"
+                  aria-label="Mostrar contraseña"
                 >
-                  <span class="material-symbols-outlined">visibility</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">visibility</span>
                 </button>
               </div>
             </div>
@@ -323,8 +323,16 @@
 
         <!-- NOTIFICACIÓN DE RETROALIMENTACIÓN FLOTANTE -->
         <div class="alerta-auth-flotante" id="alertaAuth" role="status">
-          <span class="material-symbols-outlined">check_circle</span>
-          <span id="textoAlertaAuth">Acceso verificado exitosamente.</span>
+          <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
+          <span class="texto-alerta-auth" id="textoAlertaAuth">Acceso verificado exitosamente.</span>
+          <button
+            type="button"
+            class="boton-cerrar-alerta-auth"
+            aria-label="Cerrar aviso"
+            onclick="cerrarAlertaAuth()"
+          >
+            <span aria-hidden="true" class="material-symbols-outlined">close</span>
+          </button>
         </div>
       </div>
 
@@ -332,7 +340,7 @@
            LADO VISUAL OSCURO (SHOWCASE AURA BOTÁNICA)
            ============================================== -->
       <div class="panel-auth-visual" id="panelVisual">
-        <span class="material-symbols-outlined marca-agua-logo">local_florist</span>
+        <span aria-hidden="true" class="material-symbols-outlined marca-agua-logo">local_florist</span>
         <h2 class="titulo-visual" id="tituloVisual">¿Eres nuevo por aquí?</h2>
         <p class="descripcion-visual" id="descVisual">
           Crea tu cuenta de vecino lector para solicitar préstamos y participar en talleres comunitarios.
@@ -358,6 +366,8 @@
         const tituloVisual = document.getElementById("tituloVisual");
         const descVisual = document.getElementById("descVisual");
         const btnCambiar = document.getElementById("btnCambiarAuth");
+
+        cerrarAlertaAuth();
 
         if (modoActual === "login") {
           modoActual = "registro";
@@ -385,9 +395,11 @@
         if (input.type === "password") {
           input.type = "text";
           if (icono) icono.textContent = "visibility_off";
+          boton.setAttribute("aria-label", "Ocultar contraseña");
         } else {
           input.type = "password";
           if (icono) icono.textContent = "visibility";
+          boton.setAttribute("aria-label", "Mostrar contraseña");
         }
       }
 
@@ -402,15 +414,16 @@
         else if (accion === "registro") btn = document.getElementById("btnSubmitRegistro");
 
         if (!btn || !alerta) return;
+        if (!validarFormularioAuth(event.target)) return;
 
         const textoOriginal = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML =
-          '<span class="material-symbols-outlined" style="font-size:18px;">hourglass_top</span><span>Procesando...</span>';
+          '<span aria-hidden="true" class="material-symbols-outlined" style="font-size:18px;">hourglass_top</span><span>Procesando...</span>';
 
         setTimeout(() => {
           btn.innerHTML =
-            '<span class="material-symbols-outlined" style="font-size:18px;">check</span><span>¡Listo!</span>';
+            '<span aria-hidden="true" class="material-symbols-outlined" style="font-size:18px;">check</span><span>¡Listo!</span>';
 
           if (accion === "login") {
             const correo = (document.getElementById("loginEmail")?.value || "").trim().toLowerCase();
@@ -428,12 +441,77 @@
           setTimeout(() => {
             btn.disabled = false;
             btn.innerHTML = textoOriginal;
-            setTimeout(() => {
-              alerta.classList.remove("visible");
-            }, 3000);
           }, 2000);
         }, 700);
       }
+
+      // Validación con mensajes propios (los formularios usan novalidate)
+      const MENSAJES_AUTH = {
+        loginEmail: {
+          vacio: "Escribe tu correo electrónico para entrar.",
+          invalido: "Revisa tu correo: debe tener la forma nombre@ejemplo.com.",
+        },
+        loginClave: { vacio: "Escribe tu contraseña para entrar." },
+        registroNombre: { vacio: "Escribe tu nombre completo para crear la cuenta." },
+        registroEmail: {
+          vacio: "Escribe tu correo electrónico para crear la cuenta.",
+          invalido: "Revisa tu correo: debe tener la forma nombre@ejemplo.com.",
+        },
+        registroClave: {
+          vacio: "Crea una contraseña para tu cuenta.",
+          corta: "Tu contraseña necesita al menos 8 caracteres.",
+        },
+      };
+
+      function mensajeErrorAuth(input) {
+        const mensajes = MENSAJES_AUTH[input.id];
+        if (!mensajes) return "";
+        const valor = input.value.trim();
+        if (!valor) return mensajes.vacio;
+        if (input.type === "email" && !/^\S+@\S+\.\S+$/.test(valor)) return mensajes.invalido;
+        if (mensajes.corta && valor.length < 8) return mensajes.corta;
+        return "";
+      }
+
+      function limpiarErrorCampo(input) {
+        const caja = input.closest(".caja-input-auth");
+        const error = document.getElementById(input.id + "Error");
+        if (caja) caja.classList.remove("con-error");
+        input.removeAttribute("aria-invalid");
+        input.removeAttribute("aria-describedby");
+        if (error) error.remove();
+      }
+
+      function validarFormularioAuth(form) {
+        let primerInvalido = null;
+        form.querySelectorAll(".input-auth-campo").forEach((input) => {
+          limpiarErrorCampo(input);
+          const mensaje = mensajeErrorAuth(input);
+          if (!mensaje) return;
+          const caja = input.closest(".caja-input-auth");
+          const error = document.createElement("p");
+          error.className = "mensaje-error-auth";
+          error.id = input.id + "Error";
+          error.textContent = mensaje;
+          caja.insertAdjacentElement("afterend", error);
+          caja.classList.add("con-error");
+          input.setAttribute("aria-invalid", "true");
+          input.setAttribute("aria-describedby", error.id);
+          if (!primerInvalido) primerInvalido = input;
+        });
+        if (primerInvalido) primerInvalido.focus();
+        return !primerInvalido;
+      }
+
+      function cerrarAlertaAuth() {
+        const alerta = document.getElementById("alertaAuth");
+        if (alerta) alerta.classList.remove("visible");
+      }
+
+      // Al corregir un campo, su mensaje de error desaparece
+      document.querySelectorAll(".input-auth-campo").forEach((input) => {
+        input.addEventListener("input", () => limpiarErrorCampo(input));
+      });
 
       // Mensaje de demostración para proveedores sociales
       function alertaSocial(red) {
@@ -442,7 +520,6 @@
         if (alerta && textoAlerta) {
           textoAlerta.textContent = `Autenticación con ${red} lista para integración API (Fase de diseño).`;
           alerta.classList.add("visible");
-          setTimeout(() => alerta.classList.remove("visible"), 3000);
         }
       }
 
@@ -454,7 +531,6 @@
         if (alerta && textoAlerta) {
           textoAlerta.textContent = "Te enviaremos las instrucciones de recuperación a tu correo registrado.";
           alerta.classList.add("visible");
-          setTimeout(() => alerta.classList.remove("visible"), 3000);
         }
       }
     </script>

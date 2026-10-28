@@ -165,6 +165,7 @@
               </div>
 
               <form class="formulario-botanico" id="formularioContacto" onsubmit="enviarFormulario(event)">
+                <p class="aviso-obligatorio">Los campos con <span class="campo-obligatorio">*</span> son obligatorios.</p>
                 <!-- Fieldset 1: Datos Personales del Lector -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
@@ -183,7 +184,7 @@
                         <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person</span>
                         <input
                           class="input-contacto"
-                          id="nombreContacto"
+                          id="nombreContacto" autocomplete="name"
                           name="nombre"
                           placeholder="Ej: Sofía Mendoza"
                           required
@@ -202,7 +203,7 @@
                         <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">alternate_email</span>
                         <input
                           class="input-contacto"
-                          id="correoContacto"
+                          id="correoContacto" autocomplete="email"
                           name="correo"
                           placeholder="ejemplo@correo.com"
                           required
@@ -222,7 +223,7 @@
                         <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">call</span>
                         <input
                           class="input-contacto"
-                          id="telefonoContacto"
+                          id="telefonoContacto" autocomplete="tel"
                           name="telefono"
                           placeholder="+51 987 654 321"
                           type="tel"
@@ -308,7 +309,7 @@
               </form>
 
               <!-- Notificación de Éxito -->
-              <div class="alerta-exito-contacto" id="alertaExito">
+              <div class="alerta-exito-contacto" id="alertaExito" role="alert">
                 <span aria-hidden="true" class="material-symbols-outlined icono-exito">check_circle</span>
                 <div>
                   <h3 class="titulo-alerta-exito">¡Mensaje enviado con éxito!</h3>
