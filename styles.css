@@ -2655,6 +2655,13 @@ button:active,
   gap: 1rem;
 }
 
+/* Titulo de la alerta: h3 para respetar la jerarquia, con el tamano que tenia el h4 */
+.titulo-alerta-exito {
+  font-size: 1rem;
+  line-height: 1.55;
+  letter-spacing: normal;
+}
+
 .alerta-exito-contacto.visible {
   display: flex;
   animation: aparecerSuave 0.4s var(--spring-default) forwards;
@@ -3576,6 +3583,7 @@ button:active,
 .titulo-columna-pie {
   font-family: var(--font-display);
   font-size: 0.85rem;
+  line-height: 1.55;
   font-weight: 700;
   color: #ffffff;
   text-transform: uppercase;
