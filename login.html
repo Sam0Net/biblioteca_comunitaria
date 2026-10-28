@@ -399,6 +399,12 @@
 
         const paneles = [document.querySelector(".panel-auth-lado"), document.getElementById("panelVisual")];
 
+        // Mientras se desliza, el contenido nuevo espera un instante antes de aparecer (ver .deslizando en el CSS)
+        const tarjeta = document.getElementById("tarjetaAuth");
+        clearTimeout(Number(tarjeta.dataset.limpieza));
+        tarjeta.classList.add("deslizando");
+        tarjeta.dataset.limpieza = String(setTimeout(() => tarjeta.classList.remove("deslizando"), 800));
+
         // 1. Dónde está cada panel ahora (si había una animación en curso, se parte de donde va)
         const posicionAntes = paneles.map((panel) => panel.getBoundingClientRect().left);
 
@@ -421,7 +427,7 @@
         });
         const desplazamientos = paneles.map((panel, i) => posicionAntes[i] - panel.getBoundingClientRect().left);
 
-        // 4. Cada panel vuelve a su posición anterior y se desliza hasta la nueva (ease-out, 480 ms)
+        // 4. Cada panel vuelve a su posición anterior y se desliza hasta la nueva (ease-in-out, 700 ms)
         paneles.forEach((panel, i) => {
           if (!desplazamientos[i]) {
             panel.style.transition = "";
@@ -430,9 +436,9 @@
           }
           panel.style.transform = `translateX(${desplazamientos[i]}px)`;
           void panel.offsetWidth;
-          panel.style.transition = "transform 480ms var(--ease-out)";
+          panel.style.transition = "transform 700ms cubic-bezier(0.65, 0, 0.35, 1)";
           panel.style.transform = "";
-          panel.dataset.limpieza = String(setTimeout(() => (panel.style.transition = ""), 520));
+          panel.dataset.limpieza = String(setTimeout(() => (panel.style.transition = ""), 760));
         });
       }
 
