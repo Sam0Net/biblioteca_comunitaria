@@ -3515,14 +3515,14 @@ button.pildora-formato[aria-pressed="true"] {
   display: flex;
   flex-direction: column;
   width: 100%;
-  animation: aparecerSuave 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: aparecerTexto 420ms var(--ease-out) both;
 }
 
 .tarjeta-auth-split:not(.modo-registro) .seccion-form-login {
   display: flex;
   flex-direction: column;
   width: 100%;
-  animation: aparecerSuave 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: aparecerTexto 420ms var(--ease-out) both;
 }
 
 /* Alerta de notificación flotante */
@@ -4492,4 +4492,21 @@ button.pildora-formato[aria-pressed="true"] {
 
 section[id] {
   scroll-margin-top: 5.5rem;
+}
+
+/* ==========================================================================
+   28. CAMBIO ENTRE INICIAR SESIÓN Y CREAR CUENTA (login.html)
+   Los paneles se deslizan con JavaScript (FLIP); el texto nuevo entra con un fundido.
+   ========================================================================== */
+@keyframes aparecerTexto {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.entra-suave {
+  animation: aparecerTexto 420ms var(--ease-out) both;
 }

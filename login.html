@@ -365,30 +365,75 @@
     <script>
       let modoActual = "login"; // 'login' | 'registro'
 
-      // Alternar entre modo Iniciar Sesión y modo Registro
-      function alternarModoAuth() {
+      // Aplica un modo (sin animación): clase de la tarjeta, textos del panel oscuro, botón y dirección (#crear-cuenta)
+      function aplicarModoAuth(nuevoModo) {
         const tarjeta = document.getElementById("tarjetaAuth");
         const tituloVisual = document.getElementById("tituloVisual");
         const descVisual = document.getElementById("descVisual");
         const btnCambiar = document.getElementById("btnCambiarAuth");
+        const esRegistro = nuevoModo === "registro";
 
         cerrarAlertaAuth();
+        modoActual = nuevoModo;
+        tarjeta.classList.toggle("modo-registro", esRegistro);
+        tituloVisual.textContent = esRegistro ? "¡Bienvenido de nuevo!" : "¿Eres nuevo por aquí?";
+        descVisual.textContent = esRegistro
+          ? "Inicia sesión para consultar tus libros en préstamo, renovar plazos y explorar el catálogo."
+          : "Crea tu cuenta de vecino lector para solicitar préstamos y participar en talleres comunitarios.";
+        btnCambiar.innerHTML = esRegistro ? "<span>Iniciar sesión</span>" : "<span>Crear cuenta</span>";
 
-        if (modoActual === "login") {
-          modoActual = "registro";
-          tarjeta.classList.add("modo-registro");
-          tituloVisual.textContent = "¡Bienvenido de nuevo!";
-          descVisual.textContent =
-            "Inicia sesión para consultar tus libros en préstamo, renovar plazos y explorar el catálogo.";
-          btnCambiar.innerHTML = "<span>Iniciar sesión</span>";
-        } else {
-          modoActual = "login";
-          tarjeta.classList.remove("modo-registro");
-          tituloVisual.textContent = "¿Eres nuevo por aquí?";
-          descVisual.textContent =
-            "Crea tu cuenta de vecino lector para solicitar préstamos y participar en talleres comunitarios.";
-          btnCambiar.innerHTML = "<span>Crear cuenta</span>";
+        try {
+          history.replaceState(null, "", esRegistro ? "#crear-cuenta" : location.pathname + location.search);
+        } catch (error) {
+          /* algunos navegadores restringen replaceState en archivos locales: no afecta al funcionamiento */
         }
+      }
+
+      // Alternar entre Iniciar sesión y Crear cuenta: los dos paneles se deslizan al lado contrario (técnica FLIP)
+      function alternarModoAuth() {
+        const nuevoModo = modoActual === "login" ? "registro" : "login";
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          aplicarModoAuth(nuevoModo);
+          return;
+        }
+
+        const paneles = [document.querySelector(".panel-auth-lado"), document.getElementById("panelVisual")];
+
+        // 1. Dónde está cada panel ahora (si había una animación en curso, se parte de donde va)
+        const posicionAntes = paneles.map((panel) => panel.getBoundingClientRect().left);
+
+        // 2. Se aplica el modo nuevo: el diseño ya deja cada panel en su lado definitivo
+        aplicarModoAuth(nuevoModo);
+
+        // El texto nuevo del panel oscuro entra con un fundido
+        ["tituloVisual", "descVisual", "btnCambiarAuth"].forEach((id) => {
+          const elemento = document.getElementById(id);
+          elemento.classList.remove("entra-suave");
+          void elemento.offsetWidth;
+          elemento.classList.add("entra-suave");
+        });
+
+        // 3. Se cancela cualquier transición en curso para medir la posición definitiva, sin desplazamiento
+        paneles.forEach((panel) => {
+          clearTimeout(Number(panel.dataset.limpieza));
+          panel.style.transition = "none";
+          panel.style.transform = "none";
+        });
+        const desplazamientos = paneles.map((panel, i) => posicionAntes[i] - panel.getBoundingClientRect().left);
+
+        // 4. Cada panel vuelve a su posición anterior y se desliza hasta la nueva (ease-out, 480 ms)
+        paneles.forEach((panel, i) => {
+          if (!desplazamientos[i]) {
+            panel.style.transition = "";
+            panel.style.transform = "";
+            return;
+          }
+          panel.style.transform = `translateX(${desplazamientos[i]}px)`;
+          void panel.offsetWidth;
+          panel.style.transition = "transform 480ms var(--ease-out)";
+          panel.style.transform = "";
+          panel.dataset.limpieza = String(setTimeout(() => (panel.style.transition = ""), 520));
+        });
       }
 
       // Mostrar / Ocultar Contraseña
@@ -538,6 +583,13 @@
           alerta.classList.add("visible");
         }
       }
+      // Enlaces con #crear-cuenta abren directamente el formulario de registro (sin animar al cargar)
+      const modoPorDireccion = { "#crear-cuenta": "registro", "#iniciar-sesion": "login" };
+      if (modoPorDireccion[location.hash] === "registro") aplicarModoAuth("registro");
+      window.addEventListener("hashchange", () => {
+        const deseado = modoPorDireccion[location.hash];
+        if (deseado && deseado !== modoActual) alternarModoAuth();
+      });
     </script>
   </body>
 </html>
