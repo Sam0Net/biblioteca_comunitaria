@@ -16,7 +16,7 @@
      infinitas.
    - Adaptable: consultas de medios (@media); sin desbordes de 320 a 1440px.
    - HTML con clases semánticas en español y sin estilos en línea.
-   - Las secciones 25 a 31 van al final a propósito: al ser posteriores ganan
+   - Las secciones 25 a 32 van al final a propósito: al ser posteriores ganan
      en la cascada sin necesidad de !important.
    --------------------------------------------------------------------------
    ÍNDICE
@@ -51,6 +51,7 @@
    29. CAMBIO ENTRE INICIAR SESIÓN Y CREAR CUENTA (login.html)
    30. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
    31. DETALLE DEL LIBRO Y AVISOS (libros.html)
+   32. PANEL DE ADMINISTRACIÓN Y AVISO DE ERROR EN LOGIN (admin.html, login.html)
    ========================================================================== */
 
 /* ==========================================================================
@@ -3463,40 +3464,9 @@ button.pildora-formato[aria-pressed="true"] {
 }
 
 /* Botones de Proveedores Sociales */
-.fila-social-auth {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.85rem;
-  margin-top: 1.35rem;
-  width: 100%;
-}
 
-.boton-social-circular {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  padding: 0;
-}
 
-.boton-social-circular:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.15);
-}
 
-.boton-social-circular svg {
-  width: 20px;
-  height: 20px;
-}
 
 /* Modos de alternancia (Login <-> Registro) */
 .seccion-form-login,
@@ -4696,5 +4666,63 @@ section[id] {
 
   .aviso-flotante {
     transition: none;
+  }
+}
+
+/* ==========================================================================
+   32. PANEL DE ADMINISTRACIÓN Y AVISO DE ERROR EN LOGIN (admin.html, login.html)
+   ========================================================================== */
+.alerta-auth-flotante.error {
+  background-color: #ffdad6;
+  border-color: rgba(186, 26, 26, 0.35);
+  color: #93000a;
+}
+
+.titulo-admin {
+  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+  line-height: 1.15;
+  color: var(--primary);
+  text-wrap: balance;
+}
+
+.tarjeta-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: 2rem;
+  box-shadow: var(--sombra-media);
+}
+
+.tarjeta-admin[hidden],
+#panelAdmin[hidden] {
+  display: none;
+}
+
+.tarjeta-admin .contenedor-tabla-responsiva {
+  width: 100%;
+}
+
+.titulo-tarjeta-admin {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+.texto-admin {
+  max-width: 62ch;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+  .tarjeta-admin {
+    padding: 1.25rem;
   }
 }
