@@ -184,49 +184,49 @@
                   <span class="subtitulo-filtro">Categorías y Géneros</span>
                   <ul class="lista-categorias">
                     <li>
-                      <button class="item-categoria activo" type="button">
+                      <button class="item-categoria activo" type="button" data-categoria="todos" aria-pressed="true">
                         <span>Todos los géneros</span>
                         <span class="contador-categoria">2,540</span>
                       </button>
                     </li>
                     <li>
-                      <button class="item-categoria" type="button">
+                      <button class="item-categoria" type="button" data-categoria="novela" aria-pressed="false">
                         <span>Novela y Narrativa</span>
                         <span class="contador-categoria">840</span>
                       </button>
                     </li>
                     <li>
-                      <button class="item-categoria" type="button">
+                      <button class="item-categoria" type="button" data-categoria="psicoanalisis" aria-pressed="false">
                         <span>Psicoanálisis y Crecimiento</span>
                         <span class="contador-categoria">320</span>
                       </button>
                     </li>
                     <li>
-                      <button class="item-categoria" type="button">
+                      <button class="item-categoria" type="button" data-categoria="clasicos" aria-pressed="false">
                         <span>Clásicos Universales</span>
                         <span class="contador-categoria">410</span>
                       </button>
                     </li>
                     <li>
-                      <button class="item-categoria" type="button">
+                      <button class="item-categoria" type="button" data-categoria="infantil" aria-pressed="false">
                         <span>Infantil & Juvenil</span>
                         <span class="contador-categoria">390</span>
                       </button>
                     </li>
                     <li>
-                      <button class="item-categoria" type="button">
+                      <button class="item-categoria" type="button" data-categoria="ciencia" aria-pressed="false">
                         <span>Ciencia, Botánica & Huertos</span>
                         <span class="contador-categoria">280</span>
                       </button>
                     </li>
                     <li>
-                      <button class="item-categoria" type="button">
+                      <button class="item-categoria" type="button" data-categoria="poesia" aria-pressed="false">
                         <span>Poesía & Teatro</span>
                         <span class="contador-categoria">180</span>
                       </button>
                     </li>
                     <li>
-                      <button class="item-categoria" type="button">
+                      <button class="item-categoria" type="button" data-categoria="historia" aria-pressed="false">
                         <span>Historia & Comunidad</span>
                         <span class="contador-categoria">120</span>
                       </button>
@@ -288,7 +288,7 @@
               <div class="barra-controles">
                 <div class="estado-exploracion">
                   <span class="texto-explorando">Explorando</span>
-                  <span class="insignia-conteo"
+                  <span class="insignia-conteo" aria-live="polite"
                     >Mostrando 9 de 2,540 títulos</span
                   >
                 </div>
@@ -325,7 +325,7 @@
 
               <div class="rejilla-libros">
                 <!-- Libro 1 -->
-                <article class="tarjeta-libro">
+                <article class="tarjeta-libro" data-categorias="novela">
                   <div class="cuerpo-tarjeta">
                     <div class="contenedor-portada">
                       <div
@@ -371,7 +371,7 @@
                 </article>
 
                 <!-- Libro 2 -->
-                <article class="tarjeta-libro">
+                <article class="tarjeta-libro" data-categorias="psicoanalisis">
                   <div class="cuerpo-tarjeta">
                     <div class="contenedor-portada">
                       <div
@@ -417,7 +417,7 @@
                 </article>
 
                 <!-- Libro 3 -->
-                <article class="tarjeta-libro">
+                <article class="tarjeta-libro" data-categorias="clasicos">
                   <div class="cuerpo-tarjeta">
                     <div class="contenedor-portada">
                       <div
@@ -463,7 +463,7 @@
                 </article>
 
                 <!-- Libro 4 -->
-                <article class="tarjeta-libro">
+                <article class="tarjeta-libro" data-categorias="clasicos infantil">
                   <div class="cuerpo-tarjeta">
                     <div class="contenedor-portada">
                       <div
@@ -509,7 +509,7 @@
                 </article>
 
                 <!-- Libro 5 -->
-                <article class="tarjeta-libro">
+                <article class="tarjeta-libro" data-categorias="novela historia">
                   <div class="cuerpo-tarjeta">
                     <div class="contenedor-portada">
                       <div
@@ -555,7 +555,7 @@
                 </article>
 
                 <!-- Libro 6 -->
-                <article class="tarjeta-libro">
+                <article class="tarjeta-libro" data-categorias="ciencia">
                   <div class="cuerpo-tarjeta">
                     <div class="contenedor-portada">
                       <div
@@ -601,7 +601,7 @@
                 </article>
 
                 <!-- Libro 7 -->
-                <article class="tarjeta-libro">
+                <article class="tarjeta-libro" data-categorias="novela">
                   <div class="cuerpo-tarjeta">
                     <div class="contenedor-portada">
                       <div
@@ -647,7 +647,7 @@
                 </article>
 
                 <!-- Libro 8 -->
-                <article class="tarjeta-libro">
+                <article class="tarjeta-libro" data-categorias="poesia">
                   <div class="cuerpo-tarjeta">
                     <div class="contenedor-portada">
                       <div
@@ -693,7 +693,7 @@
                 </article>
 
                 <!-- Libro 9 -->
-                <article class="tarjeta-libro">
+                <article class="tarjeta-libro" data-categorias="infantil">
                   <div class="cuerpo-tarjeta">
                     <div class="contenedor-portada">
                       <div
@@ -912,6 +912,17 @@
         const btnLimpiar = document.querySelector(".boton-limpiar");
         const rejillaLibros = document.querySelector(".rejilla-libros");
         const botonesVista = document.querySelectorAll(".conmutador-vistas .boton-vista");
+        let categoriaActiva = "todos";
+
+        // Marca una categoría como activa (clase visual + estado para lectores de pantalla)
+        function marcarCategoria(id) {
+          categoriaActiva = id;
+          itemsCategoria.forEach((item) => {
+            const activa = item.dataset.categoria === id;
+            item.classList.toggle("activo", activa);
+            item.setAttribute("aria-pressed", String(activa));
+          });
+        }
 
         function filtrarCatalogo() {
           const termino = (inputBusqueda?.value || "").toLowerCase().trim();
@@ -923,7 +934,10 @@
             const genero = tarjeta.querySelector(".genero-libro")?.textContent.toLowerCase() || "";
             const descripcion = tarjeta.querySelector(".descripcion-libro")?.textContent.toLowerCase() || "";
 
-            const coincide = !termino || titulo.includes(termino) || autor.includes(termino) || genero.includes(termino) || descripcion.includes(termino);
+            const categorias = (tarjeta.dataset.categorias || "").split(" ");
+            const coincideCategoria = categoriaActiva === "todos" || categorias.includes(categoriaActiva);
+            const coincideTexto = !termino || titulo.includes(termino) || autor.includes(termino) || genero.includes(termino) || descripcion.includes(termino);
+            const coincide = coincideCategoria && coincideTexto;
 
             if (coincide) {
               tarjeta.style.display = "";
@@ -945,6 +959,7 @@
         botonesEtiquetas.forEach((btn) => {
           btn.addEventListener("click", () => {
             if (inputBusqueda) {
+              marcarCategoria("todos");
               inputBusqueda.value = btn.textContent.trim();
               filtrarCatalogo();
               inputBusqueda.focus();
@@ -954,20 +969,15 @@
 
         itemsCategoria.forEach((item) => {
           item.addEventListener("click", () => {
-            itemsCategoria.forEach((i) => i.classList.remove("activo"));
-            item.classList.add("activo");
-            const textoCat = item.childNodes[0].textContent.trim();
-            if (inputBusqueda) {
-              inputBusqueda.value = textoCat;
-              filtrarCatalogo();
-            }
+            marcarCategoria(item.dataset.categoria || "todos");
+            filtrarCatalogo();
           });
         });
 
         if (btnLimpiar) {
           btnLimpiar.addEventListener("click", () => {
             if (inputBusqueda) inputBusqueda.value = "";
-            itemsCategoria.forEach((i) => i.classList.remove("activo"));
+            marcarCategoria("todos");
             filtrarCatalogo();
           });
         }
