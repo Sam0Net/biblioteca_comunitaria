@@ -20,6 +20,8 @@
     <link href="styles.css" rel="stylesheet" />
   </head>
   <body class="cuerpo-auth-fullscreen">
+    <a class="saltar-enlace" href="#tarjetaAuth">Saltar al contenido principal</a>
+
     <!-- BOTÓN RETORNO AL SITIO WEB -->
     <a
       href="index.html"
@@ -31,7 +33,7 @@
     </a>
 
     <!-- TARJETA SPLIT CARD DE AUTENTICACIÓN -->
-    <div class="tarjeta-auth-split" id="tarjetaAuth">
+    <main class="tarjeta-auth-split" id="tarjetaAuth">
       <!-- ==============================================
            LADO FORMULARIO (LOGIN & REGISTRO)
            ============================================== -->
@@ -256,9 +258,8 @@
 
             <button
               type="submit"
-              class="boton-auth-submit"
+              class="boton-auth-submit margen-superior-md"
               id="btnSubmitRegistro"
-              style="margin-top: 1.25rem;"
             >
               <span>Crear cuenta</span>
             </button>
@@ -354,7 +355,7 @@
           <span>Crear cuenta</span>
         </button>
       </div>
-    </div>
+    </main>
 
     <!-- SCRIPT DE INTERACCIÓN DEL SLIDER Y ACCESO -->
     <script>
@@ -419,11 +420,11 @@
         const textoOriginal = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML =
-          '<span aria-hidden="true" class="material-symbols-outlined" style="font-size:18px;">hourglass_top</span><span>Procesando...</span>';
+          '<span aria-hidden="true" class="material-symbols-outlined icono-boton-auth">hourglass_top</span><span>Procesando...</span>';
 
         setTimeout(() => {
           btn.innerHTML =
-            '<span aria-hidden="true" class="material-symbols-outlined" style="font-size:18px;">check</span><span>¡Listo!</span>';
+            '<span aria-hidden="true" class="material-symbols-outlined icono-boton-auth">check</span><span>¡Listo!</span>';
 
           if (accion === "login") {
             const correo = (document.getElementById("loginEmail")?.value || "").trim().toLowerCase();
