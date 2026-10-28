@@ -1683,6 +1683,15 @@ button:active,
     min-height: 44px;
     padding-inline: 1rem;
   }
+
+  .pildora-formato {
+    min-height: 44px;
+  }
+
+  .boton-pagina {
+    min-width: 44px;
+    height: 44px;
+  }
 }
 
 /* Banner Comunitario de Donación y Colaboración */
@@ -2671,6 +2680,40 @@ button:active,
 
 .pildora-formato:hover {
   border-color: var(--primary);
+}
+
+/* Píldoras del filtro de formato del catálogo (botones con estado) */
+button.pildora-formato {
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+button.pildora-formato[aria-pressed="true"] {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+/* Mensaje cuando ningún libro coincide con los filtros */
+.estado-vacio-catalogo {
+  margin: 0 0 1.5rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+  background-color: var(--surface-card);
+  border: 1px dashed var(--borde-campo);
+  border-radius: var(--radio-lg);
+}
+
+.estado-vacio-catalogo[hidden],
+.paginacion-catalogo[hidden] {
+  display: none;
+}
+
+/* Al cambiar de página, la barra de controles queda visible bajo el encabezado fijo */
+.barra-controles {
+  scroll-margin-top: 5.5rem;
 }
 
 .pildora-formato input[type="radio"] {
