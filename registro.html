@@ -167,6 +167,7 @@
               </div>
 
               <form class="formulario-botanico" id="formRegistroCarnet" onsubmit="registrarCarnet(event)">
+                <p class="aviso-obligatorio">Los campos con <span class="campo-obligatorio">*</span> son obligatorios.</p>
                 <!-- Fieldset 1: Datos Personales del Lector -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
@@ -185,7 +186,7 @@
                         <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person</span>
                         <input
                           class="input-contacto"
-                          id="nombres"
+                          id="nombres" autocomplete="given-name"
                           name="nombres"
                           placeholder="Ej: Carmen Rosa"
                           required
@@ -204,7 +205,7 @@
                         <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person_outline</span>
                         <input
                           class="input-contacto"
-                          id="apellidos"
+                          id="apellidos" autocomplete="family-name"
                           name="apellidos"
                           placeholder="Ej: Silva Paredes"
                           required
@@ -250,7 +251,7 @@
                         <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">event</span>
                         <input
                           class="input-contacto"
-                          id="fecha_nacimiento"
+                          id="fecha_nacimiento" autocomplete="bday"
                           name="fecha_nacimiento"
                           required
                           type="date"
@@ -270,7 +271,7 @@
                         <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">alternate_email</span>
                         <input
                           class="input-contacto"
-                          id="correo"
+                          id="correo" autocomplete="email"
                           name="correo"
                           placeholder="ejemplo@correo.com"
                           required
@@ -289,7 +290,7 @@
                         <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">call</span>
                         <input
                           class="input-contacto"
-                          id="telefono"
+                          id="telefono" autocomplete="tel"
                           maxlength="9"
                           name="telefono"
                           pattern="[0-9]{9}"
@@ -320,7 +321,7 @@
                         <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">home</span>
                         <input
                           class="input-contacto"
-                          id="direccion"
+                          id="direccion" autocomplete="street-address"
                           name="direccion"
                           placeholder="Ej: Jr. Los Sauces 450"
                           required
@@ -421,7 +422,7 @@
               </form>
 
               <!-- Notificación de Éxito al Registrarse (Idéntica a Contacto) -->
-              <div class="alerta-exito-contacto" id="alertaExitoCarnet">
+              <div class="alerta-exito-contacto" id="alertaExitoCarnet" role="alert">
                 <span aria-hidden="true" class="material-symbols-outlined icono-exito">check_circle</span>
                 <div>
                   <h3 class="titulo-alerta-exito">¡Carnet Vecinal Emitido con Éxito!</h3>
