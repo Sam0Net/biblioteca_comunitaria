@@ -16,7 +16,7 @@
      infinitas.
    - Adaptable: consultas de medios (@media); sin desbordes de 320 a 1440px.
    - HTML con clases semánticas en español y sin estilos en línea.
-   - Las secciones 25 a 30 van al final a propósito: al ser posteriores ganan
+   - Las secciones 25 a 31 van al final a propósito: al ser posteriores ganan
      en la cascada sin necesidad de !important.
    --------------------------------------------------------------------------
    ÍNDICE
@@ -50,6 +50,7 @@
    28. ESTRUCTURA HTML: dirección del pie y anclas bajo el encabezado fijo
    29. CAMBIO ENTRE INICIAR SESIÓN Y CREAR CUENTA (login.html)
    30. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
+   31. DETALLE DEL LIBRO Y AVISOS (libros.html)
    ========================================================================== */
 
 /* ==========================================================================
@@ -4508,5 +4509,192 @@ section[id] {
 @media (max-width: 640px) {
   .contenedor-flotante {
     padding-top: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   31. DETALLE DEL LIBRO Y AVISOS (libros.html)
+   Botones Reservar / Pedir en sala activados, ventana de detalles y aviso flotante.
+   ========================================================================== */
+.boton-accion-primario[aria-pressed="true"],
+.boton-accion-secundario[aria-pressed="true"] {
+  background-color: var(--sage-container);
+  color: var(--primary);
+  border-color: var(--border-strong);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .boton-accion-primario[aria-pressed="true"]:hover,
+  .boton-accion-secundario[aria-pressed="true"]:hover {
+    background-color: #c5dbcf;
+  }
+}
+
+.dialogo-libro {
+  position: fixed;
+  inset: 0;
+  width: min(92vw, 640px);
+  max-height: 90vh;
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  color: var(--text-primary);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: 2rem;
+  box-shadow: var(--sombra-elevada);
+}
+
+.dialogo-libro[open] {
+  animation: entradaDialogo 220ms var(--ease-out);
+}
+
+.dialogo-libro::backdrop {
+  background-color: rgba(18, 59, 45, 0.5);
+}
+
+@keyframes entradaDialogo {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.dialogo-cerrar {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--primary);
+  background-color: var(--primary-subtle);
+  border: 0;
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+}
+
+.dialogo-cerrar:active {
+  transform: scale(0.97);
+}
+
+.dialogo-cuerpo {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 1.75rem;
+  padding: 2.25rem 2rem 2rem;
+}
+
+.dialogo-portada {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: var(--sombra-media);
+}
+
+.dialogo-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding-right: 2rem;
+}
+
+.dialogo-genero {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.dialogo-titulo {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  color: var(--primary);
+  text-wrap: balance;
+}
+
+.dialogo-autor {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.dialogo-lectores,
+.dialogo-disponibilidad {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.dialogo-descripcion {
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.dialogo-texto .boton-heroe-primario {
+  margin-top: 0.75rem;
+}
+
+.dialogo-texto .boton-heroe-primario[aria-pressed="true"] {
+  color: var(--primary);
+  background-color: var(--sage-container);
+}
+
+.aviso-flotante {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 60;
+  max-width: min(92vw, 28rem);
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #ffffff;
+  background-color: var(--primary);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-elevada);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 12px);
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out),
+    visibility 0s linear 200ms;
+}
+
+.aviso-flotante.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition-delay: 0s;
+}
+
+@media (max-width: 560px) {
+  .dialogo-cuerpo {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 3.5rem 1.25rem 1.5rem;
+  }
+
+  .dialogo-portada {
+    width: 120px;
+  }
+
+  .dialogo-texto {
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialogo-libro[open] {
+    animation: none;
+  }
+
+  .aviso-flotante {
+    transition: none;
   }
 }
