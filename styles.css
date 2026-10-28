@@ -4390,3 +4390,94 @@ button.pildora-formato[aria-pressed="true"] {
 .boton-auth-submit .icono-boton-auth {
   font-size: 18px;
 }
+
+/* ==========================================================================
+   26. PANEL DE FILTROS PLEGABLE EN MÓVIL (libros.html)
+   El JavaScript añade .plegable por debajo de 1024px; sin JavaScript el panel queda visible.
+   ========================================================================== */
+.boton-filtros-movil,
+.boton-ver-resultados {
+  display: none;
+}
+
+.contador-filtros-activos {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  border-radius: var(--radio-completo);
+  background-color: var(--primary);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.contador-filtros-activos[hidden] {
+  display: none;
+}
+
+@media (max-width: 1023.98px) {
+  .columna-filtros.plegable .boton-filtros-movil {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    background-color: var(--surface-card);
+    color: var(--primary);
+    border: 1px solid var(--borde-campo);
+    border-radius: var(--radio-md);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .columna-filtros.plegable .boton-filtros-movil .icono-chevron {
+    margin-left: auto;
+    transition: transform 200ms var(--ease-out);
+  }
+
+  .columna-filtros.plegable.filtros-abiertos .boton-filtros-movil .icono-chevron {
+    transform: rotate(180deg);
+  }
+
+  .columna-filtros.plegable:not(.filtros-abiertos) .tarjeta-filtros {
+    display: none;
+  }
+
+  .columna-filtros.plegable .tarjeta-filtros {
+    margin-top: 0.75rem;
+    position: static;
+  }
+
+  .columna-filtros.plegable .boton-ver-resultados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 1.25rem;
+    background-color: var(--primary);
+    color: #ffffff;
+    border: 0;
+    border-radius: var(--radio-completo);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1023.98px) and (hover: hover) and (pointer: fine) {
+  .columna-filtros.plegable .boton-filtros-movil:hover {
+    background-color: var(--surface-secondary);
+  }
+
+  .columna-filtros.plegable .boton-ver-resultados:hover {
+    background-color: var(--primary-hover);
+  }
+}
