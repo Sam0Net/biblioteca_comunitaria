@@ -34,7 +34,7 @@
       <div class="contenedor-encabezado">
         <a class="marca-sitio" href="index.html" data-path="inicio">
           <div class="icono-marca">
-            <span class="material-symbols-outlined">local_florist</span>
+            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
           </div>
           <div class="texto-marca">
             <span class="nombre-marca">Leer nos une</span>
@@ -61,31 +61,33 @@
 
         <div class="acciones-usuario">
           <a
-            class="boton-carnet animacion-pulso"
+            class="boton-carnet"
             href="login.html"
             data-path="carnet-digital"
+            aria-label="Sacar mi carnet"
           >
-            <span class="material-symbols-outlined">badge</span>
-            <span>Carnet Digital</span>
+            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+            <span>Sacar mi carnet</span>
           </a>
           <a
             class="avatar-perfil"
             href="login.html"
             title="Mi Cuenta e Inicio de Sesión"
-            aria-label="Mi Cuenta"
+            aria-label="Mi cuenta: iniciar sesión"
           >
-            <img alt="Perfil de usuario" src="img/tresLibrosPlantitas.png" />
+            <img alt="" src="img/tresLibrosPlantitas.png" />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
           <button
             class="boton-menu-movil"
             id="btnMenuMovil"
+            aria-controls="menuMovilDesplegable"
             aria-label="Abrir menú"
             aria-expanded="false"
             type="button"
           >
-            <span class="material-symbols-outlined icono-menu-abrir">menu</span>
-            <span class="material-symbols-outlined icono-menu-cerrar"
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar"
               >close</span
             >
           </button>
@@ -98,36 +100,36 @@
         id="menuMovilDesplegable"
         aria-hidden="true"
       >
-        <nav class="navegacion-movil">
+        <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a
             class="enlace-nav-movil activo"
             href="index.html"
             aria-current="page"
           >
-            <span class="material-symbols-outlined">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
-            <span class="material-symbols-outlined flecha-nav"
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav"
               >chevron_right</span
             >
           </a>
           <a class="enlace-nav-movil" href="libros.html">
-            <span class="material-symbols-outlined">auto_stories</span>
+            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
-            <span class="material-symbols-outlined flecha-nav"
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav"
               >chevron_right</span
             >
           </a>
           <a class="enlace-nav-movil" href="servicios.html">
-            <span class="material-symbols-outlined">spa</span>
+            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
-            <span class="material-symbols-outlined flecha-nav"
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav"
               >chevron_right</span
             >
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span class="material-symbols-outlined">chat</span>
+            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
-            <span class="material-symbols-outlined flecha-nav"
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav"
               >chevron_right</span
             >
           </a>
@@ -155,86 +157,62 @@
                     viewBox="0 0 24 24"
                     fill="currentColor"
                     aria-hidden="true"
-                    style="margin-right: 4px"
                   >
                     <path
                       d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z"
                     />
                   </svg>
-                  <span>Semillero de Lecturas Comunitarias</span>
+                  <span>Biblioteca de barrio</span>
                 </div>
 
                 <h1 class="titulo-heroe">
-                  ¡Bienvenido a nuestra Biblioteca Comunitaria!
+                  Aquí los libros son de todos
                 </h1>
                 <p class="descripcion-heroe">
-                  Un espacio abierto para todos, donde los libros conectan
-                  personas, ideas y sueños.
-                  <br />
-                  Cultivamos el saber, la imaginación y la convivencia vecinal
-                  en un entorno botánico cálido, acogedor y
-                  <mark
-                    style="
-                      background-color: #d4e6dd;
-                      padding: 2px 6px;
-                      border-radius: 4px;
-                    "
-                    ><strong>100% gratuito</strong></mark
-                  >.
+                  Pide prestado, lee en la sala o en el jardín, y comparte lo
+                  que sabes. Todo es gratuito, solo necesitas tu carnet.
                 </p>
 
                 <div class="fila-botones-heroe">
                   <a class="boton-heroe-primario" href="libros.html">
-                    <span class="material-symbols-outlined">auto_stories</span>
-                    <span>Explorar Catálogo</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
+                    <span>Ver el catálogo</span>
                   </a>
                   <a class="boton-heroe-secundario" href="servicios.html">
-                    <span class="material-symbols-outlined">spa</span>
-                    <span>Nuestros Servicios</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">spa</span>
+                    <span>Reservar una sala</span>
                   </a>
                 </div>
 
                 <div class="fila-metricas">
                   <div class="pildora-metrica">
-                    <span class="material-symbols-outlined icono-verde"
-                      >menu_book</span
-                    >
-                    <span class="valor-metrica">2,540+</span>
-                    <span class="etiqueta-metrica">Libros libres</span>
+                    <span aria-hidden="true" class="material-symbols-outlined icono-verde">menu_book</span>
+                    <span class="valor-metrica">2.540</span>
+                    <span class="etiqueta-metrica">libros</span>
                   </div>
                   <div class="pildora-metrica">
-                    <span class="material-symbols-outlined icono-ambar"
-                      >groups</span
-                    >
-                    <span class="valor-metrica">1,200+</span>
-                    <span class="etiqueta-metrica">Vecinos lectores</span>
+                    <span aria-hidden="true" class="material-symbols-outlined icono-ambar">groups</span>
+                    <span class="valor-metrica">1.200</span>
+                    <span class="etiqueta-metrica">vecinos lectores</span>
                   </div>
                   <div class="pildora-metrica">
-                    <span class="material-symbols-outlined icono-verde"
-                      >yard</span
-                    >
+                    <span aria-hidden="true" class="material-symbols-outlined icono-verde">yard</span>
                     <span class="valor-metrica">3</span>
-                    <span class="etiqueta-metrica">Salas & Jardín</span>
-                  </div>
-                  <div class="pildora-metrica pildora-disponible">
-                    <span class="punto-pulso"></span>
-                    <span class="texto-disponible"
-                      >Préstamo Libre y Gratuito</span
-                    >
+                    <span class="etiqueta-metrica">salas y un jardín</span>
                   </div>
                 </div>
               </div>
 
               <div class="marco-visual-heroe">
                 <div class="insignia-flotante-heroe insignia-superior-derecha">
-                  <span class="material-symbols-outlined icono-verde"
+                  <span aria-hidden="true" class="material-symbols-outlined icono-verde"
                     >local_florist</span
                   >
                   <span>Lectura Libre</span>
                 </div>
 
                 <!-- IMAGEN RESPONSIVA Y FIGURA SEMÁNTICA (Tema Avance 2: picture y animaciones) -->
-                <figure class="contenedor-imagen-heroe" style="margin: 0">
+                <figure class="contenedor-imagen-heroe">
                   <picture>
                     <source
                       media="(max-width: 600px)"
@@ -242,12 +220,11 @@
                     />
                     <img
                       alt="Libros y plantas en la biblioteca comunitaria"
-                      class="imagen-destacada-heroe animacion-flotacion"
+                      class="imagen-destacada-heroe"
                       src="img/librosenBibloteca.png"
-                      loading="lazy"
                     />
                   </picture>
-                  <figcaption style="position: absolute; left: -9999px">
+                  <figcaption class="visualmente-oculto">
                     Rincón de lectura botánico en la biblioteca comunitaria
                   </figcaption>
                 </figure>
@@ -255,7 +232,7 @@
                 <div
                   class="insignia-flotante-heroe insignia-inferior-izquierda"
                 >
-                  <span class="material-symbols-outlined icono-ambar"
+                  <span aria-hidden="true" class="material-symbols-outlined icono-ambar"
                     >badge</span
                   >
                   <span>Carnet Digital Gratuito</span>
@@ -269,7 +246,7 @@
         <section class="seccion-destacados-inicio" id="libros-destacados">
           <div class="cabecera-seccion-centrada">
             <div class="insignia-subtitulo-centrada">
-              <span class="material-symbols-outlined">trending_up</span>
+              <span aria-hidden="true" class="material-symbols-outlined">trending_up</span>
               <span>Lecturas Favoritas del Barrio</span>
             </div>
             <h2 class="titulo-seccion-inicio">
@@ -301,18 +278,18 @@
                   </div>
                 </div>
                 <div class="genero-libro">
-                  <span class="material-symbols-outlined">menu_book</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
                   <span>Novela / Realismo Mágico</span>
                 </div>
                 <h3 class="titulo-libro">Cien años de soledad</h3>
                 <p class="autor-libro">Gabriel García Márquez</p>
                 <div class="calificacion-libro">
                   <div class="estrellas">
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
                   </div>
                   <span class="texto-lectores">4.9 (48 lectores)</span>
                 </div>
@@ -323,7 +300,7 @@
               </div>
               <div class="acciones-tarjeta">
                 <a class="boton-accion-primario" href="libros.html">
-                  <span class="material-symbols-outlined">bookmark_add</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                   <span>Ver en Catálogo</span>
                 </a>
               </div>
@@ -347,18 +324,18 @@
                   </div>
                 </div>
                 <div class="genero-libro">
-                  <span class="material-symbols-outlined">psychology</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">psychology</span>
                   <span>Psicoanálisis & Vida</span>
                 </div>
                 <h3 class="titulo-libro">La felicidad</h3>
                 <p class="autor-libro">Gabriel Rolón</p>
                 <div class="calificacion-libro">
                   <div class="estrellas">
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star_half</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star_half</span>
                   </div>
                   <span class="texto-lectores">4.7 (31 lectores)</span>
                 </div>
@@ -370,7 +347,7 @@
               </div>
               <div class="acciones-tarjeta">
                 <a class="boton-accion-primario" href="libros.html">
-                  <span class="material-symbols-outlined">bookmark_add</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                   <span>Ver en Catálogo</span>
                 </a>
               </div>
@@ -389,23 +366,23 @@
                   ></div>
                   <div class="sombra-lomo"></div>
                   <div class="insignia-disponibilidad sala">
-                    <span class="material-symbols-outlined">menu_book</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
                     <span>En Sala de Lectura</span>
                   </div>
                 </div>
                 <div class="genero-libro">
-                  <span class="material-symbols-outlined">history_edu</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">history_edu</span>
                   <span>Clásico Universal</span>
                 </div>
                 <h3 class="titulo-libro">Don Quijote de la Mancha</h3>
                 <p class="autor-libro">Miguel de Cervantes</p>
                 <div class="calificacion-libro">
                   <div class="estrellas">
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
                   </div>
                   <span class="texto-lectores">5.0 (64 lectores)</span>
                 </div>
@@ -417,7 +394,7 @@
               </div>
               <div class="acciones-tarjeta">
                 <a class="boton-accion-secundario" href="libros.html">
-                  <span class="material-symbols-outlined">chair</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">chair</span>
                   <span>Pedir en Sala</span>
                 </a>
               </div>
@@ -441,18 +418,18 @@
                   </div>
                 </div>
                 <div class="genero-libro">
-                  <span class="material-symbols-outlined">child_care</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">child_care</span>
                   <span>Infantil / Filosofía</span>
                 </div>
                 <h3 class="titulo-libro">El principito</h3>
                 <p class="autor-libro">Antoine de Saint-Exupéry</p>
                 <div class="calificacion-libro">
                   <div class="estrellas">
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">star</span>
                   </div>
                   <span class="texto-lectores">5.0 (92 lectores)</span>
                 </div>
@@ -464,7 +441,7 @@
               </div>
               <div class="acciones-tarjeta">
                 <a class="boton-accion-primario" href="libros.html">
-                  <span class="material-symbols-outlined">bookmark_add</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
                   <span>Ver en Catálogo</span>
                 </a>
               </div>
@@ -474,7 +451,7 @@
           <div class="fila-boton-catalogo">
             <a class="boton-ver-catalogo" href="libros.html">
               <span>Explorar los 2,540 libros del catálogo completo</span>
-              <span class="material-symbols-outlined">arrow_forward</span>
+              <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
         </section>
@@ -484,7 +461,7 @@
           <div class="tarjeta-agenda-contenedor">
             <div class="cabecera-seccion-centrada">
               <div class="insignia-subtitulo-centrada">
-                <span class="material-symbols-outlined">event</span>
+                <span aria-hidden="true" class="material-symbols-outlined">event</span>
                 <span>Agenda Comunitaria</span>
               </div>
               <h2 class="titulo-seccion-inicio">
@@ -517,17 +494,17 @@
                 </p>
                 <div class="detalles-meta-evento">
                   <span>
-                    <span class="material-symbols-outlined">schedule</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">schedule</span>
                     Sábado, 10:00 - 12:00 hrs
                   </span>
                   <span>
-                    <span class="material-symbols-outlined">place</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">place</span>
                     Sala de Lectura Botánica
                   </span>
                 </div>
                 <a class="boton-inscribirse-evento" href="contacto.html">
                   <span>Inscribirse Gratis</span>
-                  <span class="material-symbols-outlined">arrow_forward</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
                 </a>
               </div>
 
@@ -550,17 +527,17 @@
                 </p>
                 <div class="detalles-meta-evento">
                   <span>
-                    <span class="material-symbols-outlined">schedule</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">schedule</span>
                     Miércoles, 16:00 - 17:30 hrs
                   </span>
                   <span>
-                    <span class="material-symbols-outlined">place</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">place</span>
                     Rincón Infantil
                   </span>
                 </div>
                 <a class="boton-inscribirse-evento" href="contacto.html">
                   <span>Inscribirse Gratis</span>
-                  <span class="material-symbols-outlined">arrow_forward</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
                 </a>
               </div>
 
@@ -583,17 +560,17 @@
                 </p>
                 <div class="detalles-meta-evento">
                   <span>
-                    <span class="material-symbols-outlined">schedule</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">schedule</span>
                     Sábado, 10:00 - 16:00 hrs
                   </span>
                   <span>
-                    <span class="material-symbols-outlined">place</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">place</span>
                     Patio Exterior de la Sede
                   </span>
                 </div>
                 <a class="boton-inscribirse-evento" href="contacto.html">
                   <span>Participar</span>
-                  <span class="material-symbols-outlined">arrow_forward</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
                 </a>
               </div>
             </div>
@@ -604,7 +581,7 @@
         <section class="seccion-multimedia-comunitaria">
           <div class="cabecera-seccion-centrada">
             <div class="insignia-subtitulo-centrada">
-              <span class="material-symbols-outlined">smart_display</span>
+              <span aria-hidden="true" class="material-symbols-outlined">smart_display</span>
               <span>Experiencia Multimedia</span>
             </div>
             <h2 class="titulo-seccion-inicio">
@@ -642,11 +619,11 @@
                 </p>
                 <div class="pie-multimedia-meta">
                   <span>
-                    <span class="material-symbols-outlined">videocam</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">videocam</span>
                     Video Institucional MP4 (30s)
                   </span>
                   <span>
-                    <span class="material-symbols-outlined">hd</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">hd</span>
                     Alta Definición (HD)
                   </span>
                 </div>
@@ -658,7 +635,7 @@
               <div class="contenedor-audio-botanico">
                 <div class="cabecera-audio-info">
                   <div class="icono-disco-audio">
-                    <span class="material-symbols-outlined"
+                    <span aria-hidden="true" class="material-symbols-outlined"
                       >self_improvement</span
                     >
                   </div>
@@ -700,11 +677,11 @@
                 </p>
                 <div class="pie-multimedia-meta">
                   <span>
-                    <span class="material-symbols-outlined">music_note</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">music_note</span>
                     Audio Relajante MP3
                   </span>
                   <span>
-                    <span class="material-symbols-outlined">timer</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">timer</span>
                     1:00 min (Bucle sereno)
                   </span>
                 </div>
@@ -718,7 +695,7 @@
           <div class="contenedor-normas">
             <div class="cabecera-normas">
               <div class="insignia-normas">
-                <span class="material-symbols-outlined">verified_user</span>
+                <span aria-hidden="true" class="material-symbols-outlined">verified_user</span>
                 <span>Convivencia y Cuidado Mutuo</span>
               </div>
               <h2 class="titulo-normas">
@@ -733,7 +710,7 @@
             <div class="rejilla-normas">
               <div class="tarjeta-norma">
                 <div class="icono-norma verde-claro">
-                  <span class="material-symbols-outlined">library_books</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">library_books</span>
                 </div>
                 <h3 class="titulo-regla">Hasta 3 Libros a la Vez</h3>
                 <p class="texto-regla">
@@ -745,7 +722,7 @@
 
               <div class="tarjeta-norma">
                 <div class="icono-norma verde-salvia">
-                  <span class="material-symbols-outlined">eco</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">eco</span>
                 </div>
                 <h3 class="titulo-regla">Cuidado Orgánico y Amoroso</h3>
                 <p class="texto-regla">
@@ -757,7 +734,7 @@
 
               <div class="tarjeta-norma">
                 <div class="icono-norma ambar-claro">
-                  <span class="material-symbols-outlined">badge</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">badge</span>
                 </div>
                 <h3 class="titulo-regla">Obtén tu Carnet en 2 Minutos</h3>
                 <p class="texto-regla">
@@ -769,7 +746,7 @@
 
               <div class="tarjeta-norma">
                 <div class="icono-norma verde-claro">
-                  <span class="material-symbols-outlined">volume_off</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">volume_off</span>
                 </div>
                 <h3 class="titulo-regla">Silencio y Armonía Compartida</h3>
                 <p class="texto-regla">
@@ -783,7 +760,7 @@
             <!-- ¿AÚN NO TIENES TU CARNET VECINAL? ... -->
             <div class="tarjeta-llamado-accion">
               <div class="texto-llamado">
-                <span class="material-symbols-outlined icono-llamado"
+                <span aria-hidden="true" class="material-symbols-outlined icono-llamado"
                   >card_membership</span
                 >
                 <div>
@@ -811,7 +788,7 @@
         <div class="rejilla-pie">
           <div>
             <div class="marca-pie">
-              <span class="material-symbols-outlined">menu_book</span>
+              <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
@@ -819,7 +796,7 @@
               imaginación y la convivencia vecinal en armonía.
             </p>
             <div class="insignia-semillero">
-              <span class="material-symbols-outlined">eco</span>
+              <span aria-hidden="true" class="material-symbols-outlined">eco</span>
               <span>Semillero de saberes comunitarios</span>
             </div>
           </div>
@@ -843,23 +820,23 @@
             <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
             <ul class="enlaces-pie">
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Catálogo de Libros</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="login.html" data-path="login">Carnet Digital</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="contacto.html" data-path="contacto">Contáctanos</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html#actividades" data-path="actividades"
                   >Clubes de Lectura</a
                 >
@@ -904,6 +881,7 @@
             const abierto = menuMovil.classList.toggle("abierto");
             btnMenu.classList.toggle("activo", abierto);
             btnMenu.setAttribute("aria-expanded", abierto);
+            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
             menuMovil.setAttribute("aria-hidden", !abierto);
           });
 
@@ -913,6 +891,7 @@
               menuMovil.classList.remove("abierto");
               btnMenu.classList.remove("activo");
               btnMenu.setAttribute("aria-expanded", "false");
+              btnMenu.setAttribute("aria-label", "Abrir menú");
               menuMovil.setAttribute("aria-hidden", "true");
             }
           });
