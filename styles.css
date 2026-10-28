@@ -1854,7 +1854,7 @@ button:active,
 
 .rejilla-agenda-inicio {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: 1.5rem;
 }
 
@@ -2316,6 +2316,11 @@ button:active,
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+/* El boton ya tiene margenes laterales: con width:100% (regla movil) sobresalia de la tarjeta */
+.tarjeta-ilustracion-servicios .boton-heroe-primario {
+  width: auto;
 }
 
 .imagen-ilustracion-servicios {
@@ -3415,11 +3420,11 @@ button.pildora-formato[aria-pressed="true"] {
 .boton-auth-submit {
   width: 100%;
   padding: 0.85rem;
-  background-color: #111827;
+  background-color: var(--primary);
   color: #ffffff;
   border: none;
   border-radius: 14px;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -3427,14 +3432,16 @@ button.pildora-formato[aria-pressed="true"] {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 12px rgba(17, 24, 39, 0.15);
-  transition: all 220ms var(--spring-default);
+  box-shadow: 0 4px 12px rgba(26, 77, 59, 0.2);
+  transition: transform 220ms var(--spring-default), box-shadow 220ms ease, background-color 180ms ease;
 }
 
-.boton-auth-submit:hover {
-  background-color: #030712;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.25);
+@media (hover: hover) and (pointer: fine) {
+  .boton-auth-submit:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(26, 77, 59, 0.3);
+  }
 }
 
 .boton-auth-submit:active {
