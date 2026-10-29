@@ -78,6 +78,8 @@ Los libros ya no están escritos en `libros.html`: viven en `datos/libros.js` y 
 3. **Editar** y **Quitar** están en cada fila. Quitar pide confirmación. **Restaurar libros originales** deshace todo lo hecho en ese navegador.
 4. Los cambios se ven al instante **en ese navegador**. Para que los vea todo el mundo: pulsa **Descargar libros actualizados**, reemplaza `datos/libros.js` con el archivo descargado (`libros.js`) y súbelo al repositorio.
 
+Los 4 libros "más leídos" de `index.html` salen de los mismos datos (los que tienen más lectores), así que si el admin quita uno, el inicio muestra el siguiente. Un libro nuevo empieza con 0 lectores y por eso aparece en el catálogo, no en el inicio.
+
 Un usuario normal no ve estos botones, y las funciones de `biblioteca.js` rechazan cualquier cambio si la sesión no es de administrador. Igual que las cuentas, es una simulación: sin servidor no hay seguridad real.
 
 ## Accesibilidad
@@ -93,7 +95,6 @@ Lo que **no** se ha probado: lectores de pantalla reales (NVDA, VoiceOver) ni di
 ## Conocido y pendiente
 
 - **Portadas:** todas están en `img/` menos la de «La felicidad» (Rolón), que sigue en un servidor externo.
-- **Inicio:** los 4 libros destacados de `index.html` siguen escritos a mano; no cambian cuando el admin edita el catálogo.
 - **Video del recorrido:** sin subtítulos ni descripción en texto; algunos textos de la sección de video y audio no coinciden con el contenido.
 - **Catálogo:** el botón "Buscar", el selector "Todos los campos" y los botones del banner ("Sugerir un título", "Donar libros") todavía no tienen función. Los contadores de las categorías (840, 320…) son cifras de ejemplo.
 - **`registro.html`:** existe pero no está enlazada desde el sitio.

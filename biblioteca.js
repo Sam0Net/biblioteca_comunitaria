@@ -202,7 +202,8 @@
     },
 
     // Arma la tarjeta de un libro (misma estructura que usaban las tarjetas escritas a mano)
-    crearTarjeta(libro, indice) {
+    // enlace=true: tarjeta del inicio, cuyo botón lleva al catálogo en vez de reservar
+    crearTarjeta(libro, indice, enlace) {
       const el = (etiqueta, clase, contenido) => {
         const nodo = document.createElement(etiqueta);
         if (clase) nodo.className = clase;
@@ -258,9 +259,15 @@
 
       const acciones = el("div", "acciones-tarjeta");
       const sala = libro.estado === "sala";
-      const accion = el("button", sala ? "boton-accion-secundario" : "boton-accion-primario");
-      accion.type = "button";
-      accion.append(icono(sala ? "chair" : "bookmark_add"), el("span", "", sala ? "Pedir en Sala" : "Reservar"));
+      const accion = el(enlace ? "a" : "button", sala ? "boton-accion-secundario" : "boton-accion-primario");
+      if (enlace) accion.href = "libros.html";
+      else accion.type = "button";
+      accion.append(icono(sala ? "chair" : "bookmark_add"), el("span", "", enlace ? "Ver en Catálogo" : sala ? "Pedir en Sala" : "Reservar"));
+      if (enlace) {
+        acciones.append(accion);
+        tarjeta.append(cuerpo, acciones);
+        return tarjeta;
+      }
       const info = el("button", "boton-accion-info");
       info.type = "button";
       info.setAttribute("aria-label", "Ver detalles y opiniones de " + libro.titulo);
@@ -279,5 +286,14 @@
   const rejilla = document.querySelector(".rejilla-libros");
   if (rejilla && rejilla.closest("main")) {
     rejilla.replaceChildren(...libros().map((libro, i) => Biblioteca.crearTarjeta(libro, i)));
+  }
+
+  // En index.html: los 4 libros con más lectores (la sección se llama "Libros más leídos")
+  const destacados = document.querySelector(".rejilla-destacados-inicio");
+  if (destacados) {
+    const masLeidos = libros()
+      .sort((a, b) => b.lectores - a.lectores || b.nota - a.nota)
+      .slice(0, 4);
+    destacados.replaceChildren(...masLeidos.map((libro, i) => Biblioteca.crearTarjeta(libro, i + 1, true)));
   }
 })();

@@ -4919,3 +4919,81 @@ section[id] {
     background-color: #ffc9c3;
   }
 }
+
+/* Botón de información de las tarjetas: 44px en pantallas táctiles (los libros agregados por el admin usan el mismo) */
+@media (pointer: coarse) {
+  .boton-accion-info {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Tablas del panel: el texto puede partirse en líneas y, en el celular, las celdas son más angostas para que quepan sin desplazar */
+.tarjeta-admin .tabla-botanica {
+  white-space: normal;
+}
+
+.tarjeta-admin .tabla-botanica td {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .fila-acciones-admin > * {
+    flex: 1 1 100%;
+  }
+
+  /* En el celular cada fila de la tabla pasa a ser una ficha: etiqueta a la izquierda, dato a la derecha */
+  .tabla-apilable thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .tabla-apilable,
+  .tabla-apilable tbody,
+  .tabla-apilable tr {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-apilable tbody tr {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .tarjeta-admin .tabla-apilable tbody td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 1rem;
+    text-align: right;
+  }
+
+  .tabla-apilable tbody td[data-etiqueta]::before {
+    content: attr(data-etiqueta);
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-align: left;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .tabla-apilable .celda-acciones {
+    justify-content: flex-end;
+    padding-top: 0.5rem;
+  }
+}
+
+/* 16px en los campos del panel evita que el celular acerque la pantalla al escribir */
+@media (pointer: coarse) {
+  .formulario-libro .input-contacto,
+  .formulario-libro .select-contacto,
+  .formulario-libro .textarea-contacto {
+    font-size: 1rem;
+  }
+}
