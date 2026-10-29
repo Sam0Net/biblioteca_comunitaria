@@ -181,5 +181,160 @@ window.LIBROS_ORIGINALES = [
     "descripcion": "El poder curativo de la naturaleza y la amistad contado a través de un jardín olvidado que vuelve a la vida gracias a tres niños.",
     "portada": "img/portada-el-jardin-secreto.jpg",
     "copias": 3
+  },
+  {
+    "id": "tan-poca-vida",
+    "titulo": "Tan poca vida",
+    "autor": "Hanya Yanagihara",
+    "genero": "Novela contemporánea",
+    "icono": "menu_book",
+    "categorias": [
+      "novela"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "La historia de cuatro amigos en Nueva York a lo largo de las décadas, y de Jude, cuyo pasado doloroso marca todas sus relaciones. Una novela sobre la amistad, el trauma y el cuidado.",
+    "portada": "img/portada-tan-poca-vida.jpg",
+    "copias": 1
+  },
+  {
+    "id": "el-tunel",
+    "titulo": "El túnel",
+    "autor": "Ernesto Sabato",
+    "genero": "Novela argentina",
+    "icono": "menu_book",
+    "categorias": [
+      "novela",
+      "clasicos"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "El pintor Juan Pablo Castel confiesa cómo se fue obsesionando con María Iribarne, la única persona que parecía entender su obra. Una novela breve e intensa sobre la soledad y los celos.",
+    "portada": "img/portada-el-tunel.jpg",
+    "copias": 1
+  },
+  {
+    "id": "boulevard",
+    "titulo": "Boulevard",
+    "autor": "Flor M. Salvador",
+    "genero": "Romance juvenil",
+    "icono": "menu_book",
+    "categorias": [
+      "novela"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Novela romántica juvenil de Flor M. Salvador, muy leída entre lectores jóvenes. Esta edición está ilustrada por MMIvens.",
+    "portada": "img/portada-boulevard.jpg",
+    "copias": 1
+  },
+  {
+    "id": "los-ojos-de-mi-princesa",
+    "titulo": "Los ojos de mi princesa",
+    "autor": "Carlos Cuauhtémoc Sánchez",
+    "genero": "Novela juvenil",
+    "icono": "menu_book",
+    "categorias": [
+      "novela",
+      "infantil"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Novela juvenil del escritor mexicano Carlos Cuauhtémoc Sánchez sobre el amor, los valores y la superación personal.",
+    "portada": "img/portada-los-ojos-de-mi-princesa.jpg",
+    "copias": 1
+  },
+  {
+    "id": "la-vegetariana",
+    "titulo": "La vegetariana",
+    "autor": "Han Kang",
+    "genero": "Novela coreana",
+    "icono": "menu_book",
+    "categorias": [
+      "novela"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Yeong-hye decide dejar de comer carne tras un sueño perturbador, y su decisión desata la reacción de su familia. Una novela inquietante de la ganadora del Nobel de Literatura 2024.",
+    "portada": "img/portada-la-vegetariana.jpg",
+    "copias": 1
+  },
+  {
+    "id": "lo-que-no-tiene-nombre",
+    "titulo": "Lo que no tiene nombre",
+    "autor": "Piedad Bonnett",
+    "genero": "Memoria y duelo",
+    "icono": "psychology",
+    "categorias": [
+      "psicoanalisis"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Piedad Bonnett escribe sobre el suicidio de su hijo Daniel y sobre el duelo de quienes se quedan. Un relato íntimo y conmovedor de la poeta colombiana.",
+    "portada": "img/portada-lo-que-no-tiene-nombre.jpg",
+    "copias": 1
+  },
+  {
+    "id": "indigno-de-ser-humano",
+    "titulo": "Indigno de ser humano",
+    "autor": "Osamu Dazai",
+    "genero": "Novela japonesa",
+    "icono": "menu_book",
+    "categorias": [
+      "novela",
+      "clasicos"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Yozo Oba cuenta su vida, marcada por la sensación de no encajar entre los demás. Una novela japonesa de 1948, considerada un clásico del siglo XX.",
+    "portada": "img/portada-indigno-de-ser-humano.jpg",
+    "copias": 1
+  },
+  {
+    "id": "poesia-completa-pizarnik",
+    "titulo": "Poesía completa",
+    "autor": "Alejandra Pizarnik",
+    "genero": "Poesía argentina",
+    "icono": "draw",
+    "categorias": [
+      "poesia"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Reúne la obra poética de la argentina Alejandra Pizarnik, con su lenguaje breve e intenso sobre la soledad, la noche y el silencio.",
+    "portada": "img/portada-poesia-completa-pizarnik.jpg",
+    "copias": 1
   }
 ];
