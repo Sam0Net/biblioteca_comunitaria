@@ -127,11 +127,12 @@ typography:
     lineHeight: 16px
     letterSpacing: 0.04em
 rounded:
-  sm: 0.25rem
-  DEFAULT: 0.5rem
-  md: 0.75rem
-  lg: 1rem
-  xl: 1.5rem
+  xs: 6px
+  sm: 10px
+  md: 14px
+  lg: 20px
+  xl: 28px
+  2xl: 36px
   full: 9999px
 spacing:
   space-2xs: 0.25rem

@@ -1,106 +1,141 @@
 /* ==========================================================================
    PORTAL WEB BIBLIOTECA COMUNITARIA - "LEER NOS UNE"
-   Taller de Programación Web | Avance 1 y Avance 2
+   Proyecto académico: Taller de Programación Web.
+   Hoja de estilos única del sitio: index, libros, servicios, contacto,
+   registro, login y las dos páginas de redirección.
    --------------------------------------------------------------------------
-   REDISEÑO INTEGRAL CON APPLE DESIGN (WWDC Human Interface Guidelines)
-   Principios de diseño aplicados:
-   1. Respuesta Inmediata y Táctil (Kill Latency): Retroalimentación física
-      instantánea en pulsación (:active { transform: scale(0.975); }).
-   2. Materiales Translúcidos y Profundidad: Superficies de cristal esmerilado
-      (backdrop-filter: blur(20px) saturate(180%)), bordes hairline de luz y
-      sombras multicapa de oclusión ambiental.
-   3. Tipografía Óptica y Jerarquía: Sistema tipográfico nativo de Apple
-      (SF Pro Display / SF Pro Text) con respaldo web; tracking óptico negativo
-      en encabezados display (-0.025em) y leading proporcional calibrado.
-   4. Comportamiento Físico y Amortiguamiento: Curvas de resorte críticamente
-      amortiguadas (cubic-bezier(0.16, 1, 0.3, 1)) para interacción continua.
-   5. Accesibilidad Integral: Soporte completo para prefers-reduced-motion
-      (sustitución de movimiento por cross-fade), prefers-reduced-transparency
-      (superficies sólidas de alto contraste) y navegación por teclado :focus-visible.
+   DIRECCIÓN DE ARTE: "biblioteca de barrio con jardín" (ver DESIGN.md)
+   - Paleta botánica: pergamino, verde bosque, salvia y ámbar accesible.
+   - Tipografía: Fredoka (títulos, marca y botones) y Plus Jakarta Sans (texto).
+   - Todo color, espacio, radio, sombra y curva de movimiento sale de las
+     variables de la sección 1 (:root): se cambian en un solo lugar.
+   PRINCIPIOS
+   - Accesibilidad: contraste AA medido, foco visible de 3px, objetivos
+     táctiles de 44px en pantallas táctiles y respeto de prefers-reduced-motion.
+   - Movimiento: transform y opacity, con fundidos cortos; sin animaciones
+     infinitas.
+   - Adaptable: consultas de medios (@media); sin desbordes de 320 a 1440px.
+   - HTML con clases semánticas en español y sin estilos en línea.
+   - Las secciones 25 a 37 van al final a propósito: al ser posteriores ganan
+     en la cascada sin necesidad de !important.
    --------------------------------------------------------------------------
-   TEMAS ACADÉMICOS EVALUADOS:
-   - HTML: Estructura semántica (header, nav, main, section, article, aside,
-     footer, figure, caption), formularios accesibles, multimedia (audio/video),
-     tablas de datos complejas.
-   - CSS: Personalización tipográfica, Box Model, Flexbox, Grid Layout,
-     Reglas AT (@media queries), Animaciones (@keyframes), Transiciones y DevTools.
+   ÍNDICE
+    1. VARIABLES DE DISEÑO (DESIGN TOKENS)
+    2. REINICIO BASE Y TIPOGRAFÍA
+    3. ACCESIBILIDAD BASE: ENLACE DE SALTO, FOCO Y PULSACIÓN
+    4. ENCABEZADO Y NAVEGACIÓN
+    5. CONTENEDOR PRINCIPAL Y RESPLANDORES AMBIENTALES
+    6. HÉROE (index.html, contacto.html y registro.html)
+    7. CABECERAS DE SECCIÓN CENTRADAS (JERARQUÍA Y TRACKING ÓPTICO)
+    8. TARJETAS DE LIBROS (index.html y libros.html)
+    9. CATÁLOGO: BÚSQUEDA, CATEGORÍAS, FILTROS Y CONTROLES (libros.html)
+   10. AGENDA COMUNITARIA Y ACTIVIDADES (index.html)
+   11. MULTIMEDIA: VIDEO Y AUDIO (index.html)
+   12. CONVIVENCIA Y NORMAS VECINALES (index.html)
+   13. SERVICIOS COMUNITARIOS Y HORARIO SEMANAL (servicios.html)
+   14. TABLAS DE DATOS (servicios.html y contacto.html)
+   15. FORMULARIOS (contacto.html y registro.html)
+   16. CARNET DE EJEMPLO (registro.html)
+   17. CANALES DE ATENCIÓN Y PREGUNTAS FRECUENTES (contacto.html)
+   18. LLAMADO A LA ACCIÓN GLOBAL (CTA BANNER)
+   19. ACCESO Y REGISTRO (login.html)
+   20. PIE DE PÁGINA (global)
+   21. ANIMACIONES (@keyframes) Y MOVIMIENTO
+   22. ACCESIBILIDAD: PREFERENCIAS DEL SISTEMA (MOVIMIENTO, TRANSPARENCIA Y CONTRASTE)
+   23. HERRAMIENTAS DE SOPORTE Y DIAGNÓSTICO EN NAVEGADORES (DEVTOOLS)
+   24. COMPONENTES ADICIONALES Y CLASES ESPECÍFICAS DE PÁGINA
+   25. REGLAS RESPONSIVAS COMPLEMENTARIAS (MÓVILES Y TABLETS)
+   26. CLASES DE APOYO (sustituyen estilos en línea del HTML)
+   28. ESTRUCTURA HTML: dirección del pie y anclas bajo el encabezado fijo
+   29. CAMBIO ENTRE INICIAR SESIÓN Y CREAR CUENTA (login.html)
+   30. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
+   31. DETALLE DEL LIBRO Y AVISOS (libros.html)
+   32. PANEL DE ADMINISTRACIÓN Y AVISO DE ERROR EN LOGIN (admin.html, login.html)
+   33. GESTIÓN DE LIBROS EN EL PANEL (admin.html)
+   34. DONACIONES DE LIBROS (libros.html y admin.html)
+   35. CARRUSEL DE LOS LIBROS MÁS LEÍDOS (index.html)
+   36. TÍTULO CON HOJAS Y FLORES (index.html)
+   37. PANEL DE SINOPSIS DE CRISTAL (libros.html)
    ========================================================================== */
 
 /* ==========================================================================
-   1. VARIABLES DE DISEÑO (DESIGN TOKENS) - APPLE DESIGN & PALETA BOTÁNICA
+   1. VARIABLES DE DISEÑO (DESIGN TOKENS)
    ========================================================================== */
 :root {
   /* Lienzo y Superficies de Fondo */
-  --canvas: #fbfbfd;
-  --surface: #fbfbfd;
+  --canvas: #fef9f0;
+  --surface: #fef9f0;
   --surface-card: #ffffff;
-  --surface-glass: rgba(251, 251, 253, 0.82);
-  --surface-secondary: #f5f5f7;
-  --surface-tertiary: #ebebf0;
+  --surface-glass: rgba(254, 249, 240, 0.88);
+  --surface-secondary: #f4efe6;
+  --surface-tertiary: #ece8df;
   --surface-dim: #ded9d1;
   --surface-bright: #ffffff;
   --surface-container-lowest: #ffffff;
-  --surface-container-low: #fbfbfd;
-  --surface-container: #f5f5f7;
-  --surface-container-high: #eeeff2;
-  --surface-container-highest: #e5e5ea;
+  --surface-container-low: #f8f3ea;
+  --surface-container: #f2ede4;
+  --surface-container-high: #ece8df;
+  --surface-container-highest: #e7e2d9;
 
-  /* Textos y Contrastes (Jerarquía de Contraste Apple WCAG AAA) */
-  --text-primary: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-tertiary: #86868b;
-  --on-surface: #1d1d1f;
-  --on-surface-variant: #6e6e73;
-  --inverse-surface: #1d1d1f;
-  --inverse-on-surface: #f5f5f7;
+  /* Textos y contrastes (medidos, WCAG AA) */
+  --text-primary: #1d1c16;
+  --text-secondary: #404944;
+  --text-tertiary: #5b635e;
+  --on-surface: #1d1c16;
+  --on-surface-variant: #404944;
+  --inverse-surface: #32302a;
+  --inverse-on-surface: #f5f0e7;
 
-  /* Paleta Botánica Refinada (Apple Forest & Vibrant Emerald) */
-  --forest-dark: #0b3323;
-  --forest-deep: #12402e;
-  --primary: #007a52;
-  --primary-hover: #006342;
-  --primary-container: #0b3323;
+  /* Paleta botánica: verde bosque y salvia */
+  --forest-dark: #123b2d;
+  --forest-deep: #1a4d3b;
+  --primary: #1a4d3b;
+  --primary-hover: #123b2d;
+  --primary-container: #1a4d3b;
   --on-primary: #ffffff;
   --on-primary-container: #a3e6cb;
-  --primary-fixed: #c6f2df;
+  --primary-fixed: #b9eed5;
   --primary-fixed-dim: #a3e6cb;
   --on-primary-fixed: #002619;
-  --primary-subtle: #eef8f3;
-  --verde-salvia: #e8f4ed;
-  --verde-claro: #d1ebd9;
-  --sage-subtle: #e8f4ed;
-  --sage-container: #d4eade;
+  --primary-subtle: #e8f3ee;
+  --verde-salvia: #e8f3ee;
+  --verde-claro: #d4e6dd;
+  --sage-subtle: #e8f3ee;
+  --sage-container: #d4e6dd;
 
   /* Acentos Secundarios y Cálidos (Ámbar, Miel y Dorado) */
   --secondary: #52625b;
   --on-secondary: #ffffff;
   --secondary-container: #d2e4db;
   --on-secondary-container: #56665f;
-  --warm-amber: #d97706;
+  --warm-amber: #c48849;
+  --amber-strong: #8a5320; /* ámbar oscuro: 5.4:1 sobre pergamino, sirve para texto, iconos y subrayados */
   --amber-hover: #b45309;
-  --amber-subtle: #fef3c7;
+  --amber-subtle: #ffdcbe;
   --ambar-claro: #fffbeb;
   --tertiary: #92400e;
-  --tertiary-container: #fef3c7;
+  --tertiary-container: #ffdcbe;
 
   /* Estados de Disponibilidad */
-  --status-available: #007a52;
-  --status-borrowed: #d97706;
-  --status-reserved: #0284c7;
+  --status-available: #2b6e4e;
+  --status-borrowed: #92400e;
+  --status-reserved: #2f5c78;
 
   /* Bordes Hairline y Separadores Físicos */
-  --border-hairline: rgba(0, 0, 0, 0.08);
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --border-strong: rgba(0, 0, 0, 0.16);
+  --border-hairline: rgba(26, 77, 59, 0.15);
+  --border-subtle: rgba(26, 77, 59, 0.1);
+  --border-strong: rgba(26, 77, 59, 0.3);
+  /* Borde de campos de formulario: 4.37:1 sobre blanco (WCAG 1.4.11 pide 3:1) */
+  --borde-campo: #6b7d74;
   --outline: rgba(0, 0, 0, 0.12);
   --outline-variant: rgba(0, 0, 0, 0.06);
-  --parchment-base: #f5f5f7;
-  --parchment-sheet: #ffffff;
+  --parchment-base: #f4efe6;
+  --parchment-sheet: #fbf9f5;
   --paper-white: #ffffff;
 
-  /* Tipografías: Prioridad Sistema Nativo Apple (SF Pro) con Respaldo Google Fonts */
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Plus Jakarta Sans", system-ui, -system-ui, sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Plus Jakarta Sans", system-ui, -system-ui, sans-serif;
+  /* Tipografías: Fredoka (títulos, marca y botones) y Plus Jakarta Sans (texto), de Google Fonts */
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   /* Espaciados Proporcionales */
@@ -114,8 +149,10 @@
   --espacio-2xl: 2.5rem;
   --espacio-3xl: 3.5rem;
   --espacio-4xl: 5rem;
+  /* Margen lateral fluido compartido por encabezado y contenido (1rem móvil, 2.5rem escritorio) */
+  --gutter: clamp(1rem, 4vw, 2.5rem);
 
-  /* Radios de Borde Continuo (Squircles de Apple) */
+  /* Radios de borde */
   --radio-xs: 6px;
   --radio-sm: 10px;
   --radio-md: 14px;
@@ -126,19 +163,25 @@
 
   /* Sombras de Oclusión Ambiental Multicapa */
   --sombra-suave: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
-  --sombra-media: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-  --sombra-elevada: 0 12px 32px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --sombra-media: 0 4px 16px rgba(26, 77, 59, 0.07), 0 1px 3px rgba(26, 77, 59, 0.04);
+  --sombra-elevada: 0 20px 45px -10px rgba(26, 77, 59, 0.18), 0 2px 6px rgba(26, 77, 59, 0.05);
   --sombra-card-hover: 0 16px 36px -8px rgba(11, 51, 35, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
   --sombra-flotante: 0 24px 48px -12px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.04);
 
   /* Curvas de Movimiento Físico (Spring-like Transitions) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* Ritmo de espacios del sitio: el mismo hueco entre todas las secciones y el mismo entre un título y su contenido */
+  --ritmo-seccion: clamp(3.5rem, 6vw, 5rem);
+  --espacio-titulo: 2.5rem;
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); /* movimiento de un lugar a otro en pantalla (carrusel) */
   --spring-default: cubic-bezier(0.16, 1, 0.3, 1);
   --spring-snappy: cubic-bezier(0.25, 1, 0.5, 1);
   --spring-bounce: cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
 /* ==========================================================================
-   2. REINICIO BASE Y CONFIGURACIÓN TIPOGRÁFICA ÓPTICA
+   2. REINICIO BASE Y TIPOGRAFÍA
    ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -212,7 +255,8 @@ a {
   transition: color 180ms ease, opacity 180ms ease;
 }
 
-a:hover {
+/* Solo los enlaces de texto sin clase cambian de color: los botones y enlaces con clase definen el suyo */
+a:not([class]):hover {
   color: var(--primary-hover);
 }
 
@@ -231,14 +275,15 @@ img, picture, video {
 }
 
 /* ==========================================================================
-   3. ACCESIBILIDAD Y RESPUESTA FÍSICA INMEDIATA (KILL LATENCY)
+   3. ACCESIBILIDAD BASE: ENLACE DE SALTO, FOCO Y PULSACIÓN
    ========================================================================== */
 
 /* Enlace de Salto Accesible (Skip Link para lectores de pantalla y teclado) */
 .saltar-enlace {
   position: absolute;
-  top: -100px;
+  top: 1rem;
   left: 1rem;
+  transform: translateY(-250%);
   z-index: 9999;
   background-color: var(--primary);
   color: #ffffff;
@@ -247,23 +292,41 @@ img, picture, video {
   font-family: var(--font-body);
   font-weight: 600;
   box-shadow: var(--sombra-flotante);
-  transition: top 200ms var(--spring-snappy);
+  transition: transform 200ms var(--ease-out);
 }
 
 .saltar-enlace:focus {
-  top: 1rem;
+  transform: none;
   outline: 3px solid var(--primary-fixed);
 }
 
-/* Indicador de Foco Visible Estilo Apple (Focus Ring) */
+/* Indicador de foco visible */
+/* Contorno sólido de 3px (#1a4d3b: 9.2:1 sobre pergamino) con separación; respeta la forma del control */
 :focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.28), 0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Un elemento con el atributo hidden nunca se muestra, aunque otra regla le ponga display */
+[hidden] {
+  display: none !important;
+}
+
+/* Texto solo para lectores de pantalla (reemplaza el estilo en línea left:-9999px) */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* RESPUESTA TÁCTIL INMEDIATA (:active { transform: scale(0.975); })
-   Principio #1 de Apple Design: Respuesta instantánea en puntero presionado */
+   Respuesta instantánea al pulsar: el control se hunde un instante */
 button:active,
 .boton:active,
 .enlace-nav:active,
@@ -271,15 +334,11 @@ button:active,
 .tarjeta-evento-inicio:active,
 .tarjeta-servicio-inicio:active,
 .tarjeta-canal:active,
-.chip-categoria:active,
-.pildora-metrica:active,
 .boton-heroe-primario:active,
 .boton-heroe-secundario:active,
 .boton-carnet:active,
-.boton-filtro-accion:active,
 .boton-enviar-contacto:active,
 .boton-secundario-contacto:active,
-.boton-buscar:active,
 .boton-banner-primario:active,
 .boton-banner-secundario:active,
 .boton-vista:active,
@@ -294,7 +353,7 @@ button:active,
 }
 
 /* ==========================================================================
-   4. ENCABEZADO Y NAVEGACIÓN TRANSLÚCIDA (FROSTED GLASS MATERIAL)
+   4. ENCABEZADO Y NAVEGACIÓN
    ========================================================================== */
 .encabezado {
   position: sticky;
@@ -311,11 +370,26 @@ button:active,
 .contenedor-encabezado {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0.75rem 1.25rem;
-  display: flex;
+  padding: 0.75rem var(--gutter);
+  /* Grid 1fr auto 1fr: el menú queda centrado en la página sin importar el ancho de la marca o de los botones */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  column-gap: 1.5rem;
+}
+
+.contenedor-encabezado .marca-sitio {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.contenedor-encabezado .navegacion-principal {
+  grid-column: 2;
+}
+
+.contenedor-encabezado .acciones-usuario {
+  grid-column: 3;
+  justify-self: end;
 }
 
 /* Marca e Identidad */
@@ -335,8 +409,8 @@ button:active,
 .icono-marca {
   width: 40px;
   height: 40px;
-  border-radius: var(--radio-sm);
-  background: linear-gradient(135deg, var(--forest-dark) 0%, var(--primary) 100%);
+  border-radius: var(--radio-completo);
+  background-color: var(--primary);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -370,38 +444,57 @@ button:active,
   letter-spacing: 0.02em;
 }
 
-/* Navegación Principal (Estilo Segmented Control de Apple) */
+/* Navegación principal editorial: texto con subrayado ámbar en la página activa */
 .navegacion-principal {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  background-color: rgba(0, 0, 0, 0.03);
-  padding: 4px;
-  border-radius: var(--radio-completo);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  gap: 1.75rem;
 }
 
 .enlace-nav {
-  padding: 0.45rem 1.05rem;
+  position: relative;
+  padding: 0.5rem 0.15rem;
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--text-secondary);
-  border-radius: var(--radio-completo);
-  transition: all 180ms var(--spring-snappy);
+  border-bottom: 3px solid transparent;
+  transition: color 180ms ease;
   white-space: nowrap;
 }
 
-.enlace-nav:hover {
-  color: var(--text-primary);
-  background-color: rgba(0, 0, 0, 0.04);
+/* Subrayado animado: se dibuja con transform (no cambia el layout) */
+.enlace-nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 3px;
+  background-color: var(--border-strong);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms var(--ease-out), background-color 180ms ease;
 }
 
 .enlace-nav.activo {
   color: var(--primary);
-  background-color: #ffffff;
-  font-weight: 600;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  font-weight: 700;
+}
+
+.enlace-nav.activo::after {
+  background-color: var(--amber-strong);
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .enlace-nav:hover {
+    color: var(--primary);
+  }
+
+  .enlace-nav:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 /* Acciones de Usuario y Botón Carnet */
@@ -416,22 +509,24 @@ button:active,
   align-items: center;
   gap: 0.45rem;
   padding: 0.5rem 1.15rem;
-  background: linear-gradient(135deg, var(--forest-dark) 0%, var(--primary) 100%);
+  background-color: var(--primary);
   color: #ffffff;
   border-radius: var(--radio-completo);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  box-shadow: 0 2px 8px rgba(0, 122, 82, 0.24);
+  box-shadow: 0 2px 8px rgba(26, 77, 59, 0.24);
   transition: transform 180ms var(--spring-snappy), box-shadow 180ms ease, opacity 180ms ease;
   text-decoration: none;
 }
 
-.boton-carnet:hover {
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 122, 82, 0.35);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .boton-carnet:hover {
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(26, 77, 59, 0.35);
+    transform: translateY(-1px);
+  }
 }
 
 .boton-carnet .material-symbols-outlined {
@@ -455,7 +550,7 @@ button:active,
   object-fit: cover;
 }
 
-/* Botón de Menú Hamburguesa Móvil (Apple HIG Touch Target) */
+/* Botón del menú móvil (hamburguesa) */
 .boton-menu-movil {
   display: none;
   align-items: center;
@@ -467,13 +562,22 @@ button:active,
   border: 1px solid var(--border-hairline);
   color: var(--text-primary);
   cursor: pointer;
-  transition: all 180ms var(--spring-snappy);
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
   padding: 0;
   flex-shrink: 0;
+  position: relative;
 }
 
-.boton-menu-movil:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+@media (hover: hover) and (pointer: fine) {
+  .boton-menu-movil:hover {
+    background-color: rgba(26, 77, 59, 0.08);
+  }
+}
+
+/* Los dos iconos se apilan y se alternan con opacity + transform */
+.boton-menu-movil .material-symbols-outlined {
+  position: absolute;
+  transition: opacity 160ms ease, transform 200ms var(--ease-out);
 }
 
 .boton-menu-movil:active {
@@ -481,52 +585,57 @@ button:active,
 }
 
 .boton-menu-movil .icono-menu-cerrar {
-  display: none;
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
 }
 
 .boton-menu-movil.activo {
   background-color: var(--primary-subtle);
   color: var(--primary);
-  border-color: rgba(0, 122, 82, 0.2);
+  border-color: rgba(26, 77, 59, 0.2);
 }
 
 .boton-menu-movil.activo .icono-menu-abrir {
-  display: none;
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
 }
 
 .boton-menu-movil.activo .icono-menu-cerrar {
-  display: inline-block;
+  opacity: 1;
+  transform: none;
 }
 
-/* Menú Desplegable Móvil (Drawer Translúcido Apple con Blur & Vibrancy) */
+/* Menú desplegable móvil (panel translúcido con desenfoque) */
 .menu-movil-desplegable {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  background-color: rgba(251, 251, 253, 0.96);
+  background-color: rgba(254, 249, 240, 0.96);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid var(--border-hairline);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
   padding: 1rem 1.25rem 1.5rem;
   z-index: 999;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 180ms ease, transform 180ms var(--ease-out), display 180ms allow-discrete;
 }
 
+/* Si el navegador no soporta display discreto, el menu aparece y desaparece sin animar */
 .menu-movil-desplegable.abierto {
   display: block;
-  animation: aparecerMenuMovil 260ms var(--spring-default) forwards;
+  opacity: 1;
+  transform: none;
+  transition-duration: 220ms, 260ms, 260ms;
 }
 
-@keyframes aparecerMenuMovil {
-  from {
+@starting-style {
+  .menu-movil-desplegable.abierto {
     opacity: 0;
     transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -544,15 +653,17 @@ button:active,
   border-radius: var(--radio-md);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   text-decoration: none;
-  transition: all 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease;
   border: 1px solid transparent;
 }
 
-.enlace-nav-movil:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+@media (hover: hover) and (pointer: fine) {
+  .enlace-nav-movil:hover {
+    background-color: rgba(26, 77, 59, 0.06);
+  }
 }
 
 .enlace-nav-movil:active {
@@ -563,7 +674,7 @@ button:active,
   background-color: var(--primary-subtle);
   color: var(--primary);
   font-weight: 600;
-  border-color: rgba(0, 122, 82, 0.12);
+  border-color: rgba(26, 77, 59, 0.12);
 }
 
 .enlace-nav-movil .flecha-nav {
@@ -586,8 +697,19 @@ button:active,
     display: flex;
   }
 
+  /* Sin menú central: el grid pasa a marca + acciones para no desperdiciar una columna vacía */
   .contenedor-encabezado {
-    padding: 0.65rem 1rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 0.75rem;
+    padding-block: 0.65rem;
+  }
+
+  .contenedor-encabezado .acciones-usuario {
+    grid-column: 2;
+  }
+
+  .nombre-marca {
+    white-space: nowrap;
   }
 
   .boton-carnet span:last-child {
@@ -608,6 +730,8 @@ button:active,
   flex: 1;
   position: relative;
   width: 100%;
+  /* Recorta los resplandores decorativos que sobresalen, sin crear scroll horizontal */
+  overflow-x: clip;
 }
 
 .contenedor-flotante {
@@ -615,7 +739,17 @@ button:active,
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.25rem 4rem;
+  padding: 2.5rem var(--gutter) var(--ritmo-seccion);
+}
+
+/* Todas las secciones de una página se separan con el mismo hueco; la última deja el hueco al pie con el relleno del contenedor */
+.contenedor-flotante > section,
+.contenedor-flotante > .contenedor-catalogo {
+  margin-bottom: var(--ritmo-seccion);
+}
+
+.contenedor-flotante > :last-child {
+  margin-bottom: 0;
 }
 
 /* Resplandores Sutiles de Luz (Ambient Lighting) */
@@ -633,7 +767,7 @@ button:active,
   right: -80px;
   width: 480px;
   height: 480px;
-  background: radial-gradient(circle, rgba(163, 230, 203, 0.35) 0%, rgba(251, 251, 253, 0) 70%);
+  background: radial-gradient(circle, rgba(163, 230, 203, 0.35) 0%, rgba(254, 249, 240, 0) 70%);
 }
 
 .resplandor-medio {
@@ -641,46 +775,38 @@ button:active,
   left: -100px;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, rgba(254, 243, 199, 0.3) 0%, rgba(251, 251, 253, 0) 70%);
+  background: radial-gradient(circle, rgba(254, 243, 199, 0.3) 0%, rgba(254, 249, 240, 0) 70%);
 }
 
 /* ==========================================================================
-   6. HÉROE DE INICIO ESTILO APPLE KEYNOTE
+   6. HÉROE (index.html, contacto.html y registro.html)
    ========================================================================== */
 .seccion-heroe {
-  padding: 2.5rem 0 3.5rem;
+  padding: 0;
 }
 
+/* La bienvenida va directamente sobre el pergamino de la página: sin caja que la encierre */
 .tarjeta-heroe {
-  background: #ffffff;
-  border-radius: var(--radio-xl);
-  padding: 2.75rem 2.5rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-media);
   position: relative;
-  overflow: hidden;
+  padding: 1.5rem 0 1rem;
 }
 
 .rejilla-heroe-inicio {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem;
   align-items: center;
 }
 
 @media (min-width: 1024px) {
   .rejilla-heroe-inicio {
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
     gap: 3.5rem;
   }
 }
 
 /* Insignias y Overlines con Tracking Positivo (0.06em) */
-.insignia-tema,
-.insignia-subtitulo-centrada,
-.insignia-normas,
-.insignia-semillero,
-.insignia-conteo {
+.insignia-semillero {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -694,15 +820,16 @@ button:active,
   padding: 0.35rem 0.85rem;
   border-radius: var(--radio-completo);
   margin-bottom: 1.25rem;
-  border: 1px solid rgba(0, 122, 82, 0.12);
+  border: 1px solid rgba(26, 77, 59, 0.12);
 }
 
 .titulo-heroe {
   font-size: clamp(2.2rem, 4.2vw, 3.4rem);
-  line-height: 1.08;
-  letter-spacing: -0.028em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
+  text-wrap: balance;
 }
 
 .descripcion-heroe {
@@ -720,12 +847,11 @@ button:active,
   margin-bottom: 2.25rem;
 }
 
-/* Botones Apple con Física de Resorte y Esquinas Continuas */
+/* Botones principal y secundario (píldoras) */
 .boton-heroe-primario,
 .boton-accion-primario,
 .boton-banner-primario,
-.boton-enviar-contacto,
-.boton-buscar {
+.boton-enviar-contacto {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -734,44 +860,44 @@ button:active,
   background-color: var(--primary);
   color: #ffffff;
   border-radius: var(--radio-completo);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   border: 1px solid transparent;
-  box-shadow: 0 2px 8px rgba(0, 122, 82, 0.2);
+  box-shadow: 0 2px 8px rgba(26, 77, 59, 0.2);
   transition: transform 240ms var(--spring-default), box-shadow 240ms ease, background-color 180ms ease;
   cursor: pointer;
   text-decoration: none;
 }
 
-.boton-heroe-primario:hover,
-.boton-accion-primario:hover,
-.boton-banner-primario:hover,
-.boton-enviar-contacto:hover,
-.boton-buscar:hover {
-  background-color: var(--primary-hover);
-  box-shadow: 0 4px 14px rgba(0, 122, 82, 0.32);
-  transform: translateY(-2px);
-  color: #ffffff;
+@media (hover: hover) and (pointer: fine) {
+  .boton-heroe-primario:hover,
+  .boton-accion-primario:hover,
+  .boton-banner-primario:hover,
+  .boton-enviar-contacto:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 4px 14px rgba(26, 77, 59, 0.32);
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
 }
 
 .boton-heroe-secundario,
 .boton-accion-secundario,
 .boton-banner-secundario,
 .boton-secundario-contacto,
-.boton-limpiar,
-.boton-etiqueta {
+.boton-limpiar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   padding: 0.8rem 1.5rem;
-  background-color: var(--surface-secondary);
-  color: var(--text-primary);
+  background-color: var(--sage-container);
+  color: var(--primary);
   border-radius: var(--radio-completo);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   border: 1px solid var(--border-hairline);
@@ -781,65 +907,40 @@ button:active,
   text-decoration: none;
 }
 
-.boton-heroe-secundario:hover,
-.boton-accion-secundario:hover,
-.boton-banner-secundario:hover,
-.boton-secundario-contacto:hover,
-.boton-limpiar:hover,
-.boton-etiqueta:hover {
-  background-color: #ffffff;
-  border-color: rgba(0, 0, 0, 0.14);
-  transform: translateY(-2px);
-  color: var(--text-primary);
+@media (hover: hover) and (pointer: fine) {
+  .boton-heroe-secundario:hover,
+  .boton-accion-secundario:hover,
+  .boton-banner-secundario:hover,
+  .boton-secundario-contacto:hover,
+  .boton-limpiar:hover {
+    background-color: #c5dbcf;
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+    color: var(--primary);
+  }
 }
 
-/* Píldoras de Métricas Translúcidas (Fila de Métricas) */
-.fila-metricas {
+/* Columna de texto del héroe: el espacio vertical lo define el gap del contenedor, no el margin de cada hijo */
+.contenido-heroe {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
 }
 
-.pildora-metrica {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.95rem;
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radio-completo);
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  transition: transform 200ms var(--spring-snappy), background-color 180ms ease;
+.contenido-heroe > * {
+  margin: 0;
 }
 
-.pildora-metrica:hover {
-  background-color: #ffffff;
-  border-color: rgba(0, 0, 0, 0.12);
-}
-
-.pildora-metrica .valor-metrica {
-  font-weight: 700;
-  color: var(--text-primary);
-  font-family: var(--font-display);
-}
-
-.icono-verde {
-  color: var(--primary);
-  font-size: 18px;
+.contenido-heroe > .fila-botones-heroe {
+  margin-top: 0.75rem;
 }
 
 .icono-ambar {
-  color: var(--warm-amber);
+  color: var(--amber-strong);
   font-size: 18px;
-}
-
-.pildora-disponible {
-  background-color: var(--primary-subtle);
-  border-color: rgba(0, 122, 82, 0.15);
-  color: var(--primary);
-  font-weight: 600;
 }
 
 .punto-pulso {
@@ -847,7 +948,7 @@ button:active,
   height: 8px;
   border-radius: var(--radio-completo);
   background-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 122, 82, 0.2);
+  box-shadow: 0 0 0 3px rgba(26, 77, 59, 0.2);
   display: inline-block;
 }
 
@@ -877,42 +978,63 @@ button:active,
   display: block;
 }
 
-/* Insignias Flotantes en Marco Héroe */
-.insignia-flotante-heroe {
-  position: absolute;
-  z-index: 2;
+/* ==========================================================================
+   7. CABECERAS DE SECCIÓN (título a la izquierda, enlace opcional a la derecha)
+   ========================================================================== */
+.cabecera-seccion {
+  max-width: 680px;
+  margin: 0 0 var(--espacio-titulo);
+}
+
+/* Título de una sección centrado sobre su contenido (el carrusel de libros) */
+.cabecera-seccion.cabecera-seccion-centro {
+  max-width: none;
+  margin: 0;
+  text-align: center;
+}
+
+.titulo-seccion-inicio.titulo-destacados {
+  margin: 0;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.05;
+  color: var(--primary);
+  text-wrap: balance;
+}
+
+.fila-enlace-seccion {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+/* Enlace de sección con forma de botón secundario: sin subrayados que se partan en dos */
+.enlace-seccion {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.55rem 1rem;
-  background-color: rgba(255, 255, 255, 0.9);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border-radius: var(--radio-completo);
-  box-shadow: var(--sombra-media);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  font-size: 0.8rem;
+  min-height: 48px;
+  padding: 0.6rem 1.4rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--primary);
+  text-decoration: none;
+  background-color: var(--sage-container);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-completo);
+  transition: background-color 180ms ease, border-color 180ms ease, gap 180ms var(--ease-out);
 }
 
-.insignia-superior-derecha {
-  top: -12px;
-  right: -12px;
+.enlace-seccion .material-symbols-outlined {
+  font-size: 20px;
 }
 
-.insignia-inferior-izquierda {
-  bottom: -12px;
-  left: -12px;
-}
-
-/* ==========================================================================
-   7. CABECERAS DE SECCIÓN CENTRADAS (JERARQUÍA Y TRACKING ÓPTICO)
-   ========================================================================== */
-.cabecera-seccion-centrada {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto 3rem;
+@media (hover: hover) and (pointer: fine) {
+  .enlace-seccion:hover {
+    gap: 0.75rem;
+    background-color: #c5dbcf;
+    border-color: var(--primary);
+  }
 }
 
 .titulo-seccion-inicio {
@@ -924,150 +1046,177 @@ button:active,
 }
 
 .descripcion-seccion-inicio {
-  font-size: 1.05rem;
+  font-size: 1.0625rem;
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
 /* ==========================================================================
-   8. CATÁLOGO Y TARJETAS DE LIBROS (APPLE FLUID CARDS)
+   8. TARJETAS DE LIBROS (index.html y libros.html)
    ========================================================================== */
 .seccion-destacados-inicio,
 .columna-catalogo {
-  margin-bottom: 4rem;
+  margin-bottom: 0;
 }
 
-.rejilla-destacados-inicio,
+/* Al llegar desde el carrusel del inicio, el libro queda visible bajo el encabezado y se marca un momento */
+.tarjeta-libro {
+  scroll-margin-top: 7rem;
+}
+
+.tarjeta-libro.resaltado .contenedor-portada {
+  outline: 3px solid var(--primary);
+  outline-offset: 5px;
+}
+
+/* Estantería: 4 portadas por fila en escritorio, 2 en celular. La portada va entera (proporción 2:3), sin recortar. */
 .rejilla-libros {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+  gap: 2.5rem 1.75rem;
 }
 
-/* Vista Alternativa en Lista (macOS / iPadOS List View) */
-.rejilla-libros.vista-lista {
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-}
-
-.rejilla-libros.vista-lista .tarjeta-libro {
-  flex-direction: row;
-  align-items: center;
-  gap: 1.75rem;
-  padding: 1.25rem 1.5rem;
-}
-
-.rejilla-libros.vista-lista .contenedor-portada {
-  width: 120px;
-  height: 160px;
-  margin-bottom: 0;
-  flex-shrink: 0;
+@media (min-width: 1024px) {
+  .rejilla-libros {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
-  .rejilla-libros.vista-lista .tarjeta-libro {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .rejilla-libros.vista-lista .contenedor-portada {
-    width: 100%;
-    height: 220px;
+  .rejilla-libros {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 1rem;
   }
 }
 
 .tarjeta-libro {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-lg);
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-suave);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  transition: transform 300ms var(--spring-default), box-shadow 300ms var(--spring-default), border-color 200ms ease;
   position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.tarjeta-libro:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sombra-card-hover);
-  border-color: rgba(0, 122, 82, 0.2);
-}
-
-.cuerpo-tarjeta {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  gap: 1rem;
 }
 
-/* Portada Flotante con Profundidad Apple */
+/* Portada con forma de libro: lomo a la izquierda, esquinas derechas más redondas */
 .contenedor-portada {
   position: relative;
-  width: 100%;
-  height: 230px;
-  border-radius: var(--radio-md);
+  aspect-ratio: 2 / 3;
   overflow: hidden;
-  margin-bottom: 1.15rem;
   background-color: var(--surface-secondary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-radius: 4px var(--radio-sm) var(--radio-sm) 4px;
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.14), 0 12px 24px -10px rgba(26, 77, 59, 0.3);
+  transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
 }
 
 .imagen-portada {
+  display: block;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: transform 400ms var(--spring-default);
-}
-
-.tarjeta-libro:hover .imagen-portada {
-  transform: scale(1.04);
+  object-fit: cover;
 }
 
 .sombra-lomo {
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 16px;
-  background: linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+  inset: 0 auto 0 0;
+  width: 12px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.08) 45%, transparent);
   pointer-events: none;
 }
 
-/* Insignias de Disponibilidad */
-.insignia-disponibilidad {
+/* El libro activo (cursor encima o enfocado con el teclado) crece un poco, como si se acercara a la pantalla */
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-libro.activa .contenedor-portada {
+    transform: scale(1.06);
+    box-shadow: 0 2px 6px rgba(17, 17, 17, 0.2), 0 28px 44px -12px rgba(26, 77, 59, 0.5);
+  }
+}
+
+.cuerpo-tarjeta {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.titulo-libro {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+/* Todo el libro es un solo objetivo: el título abre los detalles y su ::after cubre la tarjeta */
+.titulo-boton {
+  display: -webkit-box;
+  overflow: hidden;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.titulo-boton::after {
+  content: "";
   position: absolute;
-  top: 10px;
-  right: 10px;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--radio-sm);
+}
+
+.titulo-boton:focus-visible {
+  outline: none;
+}
+
+.titulo-boton:focus-visible::after {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.autor-libro {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.estado-libro {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.72rem;
+  gap: 0.45rem;
+  margin: 0.4rem 0 0;
+  font-size: 0.8125rem;
   font-weight: 600;
-  padding: 0.3rem 0.75rem;
-  border-radius: var(--radio-completo);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--sombra-suave);
-}
-
-.insignia-disponibilidad.disponible {
-  background-color: rgba(255, 255, 255, 0.92);
   color: var(--status-available);
-  border: 1px solid rgba(0, 122, 82, 0.2);
 }
 
-.insignia-disponibilidad.prestamo {
-  background-color: rgba(255, 255, 255, 0.92);
-  color: var(--status-borrowed);
-  border: 1px solid rgba(217, 119, 6, 0.2);
+.estado-libro .punto-estado {
+  width: 8px;
+  height: 8px;
 }
 
-.insignia-disponibilidad.sala {
-  background-color: rgba(255, 255, 255, 0.92);
+.estado-libro.sala {
   color: var(--status-reserved);
-  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.estado-libro.prestamo {
+  color: var(--status-borrowed);
+}
+
+.estado-libro.novedad {
+  color: var(--tertiary);
+}
+
+.estado-libro.novedad .punto-estado {
+  background-color: var(--warm-amber);
 }
 
 .punto-estado {
@@ -1077,482 +1226,517 @@ button:active,
   background-color: currentColor;
 }
 
-/* Textos de Tarjeta de Libro */
-.genero-libro {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.4rem;
-}
-
-.genero-libro .material-symbols-outlined {
-  font-size: 15px;
-}
-
-.titulo-libro {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-  line-height: 1.28;
-  margin-bottom: 0.25rem;
-}
-
-.autor-libro {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.65rem;
-  font-weight: 500;
-}
-
-.calificacion-libro {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.75rem;
-}
-
-.estrellas {
-  display: flex;
-  gap: 1px;
-  color: #eab308;
-}
-
-.estrellas .material-symbols-outlined {
-  font-size: 16px;
-  font-variation-settings: 'FILL' 1;
-}
-
-.texto-lectores {
-  font-size: 0.75rem;
-  color: var(--text-tertiary);
-  font-weight: 500;
-}
-
+/* La descripción solo se ve en la vista de lista; en la estantería vive en la ventana de detalles */
 .descripcion-libro {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 1.15rem;
-  flex: 1;
+  display: none;
 }
 
-/* Acciones y Botones de Tarjeta */
 .acciones-tarjeta {
+  position: relative;
+  z-index: 2;
   display: flex;
-  gap: 0.6rem;
   margin-top: auto;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--border-hairline);
 }
 
-.boton-accion-primario,
-.boton-accion-secundario {
-  padding: 0.55rem 0.95rem;
-  font-size: 0.825rem;
+.acciones-tarjeta .boton-accion-primario,
+.acciones-tarjeta .boton-accion-secundario {
   flex: 1;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Vista de lista: portada pequeña, datos y descripción en una fila */
+.rejilla-libros.vista-lista {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.rejilla-libros.vista-lista .tarjeta-libro {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  padding: 1rem;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-lg);
+}
+
+.rejilla-libros.vista-lista .contenedor-portada {
+  width: 84px;
+  flex-shrink: 0;
+}
+
+.rejilla-libros.vista-lista .cuerpo-tarjeta {
+  flex: 1 1 240px;
+}
+
+.rejilla-libros.vista-lista .descripcion-libro {
+  display: -webkit-box;
+  margin: 0.35rem 0 0;
+  overflow: hidden;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.rejilla-libros.vista-lista .acciones-tarjeta {
+  flex: 0 0 11rem;
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .rejilla-libros.vista-lista .acciones-tarjeta {
+    flex-basis: 100%;
+  }
 }
 
 /* ==========================================================================
-   9. BARRA DE BÚSQUEDA TIPO SPOTLIGHT Y FILTROS (libros.html)
+   9. CATÁLOGO: BÚSQUEDA, CATEGORÍAS, FILTROS Y CONTROLES (libros.html)
    ========================================================================== */
-.seccion-busqueda-libros {
-  margin-bottom: 2.5rem;
+.cabecera-pagina {
+  margin-bottom: var(--espacio-titulo);
 }
 
-.contenedor-busqueda-libros {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-lg);
-  padding: 1.5rem 1.75rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-media);
+.titulo-pagina {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.1;
+  color: var(--primary);
+  text-wrap: balance;
 }
 
-.barra-busqueda {
+.subtitulo-pagina {
+  max-width: 52ch;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.contenedor-catalogo {
+  margin-bottom: 0;
+}
+
+/* Búsqueda y botón de filtros */
+.columna-filtros {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   margin-bottom: 1.25rem;
 }
 
-@media (min-width: 768px) {
-  .barra-busqueda {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-.barra-busqueda {
+.fila-herramientas {
   display: flex;
-  flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
-@media (min-width: 768px) {
-  .barra-busqueda {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.75rem;
-  }
 }
 
 .campo-texto {
   position: relative;
-  flex: 1;
   display: flex;
+  flex: 1;
   align-items: center;
+  min-width: 0;
 }
 
-.campo-texto .icono-en-campo,
 .campo-texto .material-symbols-outlined {
   position: absolute;
-  left: 1rem;
+  left: 1.1rem;
+  font-size: 22px;
   color: var(--text-tertiary);
   pointer-events: none;
-  font-size: 20px;
 }
 
 .entrada-busqueda {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.75rem;
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radio-md);
+  height: 52px;
+  padding: 0 1.25rem 0 3.1rem;
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-primary);
-  transition: all 180ms ease;
-}
-
-.campo-criterio {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-width: 190px;
-}
-
-.campo-criterio .material-symbols-outlined {
-  position: absolute;
-  left: 0.85rem;
-  color: var(--text-tertiary);
-  pointer-events: none;
-  font-size: 18px;
-}
-
-.selector-criterio {
-  width: 100%;
-  appearance: none;
-  -webkit-appearance: none;
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radio-md);
-  padding: 0.75rem 2.25rem 0.75rem 2.35rem;
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  color: var(--text-primary);
-  font-weight: 500;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 -960 960 960' width='18' fill='%236e6e73'%3E%3Cpath d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  transition: all 180ms ease;
-}
-
-.selector-criterio:focus {
   background-color: #ffffff;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.18);
-  outline: none;
-}
-
-/* Control Desplegable "Ordenar por" Estilo Apple */
-.selector-orden {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.etiqueta-orden {
-  font-size: 0.825rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.menu-orden {
-  appearance: none;
-  -webkit-appearance: none;
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radio-md);
-  padding: 0.5rem 2.2rem 0.5rem 0.85rem;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 -960 960 960' width='18' fill='%236e6e73'%3E%3Cpath d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.65rem center;
-  transition: all 180ms ease;
-}
-
-.menu-orden:focus {
-  background-color: #ffffff;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.18);
-  outline: none;
-}
-
-.entrada-busqueda:focus {
-  background-color: #ffffff;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.18);
-  outline: none;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  box-shadow: var(--sombra-suave);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .entrada-busqueda::placeholder {
   color: var(--text-tertiary);
 }
 
-.etiquetas-sugeridas {
-  display: flex;
-  flex-wrap: wrap;
+.entrada-busqueda:focus {
+  border-color: var(--primary);
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.boton-filtros-movil {
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.titulo-sugerencias {
-  font-size: 0.78rem;
+  height: 52px;
+  padding: 0 1.4rem;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-right: 0.35rem;
+  color: var(--primary);
+  background-color: #ffffff;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  box-shadow: var(--sombra-suave);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
 }
 
-.boton-etiqueta {
-  padding: 0.35rem 0.8rem;
-  font-size: 0.8rem;
+.boton-filtros-movil[aria-expanded="true"] {
+  background-color: var(--sage-container);
+  border-color: var(--primary);
+}
+
+.contador-filtros-activos {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: var(--primary);
   border-radius: var(--radio-completo);
 }
 
-/* Disposición Principal del Catálogo (Panel Lateral y Cuadrícula) */
-.rejilla-principal {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  align-items: start;
+.contador-filtros-activos[hidden] {
+  display: none;
 }
 
-@media (min-width: 1024px) {
-  .rejilla-principal {
-    grid-template-columns: 280px 1fr;
-    gap: 2.25rem;
+@media (max-width: 480px) {
+  .boton-filtros-movil {
+    padding: 0 1rem;
   }
 }
 
-/* Panel Lateral de Filtros (Estilo Inset Grouped de macOS / iPadOS) */
+/* Panel de filtros: se despliega bajo la búsqueda (sin JavaScript queda visible) */
 .tarjeta-filtros {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-lg);
-  border: 1px solid var(--border-hairline);
-  padding: 1.5rem;
-  box-shadow: var(--sombra-suave);
-  position: sticky;
-  top: 80px;
-}
-
-.cabecera-filtros {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--border-hairline);
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-media);
 }
 
-.titulo-panel {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
+.columna-filtros.plegable:not(.filtros-abiertos) .tarjeta-filtros {
+  display: none;
 }
 
-.boton-limpiar {
-  padding: 0.3rem 0.75rem;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
+.grupos-filtros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 1.5rem;
 }
 
 .seccion-filtro {
-  margin-bottom: 1.35rem;
-  padding-bottom: 1.15rem;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.seccion-filtro:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .subtitulo-filtro {
-  font-size: 0.8rem;
+  margin-bottom: 0.65rem;
+  padding: 0;
+  font-size: 0.875rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-secondary);
-  margin-bottom: 0.75rem;
-}
-
-.lista-categorias {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.item-categoria {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.45rem 0.65rem;
-  border-radius: var(--radio-sm);
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all 150ms ease;
-}
-
-.item-categoria:hover {
-  background-color: var(--surface-secondary);
   color: var(--text-primary);
 }
 
-.item-categoria.activo {
-  background-color: var(--primary-subtle);
-  color: var(--primary);
-  font-weight: 600;
-}
-
-.contador-categoria {
-  font-size: 0.75rem;
-  padding: 2px 7px;
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: var(--radio-completo);
-  color: var(--text-tertiary);
-}
-
-.grupo-casillas {
+.grupo-casillas,
+.grupo-pildoras-formato {
   display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.opcion-casilla {
-  display: flex;
+.opcion-casilla,
+.pildora-formato {
+  display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background-color: #ffffff;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.opcion-casilla input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.opcion-casilla:has(input:checked),
+button.pildora-formato[aria-pressed="true"] {
+  color: var(--primary);
+  background-color: var(--sage-container);
+  border-color: var(--primary);
+}
+
+.opcion-casilla:has(input:focus-visible) {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.acciones-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.boton-limpiar {
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.875rem;
+}
+
+.boton-ver-resultados {
+  min-height: 44px;
+  padding: 0.5rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--primary);
+  border: 0;
+  border-radius: var(--radio-completo);
   cursor: pointer;
 }
 
-.opcion-casilla input[type="checkbox"] {
-  accent-color: var(--primary);
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
+@media (max-width: 480px) {
+  .acciones-filtros > * {
+    flex: 1 1 100%;
+  }
 }
 
-/* Barra de Controles y Ordenación */
+/* Categorías: una fila de chips (se desliza de lado en el celular) */
+.navegacion-categorias {
+  margin-bottom: 1.75rem;
+}
+
+.lista-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lista-categorias li[hidden] {
+  display: none;
+}
+
+.item-categoria {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  height: 44px;
+  padding: 0 1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  background-color: #ffffff;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.contador-categoria {
+  padding: 0.05rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  background-color: var(--sage-subtle);
+  border-radius: var(--radio-completo);
+}
+
+.item-categoria.activo {
+  color: #ffffff;
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.item-categoria.activo .contador-categoria {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .item-categoria:not(.activo):hover,
+  .boton-filtros-movil:hover,
+  .opcion-casilla:hover,
+  button.pildora-formato:not([aria-pressed="true"]):hover {
+    background-color: var(--sage-subtle);
+    border-color: var(--primary);
+  }
+
+  .boton-ver-resultados:hover {
+    background-color: var(--primary-hover);
+  }
+}
+
+@media (max-width: 900px) {
+  .lista-categorias {
+    flex-wrap: nowrap;
+    padding-bottom: 0.35rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .lista-categorias::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lista-categorias li {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+}
+
+/* Barra de controles: cuántos títulos, orden y vista */
 .barra-controles {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  background-color: var(--surface-card);
-  border-radius: var(--radio-md);
-  padding: 0.85rem 1.25rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-suave);
-  margin-bottom: 1.5rem;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-hairline);
+  scroll-margin-top: 5.5rem;
 }
 
-.estado-exploracion {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-}
-
-.texto-explorando strong {
+.barra-controles .insignia-conteo {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
   color: var(--text-primary);
 }
 
 .ajustes-vista {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem 1rem;
+  max-width: 100%;
 }
 
-.menu-orden {
+.selector-orden {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 .etiqueta-orden {
-  font-size: 0.8rem;
-  color: var(--text-tertiary);
-  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.menu-orden {
+  appearance: none;
+  -webkit-appearance: none;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.5rem 2.4rem 0.5rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 -960 960 960' width='18' fill='%236e6e73'%3E%3Cpath d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+}
+
+.menu-orden:focus {
+  border-color: var(--primary);
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .conmutador-vistas {
   display: flex;
   gap: 2px;
-  background-color: var(--surface-secondary);
   padding: 3px;
-  border-radius: var(--radio-sm);
+  background-color: var(--surface-secondary);
+  border-radius: var(--radio-completo);
 }
 
 .boton-vista {
-  background: transparent;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   color: var(--text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radio-completo);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: all 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .boton-vista.activo {
-  background-color: #ffffff;
   color: var(--primary);
+  background-color: #ffffff;
   box-shadow: var(--sombra-suave);
 }
 
-/* Banner Comunitario de Donación y Colaboración */
+@media (max-width: 560px) {
+  .ajustes-vista {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Banner de sugerencias y donaciones */
 .banner-comunitario {
-  background: linear-gradient(135deg, var(--forest-dark) 0%, #154c37 100%);
-  color: #ffffff;
-  border-radius: var(--radio-lg);
-  padding: 1.5rem 1.75rem;
-  margin-top: 2.5rem;
-  box-shadow: var(--sombra-media);
-  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  align-items: stretch;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding: 1.75rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--forest-dark) 0%, #154c37 100%);
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-media);
 }
 
 @media (min-width: 860px) {
@@ -1560,27 +1744,26 @@ button:active,
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 2rem 2.5rem;
   }
 }
 
 .contenido-banner {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.5rem;
   max-width: 680px;
 }
 
 .icono-banner {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radio-md);
-  overflow: hidden;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
+  background-color: var(--surface-card);
+  border-radius: var(--radio-lg);
 }
 
 .icono-banner img {
@@ -1592,48 +1775,41 @@ button:active,
 .texto-banner {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  margin-bottom: 0;
-}
-
-.etiqueta-banner {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--on-primary-container);
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radio-completo);
-  margin-bottom: 0.35rem;
-  width: fit-content;
+  gap: 0.4rem;
 }
 
 .titulo-banner {
-  font-size: 1.15rem;
+  font-size: 1.375rem;
+  line-height: 1.2;
   color: #ffffff;
-  letter-spacing: -0.015em;
-  margin-bottom: 0.2rem;
+  text-wrap: balance;
 }
 
 .descripcion-banner {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.45;
-  margin-bottom: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .botones-banner {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 0.75rem;
   flex-shrink: 0;
 }
 
-/* Paginación Estilo Apple Segmented Control */
+@media (max-width: 560px) {
+  .contenido-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .botones-banner > * {
+    flex: 1 1 100%;
+  }
+}
+
+/* Paginación */
 .paginacion-catalogo {
   display: flex;
   flex-wrap: wrap;
@@ -1652,20 +1828,20 @@ button:active,
 }
 
 .boton-pagina {
-  min-width: 36px;
-  height: 36px;
+  min-width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 0.5rem;
-  border-radius: var(--radio-sm);
+  border-radius: var(--radio-completo);
   background-color: var(--surface-card);
   border: 1px solid var(--border-hairline);
   color: var(--text-primary);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
   text-decoration: none;
 }
 
@@ -1687,7 +1863,7 @@ button:active,
 }
 
 .texto-paginacion {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
 }
 
@@ -1700,7 +1876,7 @@ button:active,
 
 .rejilla-agenda-inicio {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: 1.5rem;
 }
 
@@ -1715,9 +1891,11 @@ button:active,
   transition: transform 300ms var(--spring-default), box-shadow 300ms var(--spring-default);
 }
 
-.tarjeta-evento-inicio:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sombra-card-hover);
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-evento-inicio:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-card-hover);
+  }
 }
 
 .cabecera-evento-inicio {
@@ -1727,7 +1905,7 @@ button:active,
   margin-bottom: 1.15rem;
 }
 
-/* Chip de Fecha Calendario de Apple */
+/* Chip de fecha del evento */
 .chip-fecha-evento {
   display: flex;
   flex-direction: column;
@@ -1736,7 +1914,7 @@ button:active,
   width: 52px;
   height: 52px;
   background-color: var(--primary-subtle);
-  border: 1px solid rgba(0, 122, 82, 0.15);
+  border: 1px solid rgba(26, 77, 59, 0.15);
   border-radius: var(--radio-md);
   color: var(--primary);
   flex-shrink: 0;
@@ -1750,14 +1928,14 @@ button:active,
 }
 
 .chip-mes-evento {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .insignia-modalidad-evento {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   padding: 0.3rem 0.75rem;
   border-radius: var(--radio-completo);
@@ -1767,7 +1945,7 @@ button:active,
 }
 
 .titulo-evento-inicio {
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: -0.015em;
   color: var(--text-primary);
@@ -1787,7 +1965,7 @@ button:active,
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   color: var(--text-tertiary);
   margin-bottom: 1.25rem;
   padding-top: 0.85rem;
@@ -1816,10 +1994,10 @@ button:active,
   color: var(--primary);
   border-radius: var(--radio-md);
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 600;
   border: 1px solid var(--border-hairline);
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
   text-decoration: none;
 }
 
@@ -1830,7 +2008,7 @@ button:active,
 }
 
 /* ==========================================================================
-   11. CONTENIDO MULTIMEDIA CON ESTILO QUICKTIME / APPLE TV
+   11. MULTIMEDIA: VIDEO Y AUDIO (index.html)
    ========================================================================== */
 .seccion-multimedia-comunitaria {
   margin-bottom: 4.5rem;
@@ -1858,7 +2036,7 @@ button:active,
   flex-direction: column;
 }
 
-/* Marco de Video QuickTime */
+/* Marco del reproductor de video */
 .contenedor-video-botanico {
   position: relative;
   width: 100%;
@@ -1878,12 +2056,12 @@ button:active,
   object-fit: cover;
 }
 
-/* Marco de Audio Apple Music */
+/* Marco del reproductor de audio */
 .contenedor-audio-botanico {
   background: linear-gradient(135deg, var(--surface-secondary) 0%, var(--primary-subtle) 100%);
   border-radius: var(--radio-md);
   padding: 1.5rem;
-  border: 1px solid rgba(0, 122, 82, 0.15);
+  border: 1px solid rgba(26, 77, 59, 0.15);
   margin-bottom: 1.25rem;
 }
 
@@ -1904,7 +2082,7 @@ button:active,
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 122, 82, 0.28);
+  box-shadow: 0 4px 12px rgba(26, 77, 59, 0.28);
 }
 
 .icono-disco-audio .material-symbols-outlined {
@@ -1915,11 +2093,10 @@ button:active,
   width: 100%;
   height: 42px;
   accent-color: var(--primary);
-  outline: none;
 }
 
 .detalles-multimedia h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-bottom: 0.35rem;
 }
 
@@ -1932,7 +2109,7 @@ button:active,
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-tertiary);
   border-top: 1px solid var(--border-subtle);
   padding-top: 0.85rem;
@@ -1953,83 +2130,47 @@ button:active,
 }
 
 .contenedor-normas {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-xl);
-  padding: 2.5rem 2rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-media);
+  padding: 0;
 }
 
 .cabecera-normas {
-  text-align: center;
   max-width: 600px;
-  margin: 0 auto 2.5rem;
+  margin: 0 0 2.5rem;
 }
 
 .titulo-normas {
-  font-size: 1.85rem;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 0.65rem;
+  text-wrap: balance;
 }
 
 .descripcion-normas {
-  font-size: 0.95rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
 }
 
 .rejilla-normas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-@media (min-width: 1024px) {
-  .rejilla-normas {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 2rem 3rem;
 }
 
 .tarjeta-norma {
-  background-color: var(--surface-secondary);
-  border-radius: var(--radio-lg);
-  padding: 1.5rem;
-  border: 1px solid var(--border-hairline);
-  display: flex;
-  flex-direction: column;
-  transition: transform 240ms var(--spring-default), background-color 200ms ease;
-}
-
-.tarjeta-norma:hover {
-  background-color: #ffffff;
-  transform: translateY(-3px);
-  box-shadow: var(--sombra-suave);
-}
-
-.icono-norma {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radio-md);
-  background-color: var(--primary-subtle);
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.icono-norma .material-symbols-outlined {
-  font-size: 22px;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--primary);
 }
 
 .titulo-regla {
-  font-size: 1.05rem;
+  font-size: 1.0625rem;
   font-weight: 700;
   margin-bottom: 0.35rem;
   color: var(--text-primary);
 }
 
 .texto-regla {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 
@@ -2044,7 +2185,6 @@ button:active,
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  margin-bottom: 3.5rem;
   align-items: stretch;
 }
 
@@ -2068,45 +2208,14 @@ button:active,
 }
 
 .tarjeta-servicio-inicio {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-lg);
-  padding: 1.85rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-suave);
   display: flex;
   flex-direction: column;
-  transition: transform 300ms var(--spring-default), box-shadow 300ms var(--spring-default);
-}
-
-.tarjeta-servicio-inicio:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sombra-card-hover);
-  border-color: rgba(0, 122, 82, 0.2);
-}
-
-.icono-servicio-circulo {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radio-completo);
-  background-color: var(--primary-subtle);
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.25rem;
-}
-
-.icono-servicio-circulo .material-symbols-outlined {
-  font-size: 26px;
-}
-
-.icono-ambar-servicio {
-  background-color: var(--amber-subtle);
-  color: var(--warm-amber);
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--primary);
 }
 
 .titulo-servicio-inicio {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.015em;
   margin-bottom: 0.5rem;
@@ -2124,7 +2233,7 @@ button:active,
   flex-direction: column;
   gap: 0.45rem;
   margin-bottom: 1.5rem;
-  font-size: 0.825rem;
+  font-size: 0.8125rem;
   color: var(--text-secondary);
 }
 
@@ -2139,15 +2248,6 @@ button:active,
   color: var(--primary);
 }
 
-.boton-ver-catalogo {
-  margin-top: auto;
-  padding: 0.65rem 1rem;
-  font-size: 0.85rem;
-  border-radius: var(--radio-md);
-  text-align: center;
-  text-decoration: none;
-}
-
 /* Tarjeta Ilustración de Servicios */
 .tarjeta-ilustracion-servicios {
   background-color: var(--surface-card);
@@ -2160,6 +2260,12 @@ button:active,
   height: 100%;
 }
 
+/* El boton ya tiene margenes laterales: con width:100% (regla movil) sobresalia de la tarjeta */
+.tarjeta-ilustracion-servicios .boton-heroe-primario {
+  width: auto;
+  margin: auto 1.5rem 1.5rem 1.5rem;
+}
+
 .imagen-ilustracion-servicios {
   width: 100%;
   height: 220px;
@@ -2170,7 +2276,7 @@ button:active,
 .cita-botanica-servicios {
   padding: 1.5rem 1.5rem 0.5rem;
   font-style: italic;
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   color: var(--text-secondary);
   line-height: 1.55;
   margin: 0;
@@ -2181,29 +2287,21 @@ button:active,
   font-style: normal;
   font-weight: 700;
   color: var(--primary);
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   padding: 0 1.5rem;
   margin-top: 0.25rem;
   margin-bottom: 1.5rem;
 }
 
-.tarjeta-ilustracion-servicios .boton-heroe-primario {
-  margin: auto 1.5rem 1.5rem 1.5rem;
-}
-
 /* ==========================================================================
-   14. TABLAS DE DATOS INSET GROUPED (TABLAS BOTÁNICAS)
+   14. TABLAS DE DATOS (servicios.html y contacto.html)
    ========================================================================== */
 .seccion-tablas-datos {
   margin-bottom: 4.5rem;
 }
 
 .tarjeta-tabla-contenedor {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-xl);
-  padding: 2rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-media);
+  padding: 0;
 }
 
 .contenedor-tabla-responsiva {
@@ -2229,7 +2327,7 @@ button:active,
 .tabla-botanica caption {
   caption-side: top;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.0625rem;
   font-weight: 700;
   color: var(--text-primary);
   text-align: left;
@@ -2276,7 +2374,7 @@ button:active,
 .tabla-botanica tfoot td {
   background-color: var(--surface-secondary);
   font-family: var(--font-body);
-  font-size: 0.825rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-primary);
   padding: 0.85rem 1.25rem;
@@ -2297,23 +2395,23 @@ button:active,
 .tabla-disponible {
   background-color: var(--primary-subtle);
   color: var(--status-available);
-  border: 1px solid rgba(0, 122, 82, 0.15);
+  border: 1px solid rgba(26, 77, 59, 0.15);
 }
 
 .tabla-sala {
-  background-color: #e0f2fe;
+  background-color: var(--sage-subtle);
   color: var(--status-reserved);
-  border: 1px solid rgba(2, 132, 199, 0.15);
+  border: 1px solid var(--border-hairline);
 }
 
 .tabla-prestamo {
   background-color: var(--amber-subtle);
   color: var(--status-borrowed);
-  border: 1px solid rgba(217, 119, 6, 0.15);
+  border: 1px solid var(--border-hairline);
 }
 
 /* ==========================================================================
-   15. FORMULARIOS INSET GROUPED Y ESTILOS ACCESIBLES (registro.html y contacto.html)
+   15. FORMULARIOS (contacto.html y registro.html)
    ========================================================================== */
 .seccion-formulario-registro,
 .seccion-contacto {
@@ -2346,30 +2444,30 @@ button:active,
 }
 
 .titulo-formulario {
-  font-size: 1.85rem;
+  font-size: 1.75rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
 }
 
 .descripcion-formulario {
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
 }
 
-/* Fieldsets y Grupos Inset */
+/* Fieldsets y grupos de campos */
 .fieldset-botanico {
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radio-lg);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  background-color: var(--surface-secondary);
+  min-width: 0;
+  margin: 0 0 2rem;
+  padding: 0;
+  border: 0;
 }
 
 .legend-botanico {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   color: var(--primary);
-  padding: 0 0.5rem;
+  padding: 0;
+  margin-bottom: 1rem;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -2377,7 +2475,7 @@ button:active,
 
 .legend-botanico .material-symbols-outlined {
   font-size: 18px;
-  color: var(--warm-amber);
+  color: var(--amber-strong);
 }
 
 .grupo-campo {
@@ -2404,15 +2502,21 @@ button:active,
 }
 
 .etiqueta-campo {
-  font-size: 0.825rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.01em;
 }
 
 .campo-obligatorio {
-  color: #dc2626;
+  color: #ba1a1a;
   font-weight: 700;
+}
+
+.aviso-obligatorio {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0 0 1.25rem;
 }
 
 .contenedor-input-icono {
@@ -2438,19 +2542,19 @@ button:active,
   font-size: 20px;
 }
 
-/* Campos de Entrada Apple con Anillo de Foco Suave */
+/* Campos de formulario */
 .input-contacto,
 .select-contacto,
 .textarea-contacto {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.65rem;
   background-color: #ffffff;
-  border: 1px solid var(--border-hairline);
+  border: 1px solid var(--borde-campo);
   border-radius: var(--radio-md);
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--text-primary);
-  transition: all 180ms ease;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
 }
 
 .input-contacto:focus,
@@ -2458,8 +2562,8 @@ button:active,
 .textarea-contacto:focus {
   background-color: #ffffff;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3.5px rgba(0, 122, 82, 0.18);
-  outline: none;
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .select-contacto {
@@ -2482,7 +2586,7 @@ button:active,
   align-items: flex-start;
   gap: 0.65rem;
   margin: 1.15rem 0;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
 }
 
@@ -2509,14 +2613,45 @@ button:active,
   background-color: #ffffff;
   border: 1px solid var(--border-hairline);
   border-radius: var(--radio-completo);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   cursor: pointer;
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .pildora-formato:hover {
   border-color: var(--primary);
 }
+
+/* Píldoras del filtro de formato del catálogo (botones con estado) */
+button.pildora-formato {
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+button.pildora-formato[aria-pressed="true"] {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+/* Mensaje cuando ningún libro coincide con los filtros */
+.estado-vacio-catalogo {
+  margin: 0 0 1.5rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+  background-color: var(--surface-card);
+  border: 1px dashed var(--borde-campo);
+  border-radius: var(--radio-lg);
+}
+
+.estado-vacio-catalogo[hidden],
+.paginacion-catalogo[hidden] {
+  display: none;
+}
+
+/* Al cambiar de página, la barra de controles queda visible bajo el encabezado fijo */
 
 .pildora-formato input[type="radio"] {
   accent-color: var(--primary);
@@ -2533,12 +2668,19 @@ button:active,
 .alerta-exito-contacto {
   display: none;
   background-color: var(--primary-subtle);
-  border: 1px solid rgba(0, 122, 82, 0.2);
+  border: 1px solid rgba(26, 77, 59, 0.2);
   border-radius: var(--radio-lg);
   padding: 1.25rem 1.5rem;
   margin-top: 1.5rem;
   align-items: center;
   gap: 1rem;
+}
+
+/* Titulo de la alerta: h3 para respetar la jerarquia, con el tamano que tenia el h4 */
+.titulo-alerta-exito {
+  font-size: 1rem;
+  line-height: 1.55;
+  letter-spacing: normal;
 }
 
 .alerta-exito-contacto.visible {
@@ -2559,7 +2701,7 @@ button:active,
 }
 
 /* ==========================================================================
-   16. MOCKUP INTERACTIVO DEL CARNET DIGITAL (ESTILO APPLE WALLET PASS)
+   16. CARNET DE EJEMPLO (registro.html)
    ========================================================================== */
 .tarjeta-carnet-mockup {
   background: linear-gradient(135deg, #09261a 0%, #10432f 50%, #186043 100%);
@@ -2590,10 +2732,10 @@ button:active,
 }
 
 .badge-carnet-tipo {
-  background-color: var(--warm-amber);
+  background-color: var(--amber-strong);
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radio-completo);
@@ -2633,13 +2775,13 @@ button:active,
 
 .nombre-titular-mockup {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: #ffffff;
 }
 
 .dni-titular-mockup {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--primary-fixed);
   font-weight: 600;
 }
@@ -2662,7 +2804,7 @@ button:active,
   font-weight: 700;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
 }
 
 /* ==========================================================================
@@ -2688,9 +2830,11 @@ button:active,
   color: inherit;
 }
 
-.tarjeta-canal:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--sombra-card-hover);
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-canal:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-card-hover);
+  }
 }
 
 .icono-canal-contenedor {
@@ -2707,7 +2851,7 @@ button:active,
 
 .icono-canal-ambar {
   background-color: var(--amber-subtle);
-  color: var(--warm-amber);
+  color: var(--amber-strong);
 }
 
 .contenido-canal {
@@ -2715,36 +2859,28 @@ button:active,
 }
 
 .titulo-canal {
-  font-size: 1.05rem;
+  font-size: 1.0625rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
   color: var(--text-primary);
 }
 
 .descripcion-canal {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
   line-height: 1.45;
   margin-bottom: 0.4rem;
 }
 
 .dato-destacado-canal {
-  font-size: 0.825rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--primary);
 }
 
-/* Preguntas Frecuentes (FAQ Accordion Style) */
-.seccion-faq-contacto {
-  margin-top: 4rem;
-}
-
+/* Preguntas frecuentes: el hueco con la sección anterior lo pone el ritmo general (--ritmo-seccion) */
 .tarjeta-faq-contenedor {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-xl);
-  padding: 2.25rem 2rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-media);
+  padding: 0;
 }
 
 .rejilla-faq {
@@ -2762,28 +2898,20 @@ button:active,
 }
 
 .item-faq {
-  background-color: var(--surface-secondary);
-  border-radius: var(--radio-md);
-  padding: 1.25rem 1.35rem;
-  border: 1px solid var(--border-hairline);
-  transition: transform 200ms var(--spring-snappy), background-color 180ms ease;
-}
-
-.item-faq:hover {
-  background-color: #ffffff;
-  box-shadow: var(--sombra-suave);
+  padding: 1.25rem 0 0;
+  border-top: 2px solid var(--primary);
 }
 
 .pregunta-faq {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.45rem;
 }
 
 .respuesta-faq {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
   line-height: 1.55;
 }
@@ -2792,39 +2920,45 @@ button:active,
    18. LLAMADO A LA ACCIÓN GLOBAL (CTA BANNER)
    ========================================================================== */
 .tarjeta-llamado-accion {
-  background: linear-gradient(135deg, var(--forest-dark) 0%, #154e38 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin: var(--ritmo-seccion) 0 0;
+  padding: 2.25rem 2rem;
   color: #ffffff;
+  background: linear-gradient(135deg, var(--forest-dark) 0%, #154e38 100%);
   border-radius: var(--radio-xl);
-  padding: 3rem 2.25rem;
-  text-align: center;
-  box-shadow: var(--sombra-flotante);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  margin: 3.5rem 0 1rem;
-  position: relative;
-  overflow: hidden;
+  box-shadow: var(--sombra-media);
 }
 
-.subtitulo-llamado {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--on-primary-container);
-  margin-bottom: 0.75rem;
+@media (min-width: 860px) {
+  .tarjeta-llamado-accion {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 3rem;
+  }
 }
 
 .titulo-llamado {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  margin-bottom: 0.4rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.15;
   color: #ffffff;
-  margin-bottom: 0.85rem;
-  letter-spacing: -0.022em;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.subtitulo-llamado {
+  max-width: 52ch;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .texto-llamado {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 620px;
-  margin: 0 auto 1.85rem;
+  max-width: 640px;
 }
 
 .boton-llamado {
@@ -2835,23 +2969,27 @@ button:active,
   background-color: #ffffff;
   color: var(--forest-dark);
   border-radius: var(--radio-completo);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 700;
+  flex-shrink: 0;
+  min-height: 48px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   transition: transform 240ms var(--spring-default), box-shadow 240ms ease;
   text-decoration: none;
 }
 
-.boton-llamado:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-  color: var(--forest-dark);
+@media (hover: hover) and (pointer: fine) {
+  .boton-llamado:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+    color: var(--forest-dark);
+  }
 }
 
 /* ==========================================================================
-   18-B. AUTENTICACIÓN PROFESIONAL SPLIT-CARD (login.html)
-   Inspirado en UI Kit moderno con adaptación Apple & Paleta Botánica
+   19. ACCESO Y REGISTRO (login.html)
+   Tarjeta dividida: formulario a un lado y panel visual al otro; el cambio de modo se desliza con JavaScript.
    ========================================================================== */
 .cuerpo-auth-fullscreen {
   min-height: 100vh;
@@ -2859,7 +2997,7 @@ button:active,
   padding: 1.5rem;
   background-color: #f7f9f8;
   background-image: 
-    radial-gradient(at 12% 15%, rgba(0, 122, 82, 0.09) 0px, transparent 50%),
+    radial-gradient(at 12% 15%, rgba(26, 77, 59, 0.09) 0px, transparent 50%),
     radial-gradient(at 88% 85%, rgba(217, 119, 6, 0.06) 0px, transparent 50%);
   display: flex;
   align-items: center;
@@ -2883,11 +3021,11 @@ button:active,
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radio-completo);
   color: var(--text-secondary);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: all 220ms var(--spring-default);
+  transition: transform 220ms var(--spring-default), box-shadow 220ms ease, color 180ms ease, background-color 180ms ease;
   z-index: 50;
 }
 
@@ -2908,7 +3046,7 @@ button:active,
   max-width: 100%;
   min-height: 610px;
   background-color: #ffffff;
-  border-radius: 32px;
+  border-radius: var(--radio-xl);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07), 0 4px 16px rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.06);
   display: flex;
@@ -2917,7 +3055,6 @@ button:active,
   box-sizing: border-box;
   padding: 1rem;
   gap: 1rem;
-  transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Paneles de Contenido */
@@ -2930,7 +3067,6 @@ button:active,
   box-sizing: border-box;
   position: relative;
   z-index: 2;
-  transition: all 400ms ease;
   min-width: 0;
   width: 100%;
 }
@@ -2939,7 +3075,7 @@ button:active,
 .panel-auth-visual {
   flex: 0.95;
   background: linear-gradient(155deg, #061710 0%, #0c2c20 50%, #04120c 100%);
-  border-radius: 24px;
+  border-radius: var(--radio-lg);
   padding: 3rem 2.25rem;
   display: flex;
   flex-direction: column;
@@ -2950,7 +3086,6 @@ button:active,
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.16), 0 12px 32px rgba(4, 18, 12, 0.3);
-  transition: all 450ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .panel-auth-visual::before {
@@ -2988,7 +3123,7 @@ button:active,
 
 .titulo-visual {
   font-family: var(--font-display);
-  font-size: 1.95rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 0.75rem;
@@ -2998,7 +3133,7 @@ button:active,
 }
 
 .descripcion-visual {
-  font-size: 0.925rem;
+  font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.76);
   line-height: 1.55;
   max-width: 310px;
@@ -3018,10 +3153,10 @@ button:active,
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: var(--radio-completo);
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 220ms var(--spring-default);
+  transition: transform 220ms var(--spring-default), background-color 180ms ease, border-color 180ms ease;
   backdrop-filter: blur(10px);
   position: relative;
   z-index: 2;
@@ -3064,7 +3199,7 @@ button:active,
 
 .logo-auth-nombre {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.015em;
@@ -3073,7 +3208,7 @@ button:active,
 
 .titulo-auth {
   font-family: var(--font-display);
-  font-size: 2.1rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.025em;
   color: var(--text-primary);
@@ -3084,7 +3219,7 @@ button:active,
 
 
 
-/* Inputs Inset Estilo Imagen de Referencia */
+/* Campos con icono (login) */
 .grupo-input-auth {
   display: flex;
   flex-direction: column;
@@ -3095,7 +3230,7 @@ button:active,
 }
 
 .etiqueta-auth {
-  font-size: 0.825rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.01em;
@@ -3105,10 +3240,10 @@ button:active,
   position: relative;
   display: flex;
   align-items: center;
-  background-color: #f1f3f5;
-  border-radius: 14px;
-  border: 1.5px solid transparent;
-  transition: all 200ms ease;
+  background-color: var(--surface-secondary);
+  border-radius: var(--radio-md);
+  border: 1.5px solid var(--borde-campo);
+  transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
   width: 100%;
   box-sizing: border-box;
 }
@@ -3116,13 +3251,14 @@ button:active,
 .caja-input-auth:focus-within {
   background-color: #ffffff;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 122, 82, 0.12);
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .caja-input-auth .material-symbols-outlined {
   position: absolute;
   left: 0.95rem;
-  color: #9ca3af;
+  color: var(--text-secondary);
   font-size: 20px;
   pointer-events: none;
 }
@@ -3133,14 +3269,14 @@ button:active,
   background: transparent;
   padding: 0.85rem 2.85rem 0.85rem 2.75rem;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--text-primary);
   outline: none;
   box-sizing: border-box;
 }
 
 .input-auth-campo::placeholder {
-  color: #9ca3af;
+  color: var(--text-tertiary);
 }
 
 .boton-revelar-clave-auth {
@@ -3148,13 +3284,13 @@ button:active,
   right: 0.75rem;
   background: none;
   border: none;
-  color: #9ca3af;
+  color: var(--text-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4px;
-  border-radius: 6px;
+  border-radius: var(--radio-xs);
   transition: color 180ms ease;
 }
 
@@ -3173,7 +3309,7 @@ button:active,
   align-items: center;
   margin-top: 0.2rem;
   margin-bottom: 1.35rem;
-  font-size: 0.825rem;
+  font-size: 0.8125rem;
 }
 
 .checkbox-auth {
@@ -3193,8 +3329,8 @@ button:active,
 }
 
 .enlace-olvido-auth {
-  color: #9ca3af;
-  text-decoration: none;
+  color: var(--primary);
+  text-decoration: underline;
   font-weight: 500;
   transition: color 180ms ease;
 }
@@ -3204,30 +3340,32 @@ button:active,
   text-decoration: underline;
 }
 
-/* Botón Principal Negro / Forest */
+/* Botón principal (verde bosque) */
 .boton-auth-submit {
   width: 100%;
   padding: 0.85rem;
-  background-color: #111827;
+  background-color: var(--primary);
   color: #ffffff;
   border: none;
-  border-radius: 14px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+  border-radius: var(--radio-md);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 12px rgba(17, 24, 39, 0.15);
-  transition: all 220ms var(--spring-default);
+  box-shadow: 0 4px 12px rgba(26, 77, 59, 0.2);
+  transition: transform 220ms var(--spring-default), box-shadow 220ms ease, background-color 180ms ease;
 }
 
-.boton-auth-submit:hover {
-  background-color: #030712;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.25);
+@media (hover: hover) and (pointer: fine) {
+  .boton-auth-submit:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(26, 77, 59, 0.3);
+  }
 }
 
 .boton-auth-submit:active {
@@ -3235,40 +3373,9 @@ button:active,
 }
 
 /* Botones de Proveedores Sociales */
-.fila-social-auth {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.85rem;
-  margin-top: 1.35rem;
-  width: 100%;
-}
 
-.boton-social-circular {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 200ms ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  padding: 0;
-}
 
-.boton-social-circular:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.15);
-}
 
-.boton-social-circular svg {
-  width: 20px;
-  height: 20px;
-}
 
 /* Modos de alternancia (Login <-> Registro) */
 .seccion-form-login,
@@ -3303,25 +3410,23 @@ button:active,
   display: flex;
   flex-direction: column;
   width: 100%;
-  animation: aparecerSuave 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .tarjeta-auth-split:not(.modo-registro) .seccion-form-login {
   display: flex;
   flex-direction: column;
   width: 100%;
-  animation: aparecerSuave 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Alerta de notificación flotante */
 .alerta-auth-flotante {
   display: none;
   background-color: var(--primary-subtle);
-  border: 1px solid rgba(0, 122, 82, 0.25);
-  border-radius: 12px;
+  border: 1px solid rgba(26, 77, 59, 0.25);
+  border-radius: var(--radio-sm);
   padding: 0.75rem 1rem;
   margin-top: 1rem;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--forest-dark);
   align-items: center;
   gap: 0.65rem;
@@ -3330,6 +3435,41 @@ button:active,
 .alerta-auth-flotante.visible {
   display: flex;
   animation: aparecerSuave 0.3s ease forwards;
+}
+
+.texto-alerta-auth {
+  flex: 1;
+}
+
+.boton-cerrar-alerta-auth {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  border-radius: var(--radio-completo);
+  color: var(--forest-dark);
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .boton-cerrar-alerta-auth:hover {
+    background-color: rgba(26, 77, 59, 0.12);
+  }
+}
+
+.mensaje-error-auth {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #ba1a1a;
+}
+
+.caja-input-auth.con-error {
+  border-color: #ba1a1a;
 }
 
 /* Adaptación Responsive Móvil */
@@ -3349,7 +3489,7 @@ button:active,
     margin-top: 3.5rem;
     min-height: auto;
     padding: 0.85rem;
-    border-radius: 24px;
+    border-radius: var(--radio-lg);
     gap: 0.85rem;
   }
 
@@ -3359,12 +3499,12 @@ button:active,
 
   .panel-auth-visual {
     padding: 2.25rem 1.25rem;
-    border-radius: 20px;
+    border-radius: var(--radio-lg);
     order: -1;
   }
 
   .titulo-visual {
-    font-size: 1.55rem;
+    font-size: 1.5rem;
   }
 
   .marca-agua-logo {
@@ -3378,15 +3518,14 @@ button:active,
 }
 
 /* ==========================================================================
-   19. PIE DE PÁGINA (GLOBAL APPLE FOOTER)
+   20. PIE DE PÁGINA (global)
    ========================================================================== */
-.pie-pagina,
-.pie-sitio {
+.pie-pagina {
   background-color: #0b1510;
   color: rgba(255, 255, 255, 0.7);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 3.5rem 0 2rem;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   margin-top: auto;
 }
 
@@ -3424,7 +3563,7 @@ button:active,
 
 .nombre-marca-pie {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: #ffffff !important;
 }
@@ -3436,30 +3575,24 @@ button:active,
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--primary-fixed) !important;
-  background-color: rgba(0, 122, 82, 0.15) !important;
-  border: 1px solid rgba(0, 122, 82, 0.25) !important;
+  background-color: rgba(26, 77, 59, 0.15) !important;
+  border: 1px solid rgba(26, 77, 59, 0.25) !important;
   padding: 0.35rem 0.75rem;
   border-radius: var(--radio-completo);
   margin-top: 0.5rem;
 }
 
-.lema-botanico {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 0.85rem;
-  line-height: 1.5;
-}
-
 .direccion-pie {
   font-style: normal;
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.5;
 }
 
 .titulo-columna-pie {
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
   font-weight: 700;
   color: #ffffff;
   text-transform: uppercase;
@@ -3489,7 +3622,8 @@ button:active,
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-  font-size: 0.825rem;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .pie-inferior {
@@ -3500,7 +3634,7 @@ button:active,
   gap: 1rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -3526,36 +3660,10 @@ button:active,
 }
 
 /* ==========================================================================
-   20. ANIMACIONES (@keyframes), TRANSICIONES Y TRANSFORMACIONES (Avance 2)
+   21. ANIMACIONES (@keyframes) Y MOVIMIENTO
    ========================================================================== */
 
-/* 1. Animación de flotación botánica suave */
-@keyframes flotacionBotanica {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.animacion-flotacion {
-  animation: flotacionBotanica 4.5s ease-in-out infinite;
-}
-
-/* 2. Animación de pulso sutil para botones de llamado a la acción */
-@keyframes pulsoBoton {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.035);
-  }
-}
-
-.animacion-pulso {
-  animation: pulsoBoton 2.8s ease-in-out infinite;
-}
+/* (El pulso y la flotación infinitos se retiraron: movimiento constante que distraía de la lectura. La única excepción es la decoración lenta del título "Los libros más leídos", sección 36, que se detiene con "reducir movimiento") */
 
 /* 3. Animación de aparición suave (Fade-in-up) para cargas de sección */
 @keyframes aparecerSuave {
@@ -3573,8 +3681,25 @@ button:active,
   animation: aparecerSuave 0.5s var(--spring-default) forwards;
 }
 
+/* 4. Entrada del heroe: una sola vez al cargar, con escalonado de 60 ms.
+   Solo con prefers-reduced-motion: no-preference; si no, el contenido se ve directamente. */
+@media (prefers-reduced-motion: no-preference) {
+  .contenido-heroe > * {
+    animation: aparecerSuave 420ms var(--ease-out) both;
+  }
+
+  .contenido-heroe > :nth-child(2) { animation-delay: 60ms; }
+  .contenido-heroe > :nth-child(3) { animation-delay: 120ms; }
+  .contenido-heroe > :nth-child(4) { animation-delay: 180ms; }
+  .contenido-heroe > :nth-child(5) { animation-delay: 240ms; }
+
+  .marco-visual-heroe {
+    animation: aparecerSuave 480ms var(--ease-out) 150ms both;
+  }
+}
+
 /* ==========================================================================
-   21. ACCESIBILIDAD: MODOS DEL SISTEMA OPERATIVO (APPLE HIG GUIDELINES)
+   22. ACCESIBILIDAD: PREFERENCIAS DEL SISTEMA (MOVIMIENTO, TRANSPARENCIA Y CONTRASTE)
    ========================================================================== */
 
 /* A. Modo de Reducción de Movimiento (prefers-reduced-motion) */
@@ -3586,8 +3711,6 @@ button:active,
     scroll-behavior: auto !important;
   }
 
-  .animacion-flotacion,
-  .animacion-pulso,
   .animacion-aparecer {
     animation: none !important;
   }
@@ -3615,20 +3738,14 @@ button:active,
     border-bottom: 2px solid var(--border-strong) !important;
   }
 
-  .insignia-flotante-heroe,
-  .insignia-disponibilidad {
-    background-color: #ffffff !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-  }
 }
 
 /* C. Modo de Alto Contraste (prefers-contrast: more) */
 @media (prefers-contrast: more) {
   :root {
-    --border-hairline: rgba(0, 0, 0, 0.35);
-    --border-strong: rgba(0, 0, 0, 0.7);
-    --text-secondary: #333336;
+    --border-hairline: #717974;
+    --border-strong: #1d1c16;
+    --text-secondary: #404944;
   }
 
   .tarjeta-libro,
@@ -3641,7 +3758,7 @@ button:active,
 }
 
 /* ==========================================================================
-   22. HERRAMIENTAS DE SOPORTE Y DIAGNÓSTICO EN NAVEGADORES (DEVTOOLS)
+   23. HERRAMIENTAS DE SOPORTE Y DIAGNÓSTICO EN NAVEGADORES (DEVTOOLS)
    - Chrome DevTools y Edge DevTools (Atajo de teclado: F12 o Ctrl+Shift+I):
      1. Pestaña 'Elements': Permite inspeccionar el árbol DOM y el Modelo de Caja
         (Box Model: margin, border, padding, content).
@@ -3654,60 +3771,19 @@ button:active,
      5. Pestaña 'Console' y 'Lighthouse': Diagnóstico de accesibilidad, contraste WCAG y errores.
    ========================================================================== */
 /* ==========================================================================
-   23. COMPONENTES ADICIONALES Y CLASES ESPECÍFICAS DE PÁGINA
+   24. COMPONENTES ADICIONALES Y CLASES ESPECÍFICAS DE PÁGINA
    ========================================================================== */
-
-/* Botón de Información en Tarjetas de Catálogo */
-.boton-accion-info {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radio-sm);
-  background-color: var(--surface-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-hairline);
-  cursor: pointer;
-  transition: all 180ms var(--spring-snappy);
-  flex-shrink: 0;
-}
-
-.boton-accion-info:hover {
-  background-color: #ffffff;
-  color: var(--primary);
-  border-color: rgba(0, 122, 82, 0.25);
-  transform: translateY(-1px);
-}
-
-.boton-accion-info:active {
-  transform: scale(0.92) !important;
-}
-
-/* Envoltorios de Contenedores de Catálogo y Filtros */
-.contenedor-catalogo {
-  margin-bottom: 3.5rem;
-}
-
-.columna-filtros {
-  position: relative;
-}
-
-.contenido-heroe {
-  position: relative;
-  z-index: 1;
-}
 
 /* cuadricula-tarjetas-servicio unificada en seccion 13 */
 
 /* Derechos y Descripción en Pie de Página */
 .derechos-pie {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
 }
 
 .descripcion-pie {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.65);
   line-height: 1.55;
   margin-bottom: 1rem;
@@ -3717,7 +3793,7 @@ button:active,
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--primary);
   margin-top: 0.5rem;
@@ -3745,37 +3821,22 @@ button:active,
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--primary-fixed);
-  background-color: rgba(0, 122, 82, 0.15);
+  background-color: rgba(26, 77, 59, 0.15);
   padding: 0.35rem 0.75rem;
   border-radius: var(--radio-completo);
   margin-top: 0.35rem;
 }
 
 .estado-salas .punto-estado {
-  background-color: #22c55e;
-}
-
-.etiqueta-metrica {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-}
-
-.fila-boton-catalogo {
-  display: flex;
-  justify-content: center;
-  margin-top: 2.25rem;
+  background-color: #9ed2ba;
 }
 
 .formulario-botanico {
   display: flex;
   flex-direction: column;
-}
-
-.icono-banner {
-  font-size: 16px;
 }
 
 .icono-etiqueta {
@@ -3784,9 +3845,6 @@ button:active,
   margin-right: 4px;
 }
 
-.icono-llamado {
-  font-size: 18px;
-}
 
 .icono-vector-svg {
   display: inline-block;
@@ -3801,21 +3859,11 @@ button:active,
   pointer-events: none;
 }
 
-.insignia-disponibilidad.novedad {
-  background-color: rgba(255, 255, 255, 0.94);
-  color: #7c3aed;
-  border: 1px solid rgba(124, 58, 237, 0.25);
-}
-
-.insignia-disponibilidad.novedad .material-symbols-outlined {
-  font-size: 13px;
-}
-
 /* Silueta Botánica Decorativa en Héroe */
 .silueta-botanica {
   position: absolute;
-  top: -20px;
-  right: -20px;
+  top: 0;
+  right: 0;
   width: 220px;
   height: 220px;
   opacity: 0.12;
@@ -3831,114 +3879,40 @@ button:active,
   object-fit: contain;
 }
 
-/* Tarjeta Contenedor de Agenda */
-.tarjeta-agenda-contenedor {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-xl);
-  padding: 2.5rem 2rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-media);
-}
-
-/* Tarjeta Consejo en Barra Lateral */
-.tarjeta-consejo {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  background-color: var(--primary-subtle);
-  border: 1px solid rgba(0, 122, 82, 0.15);
-  border-radius: var(--radio-md);
-  padding: 1.15rem;
-  margin-top: 1.5rem;
-}
-
-.tarjeta-consejo .material-symbols-outlined {
-  color: var(--primary);
-  font-size: 22px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.titulo-consejo {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--forest-dark);
-  margin-bottom: 0.25rem;
-}
-
-.texto-consejo {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.45;
-}
-
-.texto-banner {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.55;
-  margin-bottom: 1.25rem;
-}
-
 .texto-disponible {
   font-weight: 600;
   color: var(--primary);
 }
 
-.titulo-con-icono {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-}
-
-.titulo-con-icono .material-symbols-outlined {
-  font-size: 20px;
-  color: var(--primary);
-}
-
 .subtitulo-faq-seccion {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--primary);
-  background-color: var(--primary-subtle);
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radio-completo);
-  margin-bottom: 0.75rem;
-  border: 1px solid rgba(0, 122, 82, 0.12);
+  max-width: 60ch;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
 
 .titulo-faq-seccion {
-  font-size: 1.85rem;
+  font-size: 1.75rem;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 /* ==========================================================================
-   24. REGLAS RESPONSIVAS COMPLEMENTARIAS (MÓVILES Y TABLETS)
+   25. REGLAS RESPONSIVAS COMPLEMENTARIAS (MÓVILES Y TABLETS)
    ========================================================================== */
 @media (max-width: 640px) {
   .tarjeta-heroe {
-    padding: 1.5rem 1.25rem;
-    border-radius: var(--radio-lg);
+    padding: 0.5rem 0 0;
   }
 
   .seccion-heroe {
-    padding: 1.25rem 0 2rem;
+    padding: 0 0 2rem;
   }
 
   .titulo-heroe {
-    font-size: 1.85rem;
+    font-size: 1.75rem;
   }
 
   .fila-botones-heroe {
@@ -3951,13 +3925,7 @@ button:active,
     width: 100%;
   }
 
-  .fila-metricas {
-    justify-content: center;
-  }
 
-  .insignia-flotante-heroe {
-    display: none;
-  }
 
   .tarjeta-llamado-accion {
     padding: 2rem 1.25rem;
@@ -3970,12 +3938,9 @@ button:active,
   }
 
   .tarjeta-tabla-contenedor,
-  .tarjeta-agenda-contenedor,
   .contenedor-normas,
   .tarjeta-formulario-contacto,
-  .tarjeta-faq-contenedor,
-  .tarjeta-login-principal,
-  .tarjeta-login-lateral {
+  .tarjeta-faq-contenedor {
     padding: 1.5rem 1.15rem;
     border-radius: var(--radio-lg);
   }
@@ -4013,10 +3978,6 @@ button:active,
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
-  .tarjeta-heroe {
-    padding: 2.25rem 2rem;
-  }
-
   .rejilla-heroe-inicio {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -4025,5 +3986,1451 @@ button:active,
   .marco-visual-heroe {
     max-width: 480px;
     margin: 0 auto;
+  }
+}
+
+
+/* ==========================================================================
+   26. CLASES DE APOYO (sustituyen estilos en línea del HTML)
+   ========================================================================== */
+.separado-arriba {
+  margin-top: var(--espacio-sm);
+}
+
+.separado-abajo {
+  margin-bottom: var(--espacio-sm);
+}
+
+.margen-superior-xs {
+  margin-top: 0.5rem;
+}
+
+.margen-superior-md {
+  margin-top: 1.25rem;
+}
+
+.seccion-normas.sin-relleno-superior {
+  padding-top: 0;
+}
+
+.seccion-normas.sin-relleno-superior .tarjeta-llamado-accion {
+  margin: 0;
+}
+
+.marca-destacada {
+  background-color: var(--sage-container);
+  padding: 2px 6px;
+  border-radius: var(--radio-xs);
+}
+
+.ayuda-campo {
+  font-size: 12px;
+  color: var(--secondary);
+  margin-top: 4px;
+  padding-left: 4px;
+}
+
+.grupo-casillas-fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 6px;
+}
+
+.grupo-casillas-fila .grupo-casilla {
+  margin-top: 0;
+}
+
+.cabecera-audio-info .titulo-audio-info {
+  font-size: 16px;
+  margin: 0;
+  color: var(--primary);
+}
+
+.cabecera-audio-info .descripcion-audio-info {
+  font-size: 13px;
+  margin: 0;
+  color: var(--on-surface-variant);
+}
+
+.tarjeta-carnet-mockup .marca-carnet-mockup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tarjeta-carnet-mockup .icono-marca-carnet {
+  font-size: 28px;
+  color: var(--tertiary-fixed-dim, #fcb975);
+}
+
+.tarjeta-carnet-mockup .nombre-carnet-mockup {
+  font-family: var(--font-display);
+  font-size: 16px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.tarjeta-carnet-mockup .subtitulo-carnet-mockup {
+  font-size: 11px;
+  margin: 0;
+  color: var(--sage-container);
+}
+
+.tarjeta-carnet-mockup .id-carnet-mockup {
+  font-size: 11px;
+  color: var(--sage-container);
+  font-family: var(--font-display);
+}
+
+.boton-auth-submit .icono-boton-auth {
+  font-size: 18px;
+}
+
+/* ==========================================================================
+   28. ESTRUCTURA HTML: dirección del pie y anclas bajo el encabezado fijo
+   ========================================================================== */
+.sede-pie {
+  font-style: normal;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* ==========================================================================
+   29. CAMBIO ENTRE INICIAR SESIÓN Y CREAR CUENTA (login.html)
+   Los paneles se deslizan con JavaScript (FLIP); el contenido nuevo sube y aparece en cascada.
+   ========================================================================== */
+@keyframes subirSuave {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Entrada en cascada: el JavaScript añade .entra-suave a cada elemento nuevo y le pone --orden (0, 1, 2...).
+   Solo transform y opacity. backwards: al terminar no queda ningún estilo residual, así que al quitar la clase no hay parpadeo. */
+.entra-suave {
+  animation: subirSuave 440ms var(--ease-out) backwards;
+  animation-delay: calc(var(--orden, 0) * 40ms + 40ms);
+}
+
+/* ==========================================================================
+   30. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
+   ========================================================================== */
+.pagina-redireccion {
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.tarjeta-redireccion {
+  max-width: 480px;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-media);
+}
+
+.titulo-redireccion {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.texto-redireccion {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Aire bajo el encabezado: 40px en escritorio y 20px en móvil, igual en todas las páginas */
+@media (max-width: 640px) {
+  .contenedor-flotante {
+    padding-top: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   31. DETALLE DEL LIBRO Y AVISOS (libros.html)
+   Botones Reservar / Pedir en sala activados, ventana de detalles y aviso flotante.
+   ========================================================================== */
+.boton-accion-primario[aria-pressed="true"],
+.boton-accion-secundario[aria-pressed="true"] {
+  background-color: var(--sage-container);
+  color: var(--primary);
+  border-color: var(--border-strong);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .boton-accion-primario[aria-pressed="true"]:hover,
+  .boton-accion-secundario[aria-pressed="true"]:hover {
+    background-color: #c5dbcf;
+  }
+}
+
+.dialogo-libro {
+  position: fixed;
+  inset: 0;
+  width: min(92vw, 640px);
+  max-height: 90vh;
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  color: var(--text-primary);
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-elevada);
+}
+
+.dialogo-libro[open] {
+  animation: entradaDialogo 220ms var(--ease-out);
+}
+
+.dialogo-libro::backdrop {
+  background-color: rgba(18, 59, 45, 0.5);
+}
+
+@keyframes entradaDialogo {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.dialogo-cerrar {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--primary);
+  background-color: var(--primary-subtle);
+  border: 0;
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+}
+
+.dialogo-cerrar:active {
+  transform: scale(0.97);
+}
+
+.dialogo-cuerpo {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 1.75rem;
+  padding: 2.25rem 2rem 2rem;
+}
+
+.dialogo-portada {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--radio-sm);
+  box-shadow: var(--sombra-media);
+}
+
+.dialogo-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding-right: 2rem;
+}
+
+.dialogo-genero {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.dialogo-titulo {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  color: var(--primary);
+  text-wrap: balance;
+}
+
+.dialogo-autor {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.dialogo-lectores,
+.dialogo-disponibilidad {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.dialogo-descripcion {
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.dialogo-texto .boton-heroe-primario {
+  margin-top: 0.75rem;
+}
+
+.dialogo-texto .boton-heroe-primario[aria-pressed="true"] {
+  color: var(--primary);
+  background-color: var(--sage-container);
+}
+
+.aviso-flotante {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 60;
+  max-width: min(92vw, 28rem);
+  padding: 0.85rem 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: #ffffff;
+  background-color: var(--primary);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-elevada);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 12px);
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out),
+    visibility 0s linear 200ms;
+}
+
+.aviso-flotante.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition-delay: 0s;
+}
+
+@media (max-width: 560px) {
+  .dialogo-cuerpo {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 3.5rem 1.25rem 1.5rem;
+  }
+
+  .dialogo-portada {
+    width: 120px;
+  }
+
+  .dialogo-texto {
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialogo-libro[open] {
+    animation: none;
+  }
+
+  .aviso-flotante {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   32. PANEL DE ADMINISTRACIÓN Y AVISO DE ERROR EN LOGIN (admin.html, login.html)
+   ========================================================================== */
+.alerta-auth-flotante.error {
+  background-color: #ffdad6;
+  border-color: rgba(186, 26, 26, 0.35);
+  color: #93000a;
+}
+
+.titulo-admin {
+  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+  line-height: 1.15;
+  color: var(--primary);
+  text-wrap: balance;
+}
+
+.tarjeta-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-media);
+}
+
+.tarjeta-admin[hidden],
+#panelAdmin[hidden] {
+  display: none;
+}
+
+.tarjeta-admin .contenedor-tabla-responsiva {
+  width: 100%;
+}
+
+.titulo-tarjeta-admin {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  color: var(--primary);
+}
+
+.texto-admin {
+  max-width: 62ch;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+  .tarjeta-admin {
+    padding: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   33. GESTIÓN DE LIBROS EN EL PANEL (admin.html)
+   Tabla de libros, formulario para agregar o editar, ventana de confirmación.
+   ========================================================================== */
+.subtitulo-admin {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--primary);
+}
+
+.aviso-admin {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--primary);
+  background-color: var(--sage-container);
+  border-radius: var(--radio-md);
+}
+
+.fila-acciones-admin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.celda-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.boton-tabla {
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  background-color: var(--sage-container);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out), background-color 180ms ease;
+}
+
+.boton-tabla:active,
+.boton-peligro:active {
+  transform: scale(0.97);
+}
+
+.boton-tabla.peligro {
+  color: #93000a;
+  background-color: #ffdad6;
+  border-color: rgba(186, 26, 26, 0.35);
+}
+
+.boton-peligro {
+  min-height: 44px;
+  padding: 0.8rem 1.6rem;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #93000a;
+  border: 1px solid transparent;
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out);
+}
+
+.formulario-libro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.formulario-libro .grupo-campo {
+  margin-bottom: 0;
+}
+
+.formulario-libro .aviso-obligatorio {
+  margin: 0;
+}
+
+.campo-sin-icono {
+  padding-left: 1rem;
+}
+
+.formulario-libro [aria-invalid="true"] {
+  border-color: #93000a;
+}
+
+.grupo-opciones {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.grupo-opciones legend {
+  margin-bottom: 0.5rem;
+}
+
+.lista-opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.opcion-admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background-color: #ffffff;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+}
+
+.opcion-admin input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.opcion-admin:has(input:checked) {
+  color: var(--primary);
+  background-color: var(--sage-container);
+  border-color: var(--primary);
+}
+
+.opcion-admin:has(input:focus-visible) {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.vista-portada {
+  width: 96px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  margin-top: 0.5rem;
+  border-radius: var(--radio-sm);
+  box-shadow: var(--sombra-media);
+}
+
+.mensaje-formulario {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #93000a;
+  background-color: #ffdad6;
+  border-radius: var(--radio-md);
+}
+
+.dialogo-confirmar {
+  width: min(92vw, 28rem);
+}
+
+.dialogo-confirmar form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+}
+
+.aviso-admin[hidden],
+.mensaje-formulario[hidden],
+.vista-portada[hidden],
+.ayuda-campo[hidden],
+.grupo-campo[hidden],
+.contenedor-tabla-responsiva[hidden] {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .boton-tabla:hover {
+    background-color: #c5dbcf;
+  }
+
+  .boton-tabla.peligro:hover {
+    background-color: #ffc9c3;
+  }
+}
+
+
+/* Tablas del panel: el texto puede partirse en líneas y, en el celular, las celdas son más angostas para que quepan sin desplazar */
+.tarjeta-admin .tabla-botanica {
+  white-space: normal;
+}
+
+.tarjeta-admin .tabla-botanica td {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .fila-acciones-admin > * {
+    flex: 1 1 100%;
+  }
+
+  /* En el celular cada fila de la tabla pasa a ser una ficha: etiqueta a la izquierda, dato a la derecha */
+  .tabla-apilable thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .tabla-apilable,
+  .tabla-apilable tbody,
+  .tabla-apilable tr {
+    display: block;
+    width: 100%;
+  }
+
+  /* El título de la tabla ocupa todo el ancho (si no, se encoge a una columna angosta) */
+  .tabla-apilable caption {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .tabla-apilable tbody tr {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .tarjeta-admin .tabla-apilable tbody td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 1rem;
+    text-align: right;
+  }
+
+  .tabla-apilable tbody td[data-etiqueta]::before {
+    content: attr(data-etiqueta);
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-align: left;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .tabla-apilable .celda-acciones {
+    justify-content: flex-end;
+    padding-top: 0.5rem;
+  }
+}
+
+/* 16px en los campos del panel evita que el celular acerque la pantalla al escribir */
+@media (pointer: coarse) {
+  .formulario-libro .input-contacto,
+  .formulario-libro .select-contacto,
+  .formulario-libro .textarea-contacto,
+  .dialogo-confirmar .input-contacto {
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   34. DONACIONES DE LIBROS (libros.html y admin.html)
+   Ventana para donar, lista de donaciones y etiquetas de situación.
+   ========================================================================== */
+.donar-cuerpo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 2.25rem 2rem 2rem;
+}
+
+.donar-cuerpo .dialogo-titulo {
+  padding-right: 3rem;
+}
+
+.donar-aviso {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.donar-cuerpo .formulario-libro {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.donar-mias {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.lista-donaciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.donacion-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--surface-secondary);
+  border-radius: var(--radio-md);
+}
+
+.donacion-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.donacion-texto span {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.situacion {
+  flex-shrink: 0;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: var(--radio-completo);
+}
+
+.situacion-pendiente {
+  color: var(--text-primary);
+  background-color: #ffffff;
+  border: 1px solid var(--border-strong);
+}
+
+.situacion-aceptada {
+  color: var(--primary);
+  background-color: var(--sage-container);
+}
+
+.situacion-rechazada {
+  color: #93000a;
+  background-color: #ffdad6;
+}
+
+.donar-aviso[hidden],
+.donar-mias[hidden],
+.formulario-libro[hidden] {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .donar-cuerpo {
+    padding: 3.5rem 1.25rem 1.5rem;
+  }
+
+  .donar-aviso .fila-acciones-admin > * {
+    flex: 1 1 100%;
+  }
+}
+
+/* En el panel, el título de la tarjeta ya nombra la tabla: el caption queda solo para lectores de pantalla */
+.tarjeta-admin .tabla-botanica caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Texto de respaldo del video (si el navegador no lo reproduce) legible sobre el fondo oscuro */
+.video-reproductor-botanico {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   35. CARRUSEL DE LOS LIBROS MÁS LEÍDOS (index.html)
+   Tres planos en un arco suave: el libro del centro, nítido y al frente; los de los lados, más pequeños,
+   girados hacia el centro y desenfocados. Todo se mueve con transform, filter y opacity.
+   ========================================================================== */
+.carrusel-libros {
+  --ancho: clamp(140px, 19vw, 230px);
+  --paso: calc(var(--ancho) * 0.84);
+  /* Un solo valor manda los dos huecos: entre el título y el libro del frente, y entre su nombre y lo que sigue.
+     Además deja sitio a la sombra del libro del frente, que sube más que el borde. */
+  --aire: 2.5rem;
+  --alto-item: calc(var(--ancho) * 1.5 + 2.4rem); /* portada 2:3 + nombre del libro */
+  position: relative;
+  overflow: hidden;
+}
+
+/* En escritorio sobra espacio (los controles se ocultan), así que los libros son más grandes */
+@media (min-width: 641px) {
+  .carrusel-libros {
+    --ancho: clamp(190px, 22vw, 280px);
+    --aire: 3.75rem;
+  }
+}
+
+.carrusel-escena {
+  position: relative;
+  /* El libro del frente crece 10% desde su centro: la altura cuenta ese crecimiento para que los dos huecos sean iguales */
+  height: calc(var(--aire) * 2 + var(--alto-item) * 1.1);
+  perspective: 1200px;
+  touch-action: pan-y;
+}
+
+.carrusel-pista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carrusel-item {
+  --d: 0;
+  --abs: max(var(--d), calc(var(--d) * -1));
+  position: absolute;
+  top: calc(var(--aire) + var(--alto-item) * 0.05);
+  left: 50%;
+  width: var(--ancho);
+  margin-left: calc(var(--ancho) / -2);
+  opacity: calc(1 - var(--abs) * 0.2);
+  filter: blur(calc(var(--abs) * 2.5px));
+  transform: translateX(calc(var(--d) * var(--paso))) translateY(calc(var(--abs) * var(--abs) * 0.6rem))
+    rotateY(calc(var(--d) * -9deg)) scale(calc(1.1 - var(--abs) * 0.2));
+}
+
+.carrusel-listo .carrusel-item {
+  transition:
+    transform 650ms var(--ease-drawer),
+    filter 650ms var(--ease-drawer),
+    opacity 650ms var(--ease-drawer);
+}
+
+.carrusel-listo .carrusel-item.sin-transicion {
+  transition: none;
+}
+
+.carrusel-item.fuera {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.carrusel-listo .carrusel-item.fuera {
+  transition:
+    transform 650ms var(--ease-drawer),
+    filter 650ms var(--ease-drawer),
+    opacity 650ms var(--ease-drawer),
+    visibility 0s linear 650ms;
+}
+
+.carrusel-enlace {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.carrusel-portada {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background-color: var(--surface-secondary);
+  border-radius: 4px var(--radio-sm) var(--radio-sm) 4px;
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.14), 0 18px 32px -12px rgba(26, 77, 59, 0.4);
+  transition: box-shadow 650ms var(--ease-drawer);
+}
+
+/* El libro del frente proyecta una sombra amplia sobre los que quedan detrás, para que se distinga de ellos */
+.carrusel-item.es-centro .carrusel-portada {
+  box-shadow:
+    0 2px 6px rgba(17, 17, 17, 0.26),
+    -22px 0 34px -8px rgba(17, 17, 17, 0.42),
+    22px 0 34px -8px rgba(17, 17, 17, 0.42),
+    0 14px 26px -14px rgba(26, 77, 59, 0.45);
+}
+
+.carrusel-portada img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carrusel-portada::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 12px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.08) 45%, transparent);
+  pointer-events: none;
+}
+
+.carrusel-titulo {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--text-primary);
+  text-wrap: balance;
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out);
+}
+
+.carrusel-item.es-centro .carrusel-titulo {
+  opacity: 1;
+}
+
+.carrusel-enlace:focus-visible {
+  outline: none;
+}
+
+.carrusel-enlace:focus-visible .carrusel-portada {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.carrusel-controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.carrusel-nota {
+  max-width: 46ch;
+  margin: 0.75rem auto 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* En escritorio el cursor ya detiene el giro: los botones no se ven, pero siguen ahí para quien usa el teclado
+   (aparecen al enfocarlos) y para lectores de pantalla */
+@media (min-width: 641px) and (hover: hover) and (pointer: fine) {
+  .carrusel-controles {
+    position: absolute;
+    left: 50%;
+    margin: 0;
+    padding: 0.5rem;
+    background-color: var(--surface-card);
+    border-radius: var(--radio-completo);
+    box-shadow: var(--sombra-media);
+    transform: translateX(-50%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .carrusel-controles:focus-within {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Sin la fila de botones debajo, el hueco de abajo es donde aparecen al enfocarlos con el teclado */
+  .carrusel-controles {
+    bottom: 0.25rem;
+  }
+
+  .carrusel-libros + .fila-enlace-seccion {
+    margin-top: 0;
+  }
+}
+
+/* En el celular no hay giro automático: quedan solo las dos flechas */
+@media (pointer: coarse), (max-width: 640px) {
+  .carrusel-controles .boton-pausa {
+    display: none;
+  }
+}
+
+/* Quien pulsa reproducir pide el movimiento a propósito, aunque su equipo prefiera menos animaciones */
+.carrusel-con-movimiento .carrusel-item {
+  transition-duration: 650ms !important;
+}
+
+.boton-carrusel {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--primary);
+  background-color: #ffffff;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .boton-carrusel:hover {
+    background-color: var(--sage-subtle);
+    border-color: var(--primary);
+  }
+}
+
+/* ==========================================================================
+   36. TÍTULO CON HOJAS Y FLORES (index.html)
+   Dos ramas a los lados del título y una enredadera debajo, dibujadas en SVG con los verdes y el ámbar de la
+   paleta. Se mecen despacio de un lado a otro; con "reducir movimiento" quedan quietas.
+   ========================================================================== */
+.encabezado-hojas {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding-bottom: 2.75rem;
+}
+
+.encabezado-hojas .titulo-destacados {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+symbol {
+  overflow: visible; /* las hojas se asoman por fuera del cuadro del dibujo */
+}
+
+.rama {
+  flex: none;
+  width: clamp(100px, 13vw, 170px);
+  height: auto;
+  overflow: visible;
+}
+
+.rama-der {
+  transform: scaleX(-1);
+}
+
+.enredadera {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: min(100%, 560px);
+  height: auto;
+  overflow: visible;
+  transform: translateX(-50%);
+}
+
+.tallo {
+  fill: none;
+  stroke: #2b6e4e;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.hoja-a {
+  fill: #2b6e4e;
+}
+
+.hoja-b {
+  fill: #1a4d3b;
+}
+
+.hoja-c {
+  fill: #366854;
+}
+
+.hoja-d {
+  fill: #9ed2ba;
+}
+
+.nervio {
+  fill: none;
+  stroke: rgba(254, 249, 240, 0.55);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.petalo {
+  fill: #c48849;
+}
+
+.centro-flor {
+  fill: #fef9f0;
+}
+
+.chispa {
+  fill: none;
+  stroke: #c48849;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+@media (max-width: 640px) {
+  .rama {
+    display: none;
+  }
+
+  .encabezado-hojas {
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mecer {
+    transform-origin: 196px 100px;
+    animation: mecer 6.5s ease-in-out infinite alternate;
+  }
+
+  .balanceo {
+    transform-origin: 0 0;
+    animation: balanceo 5s ease-in-out infinite alternate;
+    --amp: 8deg;
+  }
+
+  .balanceo.b2 {
+    animation-duration: 6.2s;
+    animation-delay: -1.8s;
+    --amp: 11deg;
+  }
+
+  .balanceo.b3 {
+    animation-duration: 4.4s;
+    animation-delay: -3.1s;
+    --amp: 6deg;
+  }
+
+  .florecer {
+    transform-origin: 0 0;
+    animation: florecer 4.6s ease-in-out infinite alternate;
+  }
+
+  .chispa {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: chispa 2.8s ease-in-out infinite;
+  }
+
+  .chispa.c2 {
+    animation-delay: -0.9s;
+  }
+
+  .chispa.c3 {
+    animation-delay: -1.7s;
+  }
+
+  .onda {
+    animation: deriva 7s ease-in-out infinite alternate;
+  }
+
+  .rama-izq .florecer,
+  .rama-izq .balanceo {
+    animation-direction: alternate;
+  }
+
+  .rama-der .balanceo,
+  .rama-der .florecer {
+    animation-direction: alternate-reverse;
+  }
+}
+
+@keyframes balanceo {
+  from {
+    transform: rotate(calc(var(--amp) * -1));
+  }
+  to {
+    transform: rotate(var(--amp));
+  }
+}
+
+/* La rama entera se mece de lado a lado como con una brisa suave */
+@keyframes mecer {
+  from {
+    transform: translateX(-6px) rotate(-2deg);
+  }
+  to {
+    transform: translateX(6px) rotate(2deg);
+  }
+}
+
+@keyframes florecer {
+  from {
+    transform: rotate(-14deg) scale(0.96);
+  }
+  to {
+    transform: rotate(14deg) scale(1.05);
+  }
+}
+
+@keyframes chispa {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes deriva {
+  from {
+    transform: translateX(-7px);
+  }
+  to {
+    transform: translateX(7px);
+  }
+}
+
+/* ==========================================================================
+   37. SINOPSIS DE CRISTAL DENTRO DE LA PORTADA (libros.html)
+   Al pasar el cursor por un libro: crece un poco, los demás se desenfocan y la parte baja de su portada se oscurece
+   para mostrar una flechita. Al pulsarla, un panel de cristal (con la portada desenfocada de fondo) sube dentro de la
+   portada con la sinopsis; la flecha pasa a mirar hacia abajo y, al pulsarla, el panel baja. Solo con ratón.
+   ========================================================================== */
+.panel-sinopsis,
+.capa-portada {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 700px) {
+  .rejilla-libros:not(.vista-lista).hay-activa .tarjeta-libro:not(.activa) {
+    filter: blur(2.5px);
+  }
+
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro {
+    transition: filter 260ms var(--ease-out);
+  }
+
+  /* Penumbra en la parte baja de la portada, dentro de ella, para que la flechita se vea sobre cualquier portada */
+  .rejilla-libros:not(.vista-lista) .contenedor-portada::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 1;
+    height: 45%;
+    background: linear-gradient(to top, rgba(10, 24, 18, 0.78), rgba(10, 24, 18, 0));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 260ms var(--ease-out);
+  }
+
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro.activa:not(.sinopsis-abierta) .contenedor-portada::after {
+    opacity: 1;
+  }
+
+  /* Capa del mismo tamaño que la portada que lleva la flechita; crece junto con ella */
+  .rejilla-libros:not(.vista-lista) .capa-portada {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    pointer-events: none;
+    transition: transform 280ms var(--ease-out);
+  }
+
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro.activa .capa-portada {
+    transform: scale(1.06);
+  }
+
+  .boton-sinopsis {
+    position: absolute;
+    bottom: 0.9rem;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-left: -22px;
+    color: #ffffff;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: var(--radio-completo);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: opacity 220ms var(--ease-out), visibility 0s linear 220ms, background-color 180ms ease, transform 160ms var(--ease-out);
+  }
+
+  .boton-sinopsis .material-symbols-outlined {
+    font-size: 30px;
+  }
+
+  .tarjeta-libro.activa .boton-sinopsis {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .boton-sinopsis:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .boton-sinopsis:active {
+    transform: scale(0.94);
+  }
+
+  .boton-sinopsis:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+  }
+
+  /* Invita a pulsar con un balanceo muy suave mientras la sinopsis está cerrada */
+  .tarjeta-libro.activa:not(.sinopsis-abierta) .boton-sinopsis .material-symbols-outlined {
+    animation: invitarFlecha 1.8s ease-in-out infinite;
+  }
+
+  /* El panel de cristal: vive dentro de la portada (que recorta lo que sobra) y sube desde abajo */
+  .rejilla-libros:not(.vista-lista) .panel-sinopsis {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.15rem 1.15rem 4.25rem;
+    color: #ffffff;
+    transform: translateY(101%);
+    visibility: hidden;
+    transition: transform 360ms var(--ease-drawer), visibility 0s linear 360ms;
+  }
+
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro.sinopsis-abierta .panel-sinopsis {
+    transform: none;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  /* Cristal: la portada del libro, muy desenfocada y oscurecida, con una capa que asegura la lectura */
+  .panel-fondo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background-color: #1a2a22;
+  }
+
+  .panel-fondo::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    background: var(--portada) center / cover;
+    filter: blur(18px) saturate(1.3) brightness(0.6);
+  }
+
+  .panel-fondo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 24, 18, 0.4), rgba(10, 24, 18, 0.66));
+  }
+
+  .panel-genero {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .panel-texto {
+    flex: 1;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: #ffffff;
+    -webkit-line-clamp: 11;
+    line-clamp: 11;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  .panel-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .panel-estado .punto-estado {
+    width: 8px;
+    height: 8px;
+    background-color: #9ed2ba;
+  }
+
+  .panel-pista {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.78);
+  }
+}
+
+@keyframes invitarFlecha {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
   }
 }

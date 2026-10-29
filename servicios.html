@@ -13,6 +13,10 @@
     />
     <meta name="author" content="Biblioteca Comunitaria Leer nos une" />
     <title>Servicios Comunitarios - Leer nos une | Biblioteca Comunitaria</title>
+    <meta name="theme-color" content="#1a4d3b" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%231a4d3b'/%3E%3Cg transform='translate%285 5%29 scale%28.58%29'%3E%3Cpath fill='%23fef9f0' d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -22,6 +26,7 @@
       rel="stylesheet"
     />
     <link href="styles.css" rel="stylesheet" />
+    <script src="auth.js" defer></script>
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
@@ -32,7 +37,7 @@
       <div class="contenedor-encabezado">
         <a class="marca-sitio" href="index.html" data-path="inicio">
           <div class="icono-marca">
-            <span class="material-symbols-outlined">local_florist</span>
+            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
           </div>
           <div class="texto-marca">
             <span class="nombre-marca">Leer nos une</span>
@@ -48,51 +53,51 @@
         </nav>
 
         <div class="acciones-usuario">
-          <a class="boton-carnet animacion-pulso" href="login.html" data-path="carnet-digital">
-            <span class="material-symbols-outlined">badge</span>
-            <span>Carnet Digital</span>
+          <a class="boton-carnet" href="login.html#crear-cuenta" data-path="carnet-digital" aria-label="Sacar mi carnet">
+            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+            <span>Sacar mi carnet</span>
           </a>
           <a
             class="avatar-perfil"
             href="login.html"
             title="Mi Cuenta e Inicio de Sesión"
-            aria-label="Mi Cuenta"
+            aria-label="Mi cuenta: iniciar sesión"
           >
             <img
-              alt="Perfil de usuario"
+              alt=""
               src="img/tresLibrosPlantitas.png"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
-          <button class="boton-menu-movil" id="btnMenuMovil" aria-label="Abrir menú" aria-expanded="false" type="button">
-            <span class="material-symbols-outlined icono-menu-abrir">menu</span>
-            <span class="material-symbols-outlined icono-menu-cerrar">close</span>
+          <button class="boton-menu-movil" id="btnMenuMovil" aria-controls="menuMovilDesplegable" aria-label="Abrir menú" aria-expanded="false" type="button">
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar">close</span>
           </button>
         </div>
       </div>
 
       <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
-        <nav class="navegacion-movil">
+        <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span class="material-symbols-outlined">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="libros.html">
-            <span class="material-symbols-outlined">auto_stories</span>
+            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil activo" href="servicios.html" aria-current="page">
-            <span class="material-symbols-outlined">spa</span>
+            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span class="material-symbols-outlined">chat</span>
+            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
         </nav>
       </div>
@@ -104,97 +109,79 @@
         <div class="resplandor-fondo resplandor-superior"></div>
         <div class="resplandor-fondo resplandor-medio"></div>
 
-        <!-- SECCIÓN: SERVICIOS COMUNITARIOS -->
+                <!-- SECCIÓN: SERVICIOS COMUNITARIOS -->
         <section class="seccion-servicios-inicio" id="servicios">
-          <div class="cabecera-seccion-centrada">
-            <div class="insignia-subtitulo-centrada">
-              <span class="material-symbols-outlined">spa</span>
-              <span>Compromiso con el Barrio</span>
-            </div>
-            <h2 class="titulo-seccion-inicio">Nuestros Servicios Comunitarios</h2>
-            <p class="descripcion-seccion-inicio">
-              Servicios pensados para enriquecer la vida cotidiana de nuestros vecinos, fomentar el estudio y cultivar la lectura colectiva.
-            </p>
+          <div class="cabecera-pagina">
+            <h1 class="titulo-pagina">Nuestros servicios</h1>
+            <p class="subtitulo-pagina">Pensados para el estudio, la lectura y la vida del barrio.</p>
           </div>
 
           <div class="rejilla-servicios-inicio">
             <!-- Cuadrícula de 4 Tarjetas de Servicios -->
             <div class="cuadricula-tarjetas-servicio">
               <div class="tarjeta-servicio-inicio">
-                <div class="icono-servicio-circulo">
-                  <span class="material-symbols-outlined">local_library</span>
-                </div>
-                <h3 class="titulo-servicio-inicio">Préstamo de Libros</h3>
+                <h2 class="titulo-servicio-inicio">Préstamo de libros</h2>
                 <p class="descripcion-servicio-inicio">
                   Lleva hasta 3 libros a tu hogar durante 14 días corridos. Servicio sin costo con renovación en línea mediante WhatsApp o en mostrador.
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Renovación por 7 días adicionales</span>
                   </li>
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Separadores botánicos de regalo</span>
                   </li>
                 </ul>
               </div>
 
               <div class="tarjeta-servicio-inicio">
-                <div class="icono-servicio-circulo icono-ambar-servicio">
-                  <span class="material-symbols-outlined">yard</span>
-                </div>
-                <h3 class="titulo-servicio-inicio">Salas y Jardín Botánico</h3>
+                <h2 class="titulo-servicio-inicio">Salas y jardín botánico</h2>
                 <p class="descripcion-servicio-inicio">
                   Espacios de lectura silenciosa, mesas para estudio individual y un patio verde al aire libre con iluminación natural y wifi comunitario.
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Conexión Wi-Fi de alta velocidad</span>
                   </li>
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Ambiente silencioso y climatizado</span>
                   </li>
                 </ul>
               </div>
 
               <div class="tarjeta-servicio-inicio">
-                <div class="icono-servicio-circulo">
-                  <span class="material-symbols-outlined">groups</span>
-                </div>
-                <h3 class="titulo-servicio-inicio">Clubes y Talleres Culturales</h3>
+                <h2 class="titulo-servicio-inicio">Clubes y talleres</h2>
                 <p class="descripcion-servicio-inicio">
                   Encuentros semanales de debate literario, talleres de encuadernación artesanal, poesía y clubes de lectura guiados por mediadores.
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Clubes juveniles y para adultos</span>
                   </li>
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Participación 100% gratuita</span>
                   </li>
                 </ul>
               </div>
 
               <div class="tarjeta-servicio-inicio">
-                <div class="icono-servicio-circulo icono-ambar-servicio">
-                  <span class="material-symbols-outlined">child_care</span>
-                </div>
-                <h3 class="titulo-servicio-inicio">Rincón Infantil y Cuentacuentos</h3>
+                <h2 class="titulo-servicio-inicio">Rincón infantil y cuentacuentos</h2>
                 <p class="descripcion-servicio-inicio">
                   Área dedicada a los más pequeños con cuentos ilustrados, cojines cómodos y sesiones de narración oral para cultivar la imaginación.
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Cuentacuentos los fines de semana</span>
                   </li>
                   <li>
-                    <span class="material-symbols-outlined">check</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Material didáctico y juegos de letras</span>
                   </li>
                 </ul>
@@ -213,36 +200,32 @@
               </blockquote>
               <cite class="autor-cita-servicios">— Proyecto "Leer nos une"</cite>
               <a class="boton-heroe-primario" href="contacto.html">
-                <span class="material-symbols-outlined">mail</span>
-                <span>Consultar por un Servicio</span>
+                <span aria-hidden="true" class="material-symbols-outlined">mail</span>
+                <span>Consultar por un servicio</span>
               </a>
             </div>
           </div>
         </section>
 
         <!-- SECCIÓN: TABLA DE CRONOGRAMA SEMANAL Y AFORO DE SALAS -->
-        <section class="seccion-tablas-datos">
+        <section class="seccion-tablas-datos" id="actividades">
           <div class="tarjeta-tabla-contenedor">
-            <div class="cabecera-seccion-centrada">
-              <div class="insignia-subtitulo-centrada">
-                <span class="material-symbols-outlined">calendar_month</span>
-                <span>Organización Semanal</span>
-              </div>
-              <h2 class="titulo-seccion-inicio">Cronograma de Salas y Aforo Vecinal</h2>
+            <div class="cabecera-seccion">
+              <h2 class="titulo-seccion-inicio">Horario de las salas</h2>
               <p class="descripcion-seccion-inicio">
-                Horarios de disponibilidad, actividades fijas y capacidad máxima de cada uno de los espacios de la biblioteca.
+                Cuándo abre cada espacio, qué se hace y cuántas personas caben.
               </p>
             </div>
 
             <div class="contenedor-tabla-responsiva">
               <table class="tabla-botanica">
-                <caption>Horario Semanal de Apertura, Actividades y Aforo por Espacio Comunitario</caption>
+                <caption>Horario semanal por espacio</caption>
                 <thead>
                   <tr>
                     <th scope="col">Día</th>
-                    <th scope="col">Espacio / Sala</th>
+                    <th scope="col">Espacio</th>
                     <th scope="col">Horario</th>
-                    <th scope="col">Actividad Principal</th>
+                    <th scope="col">Actividad</th>
                     <th scope="col">Aforo</th>
                     <th scope="col">Estado</th>
                   </tr>
@@ -291,7 +274,7 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colspan="4"><strong>Capacidad Máxima Simultánea de la Sede:</strong> 130 personas</td>
+                    <td colspan="4"><strong>Capacidad total de la sede:</strong> 130 personas</td>
                     <td colspan="2"><strong>Acceso:</strong> Libre y gratuito</td>
                   </tr>
                 </tfoot>
@@ -300,22 +283,21 @@
           </div>
         </section>
 
-        <!-- ¿AÚN NO TIENES TU CARNET VECINAL? -->
-        <section class="seccion-normas" style="padding-top: 0;">
+        <!-- Invitación a sacar el carnet (se oculta si ya hay sesión) -->
+        <section class="seccion-normas sin-relleno-superior" data-solo-visitantes>
           <div class="contenedor-normas">
             <div class="tarjeta-llamado-accion">
               <div class="texto-llamado">
-                <span class="material-symbols-outlined icono-llamado">card_membership</span>
                 <div>
-                  <h4 class="titulo-llamado">
-                    ¿Aún no tienes tu Carnet Vecinal?
-                  </h4>
+                  <h2 class="titulo-llamado">
+                    ¿Aún no tienes tu carnet vecinal?
+                  </h2>
                   <p class="subtitulo-llamado">
-                    Actívalo hoy mismo y empieza a pedir tus libros favoritos en un solo clic.
+                    Es gratis. Con él reservas libros y pides ejemplares para leer en sala.
                   </p>
                 </div>
               </div>
-              <a class="boton-llamado" href="contacto.html">Solicitar Carnet Digital Gratis</a>
+              <a class="boton-llamado" href="login.html#crear-cuenta">Sacar mi carnet gratis</a>
             </div>
           </div>
         </section>
@@ -328,7 +310,6 @@
         <div class="rejilla-pie">
           <div>
             <div class="marca-pie">
-              <span class="material-symbols-outlined">menu_book</span>
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
@@ -336,19 +317,16 @@
               imaginación y la convivencia vecinal en armonía.
             </p>
             <div class="insignia-semillero">
-              <span class="material-symbols-outlined">eco</span>
               <span>Semillero de saberes comunitarios</span>
             </div>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Horarios de Atención</h4>
+            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
             <ul class="lista-horarios">
               <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
               <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
-              <li>
-                <strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs
-              </li>
+              <li><strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs</li>
               <li class="estado-salas">
                 <span class="punto-estado"></span>
                 <span>Salas de lectura abiertas</span>
@@ -357,52 +335,65 @@
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
-            <ul class="enlaces-pie">
+            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
+            <nav aria-label="Enlaces rápidos">
+              <ul class="enlaces-pie">
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Libros</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
-                <a href="login.html" data-path="login">Carnet Digital</a>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
-                <a href="contacto.html" data-path="contacto">Contáctanos</a>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="contacto.html" data-path="contacto">Contacto</a>
               </li>
-            </ul>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="login.html#crear-cuenta" data-path="crear-cuenta">Crear cuenta</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="login.html" data-path="login">Iniciar sesión</a>
+              </li>
+              </ul>
+            </nav>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Sede Comunitaria</h4>
-            <p class="direccion-pie">
-              Sector San José<br />
-              Al costado de la SUNAT
-            </p>
-            <p class="contacto-pie">
-              ejemplo@utpvirtual.edu<br />
-              +51 1234-5678
-            </p>
+            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
+            <address class="sede-pie">
+              <p class="direccion-pie">
+                Sector San José<br />
+                Al costado de la SUNAT
+              </p>
+              <p class="contacto-pie">
+                ejemplo@utpvirtual.edu<br />
+                +51 1234-5678
+              </p>
+            </address>
           </div>
         </div>
 
         <div class="pie-inferior">
           <p class="derechos-pie">
-            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de Taller de Programación Web (Avance 2).
+            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de
+            Taller de Programación Web (Avance 2).
           </p>
           <div class="enlaces-legales">
             <a href="contacto.html">Soporte Vecinal</a>
             <a href="libros.html">Catálogo Abierto</a>
-            <a href="login.html">Carnet Digital</a>
+            <a href="login.html#crear-cuenta">Sacar mi carnet</a>
           </div>
         </div>
       </div>
@@ -418,6 +409,7 @@
             const abierto = menuMovil.classList.toggle("abierto");
             btnMenu.classList.toggle("activo", abierto);
             btnMenu.setAttribute("aria-expanded", abierto);
+            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
             menuMovil.setAttribute("aria-hidden", !abierto);
           });
 
@@ -426,6 +418,7 @@
               menuMovil.classList.remove("abierto");
               btnMenu.classList.remove("activo");
               btnMenu.setAttribute("aria-expanded", "false");
+              btnMenu.setAttribute("aria-label", "Abrir menú");
               menuMovil.setAttribute("aria-hidden", "true");
             }
           });
