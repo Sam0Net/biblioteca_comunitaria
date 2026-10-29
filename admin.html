@@ -132,6 +132,30 @@
             <p class="texto-admin" id="sinUsuarios" hidden>Todavía no hay cuentas registradas. Crea una desde la página de inicio de sesión para verla aquí.</p>
           </section>
 
+          <section class="tarjeta-admin" aria-labelledby="tituloDonaciones">
+            <h2 class="titulo-tarjeta-admin" id="tituloDonaciones" tabindex="-1">Donaciones recibidas</h2>
+            <p class="texto-admin">
+              Los usuarios con cuenta proponen libros desde el catálogo. Al aceptar una, se abre el formulario de «Libros del catálogo» con sus datos para que agregues la portada y la publiques. Aquí aparecen las donaciones enviadas desde este navegador.
+            </p>
+            <p class="aviso-admin" id="avisoDonaciones" role="status" hidden></p>
+            <div class="contenedor-tabla-responsiva" id="contenedorDonaciones" tabindex="0" role="region" aria-label="Tabla de donaciones recibidas">
+              <table class="tabla-botanica tabla-apilable">
+                <caption>Donaciones de libros</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Libro</th>
+                    <th scope="col">Donante</th>
+                    <th scope="col">Detalle</th>
+                    <th scope="col">Situación</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="filasDonaciones"></tbody>
+              </table>
+            </div>
+            <p class="texto-admin" id="sinDonaciones" hidden>Todavía no hay donaciones. Cuando un usuario use el botón «Donar Libros» del catálogo, la verás aquí.</p>
+          </section>
+
           <section class="tarjeta-admin" aria-labelledby="tituloLibros">
             <h2 class="titulo-tarjeta-admin" id="tituloLibros" tabindex="-1">Libros del catálogo</h2>
             <p class="texto-admin">
@@ -248,6 +272,10 @@
             <form method="dialog">
               <h2 class="dialogo-titulo" id="confirmarTitulo"></h2>
               <p class="dialogo-descripcion" id="confirmarTexto"></p>
+              <div class="grupo-campo" id="grupoMotivo" hidden>
+                <label class="etiqueta-campo" for="confirmarMotivo">Motivo (opcional)</label>
+                <input class="input-contacto campo-sin-icono" id="confirmarMotivo" type="text" maxlength="200" autocomplete="off" />
+              </div>
               <div class="fila-acciones-admin">
                 <button class="boton-peligro" id="confirmarSi" type="button"></button>
                 <button class="boton-heroe-secundario" id="confirmarNo" type="button"></button>
@@ -363,6 +391,7 @@
         const formulario = $("formularioLibro");
         const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         let editandoId = "";
+        let donacionId = ""; // donación que se está convirtiendo en libro
         let temporizador;
 
         const nodo = (etiqueta, clase, texto) => {
@@ -392,8 +421,8 @@
           $("campoEstado").append(opcion);
         });
 
-        function avisar(texto) {
-          const aviso = $("avisoLibros");
+        function avisar(texto, id) {
+          const aviso = $(id || "avisoLibros");
           aviso.textContent = texto;
           aviso.hidden = false;
           clearTimeout(temporizador);
@@ -442,6 +471,7 @@
 
         function restablecerFormulario() {
           editandoId = "";
+          donacionId = "";
           formulario.reset();
           limpiarError();
           $("vistaPortada").hidden = true;
@@ -502,8 +532,10 @@
         }
 
         // Ventana de confirmación con botones que dicen lo que hacen
-        function confirmar({ titulo, texto, si, no }) {
+        function confirmar({ titulo, texto, si, no, motivo }) {
           const dialogo = $("dialogoConfirmar");
+          $("grupoMotivo").hidden = !motivo;
+          $("confirmarMotivo").value = "";
           $("confirmarTitulo").textContent = titulo;
           $("confirmarTexto").textContent = texto;
           $("confirmarSi").textContent = si;
@@ -587,9 +619,14 @@
           const r = editandoId ? Biblioteca.editar(editandoId, datos) : Biblioteca.agregar(datos);
           if (!r.ok) return mostrarError(r.error, r.campo || "titulo");
           const edito = !!editandoId;
+          const deDonacion = donacionId;
           restablecerFormulario();
           pintarLista();
-          avisar("«" + r.libro.titulo + "» " + (edito ? "se actualizó." : "se agregó al catálogo."));
+          if (deDonacion) {
+            Biblioteca.resolverDonacion(deDonacion, true);
+            pintarDonaciones();
+          }
+          avisar("«" + r.libro.titulo + "» " + (edito ? "se actualizó." : deDonacion ? "se agregó al catálogo y la donación quedó aceptada." : "se agregó al catálogo."));
           $("avisoLibros").scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "nearest" });
         });
 
@@ -598,8 +635,82 @@
         $("campoPortada").addEventListener("change", vistaPrevia);
         $("cancelarEdicion").addEventListener("click", restablecerFormulario);
 
+        // ---- Donaciones: el admin acepta (abre el formulario de libros con los datos) o rechaza ----
+        const fechaCorta = new Intl.DateTimeFormat("es", { day: "numeric", month: "short" });
+
+        function pintarDonaciones() {
+          const lista = Biblioteca.donaciones();
+          const cuerpo = $("filasDonaciones");
+          cuerpo.replaceChildren();
+          lista.forEach((d) => {
+            const fila = nodo("tr");
+            const celda = (etiqueta, contenido) => {
+              const td = nodo("td");
+              td.dataset.etiqueta = etiqueta;
+              td.append(contenido);
+              fila.append(td);
+            };
+            celda("Libro", d.titulo + " — " + d.autor);
+            celda("Donante", d.nombre + " (" + d.correo + ") · " + fechaCorta.format(new Date(d.fecha)));
+            celda("Detalle", Biblioteca.estadosLibro[d.estado] + (d.comentario ? ". " + d.comentario : ""));
+            const situacion = nodo("span", "situacion situacion-" + d.situacion, Biblioteca.situaciones[d.situacion]);
+            celda("Situación", situacion);
+            const acciones = nodo("td", "celda-acciones");
+            if (d.situacion === "pendiente") {
+              const aceptar = nodo("button", "boton-tabla", "Aceptar");
+              aceptar.type = "button";
+              aceptar.setAttribute("aria-label", "Aceptar la donación de " + d.titulo);
+              aceptar.addEventListener("click", () => aceptarDonacion(d));
+              const rechazar = nodo("button", "boton-tabla peligro", "Rechazar");
+              rechazar.type = "button";
+              rechazar.setAttribute("aria-label", "Rechazar la donación de " + d.titulo);
+              rechazar.addEventListener("click", () => rechazarDonacion(d));
+              acciones.append(aceptar, rechazar);
+            } else {
+              acciones.textContent = d.situacion === "rechazada" && d.motivo ? "Motivo: " + d.motivo : "Revisada";
+            }
+            fila.append(acciones);
+            cuerpo.append(fila);
+          });
+          const pendientes = lista.filter((d) => d.situacion === "pendiente").length;
+          $("contenedorDonaciones").hidden = lista.length === 0;
+          $("sinDonaciones").hidden = lista.length > 0;
+          $("tituloDonaciones").textContent = "Donaciones recibidas" + (pendientes ? " (" + pendientes + (pendientes === 1 ? " pendiente)" : " pendientes)") : "");
+        }
+
+        function aceptarDonacion(d) {
+          restablecerFormulario();
+          donacionId = d.id;
+          $("campoTitulo").value = d.titulo;
+          $("campoAutor").value = d.autor;
+          $("campoEstado").value = "novedad";
+          $("tituloFormularioLibro").textContent = "Agregar «" + d.titulo + "» (donación de " + d.nombre + ")";
+          $("cancelarEdicion").hidden = false;
+          alternarCopias();
+          avisar("Completa la portada, las categorías y la descripción y guarda el libro: la donación se marcará como aceptada.");
+          formulario.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "start" });
+          $("campoGenero").focus({ preventScroll: true });
+        }
+
+        async function rechazarDonacion(d) {
+          const acepto = await confirmar({
+            titulo: "¿Rechazar la donación de «" + d.titulo + "»?",
+            texto: "La persona verá que fue rechazada, con el motivo si lo escribes.",
+            si: "Rechazar donación",
+            no: "Volver",
+            motivo: true,
+          });
+          if (!acepto) return;
+          const r = Biblioteca.resolverDonacion(d.id, false, $("confirmarMotivo").value);
+          if (!r.ok) return avisar(r.error, "avisoDonaciones");
+          pintarDonaciones();
+          avisar("Rechazaste la donación de «" + d.titulo + "».", "avisoDonaciones");
+          $("tituloDonaciones").focus();
+        }
+
         alternarCopias();
         pintarLista();
+        pintarDonaciones();
       });
     </script>
     <script>

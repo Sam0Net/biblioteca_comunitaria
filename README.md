@@ -82,6 +82,16 @@ Los 4 libros "más leídos" de `index.html` salen de los mismos datos (los que t
 
 Un usuario normal no ve estos botones, y las funciones de `biblioteca.js` rechazan cualquier cambio si la sesión no es de administrador. Igual que las cuentas, es una simulación: sin servidor no hay seguridad real.
 
+## Donar libros
+
+El botón **Donar Libros** del catálogo abre una ventana:
+
+1. **Sin sesión:** pide iniciar sesión o crear cuenta (así se sabe quién dona).
+2. **Usuario con sesión:** llena título, autor, estado del libro y un comentario opcional. La solicitud queda "Pendiente" y el usuario ve en esa misma ventana si fue **aceptada** o **rechazada** (con el motivo).
+3. **Administrador:** en `admin.html`, sección **Donaciones recibidas**. **Aceptar** abre el formulario de libros con título y autor ya escritos; al guardar el libro, la donación queda aceptada. **Rechazar** pide un motivo opcional.
+
+Solo el admin puede ver todas las donaciones y resolverlas. Se guardan en el navegador de quien las envía (`localStorage`), así que el admin solo ve las enviadas desde su mismo navegador; con servidor esto se resolvería. "Sugerir un título" sigue siendo un enlace al formulario de contacto.
+
 ## Accesibilidad
 
 - Contraste de texto AA medido; foco visible (anillo sólido de 3px); enlace "Saltar al contenido principal".
@@ -96,7 +106,7 @@ Lo que **no** se ha probado: lectores de pantalla reales (NVDA, VoiceOver) ni di
 
 - **Portadas:** todas están en `img/` menos la de «La felicidad» (Rolón), que sigue en un servidor externo.
 - **Video del recorrido:** sin subtítulos ni descripción en texto; algunos textos de la sección de video y audio no coinciden con el contenido.
-- **Catálogo:** el botón "Buscar", el selector "Todos los campos" y los botones del banner ("Sugerir un título", "Donar libros") todavía no tienen función. Los contadores de las categorías (840, 320…) son cifras de ejemplo.
+- **Catálogo:** el botón "Buscar", el selector "Todos los campos" y "Sugerir un título" todavía no tienen función propia. Los contadores de las categorías (840, 320…) son cifras de ejemplo.
 - **`registro.html`:** existe pero no está enlazada desde el sitio.
 
 ## Ramas de Git

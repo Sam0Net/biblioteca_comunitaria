@@ -280,6 +280,96 @@
     },
   };
 
+  // ---- Donaciones: cualquier usuario con sesión las envía y solo el administrador las acepta o rechaza ----
+  // Se guardan en este navegador (igual que las cuentas); el admin ve las de ese mismo navegador.
+  const CLAVE_DONACIONES = "bibliotecaDonaciones";
+  const ESTADOS_LIBRO = { nuevo: "Como nuevo", bueno: "Buen estado", usado: "Usado" };
+  const SITUACIONES = { pendiente: "Pendiente", aceptada: "Aceptada", rechazada: "Rechazada" };
+
+  function leerDonaciones() {
+    try {
+      const lista = JSON.parse(localStorage.getItem(CLAVE_DONACIONES) || "[]");
+      return Array.isArray(lista) ? lista : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function escribirDonaciones(lista) {
+    try {
+      localStorage.setItem(CLAVE_DONACIONES, JSON.stringify(lista));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  const sesionActual = () => (window.Auth ? window.Auth.sesion() : null);
+  const limpiar = (valor) => String(valor == null ? "" : valor).replace(/\s+/g, " ").trim();
+
+  Object.assign(Biblioteca, {
+    estadosLibro: ESTADOS_LIBRO,
+    situaciones: SITUACIONES,
+
+    donar(datos) {
+      const sesion = sesionActual();
+      if (!sesion) return { ok: false, error: "Inicia sesión para donar un libro." };
+      if (sesion.rol === "admin") return { ok: false, error: "El administrador agrega libros directamente desde el panel." };
+      const titulo = limpiar(datos.titulo);
+      const autor = limpiar(datos.autor);
+      const comentario = limpiar(datos.comentario);
+      const estado = datos.estado in ESTADOS_LIBRO ? datos.estado : "";
+      if (!titulo) return { ok: false, campo: "titulo", error: "Escribe el título del libro que quieres donar." };
+      if (titulo.length > 120) return { ok: false, campo: "titulo", error: "El título es demasiado largo (máximo 120 letras)." };
+      if (!autor) return { ok: false, campo: "autor", error: "Escribe el nombre del autor o la autora." };
+      if (!estado) return { ok: false, campo: "estado", error: "Elige en qué estado está el libro." };
+      if (comentario.length > 300) return { ok: false, campo: "comentario", error: "El comentario es demasiado largo (máximo 300 letras)." };
+      const lista = leerDonaciones();
+      const donacion = {
+        id: "d" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+        titulo,
+        autor,
+        estado,
+        comentario,
+        nombre: sesion.nombre,
+        correo: sesion.correo,
+        fecha: new Date().toISOString(),
+        situacion: "pendiente",
+        motivo: "",
+      };
+      lista.push(donacion);
+      if (!escribirDonaciones(lista)) {
+        return { ok: false, error: "Tu navegador no deja guardar la donación. Revisa que no esté en modo privado." };
+      }
+      return { ok: true, donacion };
+    },
+
+    // Cada usuario ve solo las suyas
+    misDonaciones() {
+      const sesion = sesionActual();
+      if (!sesion) return [];
+      return leerDonaciones()
+        .filter((d) => d.correo === sesion.correo)
+        .reverse();
+    },
+
+    // Solo el administrador ve todas
+    donaciones() {
+      return puede() ? leerDonaciones().reverse() : [];
+    },
+
+    resolverDonacion(id, aceptada, motivo) {
+      if (!puede()) return sinPermiso;
+      const lista = leerDonaciones();
+      const donacion = lista.find((d) => d.id === id);
+      if (!donacion) return { ok: false, error: "No encontramos esa donación. Recarga la página." };
+      donacion.situacion = aceptada ? "aceptada" : "rechazada";
+      donacion.motivo = aceptada ? "" : limpiar(motivo).slice(0, 200);
+      if (!escribirDonaciones(lista)) return { ok: false, error: "Tu navegador no deja guardar los cambios." };
+      return { ok: true, donacion };
+    },
+  });
+
   window.Biblioteca = Biblioteca;
 
   // En libros.html: dibuja el catálogo antes de que arranque el script de la página (este archivo va con defer)
