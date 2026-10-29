@@ -118,23 +118,6 @@
           <div class="tarjeta-heroe">
             <div class="rejilla-heroe-inicio">
               <div class="contenido-heroe">
-                <div class="insignia-tema">
-                  <!-- VECTOR SVG (Tema Avance 2: Gráficos vectoriales e íconos) -->
-                  <svg
-                    class="icono-vector-svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z"
-                    />
-                  </svg>
-                  <span>Biblioteca de barrio</span>
-                </div>
-
                 <h1 class="titulo-heroe">
                   Aquí los libros son de todos
                 </h1>
@@ -154,33 +137,9 @@
                   </a>
                 </div>
 
-                <div class="fila-metricas">
-                  <div class="pildora-metrica">
-                    <span aria-hidden="true" class="material-symbols-outlined icono-verde">menu_book</span>
-                    <span class="valor-metrica">2.540</span>
-                    <span class="etiqueta-metrica">libros</span>
-                  </div>
-                  <div class="pildora-metrica">
-                    <span aria-hidden="true" class="material-symbols-outlined icono-ambar">groups</span>
-                    <span class="valor-metrica">1.200</span>
-                    <span class="etiqueta-metrica">vecinos lectores</span>
-                  </div>
-                  <div class="pildora-metrica">
-                    <span aria-hidden="true" class="material-symbols-outlined icono-verde">yard</span>
-                    <span class="valor-metrica">3</span>
-                    <span class="etiqueta-metrica">salas y un jardín</span>
-                  </div>
-                </div>
               </div>
 
               <div class="marco-visual-heroe">
-                <div class="insignia-flotante-heroe insignia-superior-derecha">
-                  <span aria-hidden="true" class="material-symbols-outlined icono-verde"
-                    >local_florist</span
-                  >
-                  <span>Lectura libre</span>
-                </div>
-
                 <!-- IMAGEN RESPONSIVA Y FIGURA SEMÁNTICA (Tema Avance 2: picture y animaciones) -->
                 <figure class="contenedor-imagen-heroe">
                   <picture>
@@ -199,14 +158,6 @@
                   </figcaption>
                 </figure>
 
-                <div
-                  class="insignia-flotante-heroe insignia-inferior-izquierda"
-                >
-                  <span aria-hidden="true" class="material-symbols-outlined icono-ambar"
-                    >badge</span
-                  >
-                  <span>Carnet gratuito</span>
-                </div>
               </div>
             </div>
           </div>
@@ -214,48 +165,34 @@
 
         <!-- LECTURAS FAVORITAS DEL BARRIO. LIBROS MÁS LEÍDOS DE LA COMUNIDAD -->
         <section class="seccion-destacados-inicio" id="libros-destacados">
-          <div class="cabecera-seccion-centrada">
-            <div class="insignia-subtitulo-centrada">
-              <span aria-hidden="true" class="material-symbols-outlined">trending_up</span>
-              <span>Lecturas Favoritas del Barrio</span>
+          <div class="cabecera-seccion cabecera-seccion-fila">
+            <div>
+              <h2 class="titulo-seccion-inicio">Los libros más leídos del barrio</h2>
+              <p class="descripcion-seccion-inicio">
+                Los títulos que más piden nuestros vecinos, para llevar a casa o leer en el jardín.
+              </p>
             </div>
-            <h2 class="titulo-seccion-inicio">
-              Libros Más Leídos de la Comunidad
-            </h2>
-            <p class="descripcion-seccion-inicio">
-              Obras que inspiran, emocionan y abren diálogos entre vecinos.
-              Disponibles para préstamo a domicilio o consulta en nuestro jardín
-              botánico.
-            </p>
+            <a class="enlace-seccion" href="libros.html">
+              <span>Ver todo el catálogo</span>
+              <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
+            </a>
           </div>
 
           <div class="rejilla-destacados-inicio">
             <!-- Las tarjetas se generan desde datos/libros.js (ver biblioteca.js): los 4 libros con más lectores -->
           </div>
-
-          <div class="fila-boton-catalogo">
-            <a class="boton-ver-catalogo" href="libros.html">
-              <span>Explorar los 2.540 libros del catálogo completo</span>
-              <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
-            </a>
-          </div>
         </section>
 
         <!-- AGENDA COMUNITARIA. PRÓXIMAS ACTIVIDADES DEL MES -->
         <section class="seccion-agenda-inicio" id="actividades">
-          <div class="tarjeta-agenda-contenedor">
-            <div class="cabecera-seccion-centrada">
-              <div class="insignia-subtitulo-centrada">
-                <span aria-hidden="true" class="material-symbols-outlined">event</span>
-                <span>Agenda Comunitaria</span>
-              </div>
+          <div class="contenedor-agenda">
+            <div class="cabecera-seccion">
               <h2 class="titulo-seccion-inicio">
-                Próximas Actividades del Mes
+                Próximas actividades del mes
               </h2>
               <p class="descripcion-seccion-inicio">
-                Súmate a nuestras actividades vecinales presenciales. No se
-                requiere inscripción previa compleja, solo ganas de aprender y
-                compartir.
+                Actividades presenciales para los vecinos. Solo hace falta
+                ganas de aprender y compartir.
               </p>
             </div>
 
@@ -270,7 +207,7 @@
                   <span class="insignia-modalidad-evento">Presencial</span>
                 </div>
                 <h3 class="titulo-evento-inicio">
-                  Club de Lectura: Cien años de Macondo
+                  Club de lectura: «Cien años de soledad»
                 </h3>
                 <p class="descripcion-evento-inicio">
                   Tertulia y análisis colectivo sobre los primeros capítulos de
@@ -280,15 +217,15 @@
                 <div class="detalles-meta-evento">
                   <span>
                     <span aria-hidden="true" class="material-symbols-outlined">schedule</span>
-                    Sábado, 10:00 - 12:00 hrs
+                    Sábado, 10:00 a 12:00
                   </span>
                   <span>
                     <span aria-hidden="true" class="material-symbols-outlined">place</span>
-                    Sala de Lectura Botánica
+                    Sala de lectura botánica
                   </span>
                 </div>
                 <a class="boton-inscribirse-evento" href="contacto.html">
-                  <span>Inscribirse Gratis</span>
+                  <span>Inscribirse gratis</span>
                   <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
                 </a>
               </div>
@@ -303,7 +240,7 @@
                   <span class="insignia-modalidad-evento">Familiar</span>
                 </div>
                 <h3 class="titulo-evento-inicio">
-                  Taller Infantil: Sembrando un Cuento
+                  Taller infantil: sembrando un cuento
                 </h3>
                 <p class="descripcion-evento-inicio">
                   Sesión lúdica para niñas y niños de 5 a 11 años: lectura
@@ -313,15 +250,15 @@
                 <div class="detalles-meta-evento">
                   <span>
                     <span aria-hidden="true" class="material-symbols-outlined">schedule</span>
-                    Miércoles, 16:00 - 17:30 hrs
+                    Miércoles, 16:00 a 17:30
                   </span>
                   <span>
                     <span aria-hidden="true" class="material-symbols-outlined">place</span>
-                    Rincón Infantil
+                    Rincón infantil
                   </span>
                 </div>
                 <a class="boton-inscribirse-evento" href="contacto.html">
-                  <span>Inscribirse Gratis</span>
+                  <span>Inscribirse gratis</span>
                   <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
                 </a>
               </div>
@@ -336,7 +273,7 @@
                   <span class="insignia-modalidad-evento">Comunidad</span>
                 </div>
                 <h3 class="titulo-evento-inicio">
-                  Jornada de Donación e Intercambio
+                  Jornada de donación e intercambio
                 </h3>
                 <p class="descripcion-evento-inicio">
                   Trae libros que ya leíste y llévate nuevas semillas
@@ -346,11 +283,11 @@
                 <div class="detalles-meta-evento">
                   <span>
                     <span aria-hidden="true" class="material-symbols-outlined">schedule</span>
-                    Sábado, 10:00 - 16:00 hrs
+                    Sábado, 10:00 a 16:00
                   </span>
                   <span>
                     <span aria-hidden="true" class="material-symbols-outlined">place</span>
-                    Patio Exterior de la Sede
+                    Patio exterior de la sede
                   </span>
                 </div>
                 <a class="boton-inscribirse-evento" href="contacto.html">
@@ -364,17 +301,12 @@
 
         <!-- EXPERIENCIA MULTIMEDIA -->
         <section class="seccion-multimedia-comunitaria">
-          <div class="cabecera-seccion-centrada">
-            <div class="insignia-subtitulo-centrada">
-              <span aria-hidden="true" class="material-symbols-outlined">smart_display</span>
-              <span>Experiencia Multimedia</span>
-            </div>
+          <div class="cabecera-seccion">
             <h2 class="titulo-seccion-inicio">
-              Voces y Espacios de la Biblioteca
+              Voces y espacios de la biblioteca
             </h2>
             <p class="descripcion-seccion-inicio">
-              Observa el video de nuestras salas y escucha relatos grabados por
-              lectores de la comunidad.
+              Mira cómo son nuestras salas y acompaña tu lectura con música tranquila.
             </p>
           </div>
 
@@ -396,20 +328,15 @@
                 </video>
               </div>
               <div class="detalles-multimedia">
-                <h3>Video: Recorrido Virtual por la Biblioteca</h3>
+                <h3>Recorrido por la biblioteca</h3>
                 <p>
-                  Recorrido institucional de 8 segundos por nuestras salas de
-                  estudio silencioso, estantes libres y el jardín botánico de
-                  lectura.
+                  Un recorrido en video por las salas de estudio silencioso, los
+                  estantes libres y el jardín botánico de lectura.
                 </p>
                 <div class="pie-multimedia-meta">
                   <span>
                     <span aria-hidden="true" class="material-symbols-outlined">videocam</span>
-                    Video Institucional MP4 (30s)
-                  </span>
-                  <span>
-                    <span aria-hidden="true" class="material-symbols-outlined">hd</span>
-                    Alta Definición (HD)
+                    Video
                   </span>
                 </div>
               </div>
@@ -426,11 +353,10 @@
                   </div>
                   <div>
                     <h3 class="titulo-audio-info">
-                      Música Relajante para Lectura y Estudio
+                      Música tranquila para leer
                     </h3>
                     <p class="descripcion-audio-info">
-                      Ambiente sonoro tranquilo y contemplativo para acompañar
-                      tu lectura
+                      Para acompañar tu lectura
                     </p>
                   </div>
                 </div>
@@ -447,19 +373,14 @@
                 </audio>
               </div>
               <div class="detalles-multimedia">
-                <h3>Música Relajante: Armonía Botánica para Concentración</h3>
+                <h3>Armonía botánica</h3>
                 <p>
-                  Composición relajante con notas suaves de piano y acordes
-                  cálidos para crear una atmósfera serena de lectura individual.
+                  Notas suaves de piano para crear una atmósfera serena de lectura.
                 </p>
                 <div class="pie-multimedia-meta">
                   <span>
                     <span aria-hidden="true" class="material-symbols-outlined">music_note</span>
-                    Audio Relajante MP3
-                  </span>
-                  <span>
-                    <span aria-hidden="true" class="material-symbols-outlined">timer</span>
-                    1:00 min (Bucle sereno)
+                    Audio
                   </span>
                 </div>
               </div>
@@ -471,82 +392,57 @@
         <section class="seccion-normas">
           <div class="contenedor-normas">
             <div class="cabecera-normas">
-              <div class="insignia-normas">
-                <span aria-hidden="true" class="material-symbols-outlined">verified_user</span>
-                <span>Convivencia y Cuidado Mutuo</span>
-              </div>
               <h2 class="titulo-normas">
-                Normas Sencillas para Cuidar Nuestro Tesoro
+                Normas sencillas para cuidar lo que es de todos
               </h2>
               <p class="descripcion-normas">
-                Creemos en la confianza vecinal. El acceso libre al saber se
-                sostiene con el respeto de cada miembro de la comunidad.
+                El acceso libre a los libros se sostiene con el respeto de cada vecino.
               </p>
             </div>
 
             <div class="rejilla-normas">
               <div class="tarjeta-norma">
-                <div class="icono-norma verde-claro">
-                  <span aria-hidden="true" class="material-symbols-outlined">library_books</span>
-                </div>
-                <h3 class="titulo-regla">Hasta 3 Libros a la Vez</h3>
+                <h3 class="titulo-regla">Hasta 3 libros a la vez</h3>
                 <p class="texto-regla">
-                  Cada vecino acreditado puede retirar hasta 3 ejemplares por un
-                  periodo de 14 días corridos con renovación rápida desde su
-                  Carnet Digital.
+                  Cada vecino con carnet puede llevar hasta 3 ejemplares por 14
+                  días, con renovación rápida.
                 </p>
               </div>
 
               <div class="tarjeta-norma">
-                <div class="icono-norma verde-salvia">
-                  <span aria-hidden="true" class="material-symbols-outlined">eco</span>
-                </div>
-                <h3 class="titulo-regla">Cuidado Orgánico y Amoroso</h3>
+                <h3 class="titulo-regla">Cuida cada página</h3>
                 <p class="texto-regla">
-                  Trata cada página como una planta viva. Utiliza los
-                  separadores botánicos gratuitos en recepción y protégelos de
-                  líquidos y humedad.
+                  Trata cada libro como una planta viva: usa los separadores
+                  gratuitos de recepción y protégelo de líquidos y humedad.
                 </p>
               </div>
 
               <div class="tarjeta-norma">
-                <div class="icono-norma ambar-claro">
-                  <span aria-hidden="true" class="material-symbols-outlined">badge</span>
-                </div>
-                <h3 class="titulo-regla">Obtén tu Carnet en 2 Minutos</h3>
+                <h3 class="titulo-regla">Saca tu carnet en 2 minutos</h3>
                 <p class="texto-regla">
-                  Presenta solo tu documento de identidad y comprobante de
-                  domicilio vecinal, o solicítalo en línea con validación
-                  comunitaria gratuita.
+                  Presenta tu documento de identidad y un comprobante de
+                  domicilio, o créate una cuenta en línea. Es gratis.
                 </p>
               </div>
 
               <div class="tarjeta-norma">
-                <div class="icono-norma verde-claro">
-                  <span aria-hidden="true" class="material-symbols-outlined">volume_off</span>
-                </div>
-                <h3 class="titulo-regla">Silencio y Armonía Compartida</h3>
+                <h3 class="titulo-regla">Silencio en las salas de estudio</h3>
                 <p class="texto-regla">
-                  Mantén el tono de voz bajo en las salas de estudio silencioso
-                  y aprovecha las áreas del jardín botánico para tertulias y
-                  diálogo vecinal.
+                  Habla bajo en las salas y deja las conversaciones largas para
+                  el jardín.
                 </p>
               </div>
             </div>
 
-            <!-- ¿AÚN NO TIENES TU CARNET VECINAL? ... -->
-            <div class="tarjeta-llamado-accion">
+            <!-- Invitación a sacar el carnet (se oculta si ya hay sesión) -->
+            <div class="tarjeta-llamado-accion" data-solo-visitantes>
               <div class="texto-llamado">
-                <span aria-hidden="true" class="material-symbols-outlined icono-llamado"
-                  >card_membership</span
-                >
                 <div>
                   <h2 class="titulo-llamado">
-                    ¿Aún no tienes tu Carnet Vecinal?
+                    ¿Aún no tienes tu carnet vecinal?
                   </h2>
                   <p class="subtitulo-llamado">
-                    Actívalo hoy mismo y empieza a pedir tus libros favoritos en
-                    un solo clic.
+                    Es gratis. Con él reservas libros y pides ejemplares para leer en sala.
                   </p>
                 </div>
               </div>
