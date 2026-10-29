@@ -366,6 +366,8 @@
     }
     const INTERVALO = 3000;
     const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // En el celular (pantalla táctil o angosta) no avanza solo: se maneja con las dos flechas o deslizando
+    const celular = window.matchMedia("(pointer: coarse), (max-width: 640px)");
 
     const el = (etiqueta, clase, contenido) => {
       const nodo = document.createElement(etiqueta);
@@ -417,11 +419,15 @@
     const anterior = boton("chevron_left", "Libro anterior");
     const siguiente = boton("chevron_right", "Libro siguiente");
     const pausa = boton("pause", "Pausar el carrusel");
+    pausa.classList.add("boton-pausa");
     const controles = el("div", "carrusel-controles");
     controles.append(anterior, pausa, siguiente);
     const estado = el("p", "visualmente-oculto");
     estado.setAttribute("aria-live", "polite");
-    raiz.replaceChildren(escena, controles, estado);
+    // Si el equipo pide menos animaciones, no se mueve solo y se explica por qué (en vez de parecer roto)
+    const nota = el("p", "carrusel-nota", "El movimiento automático está desactivado porque tu equipo pide menos animaciones. Pulsa el botón de reproducir para activarlo.");
+    nota.hidden = !sinMovimiento;
+    raiz.replaceChildren(escena, controles, nota, estado);
 
     let actual = 0;
     function pintar() {
@@ -458,7 +464,7 @@
     }
     function revisar() {
       clearInterval(temporizador);
-      if (!pausaManual && !suspendido && visible && !document.hidden) temporizador = setInterval(() => mover(1, false), INTERVALO);
+      if (!pausaManual && !suspendido && visible && !document.hidden && !celular.matches) temporizador = setInterval(() => mover(1, false), INTERVALO);
     }
     function mover(paso, manual) {
       actual = (actual + paso + n) % n;
@@ -470,6 +476,9 @@
     siguiente.addEventListener("click", () => mover(1, true));
     pausa.addEventListener("click", () => {
       pausaManual = !pausaManual;
+      // Quien pulsa reproducir pide el movimiento a propósito, aunque su equipo prefiera menos animaciones
+      raiz.classList.toggle("carrusel-con-movimiento", !pausaManual && sinMovimiento);
+      nota.hidden = !(pausaManual && sinMovimiento);
       actualizarBotonPausa();
       revisar();
     });
@@ -550,6 +559,7 @@
       { threshold: 0.35 }
     ).observe(raiz);
     document.addEventListener("visibilitychange", revisar);
+    celular.addEventListener("change", revisar);
   }
 
   // En libros.html: dibuja el catálogo antes de que arranque el script de la página (este archivo va con defer)
