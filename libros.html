@@ -726,6 +726,27 @@
 
         actualizarCatalogo();
 
+        // Si se llega desde el carrusel del inicio (libros.html#libro-<id>): se quitan los filtros, se abre la página
+        // donde está ese libro, se desplaza hasta él y se marca unos segundos
+        function irAlLibroDeLaDireccion() {
+          const m = location.hash.match(/^#libro-(.+)$/);
+          const tarjeta = m && document.getElementById("libro-" + decodeURIComponent(m[1]));
+          if (!tarjeta) return;
+          if (inputBusqueda) inputBusqueda.value = "";
+          marcarCategoria("todos");
+          casillasDisponibilidad.forEach((casilla) => (casilla.checked = false));
+          pildorasFormato.forEach((pildora) => pildora.setAttribute("aria-pressed", "false"));
+          const criterio = criteriosOrden[selectOrden?.value] || criteriosOrden.populares;
+          paginaActual = Math.floor(tarjetasLibro.slice().sort(criterio).indexOf(tarjeta) / TAMANO_PAGINA) + 1;
+          actualizarCatalogo();
+          const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          tarjeta.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "center" });
+          tarjeta.classList.add("resaltado");
+          setTimeout(() => tarjeta.classList.remove("resaltado"), 3500);
+        }
+        irAlLibroDeLaDireccion();
+        window.addEventListener("hashchange", irAlLibroDeLaDireccion);
+
         // Conmutador de Vistas (Cuadrícula / Lista)
         botonesVista.forEach((btn, index) => {
           btn.addEventListener("click", () => {
