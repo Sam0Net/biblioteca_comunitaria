@@ -336,5 +336,105 @@ window.LIBROS_ORIGINALES = [
     "descripcion": "Reúne la obra poética de la argentina Alejandra Pizarnik, con su lenguaje breve e intenso sobre la soledad, la noche y el silencio.",
     "portada": "img/portada-poesia-completa-pizarnik.jpg",
     "copias": 1
+  },
+  {
+    "id": "la-metamorfosis",
+    "titulo": "La metamorfosis",
+    "autor": "Franz Kafka",
+    "genero": "Clásico universal",
+    "icono": "history_edu",
+    "categorias": [
+      "clasicos",
+      "novela"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Gregor Samsa despierta una mañana convertido en un enorme insecto, y tanto él como su familia deben enfrentarse a la nueva situación. Un relato breve y perturbador sobre la soledad y la alienación.",
+    "portada": "img/portada-la-metamorfosis.jpg",
+    "copias": 1
+  },
+  {
+    "id": "noches-blancas",
+    "titulo": "Noches blancas",
+    "autor": "Fiódor Dostoyevski",
+    "genero": "Clásico ruso",
+    "icono": "history_edu",
+    "categorias": [
+      "clasicos",
+      "novela"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Un joven soñador conoce una noche a Nástenka y, en cuatro noches, se enamora de ella. Un relato breve sobre la soledad y las ilusiones, ambientado en San Petersburgo.",
+    "portada": "img/portada-noches-blancas.jpg",
+    "copias": 1
+  },
+  {
+    "id": "la-tregua",
+    "titulo": "La tregua",
+    "autor": "Mario Benedetti",
+    "genero": "Novela uruguaya",
+    "icono": "menu_book",
+    "categorias": [
+      "novela"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Martín Santomé, un viudo cercano a la jubilación, lleva un diario de sus días de oficina en Montevideo. Un amor inesperado le ofrece una tregua frente a la rutina.",
+    "portada": "img/portada-la-tregua.jpg",
+    "copias": 1
+  },
+  {
+    "id": "las-penas-del-joven-werther",
+    "titulo": "Las penas del joven Werther",
+    "autor": "Johann Wolfgang von Goethe",
+    "genero": "Clásico romántico",
+    "icono": "history_edu",
+    "categorias": [
+      "clasicos",
+      "novela"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "Werther cuenta en cartas su amor imposible por Lotte. Una novela epistolar de 1774 que marcó el Romanticismo europeo.",
+    "portada": "img/portada-las-penas-del-joven-werther.jpg",
+    "copias": 1
+  },
+  {
+    "id": "el-mundo-es-ancho-y-ajeno",
+    "titulo": "El mundo es ancho y ajeno",
+    "autor": "Ciro Alegría",
+    "genero": "Novela peruana",
+    "icono": "menu_book",
+    "categorias": [
+      "novela",
+      "clasicos",
+      "historia"
+    ],
+    "formatos": [
+      "impreso"
+    ],
+    "estado": "disponible",
+    "nota": 0,
+    "lectores": 0,
+    "descripcion": "En los Andes peruanos, la comunidad indígena de Rumi pierde sus tierras ante un hacendado poderoso. Una gran novela indigenista publicada en 1941.",
+    "portada": "img/portada-el-mundo-es-ancho-y-ajeno.jpg",
+    "copias": 1
   }
 ];
