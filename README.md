@@ -108,7 +108,7 @@ Lo que **no** se ha probado: lectores de pantalla reales (NVDA, VoiceOver) ni di
 
 ## Conocido y pendiente
 
-- **Portadas:** todas están en `img/` menos la de «La felicidad» (Rolón), que sigue en un servidor externo. Si tienes la imagen, cópiala a `img/` y cambia la ruta en `datos/libros.js`.
+- **Portadas:** las 9 están en `img/` (Open Library y catálogos de librerías). Son imágenes de baja resolución (unos 330 px de ancho): bastan para la pantalla, pero se verían suaves si se amplían mucho.
 - **Video del recorrido:** sin subtítulos ni descripción en texto; algunos textos de la sección de video y audio no coinciden con el contenido.
 - **Catálogo:** el botón "Buscar", el selector "Todos los campos" y "Sugerir un título" todavía no tienen función propia. Los contadores de las categorías (840, 320…) son cifras de ejemplo.
 - **`registro.html`:** existe pero no está enlazada desde el sitio.

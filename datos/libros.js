@@ -45,7 +45,7 @@ window.LIBROS_ORIGINALES = [
     "nota": 4.7,
     "lectores": 31,
     "descripcion": "Una lúcida indagación sobre el anhelo más universal: desentrañar la dicha desde la emoción, el duelo y los vínculos humanos.",
-    "portada": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3t7UebnA1ihuXHCDBdjB2jju0-y0B4UFBrUsFFZ8_Cu1HNXOom71TLG9c6hNCL96qARz8IVrQPOoClgU__kH0pGgOCYl85hIYiaE7RI93c7CiN39XHH3VAP64Cv5ZdpkrKm7TxWCVqSspNoiljPzW6Sc9e_zkN5MZDFYwDydhuE4xnRui0sUVivcN3etV7FG5SDKqvYenmPrPi3IMCfB0Blje9-arb9R-bsmmvVU5kpex5B-3PqDB",
+    "portada": "img/portada-la-felicidad.jpg",
     "copias": 2
   },
   {
@@ -104,7 +104,7 @@ window.LIBROS_ORIGINALES = [
     "nota": 4.8,
     "lectores": 19,
     "descripcion": "En medio de la Revolución mexicana, un niño con un velo de abejas transforma para siempre el destino de una familia en Linares.",
-    "portada": "img/portada-el-murmullo-de-las-abejas.jpg"
+    "portada": "img/portada-murmullo-abejas.jpg"
   },
   {
     "id": "la-vida-secreta-de-las-plantas",
