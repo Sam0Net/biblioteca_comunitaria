@@ -28,7 +28,7 @@
     6. HÉROE (index.html, contacto.html y registro.html)
     7. CABECERAS DE SECCIÓN CENTRADAS (JERARQUÍA Y TRACKING ÓPTICO)
     8. TARJETAS DE LIBROS (index.html y libros.html)
-    9. CATÁLOGO: BÚSQUEDA, FILTROS, CONTROLES Y PAGINACIÓN (libros.html)
+    9. CATÁLOGO: BÚSQUEDA, CATEGORÍAS, FILTROS Y CONTROLES (libros.html)
    10. AGENDA COMUNITARIA Y ACTIVIDADES (index.html)
    11. MULTIMEDIA: VIDEO Y AUDIO (index.html)
    12. CONVIVENCIA Y NORMAS VECINALES (index.html)
@@ -46,7 +46,6 @@
    24. COMPONENTES ADICIONALES Y CLASES ESPECÍFICAS DE PÁGINA
    25. REGLAS RESPONSIVAS COMPLEMENTARIAS (MÓVILES Y TABLETS)
    26. CLASES DE APOYO (sustituyen estilos en línea del HTML)
-   27. PANEL DE FILTROS PLEGABLE EN MÓVIL (libros.html)
    28. ESTRUCTURA HTML: dirección del pie y anclas bajo el encabezado fijo
    29. CAMBIO ENTRE INICIAR SESIÓN Y CREAR CUENTA (login.html)
    30. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
@@ -299,6 +298,11 @@ img, picture, video {
   outline-offset: 2px;
 }
 
+/* Un elemento con el atributo hidden nunca se muestra, aunque otra regla le ponga display */
+[hidden] {
+  display: none !important;
+}
+
 /* Texto solo para lectores de pantalla (reemplaza el estilo en línea left:-9999px) */
 .visualmente-oculto {
   position: absolute;
@@ -327,7 +331,6 @@ button:active,
 .boton-carnet:active,
 .boton-enviar-contacto:active,
 .boton-secundario-contacto:active,
-.boton-buscar:active,
 .boton-banner-primario:active,
 .boton-banner-secundario:active,
 .boton-vista:active,
@@ -792,8 +795,7 @@ button:active,
 .insignia-tema,
 .insignia-subtitulo-centrada,
 .insignia-normas,
-.insignia-semillero,
-.insignia-conteo {
+.insignia-semillero {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -837,8 +839,7 @@ button:active,
 .boton-heroe-primario,
 .boton-accion-primario,
 .boton-banner-primario,
-.boton-enviar-contacto,
-.boton-buscar {
+.boton-enviar-contacto {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -862,8 +863,7 @@ button:active,
   .boton-heroe-primario:hover,
   .boton-accion-primario:hover,
   .boton-banner-primario:hover,
-  .boton-enviar-contacto:hover,
-  .boton-buscar:hover {
+  .boton-enviar-contacto:hover {
     background-color: var(--primary-hover);
     box-shadow: 0 4px 14px rgba(26, 77, 59, 0.32);
     transform: translateY(-2px);
@@ -875,8 +875,7 @@ button:active,
 .boton-accion-secundario,
 .boton-banner-secundario,
 .boton-secundario-contacto,
-.boton-limpiar,
-.boton-etiqueta {
+.boton-limpiar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -901,8 +900,7 @@ button:active,
   .boton-accion-secundario:hover,
   .boton-banner-secundario:hover,
   .boton-secundario-contacto:hover,
-  .boton-limpiar:hover,
-  .boton-etiqueta:hover {
+  .boton-limpiar:hover {
     background-color: #c5dbcf;
     border-color: var(--border-strong);
     transform: translateY(-2px);
@@ -1075,82 +1073,45 @@ button:active,
   margin-bottom: 4rem;
 }
 
+/* Estantería: 4 portadas por fila en escritorio, 2 en celular. La portada va entera (proporción 2:3), sin recortar. */
 .rejilla-destacados-inicio,
 .rejilla-libros {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+  gap: 2.5rem 1.75rem;
 }
 
-/* Vista alternativa en lista */
-.rejilla-libros.vista-lista {
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-}
-
-.rejilla-libros.vista-lista .tarjeta-libro {
-  flex-direction: row;
-  align-items: center;
-  gap: 1.75rem;
-  padding: 1.25rem 1.5rem;
-}
-
-.rejilla-libros.vista-lista .contenedor-portada {
-  width: 120px;
-  height: 160px;
-  margin-bottom: 0;
-  flex-shrink: 0;
+@media (min-width: 1024px) {
+  .rejilla-destacados-inicio,
+  .rejilla-libros {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
-  .rejilla-libros.vista-lista .tarjeta-libro {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .rejilla-libros.vista-lista .contenedor-portada {
-    width: 100%;
-    height: 220px;
+  .rejilla-destacados-inicio,
+  .rejilla-libros {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 1rem;
   }
 }
 
 .tarjeta-libro {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-lg);
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-suave);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  transition: transform 300ms var(--spring-default), box-shadow 300ms var(--spring-default), border-color 200ms ease;
   position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .tarjeta-libro:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--sombra-card-hover);
-    border-color: rgba(26, 77, 59, 0.2);
-  }
-}
-
-.cuerpo-tarjeta {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  gap: 1rem;
 }
 
-/* Portada del libro con sombra de lomo */
+/* Portada con forma de libro: lomo a la izquierda, esquinas derechas más redondas */
 .contenedor-portada {
   position: relative;
-  width: 100%;
-  height: 230px;
-  border-radius: var(--radio-md);
+  aspect-ratio: 2 / 3;
   overflow: hidden;
-  margin-bottom: 1.15rem;
   background-color: var(--surface-secondary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-radius: 4px var(--radio-sm) var(--radio-sm) 4px;
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.14), 0 12px 24px -10px rgba(26, 77, 59, 0.3);
+  transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
 }
 
 .imagen-portada {
@@ -1158,59 +1119,110 @@ button:active,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  transition: transform 400ms var(--spring-default);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .tarjeta-libro:hover .imagen-portada {
-    transform: scale(1.04);
-  }
 }
 
 .sombra-lomo {
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 16px;
-  background: linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+  inset: 0 auto 0 0;
+  width: 12px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.08) 45%, transparent);
   pointer-events: none;
 }
 
-/* Insignias de Disponibilidad */
-.insignia-disponibilidad {
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-libro:hover .contenedor-portada {
+    transform: translateY(-6px);
+    box-shadow: 0 2px 4px rgba(17, 17, 17, 0.14), 0 22px 34px -12px rgba(26, 77, 59, 0.4);
+  }
+}
+
+.cuerpo-tarjeta {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.titulo-libro {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+/* Todo el libro es un solo objetivo: el título abre los detalles y su ::after cubre la tarjeta */
+.titulo-boton {
+  display: -webkit-box;
+  overflow: hidden;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.titulo-boton::after {
+  content: "";
   position: absolute;
-  top: 10px;
-  right: 10px;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--radio-sm);
+}
+
+.titulo-boton:focus-visible {
+  outline: none;
+}
+
+.titulo-boton:focus-visible::after {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.autor-libro {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.estado-libro {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.72rem;
+  gap: 0.45rem;
+  margin: 0.4rem 0 0;
+  font-size: 0.8125rem;
   font-weight: 600;
-  padding: 0.3rem 0.75rem;
-  border-radius: var(--radio-completo);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--sombra-suave);
-}
-
-.insignia-disponibilidad.disponible {
-  background-color: rgba(255, 255, 255, 0.92);
   color: var(--status-available);
-  border: 1px solid rgba(26, 77, 59, 0.2);
 }
 
-.insignia-disponibilidad.prestamo {
-  background-color: rgba(255, 255, 255, 0.92);
-  color: var(--status-borrowed);
-  border: 1px solid rgba(217, 119, 6, 0.2);
+.estado-libro .punto-estado {
+  width: 8px;
+  height: 8px;
 }
 
-.insignia-disponibilidad.sala {
-  background-color: rgba(255, 255, 255, 0.92);
+.estado-libro.sala {
   color: var(--status-reserved);
-  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.estado-libro.prestamo {
+  color: var(--status-borrowed);
+}
+
+.estado-libro.novedad {
+  color: var(--tertiary-container);
+}
+
+.estado-libro.novedad .punto-estado {
+  background-color: var(--warm-amber);
 }
 
 .punto-estado {
@@ -1220,515 +1232,517 @@ button:active,
   background-color: currentColor;
 }
 
-/* Textos de Tarjeta de Libro */
-.genero-libro {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.4rem;
-}
-
-.genero-libro .material-symbols-outlined {
-  font-size: 15px;
-}
-
-.titulo-libro {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-  line-height: 1.28;
-  margin-bottom: 0.25rem;
-}
-
-.autor-libro {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.65rem;
-  font-weight: 500;
-}
-
-.calificacion-libro {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.75rem;
-}
-
-.estrellas {
-  display: flex;
-  gap: 1px;
-  color: #eab308;
-}
-
-.estrellas .material-symbols-outlined {
-  font-size: 16px;
-  font-variation-settings: 'FILL' 1;
-}
-
-.texto-lectores {
-  font-size: 0.75rem;
-  color: var(--text-tertiary);
-  font-weight: 500;
-}
-
+/* La descripción solo se ve en la vista de lista; en la estantería vive en la ventana de detalles */
 .descripcion-libro {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 1.15rem;
-  flex: 1;
+  display: none;
 }
 
-/* Acciones y Botones de Tarjeta */
 .acciones-tarjeta {
+  position: relative;
+  z-index: 2;
   display: flex;
-  gap: 0.6rem;
   margin-top: auto;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--border-hairline);
 }
 
-.boton-accion-primario,
-.boton-accion-secundario {
-  padding: 0.55rem 0.95rem;
-  font-size: 0.825rem;
+.acciones-tarjeta .boton-accion-primario,
+.acciones-tarjeta .boton-accion-secundario {
   flex: 1;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* Vista de lista: portada pequeña, datos y descripción en una fila */
+.rejilla-libros.vista-lista {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.rejilla-libros.vista-lista .tarjeta-libro {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  padding: 1rem;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-lg);
+}
+
+.rejilla-libros.vista-lista .contenedor-portada {
+  width: 84px;
+  flex-shrink: 0;
+}
+
+.rejilla-libros.vista-lista .cuerpo-tarjeta {
+  flex: 1 1 240px;
+}
+
+.rejilla-libros.vista-lista .descripcion-libro {
+  display: -webkit-box;
+  margin: 0.35rem 0 0;
+  overflow: hidden;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.rejilla-libros.vista-lista .acciones-tarjeta {
+  flex: 0 0 11rem;
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .rejilla-libros.vista-lista .acciones-tarjeta {
+    flex-basis: 100%;
+  }
 }
 
 /* ==========================================================================
-   9. CATÁLOGO: BÚSQUEDA, FILTROS, CONTROLES Y PAGINACIÓN (libros.html)
+   9. CATÁLOGO: BÚSQUEDA, CATEGORÍAS, FILTROS Y CONTROLES (libros.html)
    ========================================================================== */
-.seccion-busqueda-libros {
-  margin-bottom: 2.5rem;
+.cabecera-catalogo {
+  margin-bottom: 2rem;
 }
 
-.contenedor-busqueda-libros {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-lg);
-  padding: 1.5rem 1.75rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-media);
+.titulo-catalogo {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.1;
+  color: var(--primary);
+  text-wrap: balance;
 }
 
-.barra-busqueda {
+.subtitulo-catalogo {
+  max-width: 52ch;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.contenedor-catalogo {
+  margin-bottom: 3.5rem;
+}
+
+/* Búsqueda y botón de filtros */
+.columna-filtros {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   margin-bottom: 1.25rem;
 }
 
-@media (min-width: 768px) {
-  .barra-busqueda {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-@media (min-width: 768px) {
-  .barra-busqueda {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.75rem;
-  }
+.fila-herramientas {
+  display: flex;
+  gap: 0.75rem;
 }
 
 .campo-texto {
   position: relative;
-  flex: 1;
   display: flex;
+  flex: 1;
   align-items: center;
+  min-width: 0;
 }
 
-.campo-texto .icono-en-campo,
 .campo-texto .material-symbols-outlined {
   position: absolute;
-  left: 1rem;
+  left: 1.1rem;
+  font-size: 22px;
   color: var(--text-tertiary);
   pointer-events: none;
-  font-size: 20px;
 }
 
 .entrada-busqueda {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.75rem;
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radio-md);
+  height: 52px;
+  padding: 0 1.25rem 0 3.1rem;
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-primary);
-  transition: background-color 180ms ease, border-color 180ms ease;
-}
-
-.campo-criterio {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-width: 190px;
-}
-
-.campo-criterio .material-symbols-outlined {
-  position: absolute;
-  left: 0.85rem;
-  color: var(--text-tertiary);
-  pointer-events: none;
-  font-size: 18px;
-}
-
-.selector-criterio {
-  width: 100%;
-  appearance: none;
-  -webkit-appearance: none;
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radio-md);
-  padding: 0.75rem 2.25rem 0.75rem 2.35rem;
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  color: var(--text-primary);
-  font-weight: 500;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 -960 960 960' width='18' fill='%236e6e73'%3E%3Cpath d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  transition: background-color 180ms ease, border-color 180ms ease;
-}
-
-.selector-criterio:focus {
   background-color: #ffffff;
-  border-color: var(--primary);
-  outline: 3px solid var(--primary);
-  outline-offset: 2px;
-}
-
-/* Control desplegable "Ordenar por" */
-.selector-orden {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-width: 0;
-  max-width: 100%;
-}
-
-.etiqueta-orden {
-  font-size: 0.8rem;
-  color: var(--text-tertiary);
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.menu-orden {
-  appearance: none;
-  -webkit-appearance: none;
-  background-color: var(--surface-secondary);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radio-md);
-  padding: 0.5rem 2.2rem 0.5rem 0.85rem;
-  min-width: 0;
-  max-width: 100%;
-  text-overflow: ellipsis;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 -960 960 960' width='18' fill='%236e6e73'%3E%3Cpath d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.65rem center;
-  transition: background-color 180ms ease, border-color 180ms ease;
-}
-
-.menu-orden:focus {
-  background-color: #ffffff;
-  border-color: var(--primary);
-  outline: 3px solid var(--primary);
-  outline-offset: 2px;
-}
-
-.entrada-busqueda:focus {
-  background-color: #ffffff;
-  border-color: var(--primary);
-  outline: 3px solid var(--primary);
-  outline-offset: 2px;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  box-shadow: var(--sombra-suave);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .entrada-busqueda::placeholder {
   color: var(--text-tertiary);
 }
 
-.etiquetas-sugeridas {
-  display: flex;
-  flex-wrap: wrap;
+.entrada-busqueda:focus {
+  border-color: var(--primary);
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.boton-filtros-movil {
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.titulo-sugerencias {
-  font-size: 0.78rem;
+  height: 52px;
+  padding: 0 1.4rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-right: 0.35rem;
+  color: var(--primary);
+  background-color: #ffffff;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  box-shadow: var(--sombra-suave);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
 }
 
-.boton-etiqueta {
-  padding: 0.35rem 0.8rem;
+.boton-filtros-movil[aria-expanded="true"] {
+  background-color: var(--sage-container);
+  border-color: var(--primary);
+}
+
+.contador-filtros-activos {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
   font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: var(--primary);
   border-radius: var(--radio-completo);
 }
 
-/* Disposición Principal del Catálogo (Panel Lateral y Cuadrícula) */
-.rejilla-principal {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 2rem;
-  align-items: start;
+.contador-filtros-activos[hidden] {
+  display: none;
 }
 
-@media (min-width: 1024px) {
-  .rejilla-principal {
-    grid-template-columns: 280px minmax(0, 1fr);
-    gap: 2.25rem;
+@media (max-width: 480px) {
+  .boton-filtros-movil {
+    padding: 0 1rem;
   }
 }
 
-/* Panel lateral de filtros */
+/* Panel de filtros: se despliega bajo la búsqueda (sin JavaScript queda visible) */
 .tarjeta-filtros {
-  background-color: var(--surface-card);
-  border-radius: var(--radio-lg);
-  border: 1px solid var(--border-hairline);
-  padding: 1.5rem;
-  box-shadow: var(--sombra-suave);
-  position: sticky;
-  top: 80px;
-}
-
-.cabecera-filtros {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--border-hairline);
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-media);
 }
 
-.titulo-panel {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
+.columna-filtros.plegable:not(.filtros-abiertos) .tarjeta-filtros {
+  display: none;
 }
 
-.boton-limpiar {
-  padding: 0.3rem 0.75rem;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
+.grupos-filtros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 1.5rem;
 }
 
 .seccion-filtro {
-  margin-bottom: 1.35rem;
-  padding-bottom: 1.15rem;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.seccion-filtro:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .subtitulo-filtro {
-  font-size: 0.8rem;
+  margin-bottom: 0.65rem;
+  padding: 0;
+  font-size: 0.875rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-secondary);
-  margin-bottom: 0.75rem;
+  color: var(--text-primary);
 }
 
-.lista-categorias {
-  list-style: none;
+.grupo-casillas,
+.grupo-pildoras-formato {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.item-categoria {
+.opcion-casilla,
+.pildora-formato {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background-color: #ffffff;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.opcion-casilla input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.opcion-casilla:has(input:checked),
+button.pildora-formato[aria-pressed="true"] {
+  color: var(--primary);
+  background-color: var(--sage-container);
+  border-color: var(--primary);
+}
+
+.opcion-casilla:has(input:focus-visible) {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.acciones-filtros {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  padding: 0.45rem 0.65rem;
-  border: 0;
-  border-radius: var(--radio-sm);
-  background-color: transparent;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  text-align: left;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-hairline);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .item-categoria:hover {
-    background-color: var(--surface-secondary);
-    color: var(--text-primary);
+.boton-limpiar {
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+.boton-ver-resultados {
+  min-height: 44px;
+  padding: 0.5rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--primary);
+  border: 0;
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .acciones-filtros > * {
+    flex: 1 1 100%;
   }
 }
 
-.item-categoria.activo {
-  background-color: var(--primary-subtle);
-  color: var(--primary);
+/* Categorías: una fila de chips (se desliza de lado en el celular) */
+.navegacion-categorias {
+  margin-bottom: 1.75rem;
+}
+
+.lista-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lista-categorias li[hidden] {
+  display: none;
+}
+
+.item-categoria {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  height: 44px;
+  padding: 0 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
   font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  background-color: #ffffff;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .contador-categoria {
+  padding: 0.05rem 0.5rem;
   font-size: 0.75rem;
-  padding: 2px 7px;
-  background-color: rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+  color: var(--primary);
+  background-color: var(--sage-subtle);
   border-radius: var(--radio-completo);
-  color: var(--text-tertiary);
 }
 
-.grupo-casillas {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+.item-categoria.activo {
+  color: #ffffff;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
-.opcion-casilla {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  cursor: pointer;
+.item-categoria.activo .contador-categoria {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-.opcion-casilla input[type="checkbox"] {
-  accent-color: var(--primary);
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
+@media (hover: hover) and (pointer: fine) {
+  .item-categoria:not(.activo):hover,
+  .boton-filtros-movil:hover,
+  .opcion-casilla:hover,
+  button.pildora-formato:not([aria-pressed="true"]):hover {
+    background-color: var(--sage-subtle);
+    border-color: var(--primary);
+  }
+
+  .boton-ver-resultados:hover {
+    background-color: var(--primary-hover);
+  }
 }
 
-/* Barra de Controles y Ordenación */
+@media (max-width: 900px) {
+  .lista-categorias {
+    flex-wrap: nowrap;
+    padding-bottom: 0.35rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .lista-categorias::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lista-categorias li {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+}
+
+/* Barra de controles: cuántos títulos, orden y vista */
 .barra-controles {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  background-color: var(--surface-card);
-  border-radius: var(--radio-md);
-  padding: 0.85rem 1.25rem;
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--sombra-suave);
-  margin-bottom: 1.5rem;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-hairline);
   scroll-margin-top: 5.5rem;
 }
 
-.estado-exploracion {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-}
-
-.estado-exploracion .insignia-conteo {
-  margin-bottom: 0;
-}
-
-.texto-explorando strong {
+.barra-controles .insignia-conteo {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--text-primary);
 }
 
 .ajustes-vista {
   display: flex;
   flex-wrap: wrap;
-  max-width: 100%;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem 1rem;
+  max-width: 100%;
 }
 
+.selector-orden {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.etiqueta-orden {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.menu-orden {
+  appearance: none;
+  -webkit-appearance: none;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.5rem 2.4rem 0.5rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 -960 960 960' width='18' fill='%236e6e73'%3E%3Cpath d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+}
+
+.menu-orden:focus {
+  border-color: var(--primary);
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
 
 .conmutador-vistas {
   display: flex;
   gap: 2px;
-  background-color: var(--surface-secondary);
   padding: 3px;
-  border-radius: var(--radio-sm);
+  background-color: var(--surface-secondary);
+  border-radius: var(--radio-completo);
 }
 
 .boton-vista {
-  background: transparent;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   color: var(--text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radio-completo);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .boton-vista.activo {
-  background-color: #ffffff;
   color: var(--primary);
+  background-color: #ffffff;
   box-shadow: var(--sombra-suave);
 }
 
-/* Objetivos táctiles de 44px en pantallas táctiles (WCAG 2.5.5); con cursor se mantienen compactos */
-@media (pointer: coarse) {
-  .item-categoria,
-  .opcion-casilla {
-    min-height: 44px;
-  }
-
-  .boton-vista {
-    min-width: 44px;
-    min-height: 44px;
-    justify-content: center;
-  }
-
-  .boton-limpiar {
-    min-height: 44px;
-    padding-inline: 1rem;
-  }
-
-  .pildora-formato {
-    min-height: 44px;
-  }
-
-  .boton-pagina {
-    min-width: 44px;
-    height: 44px;
+@media (max-width: 560px) {
+  .ajustes-vista {
+    width: 100%;
+    justify-content: space-between;
   }
 }
 
-/* Banner Comunitario de Donación y Colaboración */
+/* Banner de sugerencias y donaciones */
 .banner-comunitario {
-  background: linear-gradient(135deg, var(--forest-dark) 0%, #154c37 100%);
-  color: #ffffff;
-  border-radius: var(--radio-lg);
-  padding: 1.5rem 1.75rem;
-  margin-top: 2.5rem;
-  box-shadow: var(--sombra-media);
-  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  align-items: stretch;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding: 1.75rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--forest-dark) 0%, #154c37 100%);
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-media);
 }
 
 @media (min-width: 860px) {
@@ -1736,28 +1750,26 @@ button:active,
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 2rem 2.5rem;
   }
 }
 
 .contenido-banner {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.5rem;
   max-width: 680px;
 }
 
 .icono-banner {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radio-md);
-  overflow: hidden;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
+  background-color: var(--surface-card);
+  border-radius: var(--radio-lg);
 }
 
 .icono-banner img {
@@ -1769,48 +1781,38 @@ button:active,
 .texto-banner {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  margin-bottom: 1.25rem;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.55;
-}
-
-.etiqueta-banner {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--on-primary-container);
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radio-completo);
-  margin-bottom: 0.35rem;
-  width: fit-content;
+  gap: 0.4rem;
 }
 
 .titulo-banner {
-  font-size: 1.15rem;
+  font-size: 1.35rem;
+  line-height: 1.2;
   color: #ffffff;
-  letter-spacing: -0.015em;
-  margin-bottom: 0.2rem;
+  text-wrap: balance;
 }
 
 .descripcion-banner {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.45;
-  margin-bottom: 0;
+  font-size: 0.975rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .botones-banner {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 0.75rem;
   flex-shrink: 0;
+}
+
+@media (max-width: 560px) {
+  .contenido-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .botones-banner > * {
+    flex: 1 1 100%;
+  }
 }
 
 /* Paginación */
@@ -1832,17 +1834,17 @@ button:active,
 }
 
 .boton-pagina {
-  min-width: 36px;
-  height: 36px;
+  min-width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 0.5rem;
-  border-radius: var(--radio-sm);
+  border-radius: var(--radio-completo);
   background-color: var(--surface-card);
   border: 1px solid var(--border-hairline);
   color: var(--text-primary);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
@@ -3831,8 +3833,7 @@ button.pildora-formato[aria-pressed="true"] {
     border-bottom: 2px solid var(--border-strong) !important;
   }
 
-  .insignia-flotante-heroe,
-  .insignia-disponibilidad {
+  .insignia-flotante-heroe {
     background-color: #ffffff !important;
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
@@ -3872,44 +3873,6 @@ button.pildora-formato[aria-pressed="true"] {
 /* ==========================================================================
    24. COMPONENTES ADICIONALES Y CLASES ESPECÍFICAS DE PÁGINA
    ========================================================================== */
-
-/* Botón de Información en Tarjetas de Catálogo */
-.boton-accion-info {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radio-sm);
-  background-color: var(--surface-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-hairline);
-  cursor: pointer;
-  transition: transform 180ms var(--spring-snappy), background-color 180ms ease, color 180ms ease, border-color 180ms ease;
-  flex-shrink: 0;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .boton-accion-info:hover {
-    background-color: #ffffff;
-    color: var(--primary);
-    border-color: rgba(26, 77, 59, 0.25);
-    transform: translateY(-1px);
-  }
-}
-
-.boton-accion-info:active {
-  transform: scale(0.92) !important;
-}
-
-/* Envoltorios de Contenedores de Catálogo y Filtros */
-.contenedor-catalogo {
-  margin-bottom: 3.5rem;
-}
-
-.columna-filtros {
-  position: relative;
-}
 
 /* cuadricula-tarjetas-servicio unificada en seccion 13 */
 
@@ -4010,16 +3973,6 @@ button.pildora-formato[aria-pressed="true"] {
   pointer-events: none;
 }
 
-.insignia-disponibilidad.novedad {
-  background-color: rgba(255, 255, 255, 0.94);
-  color: #7c3aed;
-  border: 1px solid rgba(124, 58, 237, 0.25);
-}
-
-.insignia-disponibilidad.novedad .material-symbols-outlined {
-  font-size: 13px;
-}
-
 /* Silueta Botánica Decorativa en Héroe */
 .silueta-botanica {
   position: absolute;
@@ -4049,57 +4002,8 @@ button.pildora-formato[aria-pressed="true"] {
   box-shadow: var(--sombra-media);
 }
 
-/* Tarjeta Consejo en Barra Lateral */
-.tarjeta-consejo {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  background-color: var(--primary-subtle);
-  border: 1px solid rgba(26, 77, 59, 0.15);
-  border-radius: var(--radio-md);
-  padding: 1.15rem;
-  margin-top: 1.5rem;
-}
-
-.tarjeta-consejo .material-symbols-outlined {
-  color: var(--primary);
-  font-size: 22px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.titulo-consejo {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--forest-dark);
-  margin-bottom: 0.25rem;
-}
-
-.texto-consejo {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.45;
-}
-
 .texto-disponible {
   font-weight: 600;
-  color: var(--primary);
-}
-
-.titulo-con-icono {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-}
-
-.titulo-con-icono .material-symbols-outlined {
-  font-size: 20px;
   color: var(--primary);
 }
 
@@ -4320,97 +4224,6 @@ button.pildora-formato[aria-pressed="true"] {
 
 .boton-auth-submit .icono-boton-auth {
   font-size: 18px;
-}
-
-/* ==========================================================================
-   27. PANEL DE FILTROS PLEGABLE EN MÓVIL (libros.html)
-   El JavaScript añade .plegable por debajo de 1024px; sin JavaScript el panel queda visible.
-   ========================================================================== */
-.boton-filtros-movil,
-.boton-ver-resultados {
-  display: none;
-}
-
-.contador-filtros-activos {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.5rem;
-  height: 1.5rem;
-  padding: 0 0.4rem;
-  border-radius: var(--radio-completo);
-  background-color: var(--primary);
-  color: #ffffff;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-.contador-filtros-activos[hidden] {
-  display: none;
-}
-
-@media (max-width: 1023.98px) {
-  .columna-filtros.plegable .boton-filtros-movil {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    width: 100%;
-    min-height: 44px;
-    padding: 0.65rem 1rem;
-    background-color: var(--surface-card);
-    color: var(--primary);
-    border: 1px solid var(--borde-campo);
-    border-radius: var(--radio-md);
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .columna-filtros.plegable .boton-filtros-movil .icono-chevron {
-    margin-left: auto;
-    transition: transform 200ms var(--ease-out);
-  }
-
-  .columna-filtros.plegable.filtros-abiertos .boton-filtros-movil .icono-chevron {
-    transform: rotate(180deg);
-  }
-
-  .columna-filtros.plegable:not(.filtros-abiertos) .tarjeta-filtros {
-    display: none;
-  }
-
-  .columna-filtros.plegable .tarjeta-filtros {
-    margin-top: 0.75rem;
-    position: static;
-  }
-
-  .columna-filtros.plegable .boton-ver-resultados {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 44px;
-    margin-top: 1.25rem;
-    background-color: var(--primary);
-    color: #ffffff;
-    border: 0;
-    border-radius: var(--radio-completo);
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-  }
-}
-
-@media (max-width: 1023.98px) and (hover: hover) and (pointer: fine) {
-  .columna-filtros.plegable .boton-filtros-movil:hover {
-    background-color: var(--surface-secondary);
-  }
-
-  .columna-filtros.plegable .boton-ver-resultados:hover {
-    background-color: var(--primary-hover);
-  }
 }
 
 /* ==========================================================================
@@ -4921,13 +4734,6 @@ section[id] {
   }
 }
 
-/* Botón de información de las tarjetas: 44px en pantallas táctiles (los libros agregados por el admin usan el mismo) */
-@media (pointer: coarse) {
-  .boton-accion-info {
-    width: 44px;
-    height: 44px;
-  }
-}
 
 /* Tablas del panel: el texto puede partirse en líneas y, en el celular, las celdas son más angostas para que quepan sin desplazar */
 .tarjeta-admin .tabla-botanica {

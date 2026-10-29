@@ -11,13 +11,13 @@
   const CLAVE = "bibliotecaLibros";
 
   const CATEGORIAS = {
-    novela: "Novela y Narrativa",
-    psicoanalisis: "Psicoanálisis y Crecimiento",
-    clasicos: "Clásicos Universales",
-    infantil: "Infantil y Juvenil",
-    ciencia: "Ciencia, Botánica y Huertos",
-    poesia: "Poesía y Teatro",
-    historia: "Historia y Comunidad",
+    novela: "Novela",
+    psicoanalisis: "Psicoanálisis",
+    clasicos: "Clásicos",
+    infantil: "Infantil y juvenil",
+    ciencia: "Ciencia y huertos",
+    poesia: "Poesía y teatro",
+    historia: "Historia",
   };
   const ICONOS = {
     novela: "menu_book",
@@ -28,7 +28,7 @@
     poesia: "draw",
     historia: "menu_book",
   };
-  const FORMATOS = { impreso: "Libro impreso", audiolibro: "Audiolibro", "letra-grande": "Letra grande", ilustrado: "Ilustrado" };
+  const FORMATOS = { impreso: "Impreso", audiolibro: "Audiolibro", "letra-grande": "Letra grande", ilustrado: "Ilustrado" };
   const ESTADOS = { disponible: "Disponible", sala: "Solo en sala", novedad: "Novedad donada", prestamo: "Prestado" };
 
   const originales = () => (Array.isArray(window.LIBROS_ORIGINALES) ? window.LIBROS_ORIGINALES : []);
@@ -130,8 +130,8 @@
   }
 
   const textoEstado = (libro) => {
-    if (libro.estado === "disponible") return libro.copias + (libro.copias === 1 ? " Disponible" : " Disponibles");
-    return { sala: "En Sala de Lectura", novedad: "Novedad Donada", prestamo: "Prestado" }[libro.estado];
+    if (libro.estado === "disponible") return libro.copias + (libro.copias === 1 ? " disponible" : " disponibles");
+    return { sala: "En sala de lectura", novedad: "Novedad donada", prestamo: "Prestado" }[libro.estado];
   };
 
   const Biblioteca = {
@@ -201,8 +201,8 @@
       return leerGuardado() !== null;
     },
 
-    // Arma la tarjeta de un libro (misma estructura que usaban las tarjetas escritas a mano)
-    // enlace=true: tarjeta del inicio, cuyo botón lleva al catálogo en vez de reservar
+    // Arma la tarjeta de un libro: portada completa, título, autor y disponibilidad.
+    // enlace=true (inicio): el título lleva al catálogo; si no, abre la ventana de detalles y el botón reserva.
     crearTarjeta(libro, indice, enlace) {
       const el = (etiqueta, clase, contenido) => {
         const nodo = document.createElement(etiqueta);
@@ -210,8 +210,8 @@
         if (contenido != null) nodo.textContent = contenido;
         return nodo;
       };
-      const icono = (nombre, clase) => {
-        const nodo = el("span", "material-symbols-outlined" + (clase ? " " + clase : ""), nombre);
+      const icono = (nombre) => {
+        const nodo = el("span", "material-symbols-outlined", nombre);
         nodo.setAttribute("aria-hidden", "true");
         return nodo;
       };
@@ -220,62 +220,47 @@
       tarjeta.dataset.id = libro.id;
       tarjeta.dataset.categorias = libro.categorias.join(" ");
       tarjeta.dataset.formatos = libro.formatos.join(" ");
-
-      const cuerpo = el("div", "cuerpo-tarjeta");
+      tarjeta.dataset.estado = libro.estado;
+      tarjeta.dataset.lectores = String(libro.lectores);
+      tarjeta.dataset.nota = String(libro.nota);
+      tarjeta.dataset.busqueda = [libro.titulo, libro.autor, libro.genero, libro.descripcion].join(" ");
 
       const contenedor = el("div", "contenedor-portada");
       const imagen = el("img", "imagen-portada");
       imagen.src = libro.portada;
       imagen.alt = "Portada de " + libro.titulo + " de " + libro.autor;
-      if (indice > 0) imagen.loading = "lazy";
+      imagen.width = 400;
+      imagen.height = 600;
+      if (indice > 3) imagen.loading = "lazy";
       imagen.decoding = "async";
-      const insignia = el("div", "insignia-disponibilidad " + libro.estado);
-      if (libro.estado === "sala" || libro.estado === "novedad") {
-        insignia.append(icono(libro.estado === "sala" ? "menu_book" : "auto_awesome"));
-      } else {
-        insignia.append(el("span", "punto-estado"));
-      }
-      insignia.append(el("span", "", textoEstado(libro)));
-      contenedor.append(imagen, el("div", "sombra-lomo"), insignia);
+      contenedor.append(imagen, el("div", "sombra-lomo"));
 
-      const genero = el("div", "genero-libro");
-      genero.append(icono(libro.icono), el("span", "", libro.genero));
-
-      const calificacion = el("div", "calificacion-libro");
-      if (libro.lectores > 0 && libro.nota > 0) {
-        const estrellas = el("div", "estrellas");
-        const enteras = Math.floor(libro.nota);
-        const fraccion = libro.nota - enteras;
-        // 4.9 o más cuenta como 5 estrellas; de 4.3 a 4.8 se muestra media estrella (igual que las tarjetas originales)
-        const llenas = fraccion >= 0.85 ? enteras + 1 : enteras;
-        for (let i = 0; i < llenas; i++) estrellas.append(icono("star"));
-        if (fraccion >= 0.25 && fraccion < 0.85) estrellas.append(icono("star_half"));
-        calificacion.append(estrellas, el("span", "texto-lectores", libro.nota.toFixed(1) + " (" + libro.lectores + " lectores)"));
-      } else {
-        calificacion.append(el("span", "texto-lectores", "Aún sin valoraciones"));
-      }
-
-      cuerpo.append(contenedor, genero, el("h3", "titulo-libro", libro.titulo), el("p", "autor-libro", libro.autor), calificacion, el("p", "descripcion-libro", libro.descripcion));
-
-      const acciones = el("div", "acciones-tarjeta");
-      const sala = libro.estado === "sala";
-      const accion = el(enlace ? "a" : "button", sala ? "boton-accion-secundario" : "boton-accion-primario");
-      if (enlace) accion.href = "libros.html";
-      else accion.type = "button";
-      accion.append(icono(sala ? "chair" : "bookmark_add"), el("span", "", enlace ? "Ver en Catálogo" : sala ? "Pedir en Sala" : "Reservar"));
+      const titulo = el("h3", "titulo-libro");
+      const disparador = el(enlace ? "a" : "button", "titulo-boton", libro.titulo);
       if (enlace) {
-        acciones.append(accion);
-        tarjeta.append(cuerpo, acciones);
-        return tarjeta;
+        disparador.href = "libros.html";
+      } else {
+        disparador.type = "button";
+        disparador.setAttribute("aria-haspopup", "dialog");
       }
-      const info = el("button", "boton-accion-info");
-      info.type = "button";
-      info.setAttribute("aria-label", "Ver detalles y opiniones de " + libro.titulo);
-      info.title = "Ver detalles y opiniones";
-      info.append(icono("info"));
-      acciones.append(accion, info);
+      titulo.append(disparador);
 
-      tarjeta.append(cuerpo, acciones);
+      const estado = el("p", "estado-libro " + libro.estado);
+      estado.append(el("span", "punto-estado"), el("span", "", textoEstado(libro)));
+
+      const cuerpo = el("div", "cuerpo-tarjeta");
+      cuerpo.append(titulo, el("p", "autor-libro", libro.autor), estado, el("p", "descripcion-libro", libro.descripcion));
+      tarjeta.append(contenedor, cuerpo);
+
+      if (!enlace) {
+        const sala = libro.estado === "sala";
+        const accion = el("button", sala ? "boton-accion-secundario" : "boton-accion-primario");
+        accion.type = "button";
+        accion.append(icono(sala ? "chair" : "bookmark_add"), el("span", "", sala ? "Pedir en sala" : "Reservar"));
+        const acciones = el("div", "acciones-tarjeta");
+        acciones.append(accion);
+        tarjeta.append(acciones);
+      }
       return tarjeta;
     },
   };
