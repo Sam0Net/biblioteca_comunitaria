@@ -111,68 +111,25 @@
         <div class="resplandor-fondo resplandor-superior"></div>
         <div class="resplandor-fondo resplandor-medio"></div>
 
-        <h1 class="visualmente-oculto">Catálogo de libros de la biblioteca</h1>
+        <header class="cabecera-catalogo">
+          <h1 class="titulo-catalogo">Catálogo de libros</h1>
+          <p class="subtitulo-catalogo">Busca un título, resérvalo o pídelo para leer en sala.</p>
+        </header>
 
-        <!-- BARRA DE BÚSQUEDA DE LIBROS -->
-        <section class="seccion-busqueda-libros">
-          <div class="contenedor-busqueda-libros">
-            <div class="barra-busqueda">
-              <div class="campo-texto">
+        <div class="contenedor-catalogo">
+          <div class="columna-filtros" role="search" aria-label="Buscar y filtrar libros">
+            <div class="fila-herramientas">
+              <div class="campo-texto campo-busqueda">
                 <span aria-hidden="true" class="material-symbols-outlined">search</span>
                 <input
                   class="entrada-busqueda"
                   aria-label="Buscar en el catálogo"
                   id="busquedaCatalogoInput"
-                  placeholder="¿Qué semilla literaria deseas cosechar hoy? Ej: Macondo, Rolón, Botánica..."
-                  type="text"
+                  placeholder="Busca por título, autor o tema"
+                  type="search"
+                  autocomplete="off"
                 />
               </div>
-              <div class="campo-criterio">
-                <span aria-hidden="true" class="material-symbols-outlined">tune</span>
-                <select
-                  aria-label="Criterio de búsqueda"
-                  class="selector-criterio"
-                >
-                  <option value="todos">Todos los campos</option>
-                  <option value="titulo">Título de la obra</option>
-                  <option value="autor">Autor / Ilustrador</option>
-                  <option value="tema">Tema o Etiqueta</option>
-                  <option value="isbn">Código ISBN</option>
-                </select>
-              </div>
-              <button class="boton-buscar" type="button">
-                <span>Buscar</span>
-                <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
-              </button>
-            </div>
-
-            <div class="etiquetas-sugeridas">
-              <span class="titulo-sugerencias">
-                <span aria-hidden="true" class="material-symbols-outlined">trending_up</span>
-                Populares:
-              </span>
-              <button class="boton-etiqueta" type="button">
-                Gabriel García Márquez
-              </button>
-              <button class="boton-etiqueta" type="button">
-                Poesía Latinoamericana
-              </button>
-              <button class="boton-etiqueta" type="button">
-                Botánica & Huertos
-              </button>
-              <button class="boton-etiqueta" type="button">
-                Cuentos Infantiles
-              </button>
-              <button class="boton-etiqueta" type="button">Clásicos</button>
-            </div>
-          </div>
-        </section>
-
-        <!-- FILTRAR COLECCIÓN Y MOSTRAR LIBROS -->
-        <div class="contenedor-catalogo">
-          <div class="rejilla-principal">
-            <!-- FILTRAR COLECCIÓN -->
-            <aside class="columna-filtros">
               <button
                 class="boton-filtros-movil"
                 id="botonFiltrosMovil"
@@ -181,170 +138,85 @@
                 aria-controls="panelFiltros"
               >
                 <span aria-hidden="true" class="material-symbols-outlined">tune</span>
-                <span>Filtrar colección</span>
+                <span>Filtros</span>
                 <span class="contador-filtros-activos" hidden>0</span>
-                <span aria-hidden="true" class="material-symbols-outlined icono-chevron">expand_more</span>
               </button>
+            </div>
 
-              <div class="tarjeta-filtros" id="panelFiltros">
-                <div class="cabecera-filtros">
-                  <div class="titulo-con-icono">
-                    <span aria-hidden="true" class="material-symbols-outlined">filter_alt</span>
-                    <h2 class="titulo-panel">Filtrar Colección</h2>
-                  </div>
-                  <button
-                    class="boton-limpiar"
-                    title="Restablecer filtros"
-                    type="button"
-                  >
-                    Limpiar
-                  </button>
-                </div>
-
-                <div class="seccion-filtro">
-                  <span class="subtitulo-filtro">Categorías y Géneros</span>
-                  <ul class="lista-categorias">
-                    <li>
-                      <button class="item-categoria activo" type="button" data-categoria="todos" aria-pressed="true">
-                        <span>Todos los géneros</span>
-                        <span class="contador-categoria">2.540</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="item-categoria" type="button" data-categoria="novela" aria-pressed="false">
-                        <span>Novela y Narrativa</span>
-                        <span class="contador-categoria">840</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="item-categoria" type="button" data-categoria="psicoanalisis" aria-pressed="false">
-                        <span>Psicoanálisis y Crecimiento</span>
-                        <span class="contador-categoria">320</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="item-categoria" type="button" data-categoria="clasicos" aria-pressed="false">
-                        <span>Clásicos Universales</span>
-                        <span class="contador-categoria">410</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="item-categoria" type="button" data-categoria="infantil" aria-pressed="false">
-                        <span>Infantil & Juvenil</span>
-                        <span class="contador-categoria">390</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="item-categoria" type="button" data-categoria="ciencia" aria-pressed="false">
-                        <span>Ciencia, Botánica & Huertos</span>
-                        <span class="contador-categoria">280</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="item-categoria" type="button" data-categoria="poesia" aria-pressed="false">
-                        <span>Poesía & Teatro</span>
-                        <span class="contador-categoria">180</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="item-categoria" type="button" data-categoria="historia" aria-pressed="false">
-                        <span>Historia & Comunidad</span>
-                        <span class="contador-categoria">120</span>
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="seccion-filtro">
-                  <span class="subtitulo-filtro">Disponibilidad en Sede</span>
+            <div class="tarjeta-filtros" id="panelFiltros">
+              <div class="grupos-filtros">
+                <fieldset class="seccion-filtro">
+                  <legend class="subtitulo-filtro">Disponibilidad</legend>
                   <div class="grupo-casillas">
                     <label class="opcion-casilla">
                       <input type="checkbox" data-disponibilidad="disponible" />
-                      <span>Disponibles para llevar hoy</span>
+                      <span>Para llevar a casa</span>
                     </label>
                     <label class="opcion-casilla">
                       <input type="checkbox" data-disponibilidad="sala" />
-                      <span>Consulta en sala de lectura</span>
+                      <span>Solo en sala de lectura</span>
                     </label>
                     <label class="opcion-casilla">
                       <input type="checkbox" data-disponibilidad="novedad" />
-                      <span>Nuevas donaciones del mes</span>
+                      <span>Novedades donadas</span>
                     </label>
                   </div>
-                </div>
+                </fieldset>
 
-                <div class="seccion-filtro">
-                  <span class="subtitulo-filtro">Formato del Recurso</span>
+                <fieldset class="seccion-filtro">
+                  <legend class="subtitulo-filtro">Formato</legend>
                   <div class="grupo-pildoras-formato">
-                    <button class="pildora-formato" type="button" data-formato="impreso" aria-pressed="false">
-                      Libro Impreso
-                    </button>
-                    <button class="pildora-formato" type="button" data-formato="audiolibro" aria-pressed="false">
-                      Audiolibro
-                    </button>
-                    <button class="pildora-formato" type="button" data-formato="letra-grande" aria-pressed="false">
-                      Letra Grande
-                    </button>
-                    <button class="pildora-formato" type="button" data-formato="ilustrado" aria-pressed="false">
-                      Ilustrado
-                    </button>
+                    <button class="pildora-formato" type="button" data-formato="impreso" aria-pressed="false">Impreso</button>
+                    <button class="pildora-formato" type="button" data-formato="audiolibro" aria-pressed="false">Audiolibro</button>
+                    <button class="pildora-formato" type="button" data-formato="letra-grande" aria-pressed="false">Letra grande</button>
+                    <button class="pildora-formato" type="button" data-formato="ilustrado" aria-pressed="false">Ilustrado</button>
                   </div>
-                </div>
-
-                <div class="tarjeta-consejo">
-                  <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
-                  <div>
-                    <span class="titulo-consejo">Préstamos solidarios</span>
-                    <p class="texto-consejo">
-                      Lleva hasta 3 libros a casa por 14 días con renovación en
-                      línea sencilla.
-                    </p>
-                  </div>
-                </div>
+                </fieldset>
+              </div>
+              <div class="acciones-filtros">
+                <button class="boton-limpiar" title="Quitar todos los filtros" type="button">Limpiar filtros</button>
                 <button class="boton-ver-resultados" type="button">Ver resultados</button>
               </div>
-            </aside>
+            </div>
+          </div>
 
-            <!-- LA PARTE DONDE SE MUESTRAN LOS LIBROS -->
-            <section class="columna-catalogo">
-              <h2 class="visualmente-oculto">Libros del catálogo</h2>
-<div class="barra-controles">
-                <div class="estado-exploracion">
-                  <span class="texto-explorando">Explorando</span>
-                  <span class="insignia-conteo" aria-live="polite"
-                    >Mostrando 9 de 2.540 títulos</span
-                  >
+          <nav class="navegacion-categorias" aria-label="Categorías">
+            <ul class="lista-categorias">
+              <li><button class="item-categoria activo" type="button" data-categoria="todos" aria-pressed="true"><span>Todos</span><span class="contador-categoria"></span></button></li>
+              <li><button class="item-categoria" type="button" data-categoria="novela" aria-pressed="false"><span>Novela</span><span class="contador-categoria"></span></button></li>
+              <li><button class="item-categoria" type="button" data-categoria="psicoanalisis" aria-pressed="false"><span>Psicoanálisis</span><span class="contador-categoria"></span></button></li>
+              <li><button class="item-categoria" type="button" data-categoria="clasicos" aria-pressed="false"><span>Clásicos</span><span class="contador-categoria"></span></button></li>
+              <li><button class="item-categoria" type="button" data-categoria="infantil" aria-pressed="false"><span>Infantil y juvenil</span><span class="contador-categoria"></span></button></li>
+              <li><button class="item-categoria" type="button" data-categoria="ciencia" aria-pressed="false"><span>Ciencia y huertos</span><span class="contador-categoria"></span></button></li>
+              <li><button class="item-categoria" type="button" data-categoria="poesia" aria-pressed="false"><span>Poesía y teatro</span><span class="contador-categoria"></span></button></li>
+              <li><button class="item-categoria" type="button" data-categoria="historia" aria-pressed="false"><span>Historia</span><span class="contador-categoria"></span></button></li>
+            </ul>
+          </nav>
+
+          <section class="columna-catalogo">
+            <h2 class="visualmente-oculto">Libros del catálogo</h2>
+            <div class="barra-controles">
+              <p class="insignia-conteo" aria-live="polite"></p>
+              <div class="ajustes-vista">
+                <div class="selector-orden">
+                  <label class="etiqueta-orden" for="ordenCatalogo">Ordenar por</label>
+                  <select class="menu-orden" id="ordenCatalogo">
+                    <option value="populares" selected>Más leídos</option>
+                    <option value="recientes">Recién llegados</option>
+                    <option value="titulo">Título (A–Z)</option>
+                    <option value="autor">Autor (A–Z)</option>
+                  </select>
                 </div>
-                <div class="ajustes-vista">
-                  <div class="selector-orden">
-                    <span class="etiqueta-orden">Ordenar por:</span>
-                    <select aria-label="Ordenar libros por" class="menu-orden" id="ordenCatalogo">
-                      <option value="populares" selected>Más populares del barrio</option>
-                      <option value="recientes">Recién llegados / Donaciones</option>
-                      <option value="titulo">Título (A - Z)</option>
-                      <option value="autor">Autor (A - Z)</option>
-                    </select>
-                  </div>
-                  <div class="conmutador-vistas">
-                    <button
-                      class="boton-vista activo"
-                      title="Vista en cuadrícula" aria-label="Vista en cuadrícula"
-                      type="button"
-                    >
-                      <span aria-hidden="true" class="material-symbols-outlined">grid_view</span>
-                    </button>
-                    <button
-                      class="boton-vista"
-                      title="Vista en lista detallada" aria-label="Vista en lista detallada"
-                      type="button"
-                    >
-                      <span aria-hidden="true" class="material-symbols-outlined"
-                        >format_list_bulleted</span
-                      >
-                    </button>
-                  </div>
+                <div class="conmutador-vistas">
+                  <button class="boton-vista activo" title="Vista en cuadrícula" aria-label="Vista en cuadrícula" aria-pressed="true" type="button">
+                    <span aria-hidden="true" class="material-symbols-outlined">grid_view</span>
+                  </button>
+                  <button class="boton-vista" title="Vista en lista" aria-label="Vista en lista" aria-pressed="false" type="button">
+                    <span aria-hidden="true" class="material-symbols-outlined">format_list_bulleted</span>
+                  </button>
                 </div>
               </div>
+            </div>
 
               <p class="estado-vacio-catalogo" id="estadoVacioCatalogo" hidden>
                 No encontramos libros con estos filtros. Quita alguno o pulsa «Limpiar» para ver toda la colección.
@@ -358,68 +230,40 @@
               <div class="banner-comunitario">
                 <div class="contenido-banner">
                   <div class="icono-banner">
-                    <img
-                      alt="Libros floreciendo con hojas verdes"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVe35Z6UCpesLuQ6XXmyn8RLZSCwc8FLNR51kg0EEYA6Zbkk5v0cJx4u8THbAG_NOS6sdLcKKXvLrfkwFjIPQLI_ow7R2BffQuCtXMaeK2QB9vI081HWrc6s3F96Hq9XxRAh3m6Idb_6sOoVgzuWwLmJii3iXR6mAP5OpHU_gbTt5RfE8G790axuCENBLX00QAt-_-vdoi5RRmfn3PX2cYylGgalDmFWUIP2-maajoN6BRXG-19njsIw2CuFkKzMKGHQ"
-                    />
+                    <img alt="" src="img/libroAnimadoPlantitas.png" width="1024" height="1024" loading="lazy" decoding="async" />
                   </div>
                   <div class="texto-banner">
-                    <span class="etiqueta-banner">
-                      <span aria-hidden="true" class="material-symbols-outlined">volunteer_activism</span>
-                      <span>Crecimiento Colaborativo</span>
-                    </span>
-                    <h3 class="titulo-banner">
-                      ¿No encuentras el libro que buscas?
-                    </h3>
+                    <h3 class="titulo-banner">¿No encuentras el libro que buscas?</h3>
                     <p class="descripcion-banner">
-                      Sugiere nuevas adquisiciones al comité de vecinos o dona ejemplares que ya leíste para que nuestra biblioteca siga floreciendo día a día.
+                      Sugiere un título para que lo consideremos en las próximas compras, o dona los libros que ya leíste para que otros vecinos los disfruten.
                     </p>
                   </div>
                 </div>
                 <div class="botones-banner">
-                  <a class="boton-banner-primario" href="contacto.html">Sugerir un Título</a>
-                  <button class="boton-banner-secundario" id="botonDonar" type="button">Donar Libros</button>
+                  <a class="boton-banner-primario" href="contacto.html">Sugerir un título</a>
+                  <button class="boton-banner-secundario" id="botonDonar" type="button">Donar libros</button>
                 </div>
               </div>
 
-              <!-- PÁGINA 1 DE 283 (2.540 OBRAS) ... -->
-              <nav
-                aria-label="Navegación del catálogo"
-                class="paginacion-catalogo" id="paginacionCatalogo"
-              >
-                <p class="texto-paginacion">
-                  Página <span class="pagina-actual">1</span> de 283 (2.540 obras)
-                </p>
-                <div class="botones-paginacion">
-                  <button class="boton-pagina inactivo" disabled type="button" aria-label="Página anterior">
-                    <span aria-hidden="true" class="material-symbols-outlined">chevron_left</span>
-                  </button>
-                  <button class="boton-pagina activo" type="button">1</button>
-                  <button class="boton-pagina" type="button">2</button>
-                  <button class="boton-pagina" type="button">3</button>
-                  <span class="separador-pagina">...</span>
-                  <button class="boton-pagina" type="button">283</button>
-                  <button class="boton-pagina" type="button" aria-label="Página siguiente">
-                    <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                  </button>
-                </div>
+              <nav aria-label="Páginas del catálogo" class="paginacion-catalogo" id="paginacionCatalogo" hidden>
+                <p class="texto-paginacion"></p>
+                <div class="botones-paginacion"></div>
               </nav>
             </section>
-          </div>
         </div>
 
-        <!-- ¿AÚN NO TIENES TU CARNET VECINAL? -->
-        <section class="seccion-normas sin-relleno-superior">
+        <!-- Invitación a sacar el carnet (se oculta si ya hay sesión) -->
+        <section class="seccion-normas sin-relleno-superior" data-solo-visitantes>
           <div class="contenedor-normas">
             <div class="tarjeta-llamado-accion">
               <div class="texto-llamado">
                 <span aria-hidden="true" class="material-symbols-outlined icono-llamado">card_membership</span>
                 <div>
                   <h2 class="titulo-llamado">
-                    ¿Aún no tienes tu Carnet Vecinal?
+                    ¿Aún no tienes tu carnet vecinal?
                   </h2>
                   <p class="subtitulo-llamado">
-                    Actívalo hoy mismo y empieza a pedir tus libros favoritos en un solo clic.
+                    Es gratis. Con él reservas libros y pides ejemplares para leer en sala desde esta página.
                   </p>
                 </div>
               </div>
@@ -616,7 +460,7 @@
         const botonesVista = document.querySelectorAll(".conmutador-vistas .boton-vista");
         let categoriaActiva = "todos";
         let paginaActual = 1;
-        const TAMANO_PAGINA = 6; // libros por página (cambia este número para ajustar la paginación)
+        const TAMANO_PAGINA = 12; // libros por página (cambia este número para ajustar la paginación)
         const selectOrden = document.getElementById("ordenCatalogo");
         const casillasDisponibilidad = Array.from(document.querySelectorAll("input[data-disponibilidad]"));
         const pildorasFormato = Array.from(document.querySelectorAll(".pildora-formato[data-formato]"));
@@ -626,27 +470,29 @@
         const contenedorPaginas = navPaginacion?.querySelector(".botones-paginacion");
         const barraControles = document.querySelector(".barra-controles");
         const comparador = new Intl.Collator("es", { sensitivity: "base" });
+        const sinTildes = (texto) => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
-        // Datos de cada libro, leídos una sola vez de su tarjeta (lectores, nota, disponibilidad, título y autor)
+        // Datos de cada libro, leídos una sola vez de su tarjeta (los pone biblioteca.js)
         const datos = new Map(
-          tarjetasLibro.map((tarjeta) => {
-            const texto = tarjeta.textContent;
-            const lectores = (texto.match(/\(([\d.,]+)\s*lectores?\)/i) || [])[1];
-            const nota = (texto.match(/\b(\d\.\d)\b/) || [])[1];
-            const insignia = tarjeta.querySelector(".insignia-disponibilidad");
-            const estado = ["disponible", "sala", "novedad"].find((clase) => insignia?.classList.contains(clase)) || "";
-            return [
-              tarjeta,
-              {
-                lectores: Number((lectores || "0").replace(/[.,]/g, "")),
-                nota: parseFloat(nota) || 0,
-                estado,
-                titulo: tarjeta.querySelector(".titulo-libro")?.textContent.trim() || "",
-                autor: tarjeta.querySelector(".autor-libro")?.textContent.trim() || "",
-              },
-            ];
-          })
+          tarjetasLibro.map((tarjeta) => [
+            tarjeta,
+            {
+              lectores: Number(tarjeta.dataset.lectores) || 0,
+              nota: Number(tarjeta.dataset.nota) || 0,
+              estado: tarjeta.dataset.estado || "",
+              titulo: tarjeta.querySelector(".titulo-libro")?.textContent.trim() || "",
+              autor: tarjeta.querySelector(".autor-libro")?.textContent.trim() || "",
+            },
+          ])
         );
+
+        // Cuántos libros hay en cada categoría (se cuentan los libros reales); una categoría vacía no se muestra
+        itemsCategoria.forEach((item) => {
+          const id = item.dataset.categoria;
+          const n = id === "todos" ? tarjetasLibro.length : tarjetasLibro.filter((t) => (t.dataset.categorias || "").split(" ").includes(id)).length;
+          item.querySelector(".contador-categoria").textContent = String(n);
+          if (n === 0) item.closest("li").hidden = true;
+        });
 
         const criteriosOrden = {
           populares: (a, b) => datos.get(b).lectores - datos.get(a).lectores || datos.get(b).nota - datos.get(a).nota,
@@ -669,11 +515,8 @@
         // Un libro se muestra si cumple todos los grupos de filtros; dentro de un grupo basta con una opción marcada.
         // Sin nada marcado en un grupo, ese grupo no filtra.
         function tarjetaCoincide(tarjeta) {
-          const termino = (inputBusqueda?.value || "").toLowerCase().trim();
-          const campos = [".titulo-libro", ".autor-libro", ".genero-libro", ".descripcion-libro"].map(
-            (selector) => tarjeta.querySelector(selector)?.textContent.toLowerCase() || ""
-          );
-          const coincideTexto = !termino || campos.some((campo) => campo.includes(termino));
+          const termino = sinTildes(inputBusqueda?.value || "").trim();
+          const coincideTexto = !termino || sinTildes(tarjeta.dataset.busqueda || "").includes(termino);
 
           const categorias = (tarjeta.dataset.categorias || "").split(" ");
           const coincideCategoria = categoriaActiva === "todos" || categorias.includes(categoriaActiva);
@@ -766,7 +609,8 @@
           if (contadorConteo) {
             const n = coinciden.length;
             const rango = enPagina.length > 1 ? `${inicio + 1}–${inicio + enPagina.length}` : `${inicio + 1}`;
-            contadorConteo.textContent = n === 0 ? "Mostrando 0 títulos" : `Mostrando ${rango} de ${n} ${n === 1 ? "título" : "títulos"}`;
+            contadorConteo.textContent =
+              n === 0 ? "Sin resultados" : totalPaginas > 1 ? `${rango} de ${n} títulos` : `${n} ${n === 1 ? "título" : "títulos"}`;
           }
           if (estadoVacio) estadoVacio.hidden = coinciden.length > 0;
           dibujarPaginacion(totalPaginas, coinciden.length);
@@ -834,7 +678,6 @@
         const botonFiltros = document.getElementById("botonFiltrosMovil");
         const botonVerResultados = document.querySelector(".boton-ver-resultados");
         const contadorFiltros = document.querySelector(".contador-filtros-activos");
-        const mediaMovil = window.matchMedia("(max-width: 1023.98px)");
 
         function abrirFiltros(abrir) {
           columnaFiltros?.classList.toggle("filtros-abiertos", abrir);
@@ -853,7 +696,7 @@
           }
           botonFiltros?.setAttribute(
             "aria-label",
-            activos ? `Filtrar colección, ${activos} ${activos === 1 ? "filtro activo" : "filtros activos"}` : "Filtrar colección"
+            activos ? `Filtros, ${activos} ${activos === 1 ? "activo" : "activos"}` : "Filtros"
           );
           if (botonVerResultados) {
             botonVerResultados.textContent =
@@ -861,10 +704,6 @@
           }
         }
 
-        function ajustarPlegable() {
-          columnaFiltros?.classList.toggle("plegable", mediaMovil.matches);
-          if (!mediaMovil.matches) abrirFiltros(false);
-        }
 
         botonFiltros?.addEventListener("click", () => {
           abrirFiltros(!columnaFiltros.classList.contains("filtros-abiertos"));
@@ -884,16 +723,19 @@
           }
         });
 
-        mediaMovil.addEventListener("change", ajustarPlegable);
-        ajustarPlegable();
+        columnaFiltros?.classList.add("plegable");
 
         actualizarCatalogo();
 
         // Conmutador de Vistas (Cuadrícula / Lista)
         botonesVista.forEach((btn, index) => {
           btn.addEventListener("click", () => {
-            botonesVista.forEach((b) => b.classList.remove("activo"));
+            botonesVista.forEach((b) => {
+              b.classList.remove("activo");
+              b.setAttribute("aria-pressed", "false");
+            });
             btn.classList.add("activo");
+            btn.setAttribute("aria-pressed", "true");
             if (index === 1) {
               rejillaLibros?.classList.add("vista-lista");
             } else {
@@ -966,7 +808,7 @@
         document.querySelectorAll(".rejilla-libros .tarjeta-libro").forEach((tarjeta) => {
           const titulo = tarjeta.querySelector(".titulo-libro").textContent.trim();
           const boton = tarjeta.querySelector(".boton-accion-primario, .boton-accion-secundario");
-          const info = tarjeta.querySelector(".boton-accion-info");
+          const info = tarjeta.querySelector(".titulo-boton");
           const sala = boton.classList.contains("boton-accion-secundario");
           const etiqueta = boton.querySelector("span:last-child");
           const icono = boton.querySelector(".material-symbols-outlined");
@@ -999,17 +841,17 @@
 
           info.addEventListener("click", () => {
             botonAbierto = boton;
-            const portada = tarjeta.querySelector(".imagen-portada");
-            campo("dialogoPortada").src = portada.getAttribute("src");
-            campo("dialogoPortada").alt = portada.alt;
-            campo("dialogoGenero").textContent = tarjeta.querySelector(".genero-libro span:last-child").textContent.trim();
-            campo("dialogoTitulo").textContent = titulo;
-            campo("dialogoAutor").textContent = tarjeta.querySelector(".autor-libro").textContent.trim();
-            const lectores = tarjeta.querySelector(".texto-lectores").textContent.trim();
-            campo("dialogoLectores").textContent = /^\d/.test(lectores) ? "Valoración " + lectores : lectores;
-            campo("dialogoDescripcion").textContent = tarjeta.querySelector(".descripcion-libro").textContent.trim();
-            const insignia = tarjeta.querySelector(".insignia-disponibilidad span:last-child");
-            campo("dialogoDisponibilidad").textContent = insignia ? insignia.textContent.trim() : "";
+            const libro = Biblioteca.libros().find((l) => l.id === tarjeta.dataset.id);
+            if (!libro) return;
+            campo("dialogoPortada").src = libro.portada;
+            campo("dialogoPortada").alt = "Portada de " + libro.titulo + " de " + libro.autor;
+            campo("dialogoGenero").textContent = libro.genero;
+            campo("dialogoTitulo").textContent = libro.titulo;
+            campo("dialogoAutor").textContent = libro.autor;
+            campo("dialogoLectores").textContent =
+              libro.lectores > 0 && libro.nota > 0 ? "Valoración " + libro.nota.toFixed(1) + " (" + libro.lectores + " lectores)" : "Aún sin valoraciones";
+            campo("dialogoDescripcion").textContent = libro.descripcion;
+            campo("dialogoDisponibilidad").textContent = Biblioteca.textoEstado(libro);
             sincronizarDialogo();
             dialogo.showModal();
           });

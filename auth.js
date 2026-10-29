@@ -92,6 +92,9 @@
     const sesion = Auth.sesion();
     if (!sesion) return;
 
+    // Invitaciones a crear cuenta: no tienen sentido para quien ya inició sesión
+    document.querySelectorAll("[data-solo-visitantes]").forEach((e) => (e.hidden = true));
+
     const carnet = document.querySelector(".boton-carnet");
     if (carnet) {
       carnet.setAttribute("href", "#");
