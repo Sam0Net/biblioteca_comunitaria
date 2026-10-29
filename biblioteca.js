@@ -249,7 +249,7 @@
       cuerpo.append(titulo, el("p", "autor-libro", libro.autor), estado, el("p", "descripcion-libro", libro.descripcion));
       tarjeta.append(contenedor, cuerpo);
 
-      // Panel de cristal con la sinopsis: aparece al pasar el cursor (o al enfocar con el teclado) en computadoras.
+      // Sinopsis: un panel de cristal que sube dentro de la propia portada cuando se pulsa la flechita (solo con ratón).
       // Su fondo es la portada del libro desenfocada.
       const panel = el("div", "panel-sinopsis");
       panel.id = "sinopsis-" + libro.id;
@@ -258,15 +258,19 @@
       fondo.setAttribute("aria-hidden", "true");
       const panelEstado = el("p", "panel-estado");
       panelEstado.append(el("span", "punto-estado"), el("span", "", textoEstado(libro)));
-      panel.append(
-        fondo,
-        el("p", "panel-genero", libro.genero),
-        el("p", "panel-texto", libro.descripcion),
-        panelEstado,
-        el("p", "panel-pista", "Pulsa el libro para ver más detalles")
-      );
-      tarjeta.append(panel);
+      panel.append(fondo, el("p", "panel-genero", libro.genero), el("p", "panel-texto", libro.descripcion), panelEstado, el("p", "panel-pista", "Pulsa el libro para ver más detalles"));
+      contenedor.append(panel);
       disparador.setAttribute("aria-describedby", panel.id);
+
+      // La flechita va sobre la parte baja de la portada (capa del mismo tamaño que la portada, que no atrapa los clics)
+      const capa = el("div", "capa-portada");
+      const flecha = el("button", "boton-sinopsis");
+      flecha.type = "button";
+      flecha.setAttribute("aria-expanded", "false");
+      flecha.setAttribute("aria-controls", panel.id);
+      flecha.setAttribute("aria-label", "Ver la sinopsis de " + libro.titulo);
+      flecha.append(icono("keyboard_arrow_up"));
+      capa.append(flecha);
 
       const sala = libro.estado === "sala";
       const accion = el("button", sala ? "boton-accion-secundario" : "boton-accion-primario");
@@ -274,7 +278,7 @@
       accion.append(icono(sala ? "chair" : "bookmark_add"), el("span", "", sala ? "Pedir en sala" : "Reservar"));
       const acciones = el("div", "acciones-tarjeta");
       acciones.append(accion);
-      tarjeta.append(acciones);
+      tarjeta.append(capa, acciones);
       return tarjeta;
     },
   };
