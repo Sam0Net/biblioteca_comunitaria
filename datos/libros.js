@@ -413,7 +413,7 @@ window.LIBROS_ORIGINALES = [
     "nota": 0,
     "lectores": 0,
     "descripcion": "Werther cuenta en cartas su amor imposible por Lotte. Una novela epistolar de 1774 que marcó el Romanticismo europeo.",
-    "portada": "img/portada-las-penas-del-joven-werther.jpg",
+    "portada": "img/portada-las-penas-del-joven-werther-alianza.jpg",
     "copias": 1
   },
   {
