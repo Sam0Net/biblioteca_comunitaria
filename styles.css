@@ -16,7 +16,7 @@
      infinitas.
    - Adaptable: consultas de medios (@media); sin desbordes de 320 a 1440px.
    - HTML con clases semánticas en español y sin estilos en línea.
-   - Las secciones 25 a 36 van al final a propósito: al ser posteriores ganan
+   - Las secciones 25 a 37 van al final a propósito: al ser posteriores ganan
      en la cascada sin necesidad de !important.
    --------------------------------------------------------------------------
    ÍNDICE
@@ -55,6 +55,7 @@
    34. DONACIONES DE LIBROS (libros.html y admin.html)
    35. CARRUSEL DE LOS LIBROS MÁS LEÍDOS (index.html)
    36. TÍTULO CON HOJAS Y FLORES (index.html)
+   37. PANEL DE SINOPSIS DE CRISTAL (libros.html)
    ========================================================================== */
 
 /* ==========================================================================
@@ -1121,10 +1122,11 @@ button:active,
   pointer-events: none;
 }
 
+/* El libro activo (cursor encima o enfocado con el teclado) crece un poco, como si se acercara a la pantalla */
 @media (hover: hover) and (pointer: fine) {
-  .tarjeta-libro:hover .contenedor-portada {
-    transform: translateY(-6px);
-    box-shadow: 0 2px 4px rgba(17, 17, 17, 0.14), 0 22px 34px -12px rgba(26, 77, 59, 0.4);
+  .tarjeta-libro.activa .contenedor-portada {
+    transform: scale(1.06);
+    box-shadow: 0 2px 6px rgba(17, 17, 17, 0.2), 0 28px 44px -12px rgba(26, 77, 59, 0.5);
   }
 }
 
@@ -5225,5 +5227,144 @@ symbol {
   }
   to {
     transform: translateX(7px);
+  }
+}
+
+/* ==========================================================================
+   37. PANEL DE SINOPSIS DE CRISTAL (libros.html)
+   Al pasar el cursor por un libro: crece, los demás se desenfocan y a su lado flota un panel de cristal con la
+   sinopsis, que tiene de fondo la portada desenfocada. Solo con ratón; en pantallas táctiles se toca el libro.
+   ========================================================================== */
+.panel-sinopsis {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 700px) {
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro.activa {
+    z-index: 30;
+  }
+
+  .rejilla-libros:not(.vista-lista).hay-activa .tarjeta-libro:not(.activa) {
+    opacity: 0.7;
+    filter: blur(2.5px);
+  }
+
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro {
+    transition: filter 260ms var(--ease-out), opacity 260ms var(--ease-out);
+  }
+
+  .rejilla-libros:not(.vista-lista) .panel-sinopsis {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 1.5rem);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    padding: 1.25rem;
+    overflow: hidden;
+    color: #ffffff;
+    border-radius: var(--radio-md);
+    box-shadow: 0 2px 6px rgba(17, 17, 17, 0.25), 0 24px 44px -12px rgba(17, 17, 17, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out), visibility 0s linear 220ms;
+  }
+
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro[data-lado="izquierda"] .panel-sinopsis {
+    right: calc(100% + 1.5rem);
+    left: auto;
+    transform: translateX(10px);
+  }
+
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro.activa .panel-sinopsis {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  /* Puente invisible sobre el hueco entre el libro y el panel, para que el cursor pueda pasar al panel sin cerrarlo */
+  .panel-sinopsis::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1.5rem;
+    width: 1.5rem;
+  }
+
+  .tarjeta-libro[data-lado="izquierda"] .panel-sinopsis::before {
+    right: -1.5rem;
+    left: auto;
+  }
+
+  /* Cristal: la portada del libro, muy desenfocada y oscurecida, con una capa que asegura la lectura */
+  .panel-fondo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background-color: #1a2a22;
+    border-radius: inherit;
+  }
+
+  .panel-fondo::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    background: var(--portada) center / cover;
+    filter: blur(18px) saturate(1.3) brightness(0.6);
+  }
+
+  .panel-fondo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 24, 18, 0.35), rgba(10, 24, 18, 0.6));
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: inherit;
+  }
+
+  .panel-genero {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .panel-texto {
+    flex: 1;
+    margin: 0;
+    overflow: hidden;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: #ffffff;
+  }
+
+  .panel-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .panel-estado .punto-estado {
+    width: 8px;
+    height: 8px;
+    background-color: #9ed2ba;
+  }
+
+  .panel-pista {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.78);
   }
 }

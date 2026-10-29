@@ -249,6 +249,25 @@
       cuerpo.append(titulo, el("p", "autor-libro", libro.autor), estado, el("p", "descripcion-libro", libro.descripcion));
       tarjeta.append(contenedor, cuerpo);
 
+      // Panel de cristal con la sinopsis: aparece al pasar el cursor (o al enfocar con el teclado) en computadoras.
+      // Su fondo es la portada del libro desenfocada.
+      const panel = el("div", "panel-sinopsis");
+      panel.id = "sinopsis-" + libro.id;
+      panel.style.setProperty("--portada", 'url("' + encodeURI(libro.portada).replace(/"/g, "%22") + '")');
+      const fondo = el("div", "panel-fondo");
+      fondo.setAttribute("aria-hidden", "true");
+      const panelEstado = el("p", "panel-estado");
+      panelEstado.append(el("span", "punto-estado"), el("span", "", textoEstado(libro)));
+      panel.append(
+        fondo,
+        el("p", "panel-genero", libro.genero),
+        el("p", "panel-texto", libro.descripcion),
+        panelEstado,
+        el("p", "panel-pista", "Pulsa el libro para ver más detalles")
+      );
+      tarjeta.append(panel);
+      disparador.setAttribute("aria-describedby", panel.id);
+
       const sala = libro.estado === "sala";
       const accion = el("button", sala ? "boton-accion-secundario" : "boton-accion-primario");
       accion.type = "button";

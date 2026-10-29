@@ -747,6 +747,49 @@
         irAlLibroDeLaDireccion();
         window.addEventListener("hashchange", irAlLibroDeLaDireccion);
 
+        // Al pasar el cursor (o enfocar con el teclado) un libro crece, los demás se desenfocan y aparece su sinopsis en un panel
+        // de cristal que flota junto a él: a la derecha, o a la izquierda si no cabe. Solo con ratón, en pantallas de al menos 700px y en la vista de cuadrícula.
+        const conRaton = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 700px)");
+        let tarjetaActiva = null;
+        let esperaActivar;
+        let esperaSoltar;
+
+        function activarTarjeta(tarjeta) {
+          if (!conRaton.matches || rejillaLibros.classList.contains("vista-lista") || tarjeta === tarjetaActiva) return;
+          clearTimeout(esperaSoltar);
+          clearTimeout(esperaActivar);
+          esperaActivar = setTimeout(() => {
+            if (tarjetaActiva) tarjetaActiva.classList.remove("activa");
+            // El panel mide lo mismo que la portada: se pone a la derecha si cabe y, si no, a la izquierda
+            const caja = tarjeta.getBoundingClientRect();
+            const hueco = 24;
+            tarjeta.dataset.lado = caja.right + hueco + caja.width <= document.documentElement.clientWidth - 8 ? "derecha" : "izquierda";
+            tarjeta.classList.add("activa");
+            rejillaLibros.classList.add("hay-activa");
+            tarjetaActiva = tarjeta;
+          }, 110);
+        }
+
+        function soltarTarjeta(tarjeta) {
+          clearTimeout(esperaActivar);
+          if (tarjeta !== tarjetaActiva) return;
+          tarjeta.classList.remove("activa");
+          tarjetaActiva = null;
+          // Los demás libros siguen desenfocados un instante: así no parpadean al pasar de un libro al siguiente
+          esperaSoltar = setTimeout(() => rejillaLibros.classList.remove("hay-activa"), 140);
+        }
+
+        tarjetasLibro.forEach((tarjeta) => {
+          tarjeta.addEventListener("pointerenter", (e) => e.pointerType === "mouse" && activarTarjeta(tarjeta));
+          tarjeta.addEventListener("pointerleave", () => soltarTarjeta(tarjeta));
+          tarjeta.addEventListener("focusin", (e) => e.target.matches(":focus-visible") && activarTarjeta(tarjeta));
+          tarjeta.addEventListener("focusout", () => soltarTarjeta(tarjeta));
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && tarjetaActiva) soltarTarjeta(tarjetaActiva);
+        });
+        conRaton.addEventListener("change", () => tarjetaActiva && soltarTarjeta(tarjetaActiva));
+
         // Conmutador de Vistas (Cuadrícula / Lista)
         botonesVista.forEach((btn, index) => {
           btn.addEventListener("click", () => {
