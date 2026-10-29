@@ -27,11 +27,11 @@ y entra en `http://localhost:8000`.
 | Archivo | Qué es |
 |---|---|
 | `index.html` | Inicio: bienvenida, libros destacados, agenda, video y audio, normas de convivencia |
-| `libros.html` | Catálogo: búsqueda, categorías, filtros, orden, paginación y vista en cuadrícula o lista |
+| `libros.html` | Catálogo: búsqueda, categorías, filtros, orden, paginación y vista en cuadrícula o lista. Las tarjetas salen de `datos/libros.js` |
 | `servicios.html` | Servicios, salas y jardín, cronograma semanal (tabla) |
 | `contacto.html` | Formulario de contacto, canales de atención, tabla de plazos y preguntas frecuentes |
 | `login.html` | Iniciar sesión y crear cuenta (se abre en "Crear cuenta" con `login.html#crear-cuenta`). Las cuentas son reales dentro del navegador, ver "Cuentas y roles" |
-| `admin.html` | Panel del administrador: lista de cuentas registradas. Solo entra el rol admin |
+| `admin.html` | Panel del administrador: cuentas registradas y gestión de libros (agregar, editar, quitar). Solo entra el rol admin |
 | `registro.html` | Solicitud completa de carnet vecinal (con DNI y dirección). Hoy ninguna página enlaza a ella |
 | `actividades.html`, `catalogo.html` | Páginas de paso que redirigen a `servicios.html` y `libros.html` |
 
@@ -42,7 +42,9 @@ biblioteca_comunitaria/
 ├── index.html, libros.html, servicios.html, contacto.html,
 │   login.html, admin.html, registro.html, actividades.html, catalogo.html
 ├── auth.js           Cuentas, sesión y roles (se guardan en el navegador)
-├── styles.css        Hoja de estilos única (índice de 30 secciones al inicio)
+├── biblioteca.js     Libros: dibuja el catálogo y guarda los cambios del admin
+├── datos/libros.js   Los libros del catálogo (el archivo que se publica)
+├── styles.css        Hoja de estilos única (índice de 33 secciones al inicio)
 ├── DESIGN.md         Sistema de diseño: colores, tipografía, formas y componentes
 ├── img/              Imágenes del sitio
 └── multimedia/       Video del recorrido y audio de música relajante
@@ -67,6 +69,17 @@ No hay servidor ni base de datos, así que las cuentas viven **en el navegador d
 - **Límite importante:** es una simulación. Las contraseñas se guardan sin cifrar y quien abra las herramientas del navegador puede cambiar los datos. Los roles con seguridad real necesitan servidor.
 - Para que las cuentas se compartan entre páginas conviene abrir el sitio con `python -m http.server` o con Chrome; algunos navegadores aíslan los archivos abiertos con doble clic.
 
+## Libros: agregar y quitar (solo el administrador)
+
+Los libros ya no están escritos en `libros.html`: viven en `datos/libros.js` y el catálogo los dibuja al cargar.
+
+1. Entra con la cuenta de administrador y abre **Panel admin → Libros del catálogo**.
+2. **Agregar:** completa el formulario (título, autor, categorías, descripción, disponibilidad, portada). La portada es una imagen que copiaste antes a la carpeta `img/` (se escribe `img/mi-libro.jpg`) o un enlace `https://`. Debajo del campo se ve una vista previa.
+3. **Editar** y **Quitar** están en cada fila. Quitar pide confirmación. **Restaurar libros originales** deshace todo lo hecho en ese navegador.
+4. Los cambios se ven al instante **en ese navegador**. Para que los vea todo el mundo: pulsa **Descargar libros actualizados**, reemplaza `datos/libros.js` con el archivo descargado (`libros.js`) y súbelo al repositorio.
+
+Un usuario normal no ve estos botones, y las funciones de `biblioteca.js` rechazan cualquier cambio si la sesión no es de administrador. Igual que las cuentas, es una simulación: sin servidor no hay seguridad real.
+
 ## Accesibilidad
 
 - Contraste de texto AA medido; foco visible (anillo sólido de 3px); enlace "Saltar al contenido principal".
@@ -79,9 +92,10 @@ Lo que **no** se ha probado: lectores de pantalla reales (NVDA, VoiceOver) ni di
 
 ## Conocido y pendiente
 
-- **Portadas:** 8 de las 9 portadas del catálogo (y 3 de `index`) se cargan desde un servidor externo. Conviene guardarlas en `img/`.
+- **Portadas:** todas están en `img/` menos la de «La felicidad» (Rolón), que sigue en un servidor externo.
+- **Inicio:** los 4 libros destacados de `index.html` siguen escritos a mano; no cambian cuando el admin edita el catálogo.
 - **Video del recorrido:** sin subtítulos ni descripción en texto; algunos textos de la sección de video y audio no coinciden con el contenido.
-- **Catálogo:** "Reservar", "Pedir en sala", el botón de información, el botón "Buscar", el selector "Todos los campos" y los botones del banner ("Sugerir un título", "Donar libros") todavía no tienen función. Los contadores de las categorías (840, 320…) son cifras de ejemplo.
+- **Catálogo:** el botón "Buscar", el selector "Todos los campos" y los botones del banner ("Sugerir un título", "Donar libros") todavía no tienen función. Los contadores de las categorías (840, 320…) son cifras de ejemplo.
 - **`registro.html`:** existe pero no está enlazada desde el sitio.
 
 ## Ramas de Git
