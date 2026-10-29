@@ -165,21 +165,19 @@
 
         <!-- LECTURAS FAVORITAS DEL BARRIO. LIBROS MÁS LEÍDOS DE LA COMUNIDAD -->
         <section class="seccion-destacados-inicio" id="libros-destacados">
-          <div class="cabecera-seccion cabecera-seccion-fila">
-            <div>
-              <h2 class="titulo-seccion-inicio">Los libros más leídos del barrio</h2>
-              <p class="descripcion-seccion-inicio">
-                Los títulos que más piden nuestros vecinos. Pulsa uno para verlo en el catálogo.
-              </p>
-            </div>
+          <div class="cabecera-seccion cabecera-seccion-centro">
+            <h2 class="titulo-seccion-inicio titulo-destacados">Los libros más leídos del barrio</h2>
+          </div>
+
+          <!-- El carrusel se arma desde datos/libros.js (ver biblioteca.js): los 7 libros con más lectores -->
+          <div class="carrusel-libros" id="carruselLibros"></div>
+
+          <div class="fila-enlace-seccion">
             <a class="enlace-seccion" href="libros.html">
               <span>Ver todo el catálogo</span>
               <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
-
-          <!-- El carrusel se arma desde datos/libros.js (ver biblioteca.js): los 7 libros con más lectores -->
-          <div class="carrusel-libros" id="carruselLibros"></div>
         </section>
 
         <!-- AGENDA COMUNITARIA. PRÓXIMAS ACTIVIDADES DEL MES -->
