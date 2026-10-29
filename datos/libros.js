@@ -160,7 +160,7 @@ window.LIBROS_ORIGINALES = [
     "nota": 4.8,
     "lectores": 41,
     "descripcion": "El libro lírico más leído y compartido del siglo XX. Incluye versos célebres como \"Puedo escribir los versos más tristes esta noche\".",
-    "portada": "img/portada-veinte-poemas.jpg",
+    "portada": "img/portada-veinte-poemas-de-amor.jpg",
     "copias": 1
   },
   {
