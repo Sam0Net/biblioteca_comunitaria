@@ -116,4 +116,4 @@ Lo que **no** se ha probado: lectores de pantalla reales (NVDA, VoiceOver) ni di
 ## Ramas de Git
 
 - `main`: la versión de partida (Avance 2).
-- `avanceClaude`: el rediseño visual, de accesibilidad y de estructura, hecho con Claude Code. Cada paso está en su propio commit (`git log --oneline`).
+- `features`: el rediseño visual, de accesibilidad y de estructura, hecho con Claude Code. Cada paso está en su propio commit (`git log --oneline`).
