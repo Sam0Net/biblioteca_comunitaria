@@ -970,25 +970,42 @@ button:active,
   margin: 0 0 2.5rem;
 }
 
-.cabecera-seccion.cabecera-seccion-fila {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem 2rem;
+/* Título de una sección centrado sobre su contenido (el carrusel de libros) */
+.cabecera-seccion.cabecera-seccion-centro {
   max-width: none;
+  margin: 0;
+  text-align: center;
 }
 
+.titulo-destacados {
+  margin: 0;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.fila-enlace-seccion {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+/* Enlace de sección con forma de botón secundario: sin subrayados que se partan en dos */
 .enlace-seccion {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  min-height: 44px;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.6rem 1.4rem;
   font-family: var(--font-display);
+  font-size: 1rem;
   font-weight: 600;
   color: var(--primary);
   text-decoration: none;
-  transition: gap 180ms var(--ease-out);
+  background-color: var(--sage-container);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-completo);
+  transition: background-color 180ms ease, border-color 180ms ease, gap 180ms var(--ease-out);
 }
 
 .enlace-seccion .material-symbols-outlined {
@@ -997,9 +1014,9 @@ button:active,
 
 @media (hover: hover) and (pointer: fine) {
   .enlace-seccion:hover {
-    gap: 0.7rem;
-    text-decoration: underline;
-    text-underline-offset: 4px;
+    gap: 0.75rem;
+    background-color: #c5dbcf;
+    border-color: var(--primary);
   }
 }
 
@@ -4773,7 +4790,16 @@ section[id] {
 .carrusel-libros {
   --ancho: clamp(140px, 19vw, 230px);
   --paso: calc(var(--ancho) * 0.84);
+  position: relative;
+  padding-top: 2.5rem; /* la sombra del libro del frente sube más que el borde: aquí no se recorta */
   overflow: hidden;
+}
+
+/* En escritorio sobra espacio (los controles se ocultan), así que los libros son más grandes */
+@media (min-width: 641px) {
+  .carrusel-libros {
+    --ancho: clamp(190px, 22vw, 280px);
+  }
 }
 
 .carrusel-escena {
@@ -4848,9 +4874,10 @@ section[id] {
 /* El libro del frente proyecta una sombra amplia sobre los que quedan detrás, para que se distinga de ellos */
 .carrusel-item.es-centro .carrusel-portada {
   box-shadow:
-    0 2px 6px rgba(17, 17, 17, 0.28),
-    0 0 34px 6px rgba(17, 17, 17, 0.4),
-    0 32px 48px -14px rgba(26, 77, 59, 0.6);
+    0 2px 6px rgba(17, 17, 17, 0.26),
+    -22px 0 34px -8px rgba(17, 17, 17, 0.42),
+    22px 0 34px -8px rgba(17, 17, 17, 0.42),
+    0 14px 26px -14px rgba(26, 77, 59, 0.45);
 }
 
 .carrusel-portada img {
@@ -4910,6 +4937,45 @@ section[id] {
   line-height: 1.5;
   text-align: center;
   color: var(--text-secondary);
+}
+
+/* En escritorio el cursor ya detiene el giro: los botones no se ven, pero siguen ahí para quien usa el teclado
+   (aparecen al enfocarlos) y para lectores de pantalla */
+@media (min-width: 641px) and (hover: hover) and (pointer: fine) {
+  .carrusel-controles {
+    position: absolute;
+    left: 50%;
+    margin: 0;
+    padding: 0.5rem;
+    background-color: var(--surface-card);
+    border-radius: var(--radio-completo);
+    box-shadow: var(--sombra-media);
+    transform: translateX(-50%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .carrusel-controles:focus-within {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Sin la fila de botones debajo, la escena necesita menos altura; el hueco de abajo es donde aparecen al enfocarlos */
+  .carrusel-escena {
+    height: calc(var(--ancho) * 1.65 + 3.5rem);
+  }
+
+  .carrusel-libros {
+    padding-bottom: 3.75rem;
+  }
+
+  .carrusel-controles {
+    bottom: 0.25rem;
+  }
+
+  .carrusel-libros + .fila-enlace-seccion {
+    margin-top: 0;
+  }
 }
 
 /* En el celular no hay giro automático: quedan solo las dos flechas */
