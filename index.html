@@ -165,8 +165,62 @@
 
         <!-- LECTURAS FAVORITAS DEL BARRIO. LIBROS MÁS LEÍDOS DE LA COMUNIDAD -->
         <section class="seccion-destacados-inicio" id="libros-destacados">
-          <div class="cabecera-seccion cabecera-seccion-centro">
+          <!-- Dibujos del título (hojas, flores y enredadera): se definen una vez y se reutilizan con <use> -->
+          <svg class="visualmente-oculto" width="0" height="0" aria-hidden="true" focusable="false">
+            <defs>
+              <g id="hoja">
+                <path d="M0 0C6-13 26-17 44 0C26 17 6 13 0 0Z" />
+                <path class="nervio" d="M3 0H38" />
+              </g>
+              <g id="flor">
+                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" />
+                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" transform="rotate(72)" />
+                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" transform="rotate(144)" />
+                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" transform="rotate(216)" />
+                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" transform="rotate(288)" />
+                <circle class="centro-flor" r="4" />
+              </g>
+              <symbol id="rama" viewBox="0 0 200 120">
+                <g class="mecer">
+                <path class="tallo" d="M196 100C160 100 126 88 98 66C78 50 56 36 22 30" />
+                <path class="tallo" d="M98 66C90 78 72 86 58 90" />
+                <g transform="translate(172 99) rotate(-122) scale(.9)"><g class="balanceo b1"><use href="#hoja" class="hoja-a" /></g></g>
+                <g transform="translate(150 95) rotate(118) scale(.8)"><g class="balanceo b2"><use href="#hoja" class="hoja-b" /></g></g>
+                <g transform="translate(128 87) rotate(-108)"><g class="balanceo b3"><use href="#hoja" class="hoja-c" /></g></g>
+                <g transform="translate(112 76) rotate(142) scale(.85)"><g class="balanceo b1"><use href="#hoja" class="hoja-a" /></g></g>
+                <g transform="translate(92 62) rotate(-134) scale(1.05)"><g class="balanceo b2"><use href="#hoja" class="hoja-d" /></g></g>
+                <g transform="translate(76 50) rotate(150) scale(.8)"><g class="balanceo b3"><use href="#hoja" class="hoja-b" /></g></g>
+                <g transform="translate(56 38) rotate(-152) scale(.95)"><g class="balanceo b1"><use href="#hoja" class="hoja-c" /></g></g>
+                <g transform="translate(24 30) rotate(-176) scale(1.1)"><g class="balanceo b2"><use href="#hoja" class="hoja-a" /></g></g>
+                <g transform="translate(58 90)"><g class="florecer"><use href="#flor" /></g></g>
+                <path class="chispa c1" d="M28 66L20 62" />
+                <path class="chispa c2" d="M24 78L15 78" />
+                <path class="chispa c3" d="M150 54L158 46" />
+                <path class="chispa c1" d="M164 70L174 68" />
+                </g>
+              </symbol>
+              <symbol id="enredadera" viewBox="0 0 600 40">
+                <g class="onda">
+                  <path class="tallo" d="M40 20C90 6 140 34 190 20S290 6 340 20 440 34 490 20 540 8 560 20" />
+                  <g transform="translate(120 27) rotate(40) scale(.5)"><g class="balanceo b1"><use href="#hoja" class="hoja-a" /></g></g>
+                  <g transform="translate(160 22) rotate(-150) scale(.45)"><g class="balanceo b2"><use href="#hoja" class="hoja-c" /></g></g>
+                  <g transform="translate(250 12) rotate(-40) scale(.5)"><g class="balanceo b3"><use href="#hoja" class="hoja-b" /></g></g>
+                  <g transform="translate(300 17) rotate(160) scale(.5)"><g class="balanceo b1"><use href="#hoja" class="hoja-d" /></g></g>
+                  <g transform="translate(400 27) rotate(40) scale(.5)"><g class="balanceo b2"><use href="#hoja" class="hoja-a" /></g></g>
+                  <g transform="translate(445 24) rotate(-150) scale(.45)"><g class="balanceo b3"><use href="#hoja" class="hoja-c" /></g></g>
+                  <g transform="translate(300 24)"><g class="florecer"><use href="#flor" transform="scale(.7)" /></g></g>
+                  <g transform="translate(40 20)"><g class="florecer"><use href="#flor" transform="scale(.6)" /></g></g>
+                  <g transform="translate(560 20)"><g class="florecer"><use href="#flor" transform="scale(.6)" /></g></g>
+                </g>
+              </symbol>
+            </defs>
+          </svg>
+
+          <div class="cabecera-seccion cabecera-seccion-centro encabezado-hojas">
+            <svg class="rama rama-izq" viewBox="0 0 200 120" aria-hidden="true" focusable="false"><use href="#rama" width="200" height="120" /></svg>
             <h2 class="titulo-seccion-inicio titulo-destacados">Los libros más leídos del barrio</h2>
+            <svg class="rama rama-der" viewBox="0 0 200 120" aria-hidden="true" focusable="false"><use href="#rama" width="200" height="120" /></svg>
+            <svg class="enredadera" viewBox="0 0 600 40" aria-hidden="true" focusable="false"><use href="#enredadera" width="600" height="40" /></svg>
           </div>
 
           <!-- El carrusel se arma desde datos/libros.js (ver biblioteca.js): los 7 libros con más lectores -->
