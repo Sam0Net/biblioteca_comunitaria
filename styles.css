@@ -4958,6 +4958,13 @@ section[id] {
     width: 100%;
   }
 
+  /* El título de la tabla ocupa todo el ancho (si no, se encoge a una columna angosta) */
+  .tabla-apilable caption {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .tabla-apilable tbody tr {
     padding: 0.5rem 0;
     border-bottom: 1px solid var(--border-hairline);
