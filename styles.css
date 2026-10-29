@@ -5231,75 +5231,129 @@ symbol {
 }
 
 /* ==========================================================================
-   37. PANEL DE SINOPSIS DE CRISTAL (libros.html)
-   Al pasar el cursor por un libro: crece, los demás se desenfocan y a su lado flota un panel de cristal con la
-   sinopsis, que tiene de fondo la portada desenfocada. Solo con ratón; en pantallas táctiles se toca el libro.
+   37. SINOPSIS DE CRISTAL DENTRO DE LA PORTADA (libros.html)
+   Al pasar el cursor por un libro: crece un poco, los demás se desenfocan y la parte baja de su portada se oscurece
+   para mostrar una flechita. Al pulsarla, un panel de cristal (con la portada desenfocada de fondo) sube dentro de la
+   portada con la sinopsis; la flecha pasa a mirar hacia abajo y, al pulsarla, el panel baja. Solo con ratón.
    ========================================================================== */
-.panel-sinopsis {
+.panel-sinopsis,
+.capa-portada {
   display: none;
 }
 
 @media (hover: hover) and (pointer: fine) and (min-width: 700px) {
-  .rejilla-libros:not(.vista-lista) .tarjeta-libro.activa {
-    z-index: 30;
-  }
-
   .rejilla-libros:not(.vista-lista).hay-activa .tarjeta-libro:not(.activa) {
-    opacity: 0.7;
     filter: blur(2.5px);
   }
 
   .rejilla-libros:not(.vista-lista) .tarjeta-libro {
-    transition: filter 260ms var(--ease-out), opacity 260ms var(--ease-out);
+    transition: filter 260ms var(--ease-out);
   }
 
-  .rejilla-libros:not(.vista-lista) .panel-sinopsis {
+  /* Penumbra en la parte baja de la portada, dentro de ella, para que la flechita se vea sobre cualquier portada */
+  .rejilla-libros:not(.vista-lista) .contenedor-portada::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 1;
+    height: 45%;
+    background: linear-gradient(to top, rgba(10, 24, 18, 0.78), rgba(10, 24, 18, 0));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 260ms var(--ease-out);
+  }
+
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro.activa:not(.sinopsis-abierta) .contenedor-portada::after {
+    opacity: 1;
+  }
+
+  /* Capa del mismo tamaño que la portada que lleva la flechita; crece junto con ella */
+  .rejilla-libros:not(.vista-lista) .capa-portada {
     position: absolute;
     top: 0;
-    left: calc(100% + 1.5rem);
+    left: 0;
+    z-index: 3;
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    pointer-events: none;
+    transition: transform 280ms var(--ease-out);
+  }
+
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro.activa .capa-portada {
+    transform: scale(1.06);
+  }
+
+  .boton-sinopsis {
+    position: absolute;
+    bottom: 0.9rem;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-left: -22px;
+    color: #ffffff;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: var(--radio-completo);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: opacity 220ms var(--ease-out), visibility 0s linear 220ms, background-color 180ms ease, transform 160ms var(--ease-out);
+  }
+
+  .boton-sinopsis .material-symbols-outlined {
+    font-size: 30px;
+  }
+
+  .tarjeta-libro.activa .boton-sinopsis {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .boton-sinopsis:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .boton-sinopsis:active {
+    transform: scale(0.94);
+  }
+
+  .boton-sinopsis:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+  }
+
+  /* Invita a pulsar con un balanceo muy suave mientras la sinopsis está cerrada */
+  .tarjeta-libro.activa:not(.sinopsis-abierta) .boton-sinopsis .material-symbols-outlined {
+    animation: invitarFlecha 1.8s ease-in-out infinite;
+  }
+
+  /* El panel de cristal: vive dentro de la portada (que recorta lo que sobra) y sube desde abajo */
+  .rejilla-libros:not(.vista-lista) .panel-sinopsis {
+    position: absolute;
+    inset: 0;
     z-index: 2;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    padding: 1.25rem;
-    overflow: hidden;
+    padding: 1.15rem 1.15rem 4.25rem;
     color: #ffffff;
-    border-radius: var(--radio-md);
-    box-shadow: 0 2px 6px rgba(17, 17, 17, 0.25), 0 24px 44px -12px rgba(17, 17, 17, 0.55);
-    opacity: 0;
+    transform: translateY(101%);
     visibility: hidden;
-    transform: translateX(-10px);
-    transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out), visibility 0s linear 220ms;
+    transition: transform 360ms var(--ease-drawer), visibility 0s linear 360ms;
   }
 
-  .rejilla-libros:not(.vista-lista) .tarjeta-libro[data-lado="izquierda"] .panel-sinopsis {
-    right: calc(100% + 1.5rem);
-    left: auto;
-    transform: translateX(10px);
-  }
-
-  .rejilla-libros:not(.vista-lista) .tarjeta-libro.activa .panel-sinopsis {
-    opacity: 1;
-    visibility: visible;
+  .rejilla-libros:not(.vista-lista) .tarjeta-libro.sinopsis-abierta .panel-sinopsis {
     transform: none;
+    visibility: visible;
     transition-delay: 0s;
-  }
-
-  /* Puente invisible sobre el hueco entre el libro y el panel, para que el cursor pueda pasar al panel sin cerrarlo */
-  .panel-sinopsis::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -1.5rem;
-    width: 1.5rem;
-  }
-
-  .tarjeta-libro[data-lado="izquierda"] .panel-sinopsis::before {
-    right: -1.5rem;
-    left: auto;
   }
 
   /* Cristal: la portada del libro, muy desenfocada y oscurecida, con una capa que asegura la lectura */
@@ -5309,7 +5363,6 @@ symbol {
     z-index: -1;
     overflow: hidden;
     background-color: #1a2a22;
-    border-radius: inherit;
   }
 
   .panel-fondo::before {
@@ -5324,9 +5377,7 @@ symbol {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 24, 18, 0.35), rgba(10, 24, 18, 0.6));
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(10, 24, 18, 0.4), rgba(10, 24, 18, 0.66));
   }
 
   .panel-genero {
@@ -5339,11 +5390,16 @@ symbol {
 
   .panel-texto {
     flex: 1;
+    min-height: 0;
     margin: 0;
     overflow: hidden;
     font-size: 0.9375rem;
     line-height: 1.55;
     color: #ffffff;
+    -webkit-line-clamp: 11;
+    line-clamp: 11;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
   }
 
   .panel-estado {
@@ -5366,5 +5422,15 @@ symbol {
     margin: 0;
     font-size: 0.8125rem;
     color: rgba(255, 255, 255, 0.78);
+  }
+}
+
+@keyframes invitarFlecha {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
   }
 }
