@@ -16,7 +16,7 @@
      infinitas.
    - Adaptable: consultas de medios (@media); sin desbordes de 320 a 1440px.
    - HTML con clases semánticas en español y sin estilos en línea.
-   - Las secciones 25 a 35 van al final a propósito: al ser posteriores ganan
+   - Las secciones 25 a 36 van al final a propósito: al ser posteriores ganan
      en la cascada sin necesidad de !important.
    --------------------------------------------------------------------------
    ÍNDICE
@@ -54,6 +54,7 @@
    33. GESTIÓN DE LIBROS EN EL PANEL (admin.html)
    34. DONACIONES DE LIBROS (libros.html y admin.html)
    35. CARRUSEL DE LOS LIBROS MÁS LEÍDOS (index.html)
+   36. TÍTULO CON HOJAS Y FLORES (index.html)
    ========================================================================== */
 
 /* ==========================================================================
@@ -168,6 +169,10 @@
 
   /* Curvas de Movimiento Físico (Spring-like Transitions) */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* Ritmo de espacios del sitio: el mismo hueco entre todas las secciones y el mismo entre un título y su contenido */
+  --ritmo-seccion: clamp(3.5rem, 6vw, 5rem);
+  --espacio-titulo: 2.5rem;
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); /* movimiento de un lugar a otro en pantalla (carrusel) */
   --spring-default: cubic-bezier(0.16, 1, 0.3, 1);
   --spring-snappy: cubic-bezier(0.25, 1, 0.5, 1);
@@ -733,7 +738,17 @@ button:active,
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2.5rem var(--gutter) 4rem;
+  padding: 2.5rem var(--gutter) var(--ritmo-seccion);
+}
+
+/* Todas las secciones de una página se separan con el mismo hueco; la última deja el hueco al pie con el relleno del contenedor */
+.contenedor-flotante > section,
+.contenedor-flotante > .contenedor-catalogo {
+  margin-bottom: var(--ritmo-seccion);
+}
+
+.contenedor-flotante > :last-child {
+  margin-bottom: 0;
 }
 
 /* Resplandores Sutiles de Luz (Ambient Lighting) */
@@ -766,7 +781,7 @@ button:active,
    6. HÉROE (index.html, contacto.html y registro.html)
    ========================================================================== */
 .seccion-heroe {
-  padding: 0 0 3.5rem;
+  padding: 0;
 }
 
 /* La bienvenida va directamente sobre el pergamino de la página: sin caja que la encierre */
@@ -967,7 +982,7 @@ button:active,
    ========================================================================== */
 .cabecera-seccion {
   max-width: 680px;
-  margin: 0 0 2.5rem;
+  margin: 0 0 var(--espacio-titulo);
 }
 
 /* Título de una sección centrado sobre su contenido (el carrusel de libros) */
@@ -977,10 +992,11 @@ button:active,
   text-align: center;
 }
 
-.titulo-destacados {
+.titulo-seccion-inicio.titulo-destacados {
   margin: 0;
   font-size: clamp(2.25rem, 5vw, 3.5rem);
   line-height: 1.05;
+  color: var(--primary);
   text-wrap: balance;
 }
 
@@ -1039,7 +1055,7 @@ button:active,
    ========================================================================== */
 .seccion-destacados-inicio,
 .columna-catalogo {
-  margin-bottom: 4rem;
+  margin-bottom: 0;
 }
 
 /* Al llegar desde el carrusel del inicio, el libro queda visible bajo el encabezado y se marca un momento */
@@ -1281,7 +1297,7 @@ button:active,
    9. CATÁLOGO: BÚSQUEDA, CATEGORÍAS, FILTROS Y CONTROLES (libros.html)
    ========================================================================== */
 .cabecera-pagina {
-  margin-bottom: 2rem;
+  margin-bottom: var(--espacio-titulo);
 }
 
 .titulo-pagina {
@@ -1301,7 +1317,7 @@ button:active,
 }
 
 .contenedor-catalogo {
-  margin-bottom: 3.5rem;
+  margin-bottom: 0;
 }
 
 /* Búsqueda y botón de filtros */
@@ -2167,7 +2183,6 @@ button.pildora-formato[aria-pressed="true"] {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  margin-bottom: 3.5rem;
   align-items: stretch;
 }
 
@@ -2861,11 +2876,7 @@ button.pildora-formato[aria-pressed="true"] {
   color: var(--primary);
 }
 
-/* Preguntas Frecuentes (FAQ Accordion Style) */
-.seccion-faq-contacto {
-  margin-top: 4rem;
-}
-
+/* Preguntas frecuentes: el hueco con la sección anterior lo pone el ritmo general (--ritmo-seccion) */
 .tarjeta-faq-contenedor {
   padding: 0;
 }
@@ -2911,7 +2922,7 @@ button.pildora-formato[aria-pressed="true"] {
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
-  margin: 3.5rem 0 1rem;
+  margin: var(--ritmo-seccion) 0 0;
   padding: 2.25rem 2rem;
   color: #ffffff;
   background: linear-gradient(135deg, var(--forest-dark) 0%, #154e38 100%);
@@ -3650,7 +3661,7 @@ button.pildora-formato[aria-pressed="true"] {
    21. ANIMACIONES (@keyframes) Y MOVIMIENTO
    ========================================================================== */
 
-/* (El pulso y la flotación infinitos se retiraron: movimiento constante que distraía de la lectura) */
+/* (El pulso y la flotación infinitos se retiraron: movimiento constante que distraía de la lectura. La única excepción es la decoración lenta del título "Los libros más leídos", sección 36, que se detiene con "reducir movimiento") */
 
 /* 3. Animación de aparición suave (Fade-in-up) para cargas de sección */
 @keyframes aparecerSuave {
@@ -3998,6 +4009,10 @@ button.pildora-formato[aria-pressed="true"] {
 
 .seccion-normas.sin-relleno-superior {
   padding-top: 0;
+}
+
+.seccion-normas.sin-relleno-superior .tarjeta-llamado-accion {
+  margin: 0;
 }
 
 .marca-destacada {
@@ -4790,8 +4805,11 @@ section[id] {
 .carrusel-libros {
   --ancho: clamp(140px, 19vw, 230px);
   --paso: calc(var(--ancho) * 0.84);
+  /* Un solo valor manda los dos huecos: entre el título y el libro del frente, y entre su nombre y lo que sigue.
+     Además deja sitio a la sombra del libro del frente, que sube más que el borde. */
+  --aire: 2.5rem;
+  --alto-item: calc(var(--ancho) * 1.5 + 2.4rem); /* portada 2:3 + nombre del libro */
   position: relative;
-  padding-top: 2.5rem; /* la sombra del libro del frente sube más que el borde: aquí no se recorta */
   overflow: hidden;
 }
 
@@ -4799,12 +4817,14 @@ section[id] {
 @media (min-width: 641px) {
   .carrusel-libros {
     --ancho: clamp(190px, 22vw, 280px);
+    --aire: 3.75rem;
   }
 }
 
 .carrusel-escena {
   position: relative;
-  height: calc(var(--ancho) * 1.65 + 6.5rem);
+  /* El libro del frente crece 10% desde su centro: la altura cuenta ese crecimiento para que los dos huecos sean iguales */
+  height: calc(var(--aire) * 2 + var(--alto-item) * 1.1);
   perspective: 1200px;
   touch-action: pan-y;
 }
@@ -4819,7 +4839,7 @@ section[id] {
   --d: 0;
   --abs: max(var(--d), calc(var(--d) * -1));
   position: absolute;
-  top: 1.5rem;
+  top: calc(var(--aire) + var(--alto-item) * 0.05);
   left: 50%;
   width: var(--ancho);
   margin-left: calc(var(--ancho) / -2);
@@ -4960,15 +4980,7 @@ section[id] {
     pointer-events: auto;
   }
 
-  /* Sin la fila de botones debajo, la escena necesita menos altura; el hueco de abajo es donde aparecen al enfocarlos */
-  .carrusel-escena {
-    height: calc(var(--ancho) * 1.65 + 3.5rem);
-  }
-
-  .carrusel-libros {
-    padding-bottom: 3.75rem;
-  }
-
+  /* Sin la fila de botones debajo, el hueco de abajo es donde aparecen al enfocarlos con el teclado */
   .carrusel-controles {
     bottom: 0.25rem;
   }
@@ -5007,5 +5019,211 @@ section[id] {
   .boton-carrusel:hover {
     background-color: var(--sage-subtle);
     border-color: var(--primary);
+  }
+}
+
+/* ==========================================================================
+   36. TÍTULO CON HOJAS Y FLORES (index.html)
+   Dos ramas a los lados del título y una enredadera debajo, dibujadas en SVG con los verdes y el ámbar de la
+   paleta. Se mecen despacio de un lado a otro; con "reducir movimiento" quedan quietas.
+   ========================================================================== */
+.encabezado-hojas {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding-bottom: 2.75rem;
+}
+
+.encabezado-hojas .titulo-destacados {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+symbol {
+  overflow: visible; /* las hojas se asoman por fuera del cuadro del dibujo */
+}
+
+.rama {
+  flex: none;
+  width: clamp(100px, 13vw, 170px);
+  height: auto;
+  overflow: visible;
+}
+
+.rama-der {
+  transform: scaleX(-1);
+}
+
+.enredadera {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: min(100%, 560px);
+  height: auto;
+  overflow: visible;
+  transform: translateX(-50%);
+}
+
+.tallo {
+  fill: none;
+  stroke: #2b6e4e;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.hoja-a {
+  fill: #2b6e4e;
+}
+
+.hoja-b {
+  fill: #1a4d3b;
+}
+
+.hoja-c {
+  fill: #366854;
+}
+
+.hoja-d {
+  fill: #9ed2ba;
+}
+
+.nervio {
+  fill: none;
+  stroke: rgba(254, 249, 240, 0.55);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.petalo {
+  fill: #c48849;
+}
+
+.centro-flor {
+  fill: #fef9f0;
+}
+
+.chispa {
+  fill: none;
+  stroke: #c48849;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+@media (max-width: 640px) {
+  .rama {
+    display: none;
+  }
+
+  .encabezado-hojas {
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mecer {
+    transform-origin: 196px 100px;
+    animation: mecer 6.5s ease-in-out infinite alternate;
+  }
+
+  .balanceo {
+    transform-origin: 0 0;
+    animation: balanceo 5s ease-in-out infinite alternate;
+    --amp: 8deg;
+  }
+
+  .balanceo.b2 {
+    animation-duration: 6.2s;
+    animation-delay: -1.8s;
+    --amp: 11deg;
+  }
+
+  .balanceo.b3 {
+    animation-duration: 4.4s;
+    animation-delay: -3.1s;
+    --amp: 6deg;
+  }
+
+  .florecer {
+    transform-origin: 0 0;
+    animation: florecer 4.6s ease-in-out infinite alternate;
+  }
+
+  .chispa {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: chispa 2.8s ease-in-out infinite;
+  }
+
+  .chispa.c2 {
+    animation-delay: -0.9s;
+  }
+
+  .chispa.c3 {
+    animation-delay: -1.7s;
+  }
+
+  .onda {
+    animation: deriva 7s ease-in-out infinite alternate;
+  }
+
+  .rama-izq .florecer,
+  .rama-izq .balanceo {
+    animation-direction: alternate;
+  }
+
+  .rama-der .balanceo,
+  .rama-der .florecer {
+    animation-direction: alternate-reverse;
+  }
+}
+
+@keyframes balanceo {
+  from {
+    transform: rotate(calc(var(--amp) * -1));
+  }
+  to {
+    transform: rotate(var(--amp));
+  }
+}
+
+/* La rama entera se mece de lado a lado como con una brisa suave */
+@keyframes mecer {
+  from {
+    transform: translateX(-6px) rotate(-2deg);
+  }
+  to {
+    transform: translateX(6px) rotate(2deg);
+  }
+}
+
+@keyframes florecer {
+  from {
+    transform: rotate(-14deg) scale(0.96);
+  }
+  to {
+    transform: rotate(14deg) scale(1.05);
+  }
+}
+
+@keyframes chispa {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes deriva {
+  from {
+    transform: translateX(-7px);
+  }
+  to {
+    transform: translateX(7px);
   }
 }
