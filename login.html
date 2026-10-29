@@ -9,6 +9,10 @@
     />
     <meta name="author" content="Biblioteca Comunitaria Leer nos une" />
     <title>Acceso y Registro - Leer nos une | Biblioteca Comunitaria</title>
+    <meta name="theme-color" content="#1a4d3b" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%231a4d3b'/%3E%3Cg transform='translate%285 5%29 scale%28.58%29'%3E%3Cpath fill='%23fef9f0' d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -20,18 +24,20 @@
     <link href="styles.css" rel="stylesheet" />
   </head>
   <body class="cuerpo-auth-fullscreen">
+    <a class="saltar-enlace" href="#tarjetaAuth">Saltar al contenido principal</a>
+
     <!-- BOTÓN RETORNO AL SITIO WEB -->
     <a
       href="index.html"
       class="boton-volver-portal"
       aria-label="Volver a la página principal de la biblioteca"
     >
-      <span class="material-symbols-outlined">arrow_back</span>
+      <span aria-hidden="true" class="material-symbols-outlined">arrow_back</span>
       <span>Volver a la biblioteca</span>
     </a>
 
     <!-- TARJETA SPLIT CARD DE AUTENTICACIÓN -->
-    <div class="tarjeta-auth-split" id="tarjetaAuth">
+    <main class="tarjeta-auth-split" id="tarjetaAuth">
       <!-- ==============================================
            LADO FORMULARIO (LOGIN & REGISTRO)
            ============================================== -->
@@ -40,7 +46,7 @@
         <div class="seccion-form-login" id="seccionLogin">
           <div class="logo-auth-contenedor">
             <div class="logo-auth-icono">
-              <span class="material-symbols-outlined">local_florist</span>
+              <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
             </div>
             <span class="logo-auth-nombre">Leer nos une</span>
           </div>
@@ -58,7 +64,7 @@
                 Correo electrónico
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">mail</span>
+                <span aria-hidden="true" class="material-symbols-outlined">mail</span>
                 <input
                   type="email"
                   id="loginEmail"
@@ -76,7 +82,7 @@
                 Contraseña
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">lock</span>
+                <span aria-hidden="true" class="material-symbols-outlined">lock</span>
                 <input
                   type="password"
                   id="loginClave"
@@ -90,9 +96,9 @@
                   type="button"
                   class="boton-revelar-clave-auth"
                   onclick="toggleClaveInput('loginClave', this)"
-                  aria-label="Mostrar u ocultar contraseña"
+                  aria-label="Mostrar contraseña"
                 >
-                  <span class="material-symbols-outlined">visibility</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">visibility</span>
                 </button>
               </div>
             </div>
@@ -116,71 +122,13 @@
             </button>
           </form>
 
-          <!-- BOTONES DE AUTENTICACIÓN SOCIAL -->
-          <div class="fila-social-auth" aria-label="Opciones de acceso rápido">
-            <!-- Google -->
-            <button
-              type="button"
-              class="boton-social-circular"
-              title="Continuar con Google"
-              aria-label="Continuar con Google"
-              onclick="alertaSocial('Google')"
-            >
-              <svg viewBox="0 0 24 24">
-                <path
-                  fill="#4285F4"
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
-                />
-                <path
-                  fill="#EA4335"
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
-                />
-              </svg>
-            </button>
-            <!-- GitHub -->
-            <button
-              type="button"
-              class="boton-social-circular"
-              title="Continuar con GitHub"
-              aria-label="Continuar con GitHub"
-              onclick="alertaSocial('GitHub')"
-            >
-              <svg viewBox="0 0 24 24" fill="#181717">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                />
-              </svg>
-            </button>
-            <!-- Facebook -->
-            <button
-              type="button"
-              class="boton-social-circular"
-              title="Continuar con Facebook"
-              aria-label="Continuar con Facebook"
-              onclick="alertaSocial('Facebook')"
-            >
-              <svg viewBox="0 0 24 24" fill="#1877F2">
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                />
-              </svg>
-            </button>
-          </div>
         </div>
 
         <!-- VISTA: REGISTRO (CREAR CUENTA) -->
         <div class="seccion-form-registro" id="seccionRegistro">
           <div class="logo-auth-contenedor">
             <div class="logo-auth-icono">
-              <span class="material-symbols-outlined">local_florist</span>
+              <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
             </div>
             <span class="logo-auth-nombre">Leer nos une</span>
           </div>
@@ -197,7 +145,7 @@
                 Nombre completo
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">person</span>
+                <span aria-hidden="true" class="material-symbols-outlined">person</span>
                 <input
                   type="text"
                   id="registroNombre"
@@ -215,7 +163,7 @@
                 Correo electrónico
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">mail</span>
+                <span aria-hidden="true" class="material-symbols-outlined">mail</span>
                 <input
                   type="email"
                   id="registroEmail"
@@ -233,7 +181,7 @@
                 Contraseña
               </label>
               <div class="caja-input-auth">
-                <span class="material-symbols-outlined">lock</span>
+                <span aria-hidden="true" class="material-symbols-outlined">lock</span>
                 <input
                   type="password"
                   id="registroClave"
@@ -247,84 +195,36 @@
                   type="button"
                   class="boton-revelar-clave-auth"
                   onclick="toggleClaveInput('registroClave', this)"
-                  aria-label="Mostrar u ocultar contraseña"
+                  aria-label="Mostrar contraseña"
                 >
-                  <span class="material-symbols-outlined">visibility</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">visibility</span>
                 </button>
               </div>
             </div>
 
             <button
               type="submit"
-              class="boton-auth-submit"
+              class="boton-auth-submit margen-superior-md"
               id="btnSubmitRegistro"
-              style="margin-top: 1.25rem;"
             >
               <span>Crear cuenta</span>
             </button>
           </form>
 
-          <!-- BOTONES DE AUTENTICACIÓN SOCIAL -->
-          <div class="fila-social-auth" aria-label="Opciones de registro rápido">
-            <button
-              type="button"
-              class="boton-social-circular"
-              title="Registrarse con Google"
-              aria-label="Registrarse con Google"
-              onclick="alertaSocial('Google')"
-            >
-              <svg viewBox="0 0 24 24">
-                <path
-                  fill="#4285F4"
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
-                />
-                <path
-                  fill="#EA4335"
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
-                />
-              </svg>
-            </button>
-            <button
-              type="button"
-              class="boton-social-circular"
-              title="Registrarse con GitHub"
-              aria-label="Registrarse con GitHub"
-              onclick="alertaSocial('GitHub')"
-            >
-              <svg viewBox="0 0 24 24" fill="#181717">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                />
-              </svg>
-            </button>
-            <button
-              type="button"
-              class="boton-social-circular"
-              title="Registrarse con Facebook"
-              aria-label="Registrarse con Facebook"
-              onclick="alertaSocial('Facebook')"
-            >
-              <svg viewBox="0 0 24 24" fill="#1877F2">
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                />
-              </svg>
-            </button>
-          </div>
         </div>
 
         <!-- NOTIFICACIÓN DE RETROALIMENTACIÓN FLOTANTE -->
         <div class="alerta-auth-flotante" id="alertaAuth" role="status">
-          <span class="material-symbols-outlined">check_circle</span>
-          <span id="textoAlertaAuth">Acceso verificado exitosamente.</span>
+          <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
+          <span class="texto-alerta-auth" id="textoAlertaAuth">Acceso verificado exitosamente.</span>
+          <button
+            type="button"
+            class="boton-cerrar-alerta-auth"
+            aria-label="Cerrar aviso"
+            onclick="cerrarAlertaAuth()"
+          >
+            <span aria-hidden="true" class="material-symbols-outlined">close</span>
+          </button>
         </div>
       </div>
 
@@ -332,7 +232,7 @@
            LADO VISUAL OSCURO (SHOWCASE AURA BOTÁNICA)
            ============================================== -->
       <div class="panel-auth-visual" id="panelVisual">
-        <span class="material-symbols-outlined marca-agua-logo">local_florist</span>
+        <span aria-hidden="true" class="material-symbols-outlined marca-agua-logo">local_florist</span>
         <h2 class="titulo-visual" id="tituloVisual">¿Eres nuevo por aquí?</h2>
         <p class="descripcion-visual" id="descVisual">
           Crea tu cuenta de vecino lector para solicitar préstamos y participar en talleres comunitarios.
@@ -346,34 +246,117 @@
           <span>Crear cuenta</span>
         </button>
       </div>
-    </div>
+    </main>
 
     <!-- SCRIPT DE INTERACCIÓN DEL SLIDER Y ACCESO -->
+    <script src="auth.js"></script>
     <script>
       let modoActual = "login"; // 'login' | 'registro'
 
-      // Alternar entre modo Iniciar Sesión y modo Registro
-      function alternarModoAuth() {
+      // Aplica un modo (sin animación): clase de la tarjeta, textos del panel oscuro, botón y dirección (#crear-cuenta)
+      function aplicarModoAuth(nuevoModo) {
         const tarjeta = document.getElementById("tarjetaAuth");
         const tituloVisual = document.getElementById("tituloVisual");
         const descVisual = document.getElementById("descVisual");
         const btnCambiar = document.getElementById("btnCambiarAuth");
+        const esRegistro = nuevoModo === "registro";
 
-        if (modoActual === "login") {
-          modoActual = "registro";
-          tarjeta.classList.add("modo-registro");
-          tituloVisual.textContent = "¡Bienvenido de nuevo!";
-          descVisual.textContent =
-            "Inicia sesión para consultar tus libros en préstamo, renovar plazos y explorar el catálogo.";
-          btnCambiar.innerHTML = "<span>Iniciar sesión</span>";
-        } else {
-          modoActual = "login";
-          tarjeta.classList.remove("modo-registro");
-          tituloVisual.textContent = "¿Eres nuevo por aquí?";
-          descVisual.textContent =
-            "Crea tu cuenta de vecino lector para solicitar préstamos y participar en talleres comunitarios.";
-          btnCambiar.innerHTML = "<span>Crear cuenta</span>";
+        cerrarAlertaAuth();
+        modoActual = nuevoModo;
+        tarjeta.classList.toggle("modo-registro", esRegistro);
+        tituloVisual.textContent = esRegistro ? "¡Bienvenido de nuevo!" : "¿Eres nuevo por aquí?";
+        descVisual.textContent = esRegistro
+          ? "Inicia sesión para consultar tus libros en préstamo, renovar plazos y explorar el catálogo."
+          : "Crea tu cuenta de vecino lector para solicitar préstamos y participar en talleres comunitarios.";
+        btnCambiar.innerHTML = esRegistro ? "<span>Iniciar sesión</span>" : "<span>Crear cuenta</span>";
+
+        try {
+          history.replaceState(null, "", esRegistro ? "#crear-cuenta" : location.pathname + location.search);
+        } catch (error) {
+          /* algunos navegadores restringen replaceState en archivos locales: no afecta al funcionamiento */
         }
+      }
+
+      // Entrada en cascada: cada elemento sube 14px y aparece con 40 ms de diferencia (solo transform y opacity).
+      // Al terminar se quita la clase: la animación no deja estilos residuales, así que no hay parpadeo.
+      let entradaActual = 0;
+
+      // Quita la entrada de TODOS los elementos (también de los del formulario que quedó oculto)
+      function limpiarEntrada() {
+        entradaActual++;
+        document.querySelectorAll(".entra-suave").forEach((elemento) => {
+          elemento.classList.remove("entra-suave");
+          elemento.style.removeProperty("--orden");
+        });
+      }
+
+      function entradaEnCascada(...grupos) {
+        limpiarEntrada();
+        const id = entradaActual;
+        grupos.forEach((grupo) =>
+          grupo.forEach((elemento, i) => {
+            elemento.style.setProperty("--orden", i);
+            void elemento.offsetWidth;
+            elemento.classList.add("entra-suave");
+          })
+        );
+        const espera = Math.max(...grupos.map((grupo) => grupo.length)) * 40 + 600;
+        setTimeout(() => {
+          if (id === entradaActual) limpiarEntrada();
+        }, espera);
+      }
+
+      // Elementos que entran: los bloques del formulario visible (los campos van uno a uno) y el texto del panel oscuro
+      function elementosDelFormulario() {
+        const seccion = document.querySelector(modoActual === "registro" ? ".seccion-form-registro" : ".seccion-form-login");
+        return [...seccion.children].flatMap((hijo) => (hijo.tagName === "FORM" ? [...hijo.children] : [hijo]));
+      }
+
+      function elementosDelPanelVisual() {
+        return ["tituloVisual", "descVisual", "btnCambiarAuth"].map((id) => document.getElementById(id));
+      }
+
+      // Alternar entre Iniciar sesión y Crear cuenta: los dos paneles se deslizan al lado contrario (técnica FLIP)
+      function alternarModoAuth() {
+        const nuevoModo = modoActual === "login" ? "registro" : "login";
+        limpiarEntrada();
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          aplicarModoAuth(nuevoModo);
+          return;
+        }
+
+        const paneles = [document.querySelector(".panel-auth-lado"), document.getElementById("panelVisual")];
+
+        // 1. Dónde está cada panel ahora (si había una animación en curso, se parte de donde va)
+        const posicionAntes = paneles.map((panel) => panel.getBoundingClientRect().left);
+
+        // 2. Se aplica el modo nuevo: el diseño ya deja cada panel en su lado definitivo
+        aplicarModoAuth(nuevoModo);
+
+        // El contenido nuevo (formulario y texto del panel oscuro) entra en cascada
+        entradaEnCascada(elementosDelFormulario(), elementosDelPanelVisual());
+
+        // 3. Se cancela cualquier transición en curso para medir la posición definitiva, sin desplazamiento
+        paneles.forEach((panel) => {
+          clearTimeout(Number(panel.dataset.limpieza));
+          panel.style.transition = "none";
+          panel.style.transform = "none";
+        });
+        const desplazamientos = paneles.map((panel, i) => posicionAntes[i] - panel.getBoundingClientRect().left);
+
+        // 4. Cada panel vuelve a su posición anterior y se desliza hasta la nueva (arranque inmediato y frenada suave, 650 ms)
+        paneles.forEach((panel, i) => {
+          if (!desplazamientos[i]) {
+            panel.style.transition = "";
+            panel.style.transform = "";
+            return;
+          }
+          panel.style.transform = `translateX(${desplazamientos[i]}px)`;
+          void panel.offsetWidth;
+          panel.style.transition = "transform 650ms cubic-bezier(0.22, 1, 0.36, 1)";
+          panel.style.transform = "";
+          panel.dataset.limpieza = String(setTimeout(() => (panel.style.transition = ""), 720));
+        });
       }
 
       // Mostrar / Ocultar Contraseña
@@ -385,9 +368,11 @@
         if (input.type === "password") {
           input.type = "text";
           if (icono) icono.textContent = "visibility_off";
+          boton.setAttribute("aria-label", "Ocultar contraseña");
         } else {
           input.type = "password";
           if (icono) icono.textContent = "visibility";
+          boton.setAttribute("aria-label", "Mostrar contraseña");
         }
       }
 
@@ -402,49 +387,124 @@
         else if (accion === "registro") btn = document.getElementById("btnSubmitRegistro");
 
         if (!btn || !alerta) return;
+        if (!validarFormularioAuth(event.target)) return;
 
         const textoOriginal = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML =
-          '<span class="material-symbols-outlined" style="font-size:18px;">hourglass_top</span><span>Procesando...</span>';
+          '<span aria-hidden="true" class="material-symbols-outlined icono-boton-auth">hourglass_top</span><span>Procesando...</span>';
 
         setTimeout(() => {
-          btn.innerHTML =
-            '<span class="material-symbols-outlined" style="font-size:18px;">check</span><span>¡Listo!</span>';
+          const valor = (id) => document.getElementById(id).value;
+          const resultado =
+            accion === "login"
+              ? Auth.iniciar(valor("loginEmail"), valor("loginClave"))
+              : Auth.registrar({ nombre: valor("registroNombre"), correo: valor("registroEmail"), clave: valor("registroClave") });
 
-          if (accion === "login") {
-            const correo = (document.getElementById("loginEmail")?.value || "").trim().toLowerCase();
-            if (correo.includes("admin")) {
-              textoAlerta.textContent = "¡Bienvenido, Administrador! Acceso concedido al panel de gestión.";
-            } else {
-              textoAlerta.textContent = "¡Bienvenido! Sesión iniciada con éxito (Maqueta de diseño).";
-            }
-          } else {
-            textoAlerta.textContent = "¡Cuenta creada exitosamente! Tu Carnet Digital Vecinal ha sido emitido.";
-          }
-
-          alerta.classList.add("visible");
-
-          setTimeout(() => {
+          if (!resultado.ok) {
+            mostrarAlertaAuth(resultado.error, true);
             btn.disabled = false;
             btn.innerHTML = textoOriginal;
-            setTimeout(() => {
-              alerta.classList.remove("visible");
-            }, 3000);
-          }, 2000);
+            return;
+          }
+
+          btn.innerHTML =
+            '<span aria-hidden="true" class="material-symbols-outlined icono-boton-auth">check</span><span>¡Listo!</span>';
+          const usuario = resultado.usuario;
+          const esAdmin = usuario.rol === "admin";
+          const primerNombre = usuario.nombre.split(" ")[0];
+          mostrarAlertaAuth(
+            accion === "registro"
+              ? "Cuenta creada. Te damos la bienvenida, " + primerNombre + ". Te llevamos al inicio."
+              : esAdmin
+                ? "Hola, administrador. Te llevamos al panel."
+                : "Hola, " + primerNombre + ". Te llevamos al inicio.",
+            false
+          );
+          setTimeout(() => {
+            window.location.href = esAdmin ? "admin.html" : "index.html";
+          }, 1200);
         }, 700);
       }
 
-      // Mensaje de demostración para proveedores sociales
-      function alertaSocial(red) {
-        const alerta = document.getElementById("alertaAuth");
-        const textoAlerta = document.getElementById("textoAlertaAuth");
-        if (alerta && textoAlerta) {
-          textoAlerta.textContent = `Autenticación con ${red} lista para integración API (Fase de diseño).`;
-          alerta.classList.add("visible");
-          setTimeout(() => alerta.classList.remove("visible"), 3000);
-        }
+      // Validación con mensajes propios (los formularios usan novalidate)
+      const MENSAJES_AUTH = {
+        loginEmail: {
+          vacio: "Escribe tu correo electrónico para entrar.",
+          invalido: "Revisa tu correo: debe tener la forma nombre@ejemplo.com.",
+        },
+        loginClave: { vacio: "Escribe tu contraseña para entrar." },
+        registroNombre: { vacio: "Escribe tu nombre completo para crear la cuenta." },
+        registroEmail: {
+          vacio: "Escribe tu correo electrónico para crear la cuenta.",
+          invalido: "Revisa tu correo: debe tener la forma nombre@ejemplo.com.",
+        },
+        registroClave: {
+          vacio: "Crea una contraseña para tu cuenta.",
+          corta: "Tu contraseña necesita al menos 8 caracteres.",
+        },
+      };
+
+      function mensajeErrorAuth(input) {
+        const mensajes = MENSAJES_AUTH[input.id];
+        if (!mensajes) return "";
+        const valor = input.value.trim();
+        if (!valor) return mensajes.vacio;
+        if (input.type === "email" && !/^\S+@\S+\.\S+$/.test(valor)) return mensajes.invalido;
+        if (mensajes.corta && valor.length < 8) return mensajes.corta;
+        return "";
       }
+
+      function limpiarErrorCampo(input) {
+        const caja = input.closest(".caja-input-auth");
+        const error = document.getElementById(input.id + "Error");
+        if (caja) caja.classList.remove("con-error");
+        input.removeAttribute("aria-invalid");
+        input.removeAttribute("aria-describedby");
+        if (error) error.remove();
+      }
+
+      function validarFormularioAuth(form) {
+        let primerInvalido = null;
+        form.querySelectorAll(".input-auth-campo").forEach((input) => {
+          limpiarErrorCampo(input);
+          const mensaje = mensajeErrorAuth(input);
+          if (!mensaje) return;
+          const caja = input.closest(".caja-input-auth");
+          const error = document.createElement("p");
+          error.className = "mensaje-error-auth";
+          error.id = input.id + "Error";
+          error.textContent = mensaje;
+          caja.insertAdjacentElement("afterend", error);
+          caja.classList.add("con-error");
+          input.setAttribute("aria-invalid", "true");
+          input.setAttribute("aria-describedby", error.id);
+          if (!primerInvalido) primerInvalido = input;
+        });
+        if (primerInvalido) primerInvalido.focus();
+        return !primerInvalido;
+      }
+
+      // Muestra el aviso del formulario; con error=true usa el estilo de error y se anuncia de inmediato
+      function mostrarAlertaAuth(texto, error) {
+        const alerta = document.getElementById("alertaAuth");
+        document.getElementById("textoAlertaAuth").textContent = texto;
+        alerta.classList.toggle("error", !!error);
+        alerta.setAttribute("role", error ? "alert" : "status");
+        alerta.querySelector(".material-symbols-outlined").textContent = error ? "error" : "check_circle";
+        alerta.classList.add("visible");
+      }
+
+      function cerrarAlertaAuth() {
+        const alerta = document.getElementById("alertaAuth");
+        if (alerta) alerta.classList.remove("visible", "error");
+      }
+
+      // Al corregir un campo, su mensaje de error desaparece
+      document.querySelectorAll(".input-auth-campo").forEach((input) => {
+        input.addEventListener("input", () => limpiarErrorCampo(input));
+      });
+
 
       // Mensaje para olvido de clave
       function alertaOlvido(e) {
@@ -453,10 +513,19 @@
         const textoAlerta = document.getElementById("textoAlertaAuth");
         if (alerta && textoAlerta) {
           textoAlerta.textContent = "Te enviaremos las instrucciones de recuperación a tu correo registrado.";
+          alerta.classList.remove("error");
+          alerta.setAttribute("role", "status");
           alerta.classList.add("visible");
-          setTimeout(() => alerta.classList.remove("visible"), 3000);
         }
       }
+      // Enlaces con #crear-cuenta abren directamente el formulario de registro (sin animar al cargar)
+      const modoPorDireccion = { "#crear-cuenta": "registro", "#iniciar-sesion": "login" };
+      if (modoPorDireccion[location.hash] === "registro") aplicarModoAuth("registro");
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) entradaEnCascada(elementosDelFormulario());
+      window.addEventListener("hashchange", () => {
+        const deseado = modoPorDireccion[location.hash];
+        if (deseado && deseado !== modoActual) alternarModoAuth();
+      });
     </script>
   </body>
 </html>

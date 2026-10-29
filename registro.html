@@ -15,6 +15,10 @@
     <title>Registro de Usuario y Carnet Digital - Leer nos une | Biblioteca Comunitaria</title>
 
     <!-- FUENTES EXTERNAS (Google Fonts): Tipografía display (Fredoka) y cuerpo (Plus Jakarta Sans) -->
+    <meta name="theme-color" content="#1a4d3b" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%231a4d3b'/%3E%3Cg transform='translate%285 5%29 scale%28.58%29'%3E%3Cpath fill='%23fef9f0' d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -28,6 +32,7 @@
 
     <!-- HOJA DE ESTILOS EXTERNA -->
     <link href="styles.css" rel="stylesheet" />
+    <script src="auth.js" defer></script>
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO -->
@@ -38,7 +43,7 @@
       <div class="contenedor-encabezado">
         <a class="marca-sitio" href="index.html" data-path="inicio">
           <div class="icono-marca">
-            <span class="material-symbols-outlined">local_florist</span>
+            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
           </div>
           <div class="texto-marca">
             <span class="nombre-marca">Leer nos une</span>
@@ -54,51 +59,51 @@
         </nav>
 
         <div class="acciones-usuario">
-          <a class="boton-carnet animacion-pulso" href="login.html" data-path="carnet-digital">
-            <span class="material-symbols-outlined">badge</span>
-            <span>Carnet Digital</span>
+          <a class="boton-carnet" href="login.html#crear-cuenta" data-path="carnet-digital" aria-label="Sacar mi carnet">
+            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+            <span>Sacar mi carnet</span>
           </a>
           <a
             class="avatar-perfil"
             href="login.html"
             title="Mi Cuenta e Inicio de Sesión"
-            aria-label="Mi Cuenta"
+            aria-label="Mi cuenta: iniciar sesión"
           >
             <img
-              alt="Perfil de usuario de la biblioteca"
+              alt=""
               src="img/tresLibrosPlantitas.png"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
-          <button class="boton-menu-movil" id="btnMenuMovil" aria-label="Abrir menú" aria-expanded="false" type="button">
-            <span class="material-symbols-outlined icono-menu-abrir">menu</span>
-            <span class="material-symbols-outlined icono-menu-cerrar">close</span>
+          <button class="boton-menu-movil" id="btnMenuMovil" aria-controls="menuMovilDesplegable" aria-label="Abrir menú" aria-expanded="false" type="button">
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar">close</span>
           </button>
         </div>
       </div>
 
       <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
-        <nav class="navegacion-movil">
+        <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span class="material-symbols-outlined">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="libros.html">
-            <span class="material-symbols-outlined">auto_stories</span>
+            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="servicios.html">
-            <span class="material-symbols-outlined">spa</span>
+            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span class="material-symbols-outlined">chat</span>
+            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
-            <span class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
         </nav>
       </div>
@@ -121,35 +126,13 @@
             </div>
 
             <div class="contenido-heroe animacion-aparecer">
-              <div class="insignia-tema">
-                <span class="material-symbols-outlined">badge</span>
-                <span>Afiliación Vecinal Gratuita</span>
-              </div>
-
-              <h1 class="titulo-heroe">Formulario de Registro y Carnet Digital</h1>
+              <h1 class="titulo-heroe">Solicitud de carnet vecinal</h1>
               <p class="descripcion-heroe">
                 Completa tus datos para afiliarte al sistema comunitario de préstamos. Obtendrás tu
-                <mark style="background-color: #d4e6dd; padding: 2px 6px; border-radius: 4px;"><strong>Carnet Digital Vecinal</strong></mark>
-                en menos de 2 minutos, con acceso libre a más de 2,540 obras y reservas de salas de estudio.
+                <mark class="marca-destacada"><strong>Carnet Digital Vecinal</strong></mark>
+                en menos de 2 minutos, con acceso libre a más de 2.540 obras y reservas de salas de estudio.
               </p>
 
-              <div class="fila-metricas">
-                <div class="pildora-metrica">
-                  <span class="material-symbols-outlined icono-verde">bolt</span>
-                  <span class="valor-metrica">Inmediato</span>
-                  <span class="etiqueta-metrica">Trámite digital</span>
-                </div>
-                <div class="pildora-metrica">
-                  <span class="material-symbols-outlined icono-ambar">verified_user</span>
-                  <span class="valor-metrica">100% Gratis</span>
-                  <span class="etiqueta-metrica">Sin costo vecinal</span>
-                </div>
-                <div class="pildora-metrica">
-                  <span class="material-symbols-outlined icono-verde">menu_book</span>
-                  <span class="valor-metrica">Hasta 3</span>
-                  <span class="etiqueta-metrica">Libros simultáneos</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -167,25 +150,26 @@
               </div>
 
               <form class="formulario-botanico" id="formRegistroCarnet" onsubmit="registrarCarnet(event)">
+                <p class="aviso-obligatorio">Los campos con <span class="campo-obligatorio">*</span> son obligatorios.</p>
                 <!-- Fieldset 1: Datos Personales del Lector -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
-                    <span class="material-symbols-outlined">person</span>
-                    <span>1. Información Personal del Lector</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">person</span>
+                    <span>Tus datos</span>
                   </legend>
 
                   <div class="fila-campos-doble">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="nombres">
-                        <span class="material-symbols-outlined icono-etiqueta">badge</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">badge</span>
                         <span>Nombres completos</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">person</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person</span>
                         <input
                           class="input-contacto"
-                          id="nombres"
+                          id="nombres" autocomplete="given-name"
                           name="nombres"
                           placeholder="Ej: Carmen Rosa"
                           required
@@ -196,15 +180,15 @@
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="apellidos">
-                        <span class="material-symbols-outlined icono-etiqueta">badge</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">badge</span>
                         <span>Apellidos completos</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">person_outline</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person_outline</span>
                         <input
                           class="input-contacto"
-                          id="apellidos"
+                          id="apellidos" autocomplete="family-name"
                           name="apellidos"
                           placeholder="Ej: Silva Paredes"
                           required
@@ -214,15 +198,15 @@
                     </div>
                   </div>
 
-                  <div class="fila-campos-doble" style="margin-top: var(--espacio-sm);">
+                  <div class="fila-campos-doble separado-arriba">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="dni">
-                        <span class="material-symbols-outlined icono-etiqueta">pin</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">pin</span>
                         <span>DNI (8 dígitos)</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">credit_card</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">credit_card</span>
                         <input
                           aria-describedby="ayuda-dni-registro"
                           class="input-contacto"
@@ -235,22 +219,22 @@
                           type="text"
                         />
                       </div>
-                      <small id="ayuda-dni-registro" style="font-size: 12px; color: var(--secondary); margin-top: 4px; padding-left: 4px;">
+                      <small id="ayuda-dni-registro" class="ayuda-campo">
                         Ingresa los 8 dígitos numéricos de tu documento nacional de identidad.
                       </small>
                     </div>
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="fecha_nacimiento">
-                        <span class="material-symbols-outlined icono-etiqueta">calendar_today</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">calendar_today</span>
                         <span>Fecha de Nacimiento</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">event</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">event</span>
                         <input
                           class="input-contacto"
-                          id="fecha_nacimiento"
+                          id="fecha_nacimiento" autocomplete="bday"
                           name="fecha_nacimiento"
                           required
                           type="date"
@@ -259,18 +243,18 @@
                     </div>
                   </div>
 
-                  <div class="fila-campos-doble" style="margin-top: var(--espacio-sm);">
+                  <div class="fila-campos-doble separado-arriba">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="correo">
-                        <span class="material-symbols-outlined icono-etiqueta">mail</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">mail</span>
                         <span>Correo Electrónico</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">alternate_email</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">alternate_email</span>
                         <input
                           class="input-contacto"
-                          id="correo"
+                          id="correo" autocomplete="email"
                           name="correo"
                           placeholder="ejemplo@correo.com"
                           required
@@ -281,15 +265,15 @@
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="telefono">
-                        <span class="material-symbols-outlined icono-etiqueta">phone</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">phone</span>
                         <span>Teléfono / WhatsApp</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">call</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">call</span>
                         <input
                           class="input-contacto"
-                          id="telefono"
+                          id="telefono" autocomplete="tel"
                           maxlength="9"
                           name="telefono"
                           pattern="[0-9]{9}"
@@ -305,22 +289,22 @@
                 <!-- Fieldset 2: Domicilio y Preferencias Lectoras -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
-                    <span class="material-symbols-outlined">home_pin</span>
-                    <span>2. Domicilio y Preferencias Lectoras</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">home_pin</span>
+                    <span>Tu domicilio y tus lecturas</span>
                   </legend>
 
                   <div class="fila-campos-doble">
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="direccion">
-                        <span class="material-symbols-outlined icono-etiqueta">location_on</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">location_on</span>
                         <span>Dirección o Calle</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">home</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">home</span>
                         <input
                           class="input-contacto"
-                          id="direccion"
+                          id="direccion" autocomplete="street-address"
                           name="direccion"
                           placeholder="Ej: Jr. Los Sauces 450"
                           required
@@ -331,12 +315,12 @@
 
                     <div class="grupo-campo">
                       <label class="etiqueta-campo" for="sector_vecinal">
-                        <span class="material-symbols-outlined icono-etiqueta">location_city</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">location_city</span>
                         <span>Sector Vecinal</span>
                         <span class="campo-obligatorio">*</span>
                       </label>
                       <div class="contenedor-input-icono">
-                        <span class="material-symbols-outlined icono-en-campo">map</span>
+                        <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">map</span>
                         <select class="select-contacto" id="sector_vecinal" name="sector_vecinal" required>
                           <option disabled selected value="">Selecciona tu sector...</option>
                           <option value="san_jose">Sector San José (Sede Principal)</option>
@@ -348,25 +332,25 @@
                     </div>
                   </div>
 
-                  <div class="grupo-campo" style="margin-top: var(--espacio-sm);">
+                  <div class="grupo-campo separado-arriba">
                     <label class="etiqueta-campo">
-                      <span class="material-symbols-outlined icono-etiqueta">favorite</span>
+                      <span aria-hidden="true" class="material-symbols-outlined icono-etiqueta">favorite</span>
                       <span>Géneros o temas de mayor interés (opcional):</span>
                     </label>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 6px;">
-                      <label class="grupo-casilla" style="margin-top: 0;">
+                    <div class="grupo-casillas-fila">
+                      <label class="grupo-casilla">
                         <input name="intereses[]" type="checkbox" value="novela" />
                         <span>Novela y Narrativa</span>
                       </label>
-                      <label class="grupo-casilla" style="margin-top: 0;">
+                      <label class="grupo-casilla">
                         <input checked name="intereses[]" type="checkbox" value="infantil" />
                         <span>Literatura Infantil y Juvenil</span>
                       </label>
-                      <label class="grupo-casilla" style="margin-top: 0;">
+                      <label class="grupo-casilla">
                         <input name="intereses[]" type="checkbox" value="historia" />
                         <span>Historia y Memoria Vecinal</span>
                       </label>
-                      <label class="grupo-casilla" style="margin-top: 0;">
+                      <label class="grupo-casilla">
                         <input name="intereses[]" type="checkbox" value="ecologia" />
                         <span>Botánica y Medio Ambiente</span>
                       </label>
@@ -377,11 +361,11 @@
                 <!-- Fieldset 3: Compromiso Vecinal y Normas -->
                 <fieldset class="fieldset-botanico">
                   <legend class="legend-botanico">
-                    <span class="material-symbols-outlined">handshake</span>
-                    <span>3. Compromiso y Convivencia Vecinal</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">handshake</span>
+                    <span>Compromiso de convivencia</span>
                   </legend>
 
-                  <label class="grupo-casilla" for="acepto-normas-registro" style="margin-bottom: var(--espacio-sm);">
+                  <label class="grupo-casilla separado-abajo" for="acepto-normas-registro">
                     <input
                       id="acepto-normas-registro"
                       name="acepto_normas"
@@ -410,21 +394,21 @@
                 <!-- Botones de Acción -->
                 <div class="fila-botones-formulario">
                   <button class="boton-enviar-contacto" id="btnEmitirCarnet" type="submit">
-                    <span>Emitir mi Carnet Digital</span>
-                    <span class="material-symbols-outlined">badge</span>
+                    <span>Emitir mi carnet</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">badge</span>
                   </button>
                   <button class="boton-secundario-contacto" type="reset">
-                    <span class="material-symbols-outlined">restart_alt</span>
+                    <span aria-hidden="true" class="material-symbols-outlined">restart_alt</span>
                     <span>Restablecer</span>
                   </button>
                 </div>
               </form>
 
               <!-- Notificación de Éxito al Registrarse (Idéntica a Contacto) -->
-              <div class="alerta-exito-contacto" id="alertaExitoCarnet">
-                <span class="material-symbols-outlined icono-exito">check_circle</span>
+              <div class="alerta-exito-contacto" id="alertaExitoCarnet" role="alert">
+                <span aria-hidden="true" class="material-symbols-outlined icono-exito">check_circle</span>
                 <div>
-                  <h4>¡Carnet Vecinal Emitido con Éxito!</h4>
+                  <h3 class="titulo-alerta-exito">¡Carnet emitido!</h3>
                   <p>
                     Tu solicitud ha sido procesada satisfactoriamente.
                     <br />
@@ -437,13 +421,13 @@
             <!-- COLUMNA DERECHA: MOCKUP INTERACTIVO DEL CARNET + CANALES DE AYUDA -->
             <div class="panel-canales-contacto">
               <!-- MOCKUP DEL CARNET DIGITAL (TRANSFORM, GRADIENT Y FLEXBOX) -->
-              <div class="tarjeta-carnet-mockup animacion-flotacion">
+              <div class="tarjeta-carnet-mockup">
                 <div class="cabecera-carnet-mockup">
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span class="material-symbols-outlined" style="font-size: 28px; color: var(--warm-amber);">local_florist</span>
+                  <div class="marca-carnet-mockup">
+                    <span aria-hidden="true" class="material-symbols-outlined icono-marca-carnet">local_florist</span>
                     <div>
-                      <h3 style="font-family: var(--font-display); font-size: 16px; margin: 0; color: #ffffff;">Leer nos une</h3>
-                      <p style="font-size: 11px; margin: 0; color: var(--sage-container);">Biblioteca Comunitaria San José</p>
+                      <h3 class="nombre-carnet-mockup">Leer nos une</h3>
+                      <p class="subtitulo-carnet-mockup">Biblioteca Comunitaria San José</p>
                     </div>
                   </div>
                   <span class="badge-carnet-tipo">Lector Vecinal</span>
@@ -464,35 +448,35 @@
                   <div class="codigo-barras-simulado">
                     <span>||| | | |||| | || | |||| || |</span>
                   </div>
-                  <span style="font-size: 11px; color: var(--sage-container); font-family: var(--font-display);">ID: BC-2026-0428</span>
+                  <span class="id-carnet-mockup">ID: BC-2026-0428</span>
                 </div>
               </div>
 
               <!-- TARJETA: BENEFICIOS DEL CARNET VECINAL -->
               <div class="tarjeta-canal">
                 <div class="icono-canal-contenedor">
-                  <span class="material-symbols-outlined">card_membership</span>
+                  <span aria-hidden="true" class="material-symbols-outlined">card_membership</span>
                 </div>
                 <div class="contenido-canal">
-                  <h3 class="titulo-canal">Beneficios del Carnet Vecinal</h3>
+                  <h3 class="titulo-canal">Qué incluye tu carnet</h3>
                   <p class="descripcion-canal">
                     Accede a todos los servicios gratuitos de la biblioteca comunitaria presentando tu carnet o número de DNI:
                   </p>
-                  <ul class="lista-puntos-servicio" style="margin-top: 8px;">
+                  <ul class="lista-puntos-servicio margen-superior-xs">
                     <li>
-                      <span class="material-symbols-outlined">check_circle</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                       <span>Hasta 3 libros en préstamo a domicilio por 14 días corridos.</span>
                     </li>
                     <li>
-                      <span class="material-symbols-outlined">check_circle</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                       <span>Acceso preferente a salas de estudio silencioso y mediateca.</span>
                     </li>
                     <li>
-                      <span class="material-symbols-outlined">check_circle</span>
+                      <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
                       <span>Inscripción anticipada a clubes de lectura y talleres infantiles.</span>
                     </li>
                   </ul>
-                  <span class="dato-destacado-canal">Trámite 100% Gratuito y Libre</span>
+                  <span class="dato-destacado-canal">Trámite gratuito</span>
                 </div>
               </div>
             </div>
@@ -502,12 +486,11 @@
     </main>
 
     <!-- PIE DE PÁGINA (FOOTER) BOTÁNICO -->
-    <footer class="pie-sitio">
+    <footer class="pie-pagina">
       <div class="contenedor-pie">
         <div class="rejilla-pie">
           <div>
             <div class="marca-pie">
-              <span class="material-symbols-outlined">menu_book</span>
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
@@ -515,13 +498,12 @@
               imaginación y la convivencia vecinal en armonía.
             </p>
             <div class="insignia-semillero">
-              <span class="material-symbols-outlined">eco</span>
               <span>Semillero de saberes comunitarios</span>
             </div>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Horarios de Atención</h4>
+            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
             <ul class="lista-horarios">
               <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
               <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
@@ -534,52 +516,65 @@
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Enlaces Rápidos</h4>
-            <ul class="enlaces-pie">
+            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
+            <nav aria-label="Enlaces rápidos">
+              <ul class="enlaces-pie">
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
-                <a href="index.html" data-path="inicio">Página de Inicio</a>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
-                <a href="libros.html" data-path="libros">Catálogo de Libros</a>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="libros.html" data-path="libros">Libros</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
-                <a href="servicios.html" data-path="servicios">Servicios Comunitarios</a>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
-                <a href="registro.html" data-path="registro">Solicitar Carnet Vecinal</a>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
               </li>
               <li>
-                <span class="material-symbols-outlined">chevron_right</span>
-                <a href="contacto.html" data-path="contacto">Canales de Contacto</a>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="contacto.html" data-path="contacto">Contacto</a>
               </li>
-            </ul>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="login.html#crear-cuenta" data-path="crear-cuenta">Crear cuenta</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="login.html" data-path="login">Iniciar sesión</a>
+              </li>
+              </ul>
+            </nav>
           </div>
 
           <div>
-            <h4 class="titulo-columna-pie">Sede Comunitaria</h4>
-            <p class="direccion-pie">
-              Sector San José<br />
-              Al costado de la SUNAT
-            </p>
-            <p class="contacto-pie">
-              ejemplo@utpvirtual.edu<br />
-              +51 1234-5678
-            </p>
+            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
+            <address class="sede-pie">
+              <p class="direccion-pie">
+                Sector San José<br />
+                Al costado de la SUNAT
+              </p>
+              <p class="contacto-pie">
+                ejemplo@utpvirtual.edu<br />
+                +51 1234-5678
+              </p>
+            </address>
           </div>
         </div>
 
         <div class="pie-inferior">
           <p class="derechos-pie">
-            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de Taller de Programación Web (Avance 2).
+            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de
+            Taller de Programación Web (Avance 2).
           </p>
           <div class="enlaces-legales">
             <a href="contacto.html">Soporte Vecinal</a>
             <a href="libros.html">Catálogo Abierto</a>
-            <a href="login.html">Carnet Digital</a>
+            <a href="login.html#crear-cuenta">Sacar mi carnet</a>
           </div>
         </div>
       </div>
@@ -596,10 +591,10 @@
         // Estado de carga temporal
         const textoOriginal = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '<span class="material-symbols-outlined">hourglass_top</span><span>Emitiendo carnet...</span>';
+        btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">hourglass_top</span><span>Emitiendo carnet...</span>';
 
         setTimeout(() => {
-          btn.innerHTML = '<span class="material-symbols-outlined">check</span><span>¡Carnet Emitido!</span>';
+          btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">check</span><span>¡Carnet Emitido!</span>';
           alerta.classList.add("visible");
           form.reset();
 
@@ -623,6 +618,7 @@
             const abierto = menuMovil.classList.toggle("abierto");
             btnMenu.classList.toggle("activo", abierto);
             btnMenu.setAttribute("aria-expanded", abierto);
+            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
             menuMovil.setAttribute("aria-hidden", !abierto);
           });
 
@@ -631,6 +627,7 @@
               menuMovil.classList.remove("abierto");
               btnMenu.classList.remove("activo");
               btnMenu.setAttribute("aria-expanded", "false");
+              btnMenu.setAttribute("aria-label", "Abrir menú");
               menuMovil.setAttribute("aria-hidden", "true");
             }
           });

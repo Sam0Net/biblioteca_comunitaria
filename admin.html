@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Panel de administración de la Biblioteca Comunitaria Leer nos une." />
+    <meta name="robots" content="noindex" />
+    <meta name="author" content="Biblioteca Comunitaria Leer nos une" />
+    <title>Panel de administración - Leer nos une | Biblioteca Comunitaria</title>
+    <meta name="theme-color" content="#1a4d3b" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%231a4d3b'/%3E%3Cg transform='translate%285 5%29 scale%28.58%29'%3E%3Cpath fill='%23fef9f0' d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    
+  </head>
+  <body class="cuerpo-sitio">
+    <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
+    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <!-- MENÚS (ENCABEZADO Y NAVEGACIÓN CON FLEXBOX) -->
+    <header class="encabezado">
+      <div class="contenedor-encabezado">
+        <a class="marca-sitio" href="index.html" data-path="inicio">
+          <div class="icono-marca">
+            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
+          </div>
+          <div class="texto-marca">
+            <span class="nombre-marca">Leer nos une</span>
+            <span class="subtitulo-marca">Biblioteca Comunitaria</span>
+          </div>
+        </a>
+
+        <nav class="navegacion-principal" aria-label="Navegación principal">
+          <a class="enlace-nav" href="index.html" data-path="inicio">Inicio</a>
+          <a class="enlace-nav" href="libros.html" data-path="libros">Libros</a>
+          <a class="enlace-nav" href="servicios.html" data-path="servicios">Servicios</a>
+          <a class="enlace-nav" href="contacto.html" data-path="contacto">Contacto</a>
+        </nav>
+
+        <div class="acciones-usuario">
+          <a class="boton-carnet" href="login.html#crear-cuenta" data-path="carnet-digital" aria-label="Sacar mi carnet">
+            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+            <span>Sacar mi carnet</span>
+          </a>
+          <a
+            class="avatar-perfil"
+            href="login.html"
+            title="Mi Cuenta e Inicio de Sesión"
+            aria-label="Mi cuenta: iniciar sesión"
+          >
+            <img
+              alt=""
+              src="img/tresLibrosPlantitas.png"
+            />
+          </a>
+          <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
+          <button class="boton-menu-movil" id="btnMenuMovil" aria-controls="menuMovilDesplegable" aria-label="Abrir menú" aria-expanded="false" type="button">
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
+            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
+      <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
+        <nav class="navegacion-movil" aria-label="Navegación móvil">
+          <a class="enlace-nav-movil" href="index.html">
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
+            <span>Inicio</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+          <a class="enlace-nav-movil" href="libros.html">
+            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
+            <span>Libros</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+          <a class="enlace-nav-movil" href="servicios.html">
+            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
+            <span>Servicios</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+          <a class="enlace-nav-movil" href="contacto.html">
+            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
+            <span>Contacto</span>
+            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido-principal" id="contenido-principal">
+      <div class="contenedor-flotante">
+        <h1 class="titulo-admin">Panel de administración</h1>
+
+        <!-- Visitantes sin permiso -->
+        <section class="tarjeta-admin" id="accesoDenegado" hidden aria-labelledby="tituloDenegado">
+          <h2 class="titulo-tarjeta-admin" id="tituloDenegado">Esta página es solo para administradores</h2>
+          <p class="texto-admin" id="textoDenegado">Inicia sesión con la cuenta de administrador para entrar.</p>
+          <a class="boton-heroe-primario" href="login.html">Iniciar sesión</a>
+        </section>
+
+        <!-- Panel del administrador -->
+        <div id="panelAdmin" hidden>
+          <section class="tarjeta-admin" aria-labelledby="tituloUsuarios">
+            <h2 class="titulo-tarjeta-admin" id="tituloUsuarios">Cuentas registradas</h2>
+            <p class="texto-admin">
+              Aquí aparecen las cuentas creadas en este navegador. Esta maqueta no tiene servidor, así que no se ven las que se crearon en otros equipos.
+            </p>
+            <div class="contenedor-tabla-responsiva" tabindex="0" role="region" aria-label="Tabla de cuentas registradas">
+              <table class="tabla-botanica tabla-apilable">
+                <caption>Cuentas de usuario registradas en este navegador</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Fecha de registro</th>
+                  </tr>
+                </thead>
+                <tbody id="filasUsuarios"></tbody>
+              </table>
+            </div>
+            <p class="texto-admin" id="sinUsuarios" hidden>Todavía no hay cuentas registradas. Crea una desde la página de inicio de sesión para verla aquí.</p>
+          </section>
+
+          <section class="tarjeta-admin" aria-labelledby="tituloDonaciones">
+            <h2 class="titulo-tarjeta-admin" id="tituloDonaciones" tabindex="-1">Donaciones recibidas</h2>
+            <p class="texto-admin">
+              Los usuarios con cuenta proponen libros desde el catálogo. Al aceptar una, se abre el formulario de «Libros del catálogo» con sus datos para que agregues la portada y la publiques. Aquí aparecen las donaciones enviadas desde este navegador.
+            </p>
+            <p class="aviso-admin" id="avisoDonaciones" role="status" hidden></p>
+            <div class="contenedor-tabla-responsiva" id="contenedorDonaciones" tabindex="0" role="region" aria-label="Tabla de donaciones recibidas">
+              <table class="tabla-botanica tabla-apilable">
+                <caption>Donaciones de libros</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Libro</th>
+                    <th scope="col">Donante</th>
+                    <th scope="col">Detalle</th>
+                    <th scope="col">Situación</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="filasDonaciones"></tbody>
+              </table>
+            </div>
+            <p class="texto-admin" id="sinDonaciones" hidden>Todavía no hay donaciones. Cuando un usuario use el botón «Donar libros» del catálogo, la verás aquí.</p>
+          </section>
+
+          <section class="tarjeta-admin" aria-labelledby="tituloLibros">
+            <h2 class="titulo-tarjeta-admin" id="tituloLibros" tabindex="-1">Libros del catálogo</h2>
+            <p class="texto-admin">
+              Agrega, edita o quita libros. Los cambios se ven al instante en el catálogo de este navegador. Para que los vea todo el mundo, descarga el archivo actualizado, reemplaza <code>datos/libros.js</code> y súbelo al repositorio.
+            </p>
+            <p class="aviso-admin" id="avisoLibros" role="status" hidden></p>
+
+            <div class="contenedor-tabla-responsiva" id="contenedorLibros" tabindex="0" role="region" aria-label="Tabla de libros del catálogo">
+              <table class="tabla-botanica tabla-apilable">
+                <caption>Libros del catálogo</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Título</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Disponibilidad</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="filasLibros"></tbody>
+              </table>
+            </div>
+            <p class="texto-admin" id="sinLibros" hidden>El catálogo está vacío. Agrega un libro con el formulario de abajo.</p>
+
+            <div class="fila-acciones-admin">
+              <button class="boton-heroe-primario" id="descargarLibros" type="button">
+                <span aria-hidden="true" class="material-symbols-outlined">download</span>
+                <span>Descargar libros actualizados</span>
+              </button>
+              <button class="boton-heroe-secundario" id="restaurarLibros" type="button">
+                <span aria-hidden="true" class="material-symbols-outlined">restart_alt</span>
+                <span>Restaurar libros originales</span>
+              </button>
+            </div>
+
+            <form class="formulario-libro" id="formularioLibro" novalidate aria-labelledby="tituloFormularioLibro">
+              <h3 class="subtitulo-admin" id="tituloFormularioLibro">Agregar un libro</h3>
+              <p class="aviso-obligatorio">Los campos con <span class="campo-obligatorio">*</span> son obligatorios.</p>
+
+              <div class="fila-campos-doble">
+                <div class="grupo-campo">
+                  <label class="etiqueta-campo" for="campoTitulo">Título <span class="campo-obligatorio">*</span></label>
+                  <div class="contenedor-input-icono">
+                    <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">menu_book</span>
+                    <input class="input-contacto" id="campoTitulo" name="campoTitulo" type="text" maxlength="120" autocomplete="off"required />
+                  </div>
+                </div>
+                <div class="grupo-campo">
+                  <label class="etiqueta-campo" for="campoAutor">Autor o autora <span class="campo-obligatorio">*</span></label>
+                  <div class="contenedor-input-icono">
+                    <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person</span>
+                    <input class="input-contacto" id="campoAutor" name="campoAutor" type="text" maxlength="80" autocomplete="off"required />
+                  </div>
+                </div>
+              </div>
+
+              <div class="grupo-campo">
+                  <label class="etiqueta-campo" for="campoGenero">Género que se muestra en la tarjeta</label>
+                  <div class="contenedor-input-icono">
+                    <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">sell</span>
+                    <input class="input-contacto" id="campoGenero" name="campoGenero" type="text" maxlength="40" placeholder="Ej: Novela / Realismo Mágico" autocomplete="off" />
+                  </div>
+                </div>
+
+              <fieldset class="grupo-opciones">
+                <legend class="etiqueta-campo">Categorías <span class="campo-obligatorio">*</span></legend>
+                <div class="lista-opciones" id="listaCategorias"></div>
+                <p class="ayuda-campo">Con ellas el libro aparece en los filtros del catálogo.</p>
+              </fieldset>
+
+              <div class="grupo-campo">
+                <label class="etiqueta-campo" for="campoDescripcion">Descripción corta <span class="campo-obligatorio">*</span></label>
+                <textarea class="textarea-contacto campo-sin-icono" id="campoDescripcion" name="descripcion" maxlength="400" rows="3" required></textarea>
+              </div>
+
+              <div class="fila-campos-doble">
+                <div class="grupo-campo">
+                  <label class="etiqueta-campo" for="campoEstado">Disponibilidad <span class="campo-obligatorio">*</span></label>
+                  <select class="select-contacto campo-sin-icono" id="campoEstado" name="estado" required></select>
+                </div>
+                <div class="grupo-campo" id="grupoCopias">
+                  <label class="etiqueta-campo" for="campoCopias">Ejemplares disponibles</label>
+                  <input class="input-contacto campo-sin-icono" id="campoCopias" name="copias" type="number" min="1" max="99" value="1" inputmode="numeric" />
+                </div>
+              </div>
+
+              <fieldset class="grupo-opciones">
+                <legend class="etiqueta-campo">Formatos</legend>
+                <div class="lista-opciones" id="listaFormatos"></div>
+              </fieldset>
+
+              <div class="grupo-campo">
+                <label class="etiqueta-campo" for="campoPortada">Portada <span class="campo-obligatorio">*</span></label>
+                <input class="input-contacto campo-sin-icono" id="campoPortada" name="portada" type="text" placeholder="img/mi-libro.jpg" autocomplete="off" required aria-describedby="ayudaPortada" />
+                <p class="ayuda-campo" id="ayudaPortada">Copia la imagen a la carpeta <code>img/</code> del proyecto y escribe su ruta, o pega un enlace que empiece con https://.</p>
+                <img class="vista-portada" id="vistaPortada" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Vista previa de la portada" width="96" height="144" hidden />
+                <p class="ayuda-campo" id="errorVistaPortada" hidden>No se encontró esa imagen. Revisa la ruta o el enlace.</p>
+              </div>
+
+              <p class="mensaje-formulario" id="errorLibro" role="alert" hidden></p>
+
+              <div class="fila-acciones-admin">
+                <button class="boton-heroe-primario" id="guardarLibro" type="submit">
+                  <span aria-hidden="true" class="material-symbols-outlined">save</span>
+                  <span id="textoGuardarLibro">Guardar libro</span>
+                </button>
+                <button class="boton-heroe-secundario" id="cancelarEdicion" type="button" hidden>
+                  <span>Cancelar edición</span>
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <dialog class="dialogo-libro dialogo-confirmar" id="dialogoConfirmar" aria-labelledby="confirmarTitulo">
+            <form method="dialog">
+              <h2 class="dialogo-titulo" id="confirmarTitulo"></h2>
+              <p class="dialogo-descripcion" id="confirmarTexto"></p>
+              <div class="grupo-campo" id="grupoMotivo" hidden>
+                <label class="etiqueta-campo" for="confirmarMotivo">Motivo (opcional)</label>
+                <input class="input-contacto campo-sin-icono" id="confirmarMotivo" type="text" maxlength="200" autocomplete="off" />
+              </div>
+              <div class="fila-acciones-admin">
+                <button class="boton-peligro" id="confirmarSi" type="button"></button>
+                <button class="boton-heroe-secundario" id="confirmarNo" type="button"></button>
+              </div>
+            </form>
+          </dialog>
+        </div>
+      </div>
+    </main>
+
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="rejilla-pie">
+          <div>
+            <div class="marca-pie">
+              <span class="nombre-marca-pie">Leer nos une</span>
+            </div>
+            <p class="descripcion-pie">
+              Un espacio botánico y acogedor para cultivar el conocimiento, la
+              imaginación y la convivencia vecinal en armonía.
+            </p>
+            <div class="insignia-semillero">
+              <span>Semillero de saberes comunitarios</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
+            <ul class="lista-horarios">
+              <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
+              <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
+              <li><strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs</li>
+              <li class="estado-salas">
+                <span class="punto-estado"></span>
+                <span>Salas de lectura abiertas</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
+            <nav aria-label="Enlaces rápidos">
+              <ul class="enlaces-pie">
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="index.html" data-path="inicio">Inicio</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="libros.html" data-path="libros">Libros</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html" data-path="servicios">Servicios</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="contacto.html" data-path="contacto">Contacto</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="login.html#crear-cuenta" data-path="crear-cuenta">Crear cuenta</a>
+              </li>
+              <li>
+                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="login.html" data-path="login">Iniciar sesión</a>
+              </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div>
+            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
+            <address class="sede-pie">
+              <p class="direccion-pie">
+                Sector San José<br />
+                Al costado de la SUNAT
+              </p>
+              <p class="contacto-pie">
+                ejemplo@utpvirtual.edu<br />
+                +51 1234-5678
+              </p>
+            </address>
+          </div>
+        </div>
+
+        <div class="pie-inferior">
+          <p class="derechos-pie">
+            © 2026 Biblioteca Comunitaria "Leer nos une". Proyecto académico de
+            Taller de Programación Web (Avance 2).
+          </p>
+          <div class="enlaces-legales">
+            <a href="contacto.html">Soporte Vecinal</a>
+            <a href="libros.html">Catálogo Abierto</a>
+            <a href="login.html#crear-cuenta">Sacar mi carnet</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="datos/libros.js"></script>
+    <script src="biblioteca.js"></script>
+    <script>
+      // Gestión de libros: agregar, editar y quitar (solo el administrador llega aquí)
+      document.addEventListener("DOMContentLoaded", () => {
+        if (!Auth.esAdmin()) return;
+        const $ = (id) => document.getElementById(id);
+        const formulario = $("formularioLibro");
+        const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let editandoId = "";
+        let donacionId = ""; // donación que se está convirtiendo en libro
+        let temporizador;
+
+        const nodo = (etiqueta, clase, texto) => {
+          const n = document.createElement(etiqueta);
+          if (clase) n.className = clase;
+          if (texto != null) n.textContent = texto;
+          return n;
+        };
+
+        // Casillas de categorías y formatos, y lista de disponibilidad (salen de biblioteca.js)
+        function crearOpciones(contenedor, opciones, nombre) {
+          Object.entries(opciones).forEach(([valor, etiqueta]) => {
+            const label = nodo("label", "opcion-admin");
+            const casilla = nodo("input");
+            casilla.type = "checkbox";
+            casilla.name = nombre;
+            casilla.value = valor;
+            label.append(casilla, nodo("span", "", etiqueta));
+            contenedor.append(label);
+          });
+        }
+        crearOpciones($("listaCategorias"), Biblioteca.categorias, "categorias");
+        crearOpciones($("listaFormatos"), Biblioteca.formatos, "formatos");
+        Object.entries(Biblioteca.estados).forEach(([valor, etiqueta]) => {
+          const opcion = nodo("option", "", etiqueta);
+          opcion.value = valor;
+          $("campoEstado").append(opcion);
+        });
+
+        function avisar(texto, id) {
+          const aviso = $(id || "avisoLibros");
+          aviso.textContent = texto;
+          aviso.hidden = false;
+          clearTimeout(temporizador);
+          temporizador = setTimeout(() => (aviso.hidden = true), 7000);
+        }
+
+        function mostrarError(texto, campo) {
+          const error = $("errorLibro");
+          error.textContent = texto;
+          error.hidden = false;
+          formulario.querySelectorAll("[aria-invalid]").forEach((c) => c.removeAttribute("aria-invalid"));
+          const destino = campo === "categorias" ? formulario.querySelector('input[name="categorias"]') : $("campo" + campo.charAt(0).toUpperCase() + campo.slice(1));
+          if (destino) {
+            destino.setAttribute("aria-invalid", "true");
+            destino.focus();
+          }
+        }
+
+        function limpiarError() {
+          $("errorLibro").hidden = true;
+          formulario.querySelectorAll("[aria-invalid]").forEach((c) => c.removeAttribute("aria-invalid"));
+        }
+
+        function alternarCopias() {
+          $("grupoCopias").hidden = $("campoEstado").value !== "disponible";
+        }
+
+        function vistaPrevia() {
+          const ruta = $("campoPortada").value.trim();
+          const imagen = $("vistaPortada");
+          $("errorVistaPortada").hidden = true;
+          if (!ruta) {
+            imagen.hidden = true;
+            return;
+          }
+          imagen.onload = () => {
+            imagen.hidden = false;
+            $("errorVistaPortada").hidden = true;
+          };
+          imagen.onerror = () => {
+            imagen.hidden = true;
+            $("errorVistaPortada").hidden = false;
+          };
+          imagen.src = ruta;
+        }
+
+        function restablecerFormulario() {
+          editandoId = "";
+          donacionId = "";
+          formulario.reset();
+          limpiarError();
+          $("vistaPortada").hidden = true;
+          $("errorVistaPortada").hidden = true;
+          $("tituloFormularioLibro").textContent = "Agregar un libro";
+          $("textoGuardarLibro").textContent = "Guardar libro";
+          $("cancelarEdicion").hidden = true;
+          alternarCopias();
+        }
+
+        function pintarLista() {
+          const lista = Biblioteca.libros();
+          const cuerpo = $("filasLibros");
+          cuerpo.replaceChildren();
+          lista.forEach((libro) => {
+            const fila = nodo("tr");
+            [["Título", libro.titulo], ["Autor", libro.autor], ["Estado", Biblioteca.textoEstado(libro)]].forEach(([etiqueta, texto]) => {
+              const celda = nodo("td", "", texto);
+              celda.dataset.etiqueta = etiqueta;
+              fila.append(celda);
+            });
+            const acciones = nodo("td", "celda-acciones");
+            const editar = nodo("button", "boton-tabla", "Editar");
+            editar.type = "button";
+            editar.setAttribute("aria-label", "Editar " + libro.titulo);
+            editar.addEventListener("click", () => empezarEdicion(libro));
+            const quitar = nodo("button", "boton-tabla peligro", "Quitar");
+            quitar.type = "button";
+            quitar.setAttribute("aria-label", "Quitar " + libro.titulo);
+            quitar.addEventListener("click", () => quitarLibro(libro));
+            acciones.append(editar, quitar);
+            fila.append(acciones);
+            cuerpo.append(fila);
+          });
+          $("contenedorLibros").hidden = lista.length === 0;
+          $("sinLibros").hidden = lista.length > 0;
+        }
+
+        function empezarEdicion(libro) {
+          restablecerFormulario();
+          editandoId = libro.id;
+          $("campoTitulo").value = libro.titulo;
+          $("campoAutor").value = libro.autor;
+          $("campoGenero").value = libro.genero;
+          $("campoDescripcion").value = libro.descripcion;
+          $("campoEstado").value = libro.estado;
+          $("campoCopias").value = libro.copias || 1;
+          $("campoPortada").value = libro.portada;
+          formulario.querySelectorAll('input[name="categorias"]').forEach((c) => (c.checked = libro.categorias.includes(c.value)));
+          formulario.querySelectorAll('input[name="formatos"]').forEach((c) => (c.checked = libro.formatos.includes(c.value)));
+          $("tituloFormularioLibro").textContent = "Editar «" + libro.titulo + "»";
+          $("textoGuardarLibro").textContent = "Guardar cambios";
+          $("cancelarEdicion").hidden = false;
+          alternarCopias();
+          vistaPrevia();
+          formulario.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "start" });
+          $("campoTitulo").focus({ preventScroll: true });
+        }
+
+        // Ventana de confirmación con botones que dicen lo que hacen
+        function confirmar({ titulo, texto, si, no, motivo }) {
+          const dialogo = $("dialogoConfirmar");
+          $("grupoMotivo").hidden = !motivo;
+          $("confirmarMotivo").value = "";
+          $("confirmarTitulo").textContent = titulo;
+          $("confirmarTexto").textContent = texto;
+          $("confirmarSi").textContent = si;
+          $("confirmarNo").textContent = no;
+          return new Promise((resolver) => {
+            const terminar = (valor) => {
+              $("confirmarSi").onclick = $("confirmarNo").onclick = null;
+              dialogo.removeEventListener("close", alCerrar);
+              if (dialogo.open) dialogo.close();
+              resolver(valor);
+            };
+            const alCerrar = () => terminar(false); // Esc o clic en el fondo: se conserva todo
+            $("confirmarSi").onclick = () => terminar(true);
+            $("confirmarNo").onclick = () => terminar(false);
+            dialogo.addEventListener("close", alCerrar);
+            dialogo.showModal();
+          });
+        }
+        $("dialogoConfirmar").addEventListener("click", (e) => {
+          if (e.target === $("dialogoConfirmar")) $("dialogoConfirmar").close();
+        });
+
+        async function quitarLibro(libro) {
+          const acepto = await confirmar({
+            titulo: "¿Quitar «" + libro.titulo + "»?",
+            texto: "Dejará de verse en el catálogo. Podrás volver a agregarlo o restaurar los libros originales.",
+            si: "Quitar libro",
+            no: "Conservar",
+          });
+          if (!acepto) return;
+          const r = Biblioteca.quitar(libro.id);
+          if (!r.ok) return avisar(r.error);
+          if (editandoId === libro.id) restablecerFormulario();
+          pintarLista();
+          avisar("«" + libro.titulo + "» se quitó del catálogo.");
+          $("tituloLibros").focus();
+        }
+
+        $("restaurarLibros").addEventListener("click", async () => {
+          const acepto = await confirmar({
+            titulo: "¿Restaurar los libros originales?",
+            texto: "Se borrarán los libros que agregaste o editaste en este navegador y volverán los que están en datos/libros.js.",
+            si: "Restaurar libros",
+            no: "Conservar cambios",
+          });
+          if (!acepto) return;
+          Biblioteca.restaurar();
+          restablecerFormulario();
+          pintarLista();
+          avisar("Volvieron los libros originales.");
+          $("tituloLibros").focus();
+        });
+
+        $("descargarLibros").addEventListener("click", () => {
+          const texto = Biblioteca.exportar();
+          const enlace = nodo("a");
+          enlace.href = URL.createObjectURL(new Blob([texto], { type: "text/javascript;charset=utf-8" }));
+          enlace.download = "libros.js";
+          document.body.append(enlace);
+          enlace.click();
+          enlace.remove();
+          setTimeout(() => URL.revokeObjectURL(enlace.href), 1000);
+          avisar("Se descargó libros.js. Reemplaza el archivo datos/libros.js del proyecto con ese y súbelo al repositorio para que lo vea todo el mundo.");
+        });
+
+        formulario.addEventListener("submit", (e) => {
+          e.preventDefault();
+          limpiarError();
+          const marcadas = (nombre) => Array.from(formulario.querySelectorAll('input[name="' + nombre + '"]:checked')).map((c) => c.value);
+          const datos = {
+            titulo: $("campoTitulo").value,
+            autor: $("campoAutor").value,
+            genero: $("campoGenero").value,
+            descripcion: $("campoDescripcion").value,
+            estado: $("campoEstado").value,
+            copias: $("campoCopias").value,
+            portada: $("campoPortada").value,
+            categorias: marcadas("categorias"),
+            formatos: marcadas("formatos"),
+          };
+          const r = editandoId ? Biblioteca.editar(editandoId, datos) : Biblioteca.agregar(datos);
+          if (!r.ok) return mostrarError(r.error, r.campo || "titulo");
+          const edito = !!editandoId;
+          const deDonacion = donacionId;
+          restablecerFormulario();
+          pintarLista();
+          if (deDonacion) {
+            Biblioteca.resolverDonacion(deDonacion, true);
+            pintarDonaciones();
+          }
+          avisar("«" + r.libro.titulo + "» " + (edito ? "se actualizó." : deDonacion ? "se agregó al catálogo y la donación quedó aceptada." : "se agregó al catálogo."));
+          $("avisoLibros").scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "nearest" });
+        });
+
+        formulario.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
+        $("campoEstado").addEventListener("change", alternarCopias);
+        $("campoPortada").addEventListener("change", vistaPrevia);
+        $("cancelarEdicion").addEventListener("click", restablecerFormulario);
+
+        // ---- Donaciones: el admin acepta (abre el formulario de libros con los datos) o rechaza ----
+        const fechaCorta = new Intl.DateTimeFormat("es", { day: "numeric", month: "short" });
+
+        function pintarDonaciones() {
+          const lista = Biblioteca.donaciones();
+          const cuerpo = $("filasDonaciones");
+          cuerpo.replaceChildren();
+          lista.forEach((d) => {
+            const fila = nodo("tr");
+            const celda = (etiqueta, contenido) => {
+              const td = nodo("td");
+              td.dataset.etiqueta = etiqueta;
+              td.append(contenido);
+              fila.append(td);
+            };
+            celda("Libro", d.titulo + " — " + d.autor);
+            celda("Donante", d.nombre + " (" + d.correo + ") · " + fechaCorta.format(new Date(d.fecha)));
+            celda("Detalle", Biblioteca.estadosLibro[d.estado] + (d.comentario ? ". " + d.comentario : ""));
+            const situacion = nodo("span", "situacion situacion-" + d.situacion, Biblioteca.situaciones[d.situacion]);
+            celda("Situación", situacion);
+            const acciones = nodo("td", "celda-acciones");
+            if (d.situacion === "pendiente") {
+              const aceptar = nodo("button", "boton-tabla", "Aceptar");
+              aceptar.type = "button";
+              aceptar.setAttribute("aria-label", "Aceptar la donación de " + d.titulo);
+              aceptar.addEventListener("click", () => aceptarDonacion(d));
+              const rechazar = nodo("button", "boton-tabla peligro", "Rechazar");
+              rechazar.type = "button";
+              rechazar.setAttribute("aria-label", "Rechazar la donación de " + d.titulo);
+              rechazar.addEventListener("click", () => rechazarDonacion(d));
+              acciones.append(aceptar, rechazar);
+            } else {
+              acciones.textContent = d.situacion === "rechazada" && d.motivo ? "Motivo: " + d.motivo : "Revisada";
+            }
+            fila.append(acciones);
+            cuerpo.append(fila);
+          });
+          const pendientes = lista.filter((d) => d.situacion === "pendiente").length;
+          $("contenedorDonaciones").hidden = lista.length === 0;
+          $("sinDonaciones").hidden = lista.length > 0;
+          $("tituloDonaciones").textContent = "Donaciones recibidas" + (pendientes ? " (" + pendientes + (pendientes === 1 ? " pendiente)" : " pendientes)") : "");
+        }
+
+        function aceptarDonacion(d) {
+          restablecerFormulario();
+          donacionId = d.id;
+          $("campoTitulo").value = d.titulo;
+          $("campoAutor").value = d.autor;
+          $("campoEstado").value = "novedad";
+          $("tituloFormularioLibro").textContent = "Agregar «" + d.titulo + "» (donación de " + d.nombre + ")";
+          $("cancelarEdicion").hidden = false;
+          alternarCopias();
+          avisar("Completa la portada, las categorías y la descripción y guarda el libro: la donación se marcará como aceptada.");
+          formulario.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "start" });
+          $("campoGenero").focus({ preventScroll: true });
+        }
+
+        async function rechazarDonacion(d) {
+          const acepto = await confirmar({
+            titulo: "¿Rechazar la donación de «" + d.titulo + "»?",
+            texto: "La persona verá que fue rechazada, con el motivo si lo escribes.",
+            si: "Rechazar donación",
+            no: "Volver",
+            motivo: true,
+          });
+          if (!acepto) return;
+          const r = Biblioteca.resolverDonacion(d.id, false, $("confirmarMotivo").value);
+          if (!r.ok) return avisar(r.error, "avisoDonaciones");
+          pintarDonaciones();
+          avisar("Rechazaste la donación de «" + d.titulo + "».", "avisoDonaciones");
+          $("tituloDonaciones").focus();
+        }
+
+        alternarCopias();
+        pintarLista();
+        pintarDonaciones();
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const sesion = Auth.sesion();
+        const denegado = document.getElementById("accesoDenegado");
+        const panel = document.getElementById("panelAdmin");
+
+        if (!Auth.esAdmin()) {
+          if (sesion) {
+            document.getElementById("tituloDenegado").textContent = "Tu cuenta no tiene permiso para entrar aquí";
+            document.getElementById("textoDenegado").textContent = "Solo el administrador puede ver este panel. Vuelve al inicio para seguir explorando.";
+          }
+          denegado.hidden = false;
+          return;
+        }
+
+        panel.hidden = false;
+        const usuarios = Auth.usuarios();
+        const cuerpo = document.getElementById("filasUsuarios");
+        const formato = new Intl.DateTimeFormat("es", { day: "numeric", month: "long", year: "numeric" });
+        usuarios.forEach((u) => {
+          const fila = document.createElement("tr");
+          [u.nombre, u.correo, u.fecha ? formato.format(new Date(u.fecha)) : ""].forEach((texto, i) => {
+            const celda = document.createElement("td");
+            celda.dataset.etiqueta = ["Nombre", "Correo", "Registro"][i];
+            celda.textContent = texto; // textContent: lo que escribió el usuario nunca se interpreta como HTML
+            fila.appendChild(celda);
+          });
+          cuerpo.appendChild(fila);
+        });
+        document.getElementById("sinUsuarios").hidden = usuarios.length > 0;
+        document.querySelector(".contenedor-tabla-responsiva").hidden = usuarios.length === 0;
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const btnMenu = document.getElementById("btnMenuMovil");
+      const menuMovil = document.getElementById("menuMovilDesplegable");
+      if (btnMenu && menuMovil) {
+        btnMenu.addEventListener("click", () => {
+          const abierto = menuMovil.classList.toggle("abierto");
+          btnMenu.classList.toggle("activo", abierto);
+          btnMenu.setAttribute("aria-expanded", abierto);
+          btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+          menuMovil.setAttribute("aria-hidden", !abierto);
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
+            menuMovil.classList.remove("abierto");
+            btnMenu.classList.remove("activo");
+            btnMenu.setAttribute("aria-expanded", "false");
+            btnMenu.setAttribute("aria-label", "Abrir menú");
+            menuMovil.setAttribute("aria-hidden", "true");
+          }
+        });
+      }
+      });
+    </script>
+  </body>
+</html>
