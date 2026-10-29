@@ -27,7 +27,7 @@ y entra en `http://localhost:8000`.
 | Archivo | Qué es |
 |---|---|
 | `index.html` | Inicio: bienvenida, libros destacados, agenda, video y audio, normas de convivencia |
-| `libros.html` | Catálogo: búsqueda, categorías, filtros, orden, paginación y vista en cuadrícula o lista. Las tarjetas salen de `datos/libros.js` |
+| `libros.html` | Catálogo en estantería de portadas: búsqueda, categorías, filtros, orden, paginación y vista en cuadrícula o lista. Las tarjetas salen de `datos/libros.js` |
 | `servicios.html` | Servicios, salas y jardín, cronograma semanal (tabla) |
 | `contacto.html` | Formulario de contacto, canales de atención, tabla de plazos y preguntas frecuentes |
 | `login.html` | Iniciar sesión y crear cuenta (se abre en "Crear cuenta" con `login.html#crear-cuenta`). Las cuentas son reales dentro del navegador, ver "Cuentas y roles" |
@@ -44,7 +44,7 @@ biblioteca_comunitaria/
 ├── auth.js           Cuentas, sesión y roles (se guardan en el navegador)
 ├── biblioteca.js     Libros: dibuja el catálogo y guarda los cambios del admin
 ├── datos/libros.js   Los libros del catálogo (el archivo que se publica)
-├── styles.css        Hoja de estilos única (índice de 33 secciones al inicio)
+├── styles.css        Hoja de estilos única (índice de 34 secciones al inicio)
 ├── DESIGN.md         Sistema de diseño: colores, tipografía, formas y componentes
 ├── img/              Imágenes del sitio
 └── multimedia/       Video del recorrido y audio de música relajante
@@ -55,6 +55,10 @@ biblioteca_comunitaria/
 - **Dirección de arte:** "biblioteca de barrio con jardín": pergamino, verde bosque, salvia y ámbar. Títulos en Fredoka y texto en Plus Jakarta Sans. El detalle está en `DESIGN.md`.
 - **Variables CSS:** todos los colores, espacios, radios, sombras y curvas de movimiento salen de las variables de la sección 1 de `styles.css`. Se cambian en un solo lugar.
 - **Encabezado y pie repetidos:** están copiados en cada página, **idénticos** (solo cambia el enlace activo del menú). Es deliberado: cargarlos con JavaScript no funciona al abrir los archivos con doble clic, y el HTML se ve completo en el código fuente.
+- **Estantería de portadas:** cada libro muestra su portada entera (proporción 2:3), título, autor y disponibilidad; la descripción y la valoración están en la ventana de detalles. Todo el libro es un solo objetivo (el título abre los detalles). 4 columnas en escritorio y 2 en celular.
+- **Menos cajas:** la bienvenida, las normas, los servicios y las preguntas frecuentes van directamente sobre la página, con una línea superior como único adorno; solo lo que se puede pulsar o contiene un formulario tiene caja. No hay etiquetas en mayúsculas sobre los títulos ni cifras de relleno.
+- **Escala:** los tamaños de letra salen de una escala corta (12 valores, ninguno bajo 12px), los radios de 6 a 36px y el color de texto ámbar (`#8a5320`) pasa el contraste AA.
+- **Textos:** mayúscula solo al inicio de la frase, verbos en los botones ("Reservar", "Donar libros") y mensajes que dicen qué pasó y qué hacer.
 - **Sin estilos en línea:** todo el estilo está en `styles.css`. Las portadas de los libros son imágenes (`<img>`) con texto alternativo.
 - **JavaScript:** cada página lleva su script al final del HTML. Se usa para el menú móvil, el catálogo (filtros, orden, paginación y panel plegable), la validación de `login.html` y el deslizamiento entre "Iniciar sesión" y "Crear cuenta".
 
@@ -104,7 +108,7 @@ Lo que **no** se ha probado: lectores de pantalla reales (NVDA, VoiceOver) ni di
 
 ## Conocido y pendiente
 
-- **Portadas:** todas están en `img/` menos la de «La felicidad» (Rolón), que sigue en un servidor externo.
+- **Portadas:** todas están en `img/` menos la de «La felicidad» (Rolón), que sigue en un servidor externo. Si tienes la imagen, cópiala a `img/` y cambia la ruta en `datos/libros.js`.
 - **Video del recorrido:** sin subtítulos ni descripción en texto; algunos textos de la sección de video y audio no coinciden con el contenido.
 - **Catálogo:** el botón "Buscar", el selector "Todos los campos" y "Sugerir un título" todavía no tienen función propia. Los contadores de las categorías (840, 320…) son cifras de ejemplo.
 - **`registro.html`:** existe pero no está enlazada desde el sitio.

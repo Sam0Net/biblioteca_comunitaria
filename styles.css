@@ -108,14 +108,14 @@
   --warm-amber: #c48849;
   --amber-strong: #8a5320; /* ámbar oscuro: 5.4:1 sobre pergamino, sirve para texto, iconos y subrayados */
   --amber-hover: #b45309;
-  --amber-subtle: #fef3c7;
+  --amber-subtle: #ffdcbe;
   --ambar-claro: #fffbeb;
   --tertiary: #92400e;
-  --tertiary-container: #fef3c7;
+  --tertiary-container: #ffdcbe;
 
   /* Estados de Disponibilidad */
   --status-available: #2b6e4e;
-  --status-borrowed: #b45309;
+  --status-borrowed: #92400e;
   --status-reserved: #2f5c78;
 
   /* Bordes Hairline y Separadores Físicos */
@@ -247,7 +247,8 @@ a {
   transition: color 180ms ease, opacity 180ms ease;
 }
 
-a:hover {
+/* Solo los enlaces de texto sin clase cambian de color: los botones y enlaces con clase definen el suyo */
+a:not([class]):hover {
   color: var(--primary-hover);
 }
 
@@ -4017,7 +4018,7 @@ button.pildora-formato[aria-pressed="true"] {
 
 .tarjeta-carnet-mockup .icono-marca-carnet {
   font-size: 28px;
-  color: var(--warm-amber);
+  color: var(--tertiary-fixed-dim, #fcb975);
 }
 
 .tarjeta-carnet-mockup .nombre-carnet-mockup {
@@ -4738,4 +4739,19 @@ section[id] {
   .donar-aviso .fila-acciones-admin > * {
     flex: 1 1 100%;
   }
+}
+
+/* En el panel, el título de la tarjeta ya nombra la tabla: el caption queda solo para lectores de pantalla */
+.tarjeta-admin .tabla-botanica caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Texto de respaldo del video (si el navegador no lo reproduce) legible sobre el fondo oscuro */
+.video-reproductor-botanico {
+  color: #ffffff;
 }
