@@ -202,8 +202,8 @@
     },
 
     // Arma la tarjeta de un libro: portada completa, título, autor y disponibilidad.
-    // enlace=true (inicio): el título lleva al catálogo; si no, abre la ventana de detalles y el botón reserva.
-    crearTarjeta(libro, indice, enlace) {
+    // El título abre la ventana de detalles y el botón reserva o pide en sala.
+    crearTarjeta(libro, indice) {
       const el = (etiqueta, clase, contenido) => {
         const nodo = document.createElement(etiqueta);
         if (clase) nodo.className = clase;
@@ -217,6 +217,7 @@
       };
 
       const tarjeta = el("article", "tarjeta-libro");
+      tarjeta.id = "libro-" + libro.id; // para llegar desde el carrusel del inicio: libros.html#libro-<id>
       tarjeta.dataset.id = libro.id;
       tarjeta.dataset.categorias = libro.categorias.join(" ");
       tarjeta.dataset.formatos = libro.formatos.join(" ");
@@ -236,13 +237,9 @@
       contenedor.append(imagen, el("div", "sombra-lomo"));
 
       const titulo = el("h3", "titulo-libro");
-      const disparador = el(enlace ? "a" : "button", "titulo-boton", libro.titulo);
-      if (enlace) {
-        disparador.href = "libros.html";
-      } else {
-        disparador.type = "button";
-        disparador.setAttribute("aria-haspopup", "dialog");
-      }
+      const disparador = el("button", "titulo-boton", libro.titulo);
+      disparador.type = "button";
+      disparador.setAttribute("aria-haspopup", "dialog");
       titulo.append(disparador);
 
       const estado = el("p", "estado-libro " + libro.estado);
@@ -252,15 +249,13 @@
       cuerpo.append(titulo, el("p", "autor-libro", libro.autor), estado, el("p", "descripcion-libro", libro.descripcion));
       tarjeta.append(contenedor, cuerpo);
 
-      if (!enlace) {
-        const sala = libro.estado === "sala";
-        const accion = el("button", sala ? "boton-accion-secundario" : "boton-accion-primario");
-        accion.type = "button";
-        accion.append(icono(sala ? "chair" : "bookmark_add"), el("span", "", sala ? "Pedir en sala" : "Reservar"));
-        const acciones = el("div", "acciones-tarjeta");
-        acciones.append(accion);
-        tarjeta.append(acciones);
-      }
+      const sala = libro.estado === "sala";
+      const accion = el("button", sala ? "boton-accion-secundario" : "boton-accion-primario");
+      accion.type = "button";
+      accion.append(icono(sala ? "chair" : "bookmark_add"), el("span", "", sala ? "Pedir en sala" : "Reservar"));
+      const acciones = el("div", "acciones-tarjeta");
+      acciones.append(accion);
+      tarjeta.append(acciones);
       return tarjeta;
     },
   };
@@ -357,18 +352,213 @@
 
   window.Biblioteca = Biblioteca;
 
+  // ---- Carrusel de los libros más leídos (index.html) ----
+  // El libro del centro va al frente y nítido; los de los lados quedan atrás, más pequeños, girados y desenfocados.
+  // Cada 3 segundos avanza solo; se detiene al pasar el cursor, al enfocar con el teclado, al tocarlo y fuera de pantalla.
+  function montarCarrusel(raiz) {
+    const lista = libros()
+      .sort((a, b) => b.lectores - a.lectores || b.nota - a.nota)
+      .slice(0, 7);
+    const n = lista.length;
+    if (!n) {
+      raiz.closest("section").hidden = true;
+      return;
+    }
+    const INTERVALO = 3000;
+    const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const el = (etiqueta, clase, contenido) => {
+      const nodo = document.createElement(etiqueta);
+      if (clase) nodo.className = clase;
+      if (contenido != null) nodo.textContent = contenido;
+      return nodo;
+    };
+    const icono = (nombre) => {
+      const nodo = el("span", "material-symbols-outlined", nombre);
+      nodo.setAttribute("aria-hidden", "true");
+      return nodo;
+    };
+    const boton = (nombre, etiqueta) => {
+      const b = el("button", "boton-carrusel");
+      b.type = "button";
+      b.setAttribute("aria-label", etiqueta);
+      b.append(icono(nombre));
+      return b;
+    };
+
+    raiz.setAttribute("role", "group");
+    raiz.setAttribute("aria-roledescription", "carrusel");
+    raiz.setAttribute("aria-label", "Libros más leídos del barrio");
+
+    const escena = el("div", "carrusel-escena");
+    const pista = el("ol", "carrusel-pista");
+    const items = lista.map((libro, i) => {
+      const item = el("li", "carrusel-item");
+      item.setAttribute("role", "group");
+      item.setAttribute("aria-roledescription", "diapositiva");
+      item.setAttribute("aria-label", i + 1 + " de " + n);
+      const enlace = el("a", "carrusel-enlace");
+      enlace.href = "libros.html#libro-" + libro.id;
+      const portada = el("span", "carrusel-portada");
+      const imagen = el("img");
+      imagen.src = libro.portada;
+      imagen.alt = "";
+      imagen.width = 400;
+      imagen.height = 600;
+      imagen.decoding = "async";
+      portada.append(imagen);
+      enlace.append(portada, el("span", "carrusel-titulo", libro.titulo));
+      item.append(enlace);
+      pista.append(item);
+      return item;
+    });
+    escena.append(pista);
+
+    const anterior = boton("chevron_left", "Libro anterior");
+    const siguiente = boton("chevron_right", "Libro siguiente");
+    const pausa = boton("pause", "Pausar el carrusel");
+    const controles = el("div", "carrusel-controles");
+    controles.append(anterior, pausa, siguiente);
+    const estado = el("p", "visualmente-oculto");
+    estado.setAttribute("aria-live", "polite");
+    raiz.replaceChildren(escena, controles, estado);
+
+    let actual = 0;
+    function pintar() {
+      items.forEach((item, i) => {
+        let d = (i - actual + n) % n;
+        if (d > n / 2) d -= n;
+        const antes = item.dataset.d === undefined ? d : Number(item.dataset.d);
+        const salto = Math.abs(d - antes) > 1;
+        if (salto) item.classList.add("sin-transicion");
+        const fuera = Math.abs(d) > 2;
+        item.style.setProperty("--d", String(d));
+        item.dataset.d = String(d);
+        item.style.zIndex = String(10 - Math.abs(d));
+        item.classList.toggle("es-centro", d === 0);
+        item.classList.toggle("fuera", fuera);
+        item.inert = fuera;
+        if (salto) {
+          void item.offsetWidth;
+          item.classList.remove("sin-transicion");
+        }
+      });
+    }
+    pintar();
+    requestAnimationFrame(() => requestAnimationFrame(() => raiz.classList.add("carrusel-listo")));
+
+    let pausaManual = sinMovimiento;
+    let suspendido = false;
+    let visible = false;
+    let temporizador;
+
+    function actualizarBotonPausa() {
+      pausa.querySelector(".material-symbols-outlined").textContent = pausaManual ? "play_arrow" : "pause";
+      pausa.setAttribute("aria-label", pausaManual ? "Reanudar el carrusel" : "Pausar el carrusel");
+    }
+    function revisar() {
+      clearInterval(temporizador);
+      if (!pausaManual && !suspendido && visible && !document.hidden) temporizador = setInterval(() => mover(1, false), INTERVALO);
+    }
+    function mover(paso, manual) {
+      actual = (actual + paso + n) % n;
+      pintar();
+      if (manual || pausaManual) estado.textContent = "Libro " + (actual + 1) + " de " + n + ": " + lista[actual].titulo;
+    }
+
+    anterior.addEventListener("click", () => mover(-1, true));
+    siguiente.addEventListener("click", () => mover(1, true));
+    pausa.addEventListener("click", () => {
+      pausaManual = !pausaManual;
+      actualizarBotonPausa();
+      revisar();
+    });
+    actualizarBotonPausa();
+
+    raiz.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") mover(-1, true);
+      else if (e.key === "ArrowRight") mover(1, true);
+    });
+
+    // Se detiene mientras alguien lo mira de cerca
+    raiz.addEventListener("pointerenter", (e) => {
+      if (e.pointerType === "mouse") {
+        suspendido = true;
+        revisar();
+      }
+    });
+    raiz.addEventListener("pointerleave", (e) => {
+      if (e.pointerType === "mouse") {
+        suspendido = false;
+        revisar();
+      }
+    });
+    raiz.addEventListener("focusin", () => {
+      suspendido = true;
+      revisar();
+    });
+    raiz.addEventListener("focusout", (e) => {
+      if (!raiz.contains(e.relatedTarget)) {
+        suspendido = false;
+        revisar();
+      }
+    });
+
+    // En el celular: deslizar cambia de libro; tocar detiene el giro unos segundos
+    let inicioX = null;
+    let arrastro = false;
+    let esperaToque;
+    escena.addEventListener("pointerdown", (e) => {
+      inicioX = e.clientX;
+      arrastro = false;
+      if (e.pointerType !== "mouse") {
+        suspendido = true;
+        revisar();
+        clearTimeout(esperaToque);
+        esperaToque = setTimeout(() => {
+          suspendido = false;
+          revisar();
+        }, 8000);
+      }
+    });
+    escena.addEventListener("pointerup", (e) => {
+      if (inicioX === null) return;
+      const dx = e.clientX - inicioX;
+      inicioX = null;
+      if (Math.abs(dx) > 45) {
+        arrastro = true;
+        mover(dx < 0 ? 1 : -1, true);
+      }
+    });
+    escena.addEventListener(
+      "click",
+      (e) => {
+        if (arrastro) {
+          e.preventDefault();
+          e.stopPropagation();
+          arrastro = false;
+        }
+      },
+      true
+    );
+
+    new IntersectionObserver(
+      (entradas) => {
+        visible = entradas[0].isIntersecting;
+        revisar();
+      },
+      { threshold: 0.35 }
+    ).observe(raiz);
+    document.addEventListener("visibilitychange", revisar);
+  }
+
   // En libros.html: dibuja el catálogo antes de que arranque el script de la página (este archivo va con defer)
   const rejilla = document.querySelector(".rejilla-libros");
   if (rejilla && rejilla.closest("main")) {
     rejilla.replaceChildren(...libros().map((libro, i) => Biblioteca.crearTarjeta(libro, i)));
   }
 
-  // En index.html: los 4 libros con más lectores (la sección se llama "Libros más leídos")
-  const destacados = document.querySelector(".rejilla-destacados-inicio");
-  if (destacados) {
-    const masLeidos = libros()
-      .sort((a, b) => b.lectores - a.lectores || b.nota - a.nota)
-      .slice(0, 4);
-    destacados.replaceChildren(...masLeidos.map((libro, i) => Biblioteca.crearTarjeta(libro, i + 1, true)));
-  }
+  // En index.html: carrusel con los libros más leídos
+  const carrusel = document.getElementById("carruselLibros");
+  if (carrusel) montarCarrusel(carrusel);
 })();

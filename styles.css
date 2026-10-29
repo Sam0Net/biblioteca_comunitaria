@@ -16,7 +16,7 @@
      infinitas.
    - Adaptable: consultas de medios (@media); sin desbordes de 320 a 1440px.
    - HTML con clases semánticas en español y sin estilos en línea.
-   - Las secciones 25 a 34 van al final a propósito: al ser posteriores ganan
+   - Las secciones 25 a 35 van al final a propósito: al ser posteriores ganan
      en la cascada sin necesidad de !important.
    --------------------------------------------------------------------------
    ÍNDICE
@@ -53,6 +53,7 @@
    32. PANEL DE ADMINISTRACIÓN Y AVISO DE ERROR EN LOGIN (admin.html, login.html)
    33. GESTIÓN DE LIBROS EN EL PANEL (admin.html)
    34. DONACIONES DE LIBROS (libros.html y admin.html)
+   35. CARRUSEL DE LOS LIBROS MÁS LEÍDOS (index.html)
    ========================================================================== */
 
 /* ==========================================================================
@@ -167,6 +168,7 @@
 
   /* Curvas de Movimiento Físico (Spring-like Transitions) */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); /* movimiento de un lugar a otro en pantalla (carrusel) */
   --spring-default: cubic-bezier(0.16, 1, 0.3, 1);
   --spring-snappy: cubic-bezier(0.25, 1, 0.5, 1);
   --spring-bounce: cubic-bezier(0.34, 1.4, 0.64, 1);
@@ -1023,8 +1025,17 @@ button:active,
   margin-bottom: 4rem;
 }
 
+/* Al llegar desde el carrusel del inicio, el libro queda visible bajo el encabezado y se marca un momento */
+.tarjeta-libro {
+  scroll-margin-top: 7rem;
+}
+
+.tarjeta-libro.resaltado .contenedor-portada {
+  outline: 3px solid var(--primary);
+  outline-offset: 5px;
+}
+
 /* Estantería: 4 portadas por fila en escritorio, 2 en celular. La portada va entera (proporción 2:3), sin recortar. */
-.rejilla-destacados-inicio,
 .rejilla-libros {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
@@ -1032,14 +1043,12 @@ button:active,
 }
 
 @media (min-width: 1024px) {
-  .rejilla-destacados-inicio,
   .rejilla-libros {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .rejilla-destacados-inicio,
   .rejilla-libros {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.75rem 1rem;
@@ -4754,4 +4763,153 @@ section[id] {
 /* Texto de respaldo del video (si el navegador no lo reproduce) legible sobre el fondo oscuro */
 .video-reproductor-botanico {
   color: #ffffff;
+}
+
+/* ==========================================================================
+   35. CARRUSEL DE LOS LIBROS MÁS LEÍDOS (index.html)
+   Tres planos en un arco suave: el libro del centro, nítido y al frente; los de los lados, más pequeños,
+   girados hacia el centro y desenfocados. Todo se mueve con transform, filter y opacity.
+   ========================================================================== */
+.carrusel-libros {
+  --ancho: clamp(140px, 19vw, 230px);
+  --paso: calc(var(--ancho) * 0.8);
+  overflow: hidden;
+}
+
+.carrusel-escena {
+  position: relative;
+  height: calc(var(--ancho) * 1.5 + 6.5rem);
+  perspective: 1200px;
+  touch-action: pan-y;
+}
+
+.carrusel-pista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carrusel-item {
+  --d: 0;
+  --abs: max(var(--d), calc(var(--d) * -1));
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  width: var(--ancho);
+  margin-left: calc(var(--ancho) / -2);
+  opacity: calc(1 - var(--abs) * 0.2);
+  filter: blur(calc(var(--abs) * 2.5px));
+  transform: translateX(calc(var(--d) * var(--paso))) translateY(calc(var(--abs) * var(--abs) * 0.6rem))
+    rotateY(calc(var(--d) * -9deg)) scale(calc(1 - var(--abs) * 0.13));
+}
+
+.carrusel-listo .carrusel-item {
+  transition:
+    transform 650ms var(--ease-drawer),
+    filter 650ms var(--ease-drawer),
+    opacity 650ms var(--ease-drawer);
+}
+
+.carrusel-listo .carrusel-item.sin-transicion {
+  transition: none;
+}
+
+.carrusel-item.fuera {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.carrusel-listo .carrusel-item.fuera {
+  transition:
+    transform 650ms var(--ease-drawer),
+    filter 650ms var(--ease-drawer),
+    opacity 650ms var(--ease-drawer),
+    visibility 0s linear 650ms;
+}
+
+.carrusel-enlace {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.carrusel-portada {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background-color: var(--surface-secondary);
+  border-radius: 4px var(--radio-sm) var(--radio-sm) 4px;
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.14), 0 18px 32px -12px rgba(26, 77, 59, 0.4);
+}
+
+.carrusel-portada img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carrusel-portada::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 12px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.08) 45%, transparent);
+  pointer-events: none;
+}
+
+.carrusel-titulo {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--text-primary);
+  text-wrap: balance;
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out);
+}
+
+.carrusel-item.es-centro .carrusel-titulo {
+  opacity: 1;
+}
+
+.carrusel-enlace:focus-visible {
+  outline: none;
+}
+
+.carrusel-enlace:focus-visible .carrusel-portada {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.carrusel-controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.boton-carrusel {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--primary);
+  background-color: #ffffff;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .boton-carrusel:hover {
+    background-color: var(--sage-subtle);
+    border-color: var(--primary);
+  }
 }
