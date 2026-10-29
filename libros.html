@@ -378,7 +378,7 @@
                 </div>
                 <div class="botones-banner">
                   <a class="boton-banner-primario" href="contacto.html">Sugerir un Título</a>
-                  <a class="boton-banner-secundario" href="contacto.html">Donar Libros</a>
+                  <button class="boton-banner-secundario" id="botonDonar" type="button">Donar Libros</button>
                 </div>
               </div>
 
@@ -543,6 +543,62 @@
           <p class="dialogo-disponibilidad" id="dialogoDisponibilidad"></p>
           <button class="boton-heroe-primario" id="dialogoAccion" type="button"></button>
         </div>
+      </div>
+    </dialog>
+
+    <dialog class="dialogo-libro dialogo-donar" id="dialogoDonar" aria-labelledby="donarTitulo">
+      <form method="dialog">
+        <button class="dialogo-cerrar" aria-label="Cerrar ventana de donación">
+          <span aria-hidden="true" class="material-symbols-outlined">close</span>
+        </button>
+      </form>
+      <div class="donar-cuerpo">
+        <h2 class="dialogo-titulo" id="donarTitulo">Donar un libro</h2>
+
+        <div class="donar-aviso" id="donarSinSesion" hidden>
+          <p class="dialogo-descripcion">Para donar un libro necesitas una cuenta. Así el equipo sabe quién lo dona y puede avisarte la respuesta.</p>
+          <div class="fila-acciones-admin">
+            <a class="boton-heroe-primario" href="login.html">Iniciar sesión</a>
+            <a class="boton-heroe-secundario" href="login.html#crear-cuenta">Crear cuenta</a>
+          </div>
+        </div>
+
+        <div class="donar-aviso" id="donarAdmin" hidden>
+          <p class="dialogo-descripcion">Como administrador no necesitas donar: agrega los libros directamente y revisa las donaciones recibidas desde el panel.</p>
+          <a class="boton-heroe-primario" href="admin.html">Ir al panel</a>
+        </div>
+
+        <form class="formulario-libro" id="formularioDonar" novalidate hidden>
+          <p class="dialogo-descripcion">El equipo revisará tu solicitud. Verás aquí si fue aceptada o rechazada.</p>
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="donarCampoTitulo">Título <span class="campo-obligatorio">*</span></label>
+            <input class="input-contacto campo-sin-icono" id="donarCampoTitulo" type="text" maxlength="120" autocomplete="off" required />
+          </div>
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="donarCampoAutor">Autor o autora <span class="campo-obligatorio">*</span></label>
+            <input class="input-contacto campo-sin-icono" id="donarCampoAutor" type="text" maxlength="80" autocomplete="off" required />
+          </div>
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="donarCampoEstado">Estado del libro <span class="campo-obligatorio">*</span></label>
+            <select class="select-contacto campo-sin-icono" id="donarCampoEstado" required></select>
+          </div>
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="donarCampoComentario">Comentario (opcional)</label>
+            <textarea class="textarea-contacto campo-sin-icono" id="donarCampoComentario" maxlength="300" rows="3"></textarea>
+          </div>
+          <p class="mensaje-formulario" id="donarError" role="alert" hidden></p>
+          <button class="boton-heroe-primario" type="submit">
+            <span aria-hidden="true" class="material-symbols-outlined">volunteer_activism</span>
+            <span>Enviar donación</span>
+          </button>
+        </form>
+
+        <p class="aviso-admin" id="donarGracias" role="status" hidden></p>
+
+        <section class="donar-mias" id="donarMias" aria-labelledby="donarMiasTitulo" hidden>
+          <h3 class="subtitulo-admin" id="donarMiasTitulo">Tus donaciones</h3>
+          <ul class="lista-donaciones" id="listaMisDonaciones"></ul>
+        </section>
       </div>
     </dialog>
 
@@ -963,6 +1019,85 @@
         // Clic en el fondo oscuro: cierra
         dialogo.addEventListener("click", (e) => {
           if (e.target === dialogo) dialogo.close();
+        });
+      });
+      // Donar un libro: el usuario con sesión envía la solicitud y el administrador la revisa en admin.html
+      document.addEventListener("DOMContentLoaded", () => {
+        const $ = (id) => document.getElementById(id);
+        const dialogo = $("dialogoDonar");
+        const formulario = $("formularioDonar");
+
+        const nodo = (etiqueta, clase, texto) => {
+          const n = document.createElement(etiqueta);
+          if (clase) n.className = clase;
+          if (texto != null) n.textContent = texto;
+          return n;
+        };
+
+        Object.entries(Biblioteca.estadosLibro).forEach(([valor, etiqueta]) => {
+          const opcion = nodo("option", "", etiqueta);
+          opcion.value = valor;
+          $("donarCampoEstado").append(opcion);
+        });
+
+        function pintarMias() {
+          const lista = Biblioteca.misDonaciones();
+          $("donarMias").hidden = lista.length === 0;
+          $("listaMisDonaciones").replaceChildren(
+            ...lista.map((d) => {
+              const item = nodo("li", "donacion-item");
+              const texto = nodo("div", "donacion-texto");
+              texto.append(nodo("strong", "", d.titulo), nodo("span", "", d.autor));
+              if (d.situacion === "rechazada" && d.motivo) texto.append(nodo("span", "donacion-motivo", "Motivo: " + d.motivo));
+              item.append(texto, nodo("span", "situacion situacion-" + d.situacion, Biblioteca.situaciones[d.situacion]));
+              return item;
+            })
+          );
+        }
+
+        $("botonDonar").addEventListener("click", () => {
+          const sesion = Auth.sesion();
+          $("donarGracias").hidden = true;
+          $("donarError").hidden = true;
+          $("donarSinSesion").hidden = !!sesion;
+          $("donarAdmin").hidden = !(sesion && sesion.rol === "admin");
+          formulario.hidden = !(sesion && sesion.rol !== "admin");
+          pintarMias();
+          dialogo.showModal();
+        });
+
+        dialogo.addEventListener("click", (e) => {
+          if (e.target === dialogo) dialogo.close();
+        });
+
+        const campos = { titulo: "donarCampoTitulo", autor: "donarCampoAutor", estado: "donarCampoEstado", comentario: "donarCampoComentario" };
+
+        formulario.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
+        formulario.addEventListener("submit", (e) => {
+          e.preventDefault();
+          formulario.querySelectorAll("[aria-invalid]").forEach((c) => c.removeAttribute("aria-invalid"));
+          const r = Biblioteca.donar({
+            titulo: $("donarCampoTitulo").value,
+            autor: $("donarCampoAutor").value,
+            estado: $("donarCampoEstado").value,
+            comentario: $("donarCampoComentario").value,
+          });
+          if (!r.ok) {
+            $("donarError").textContent = r.error;
+            $("donarError").hidden = false;
+            const destino = $(campos[r.campo]);
+            if (destino) {
+              destino.setAttribute("aria-invalid", "true");
+              destino.focus();
+            }
+            return;
+          }
+          $("donarError").hidden = true;
+          formulario.reset();
+          $("donarGracias").textContent = "Recibimos la donación de «" + r.donacion.titulo + "». El equipo la revisará y verás su estado aquí abajo.";
+          $("donarGracias").hidden = false;
+          pintarMias();
+          $("donarGracias").scrollIntoView({ block: "nearest" });
         });
       });
     </script>

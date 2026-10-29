@@ -16,7 +16,7 @@
      infinitas.
    - Adaptable: consultas de medios (@media); sin desbordes de 320 a 1440px.
    - HTML con clases semánticas en español y sin estilos en línea.
-   - Las secciones 25 a 33 van al final a propósito: al ser posteriores ganan
+   - Las secciones 25 a 34 van al final a propósito: al ser posteriores ganan
      en la cascada sin necesidad de !important.
    --------------------------------------------------------------------------
    ÍNDICE
@@ -53,6 +53,7 @@
    31. DETALLE DEL LIBRO Y AVISOS (libros.html)
    32. PANEL DE ADMINISTRACIÓN Y AVISO DE ERROR EN LOGIN (admin.html, login.html)
    33. GESTIÓN DE LIBROS EN EL PANEL (admin.html)
+   34. DONACIONES DE LIBROS (libros.html y admin.html)
    ========================================================================== */
 
 /* ==========================================================================
@@ -5000,7 +5001,118 @@ section[id] {
 @media (pointer: coarse) {
   .formulario-libro .input-contacto,
   .formulario-libro .select-contacto,
-  .formulario-libro .textarea-contacto {
+  .formulario-libro .textarea-contacto,
+  .dialogo-confirmar .input-contacto {
     font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   34. DONACIONES DE LIBROS (libros.html y admin.html)
+   Ventana para donar, lista de donaciones y etiquetas de situación.
+   ========================================================================== */
+.donar-cuerpo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 2.25rem 2rem 2rem;
+}
+
+.donar-cuerpo .dialogo-titulo {
+  padding-right: 3rem;
+}
+
+.donar-aviso {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.donar-cuerpo .formulario-libro {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.donar-mias {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.lista-donaciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.donacion-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--surface-secondary);
+  border-radius: var(--radio-md);
+}
+
+.donacion-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.donacion-texto span {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.situacion {
+  flex-shrink: 0;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: var(--radio-completo);
+}
+
+.situacion-pendiente {
+  color: var(--text-primary);
+  background-color: #ffffff;
+  border: 1px solid var(--border-strong);
+}
+
+.situacion-aceptada {
+  color: var(--primary);
+  background-color: var(--sage-container);
+}
+
+.situacion-rechazada {
+  color: #93000a;
+  background-color: #ffdad6;
+}
+
+.donar-aviso[hidden],
+.donar-mias[hidden],
+.formulario-libro[hidden] {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .donar-cuerpo {
+    padding: 3.5rem 1.25rem 1.5rem;
+  }
+
+  .donar-aviso .fila-acciones-admin > * {
+    flex: 1 1 100%;
   }
 }
