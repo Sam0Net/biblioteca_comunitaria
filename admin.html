@@ -131,6 +131,129 @@
             </div>
             <p class="texto-admin" id="sinUsuarios" hidden>Todavía no hay cuentas registradas. Crea una desde la página de inicio de sesión para verla aquí.</p>
           </section>
+
+          <section class="tarjeta-admin" aria-labelledby="tituloLibros">
+            <h2 class="titulo-tarjeta-admin" id="tituloLibros" tabindex="-1">Libros del catálogo</h2>
+            <p class="texto-admin">
+              Agrega, edita o quita libros. Los cambios se ven al instante en el catálogo de este navegador. Para que los vea todo el mundo, descarga el archivo actualizado, reemplaza <code>datos/libros.js</code> y súbelo al repositorio.
+            </p>
+            <p class="aviso-admin" id="avisoLibros" role="status" hidden></p>
+
+            <div class="contenedor-tabla-responsiva" id="contenedorLibros">
+              <table class="tabla-botanica">
+                <caption>Libros del catálogo</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Título</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Disponibilidad</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="filasLibros"></tbody>
+              </table>
+            </div>
+            <p class="texto-admin" id="sinLibros" hidden>El catálogo está vacío. Agrega un libro con el formulario de abajo.</p>
+
+            <div class="fila-acciones-admin">
+              <button class="boton-heroe-primario" id="descargarLibros" type="button">
+                <span aria-hidden="true" class="material-symbols-outlined">download</span>
+                <span>Descargar libros actualizados</span>
+              </button>
+              <button class="boton-heroe-secundario" id="restaurarLibros" type="button">
+                <span aria-hidden="true" class="material-symbols-outlined">restart_alt</span>
+                <span>Restaurar libros originales</span>
+              </button>
+            </div>
+
+            <form class="formulario-libro" id="formularioLibro" novalidate aria-labelledby="tituloFormularioLibro">
+              <h3 class="subtitulo-admin" id="tituloFormularioLibro">Agregar un libro</h3>
+              <p class="aviso-obligatorio">Los campos con <span class="campo-obligatorio">*</span> son obligatorios.</p>
+
+              <div class="fila-campos-doble">
+                <div class="grupo-campo">
+                  <label class="etiqueta-campo" for="campoTitulo">Título <span class="campo-obligatorio">*</span></label>
+                  <div class="contenedor-input-icono">
+                    <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">menu_book</span>
+                    <input class="input-contacto" id="campoTitulo" name="campoTitulo" type="text" maxlength="120" autocomplete="off"required />
+                  </div>
+                </div>
+                <div class="grupo-campo">
+                  <label class="etiqueta-campo" for="campoAutor">Autor o autora <span class="campo-obligatorio">*</span></label>
+                  <div class="contenedor-input-icono">
+                    <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">person</span>
+                    <input class="input-contacto" id="campoAutor" name="campoAutor" type="text" maxlength="80" autocomplete="off"required />
+                  </div>
+                </div>
+              </div>
+
+              <div class="grupo-campo">
+                  <label class="etiqueta-campo" for="campoGenero">Género que se muestra en la tarjeta</label>
+                  <div class="contenedor-input-icono">
+                    <span aria-hidden="true" class="material-symbols-outlined icono-en-campo">sell</span>
+                    <input class="input-contacto" id="campoGenero" name="campoGenero" type="text" maxlength="40" placeholder="Ej: Novela / Realismo Mágico" autocomplete="off" />
+                  </div>
+                </div>
+
+              <fieldset class="grupo-opciones">
+                <legend class="etiqueta-campo">Categorías <span class="campo-obligatorio">*</span></legend>
+                <div class="lista-opciones" id="listaCategorias"></div>
+                <p class="ayuda-campo">Con ellas el libro aparece en los filtros del catálogo.</p>
+              </fieldset>
+
+              <div class="grupo-campo">
+                <label class="etiqueta-campo" for="campoDescripcion">Descripción corta <span class="campo-obligatorio">*</span></label>
+                <textarea class="textarea-contacto campo-sin-icono" id="campoDescripcion" name="descripcion" maxlength="400" rows="3" required></textarea>
+              </div>
+
+              <div class="fila-campos-doble">
+                <div class="grupo-campo">
+                  <label class="etiqueta-campo" for="campoEstado">Disponibilidad <span class="campo-obligatorio">*</span></label>
+                  <select class="select-contacto campo-sin-icono" id="campoEstado" name="estado" required></select>
+                </div>
+                <div class="grupo-campo" id="grupoCopias">
+                  <label class="etiqueta-campo" for="campoCopias">Ejemplares disponibles</label>
+                  <input class="input-contacto campo-sin-icono" id="campoCopias" name="copias" type="number" min="1" max="99" value="1" inputmode="numeric" />
+                </div>
+              </div>
+
+              <fieldset class="grupo-opciones">
+                <legend class="etiqueta-campo">Formatos</legend>
+                <div class="lista-opciones" id="listaFormatos"></div>
+              </fieldset>
+
+              <div class="grupo-campo">
+                <label class="etiqueta-campo" for="campoPortada">Portada <span class="campo-obligatorio">*</span></label>
+                <input class="input-contacto campo-sin-icono" id="campoPortada" name="portada" type="text" placeholder="img/mi-libro.jpg" autocomplete="off" required aria-describedby="ayudaPortada" />
+                <p class="ayuda-campo" id="ayudaPortada">Copia la imagen a la carpeta <code>img/</code> del proyecto y escribe su ruta, o pega un enlace que empiece con https://.</p>
+                <img class="vista-portada" id="vistaPortada" alt="" hidden />
+                <p class="ayuda-campo" id="errorVistaPortada" hidden>No se encontró esa imagen. Revisa la ruta o el enlace.</p>
+              </div>
+
+              <p class="mensaje-formulario" id="errorLibro" role="alert" hidden></p>
+
+              <div class="fila-acciones-admin">
+                <button class="boton-heroe-primario" id="guardarLibro" type="submit">
+                  <span aria-hidden="true" class="material-symbols-outlined">save</span>
+                  <span id="textoGuardarLibro">Guardar libro</span>
+                </button>
+                <button class="boton-heroe-secundario" id="cancelarEdicion" type="button" hidden>
+                  <span>Cancelar edición</span>
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <dialog class="dialogo-libro dialogo-confirmar" id="dialogoConfirmar" aria-labelledby="confirmarTitulo">
+            <form method="dialog">
+              <h2 class="dialogo-titulo" id="confirmarTitulo"></h2>
+              <p class="dialogo-descripcion" id="confirmarTexto"></p>
+              <div class="fila-acciones-admin">
+                <button class="boton-peligro" id="confirmarSi" type="button"></button>
+                <button class="boton-heroe-secundario" id="confirmarNo" type="button"></button>
+              </div>
+            </form>
+          </dialog>
         </div>
       </div>
     </main>
@@ -230,6 +353,251 @@
     </footer>
 
     <script src="auth.js"></script>
+    <script src="datos/libros.js"></script>
+    <script src="biblioteca.js"></script>
+    <script>
+      // Gestión de libros: agregar, editar y quitar (solo el administrador llega aquí)
+      document.addEventListener("DOMContentLoaded", () => {
+        if (!Auth.esAdmin()) return;
+        const $ = (id) => document.getElementById(id);
+        const formulario = $("formularioLibro");
+        const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let editandoId = "";
+        let temporizador;
+
+        const nodo = (etiqueta, clase, texto) => {
+          const n = document.createElement(etiqueta);
+          if (clase) n.className = clase;
+          if (texto != null) n.textContent = texto;
+          return n;
+        };
+
+        // Casillas de categorías y formatos, y lista de disponibilidad (salen de biblioteca.js)
+        function crearOpciones(contenedor, opciones, nombre) {
+          Object.entries(opciones).forEach(([valor, etiqueta]) => {
+            const label = nodo("label", "opcion-admin");
+            const casilla = nodo("input");
+            casilla.type = "checkbox";
+            casilla.name = nombre;
+            casilla.value = valor;
+            label.append(casilla, nodo("span", "", etiqueta));
+            contenedor.append(label);
+          });
+        }
+        crearOpciones($("listaCategorias"), Biblioteca.categorias, "categorias");
+        crearOpciones($("listaFormatos"), Biblioteca.formatos, "formatos");
+        Object.entries(Biblioteca.estados).forEach(([valor, etiqueta]) => {
+          const opcion = nodo("option", "", etiqueta);
+          opcion.value = valor;
+          $("campoEstado").append(opcion);
+        });
+
+        function avisar(texto) {
+          const aviso = $("avisoLibros");
+          aviso.textContent = texto;
+          aviso.hidden = false;
+          clearTimeout(temporizador);
+          temporizador = setTimeout(() => (aviso.hidden = true), 7000);
+        }
+
+        function mostrarError(texto, campo) {
+          const error = $("errorLibro");
+          error.textContent = texto;
+          error.hidden = false;
+          formulario.querySelectorAll("[aria-invalid]").forEach((c) => c.removeAttribute("aria-invalid"));
+          const destino = campo === "categorias" ? formulario.querySelector('input[name="categorias"]') : $("campo" + campo.charAt(0).toUpperCase() + campo.slice(1));
+          if (destino) {
+            destino.setAttribute("aria-invalid", "true");
+            destino.focus();
+          }
+        }
+
+        function limpiarError() {
+          $("errorLibro").hidden = true;
+          formulario.querySelectorAll("[aria-invalid]").forEach((c) => c.removeAttribute("aria-invalid"));
+        }
+
+        function alternarCopias() {
+          $("grupoCopias").hidden = $("campoEstado").value !== "disponible";
+        }
+
+        function vistaPrevia() {
+          const ruta = $("campoPortada").value.trim();
+          const imagen = $("vistaPortada");
+          $("errorVistaPortada").hidden = true;
+          if (!ruta) {
+            imagen.hidden = true;
+            return;
+          }
+          imagen.onload = () => {
+            imagen.hidden = false;
+            $("errorVistaPortada").hidden = true;
+          };
+          imagen.onerror = () => {
+            imagen.hidden = true;
+            $("errorVistaPortada").hidden = false;
+          };
+          imagen.src = ruta;
+        }
+
+        function restablecerFormulario() {
+          editandoId = "";
+          formulario.reset();
+          limpiarError();
+          $("vistaPortada").hidden = true;
+          $("errorVistaPortada").hidden = true;
+          $("tituloFormularioLibro").textContent = "Agregar un libro";
+          $("textoGuardarLibro").textContent = "Guardar libro";
+          $("cancelarEdicion").hidden = true;
+          alternarCopias();
+        }
+
+        function pintarLista() {
+          const lista = Biblioteca.libros();
+          const cuerpo = $("filasLibros");
+          cuerpo.replaceChildren();
+          lista.forEach((libro) => {
+            const fila = nodo("tr");
+            fila.append(nodo("td", "", libro.titulo), nodo("td", "", libro.autor), nodo("td", "", Biblioteca.textoEstado(libro)));
+            const acciones = nodo("td", "celda-acciones");
+            const editar = nodo("button", "boton-tabla", "Editar");
+            editar.type = "button";
+            editar.setAttribute("aria-label", "Editar " + libro.titulo);
+            editar.addEventListener("click", () => empezarEdicion(libro));
+            const quitar = nodo("button", "boton-tabla peligro", "Quitar");
+            quitar.type = "button";
+            quitar.setAttribute("aria-label", "Quitar " + libro.titulo);
+            quitar.addEventListener("click", () => quitarLibro(libro));
+            acciones.append(editar, quitar);
+            fila.append(acciones);
+            cuerpo.append(fila);
+          });
+          $("contenedorLibros").hidden = lista.length === 0;
+          $("sinLibros").hidden = lista.length > 0;
+        }
+
+        function empezarEdicion(libro) {
+          restablecerFormulario();
+          editandoId = libro.id;
+          $("campoTitulo").value = libro.titulo;
+          $("campoAutor").value = libro.autor;
+          $("campoGenero").value = libro.genero;
+          $("campoDescripcion").value = libro.descripcion;
+          $("campoEstado").value = libro.estado;
+          $("campoCopias").value = libro.copias || 1;
+          $("campoPortada").value = libro.portada;
+          formulario.querySelectorAll('input[name="categorias"]').forEach((c) => (c.checked = libro.categorias.includes(c.value)));
+          formulario.querySelectorAll('input[name="formatos"]').forEach((c) => (c.checked = libro.formatos.includes(c.value)));
+          $("tituloFormularioLibro").textContent = "Editar «" + libro.titulo + "»";
+          $("textoGuardarLibro").textContent = "Guardar cambios";
+          $("cancelarEdicion").hidden = false;
+          alternarCopias();
+          vistaPrevia();
+          formulario.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "start" });
+          $("campoTitulo").focus({ preventScroll: true });
+        }
+
+        // Ventana de confirmación con botones que dicen lo que hacen
+        function confirmar({ titulo, texto, si, no }) {
+          const dialogo = $("dialogoConfirmar");
+          $("confirmarTitulo").textContent = titulo;
+          $("confirmarTexto").textContent = texto;
+          $("confirmarSi").textContent = si;
+          $("confirmarNo").textContent = no;
+          return new Promise((resolver) => {
+            const terminar = (valor) => {
+              $("confirmarSi").onclick = $("confirmarNo").onclick = null;
+              dialogo.removeEventListener("close", alCerrar);
+              if (dialogo.open) dialogo.close();
+              resolver(valor);
+            };
+            const alCerrar = () => terminar(false); // Esc o clic en el fondo: se conserva todo
+            $("confirmarSi").onclick = () => terminar(true);
+            $("confirmarNo").onclick = () => terminar(false);
+            dialogo.addEventListener("close", alCerrar);
+            dialogo.showModal();
+          });
+        }
+        $("dialogoConfirmar").addEventListener("click", (e) => {
+          if (e.target === $("dialogoConfirmar")) $("dialogoConfirmar").close();
+        });
+
+        async function quitarLibro(libro) {
+          const acepto = await confirmar({
+            titulo: "¿Quitar «" + libro.titulo + "»?",
+            texto: "Dejará de verse en el catálogo. Podrás volver a agregarlo o restaurar los libros originales.",
+            si: "Quitar libro",
+            no: "Conservar",
+          });
+          if (!acepto) return;
+          const r = Biblioteca.quitar(libro.id);
+          if (!r.ok) return avisar(r.error);
+          if (editandoId === libro.id) restablecerFormulario();
+          pintarLista();
+          avisar("«" + libro.titulo + "» se quitó del catálogo.");
+          $("tituloLibros").focus();
+        }
+
+        $("restaurarLibros").addEventListener("click", async () => {
+          const acepto = await confirmar({
+            titulo: "¿Restaurar los libros originales?",
+            texto: "Se borrarán los libros que agregaste o editaste en este navegador y volverán los que están en datos/libros.js.",
+            si: "Restaurar libros",
+            no: "Conservar cambios",
+          });
+          if (!acepto) return;
+          Biblioteca.restaurar();
+          restablecerFormulario();
+          pintarLista();
+          avisar("Volvieron los libros originales.");
+          $("tituloLibros").focus();
+        });
+
+        $("descargarLibros").addEventListener("click", () => {
+          const texto = Biblioteca.exportar();
+          const enlace = nodo("a");
+          enlace.href = URL.createObjectURL(new Blob([texto], { type: "text/javascript;charset=utf-8" }));
+          enlace.download = "libros.js";
+          document.body.append(enlace);
+          enlace.click();
+          enlace.remove();
+          setTimeout(() => URL.revokeObjectURL(enlace.href), 1000);
+          avisar("Se descargó libros.js. Reemplaza el archivo datos/libros.js del proyecto con ese y súbelo al repositorio para que lo vea todo el mundo.");
+        });
+
+        formulario.addEventListener("submit", (e) => {
+          e.preventDefault();
+          limpiarError();
+          const marcadas = (nombre) => Array.from(formulario.querySelectorAll('input[name="' + nombre + '"]:checked')).map((c) => c.value);
+          const datos = {
+            titulo: $("campoTitulo").value,
+            autor: $("campoAutor").value,
+            genero: $("campoGenero").value,
+            descripcion: $("campoDescripcion").value,
+            estado: $("campoEstado").value,
+            copias: $("campoCopias").value,
+            portada: $("campoPortada").value,
+            categorias: marcadas("categorias"),
+            formatos: marcadas("formatos"),
+          };
+          const r = editandoId ? Biblioteca.editar(editandoId, datos) : Biblioteca.agregar(datos);
+          if (!r.ok) return mostrarError(r.error, r.campo || "titulo");
+          const edito = !!editandoId;
+          restablecerFormulario();
+          pintarLista();
+          avisar("«" + r.libro.titulo + "» " + (edito ? "se actualizó." : "se agregó al catálogo."));
+          $("avisoLibros").scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "nearest" });
+        });
+
+        formulario.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
+        $("campoEstado").addEventListener("change", alternarCopias);
+        $("campoPortada").addEventListener("change", vistaPrevia);
+        $("cancelarEdicion").addEventListener("click", restablecerFormulario);
+
+        alternarCopias();
+        pintarLista();
+      });
+    </script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const sesion = Auth.sesion();

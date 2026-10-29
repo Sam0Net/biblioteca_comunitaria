@@ -16,7 +16,7 @@
      infinitas.
    - Adaptable: consultas de medios (@media); sin desbordes de 320 a 1440px.
    - HTML con clases semánticas en español y sin estilos en línea.
-   - Las secciones 25 a 32 van al final a propósito: al ser posteriores ganan
+   - Las secciones 25 a 33 van al final a propósito: al ser posteriores ganan
      en la cascada sin necesidad de !important.
    --------------------------------------------------------------------------
    ÍNDICE
@@ -52,6 +52,7 @@
    30. PÁGINAS DE REDIRECCIÓN (actividades.html y catalogo.html)
    31. DETALLE DEL LIBRO Y AVISOS (libros.html)
    32. PANEL DE ADMINISTRACIÓN Y AVISO DE ERROR EN LOGIN (admin.html, login.html)
+   33. GESTIÓN DE LIBROS EN EL PANEL (admin.html)
    ========================================================================== */
 
 /* ==========================================================================
@@ -4724,5 +4725,197 @@ section[id] {
 @media (max-width: 640px) {
   .tarjeta-admin {
     padding: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   33. GESTIÓN DE LIBROS EN EL PANEL (admin.html)
+   Tabla de libros, formulario para agregar o editar, ventana de confirmación.
+   ========================================================================== */
+.subtitulo-admin {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--primary);
+}
+
+.aviso-admin {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--primary);
+  background-color: var(--sage-container);
+  border-radius: var(--radio-md);
+}
+
+.fila-acciones-admin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.celda-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.boton-tabla {
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  background-color: var(--sage-container);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out), background-color 180ms ease;
+}
+
+.boton-tabla:active,
+.boton-peligro:active {
+  transform: scale(0.97);
+}
+
+.boton-tabla.peligro {
+  color: #93000a;
+  background-color: #ffdad6;
+  border-color: rgba(186, 26, 26, 0.35);
+}
+
+.boton-peligro {
+  min-height: 44px;
+  padding: 0.8rem 1.6rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #93000a;
+  border: 1px solid transparent;
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out);
+}
+
+.formulario-libro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.formulario-libro .grupo-campo {
+  margin-bottom: 0;
+}
+
+.formulario-libro .aviso-obligatorio {
+  margin: 0;
+}
+
+.campo-sin-icono {
+  padding-left: 1rem;
+}
+
+.formulario-libro [aria-invalid="true"] {
+  border-color: #93000a;
+}
+
+.grupo-opciones {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.grupo-opciones legend {
+  margin-bottom: 0.5rem;
+}
+
+.lista-opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.opcion-admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background-color: #ffffff;
+  border: 1px solid var(--borde-campo);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+}
+
+.opcion-admin input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.opcion-admin:has(input:checked) {
+  color: var(--primary);
+  background-color: var(--sage-container);
+  border-color: var(--primary);
+}
+
+.opcion-admin:has(input:focus-visible) {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.vista-portada {
+  width: 96px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  box-shadow: var(--sombra-media);
+}
+
+.mensaje-formulario {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #93000a;
+  background-color: #ffdad6;
+  border-radius: var(--radio-md);
+}
+
+.dialogo-confirmar {
+  width: min(92vw, 28rem);
+}
+
+.dialogo-confirmar form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+}
+
+.aviso-admin[hidden],
+.mensaje-formulario[hidden],
+.vista-portada[hidden],
+.ayuda-campo[hidden],
+.grupo-campo[hidden],
+.contenedor-tabla-responsiva[hidden] {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .boton-tabla:hover {
+    background-color: #c5dbcf;
+  }
+
+  .boton-tabla.peligro:hover {
+    background-color: #ffc9c3;
   }
 }

@@ -27,6 +27,8 @@
     />
     <link href="styles.css" rel="stylesheet" />
     <script src="auth.js" defer></script>
+    <script src="datos/libros.js" defer></script>
+    <script src="biblioteca.js" defer></script>
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
@@ -349,383 +351,7 @@
               </p>
 
               <div class="rejilla-libros">
-                <!-- Libro 1 -->
-                <article class="tarjeta-libro" data-categorias="novela" data-formatos="impreso ilustrado">
-                  <div class="cuerpo-tarjeta">
-                    <div class="contenedor-portada">
-                      <img class="imagen-portada" src="img/cien-anos-soledad.jpg" alt="Portada de Cien años de soledad de Gabriel García Márquez" decoding="async" />
-                      <div class="sombra-lomo"></div>
-                      <div class="insignia-disponibilidad disponible">
-                        <span class="punto-estado"></span>
-                        <span>3 Disponibles</span>
-                      </div>
-                    </div>
-                    <div class="genero-libro">
-                      <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
-                      <span>Novela / Realismo Mágico</span>
-                    </div>
-                    <h3 class="titulo-libro">Cien años de soledad</h3>
-                    <p class="autor-libro">Gabriel García Márquez</p>
-                    <div class="calificacion-libro">
-                      <div class="estrellas">
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                      </div>
-                      <span class="texto-lectores">4.9 (48 lectores)</span>
-                    </div>
-                    <p class="descripcion-libro">
-                      La épica historia de la familia Buendía a lo largo de siete generaciones en el mítico pueblo de Macondo. Edición conmemorativa ilustrada.
-                    </p>
-                  </div>
-                  <div class="acciones-tarjeta">
-                    <button class="boton-accion-primario" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
-                      <span>Reservar</span>
-                    </button>
-                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de Cien años de soledad" title="Ver detalles y opiniones" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
-                    </button>
-                  </div>
-                </article>
-
-                <!-- Libro 2 -->
-                <article class="tarjeta-libro" data-categorias="psicoanalisis" data-formatos="impreso">
-                  <div class="cuerpo-tarjeta">
-                    <div class="contenedor-portada">
-                      <img class="imagen-portada" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3t7UebnA1ihuXHCDBdjB2jju0-y0B4UFBrUsFFZ8_Cu1HNXOom71TLG9c6hNCL96qARz8IVrQPOoClgU__kH0pGgOCYl85hIYiaE7RI93c7CiN39XHH3VAP64Cv5ZdpkrKm7TxWCVqSspNoiljPzW6Sc9e_zkN5MZDFYwDydhuE4xnRui0sUVivcN3etV7FG5SDKqvYenmPrPi3IMCfB0Blje9-arb9R-bsmmvVU5kpex5B-3PqDB" alt="Portada del libro La felicidad de Gabriel Rolón" decoding="async" />
-                      <div class="sombra-lomo"></div>
-                      <div class="insignia-disponibilidad disponible">
-                        <span class="punto-estado"></span>
-                        <span>2 Disponibles</span>
-                      </div>
-                    </div>
-                    <div class="genero-libro">
-                      <span aria-hidden="true" class="material-symbols-outlined">psychology</span>
-                      <span>Psicoanálisis & Vida</span>
-                    </div>
-                    <h3 class="titulo-libro">La felicidad</h3>
-                    <p class="autor-libro">Gabriel Rolón</p>
-                    <div class="calificacion-libro">
-                      <div class="estrellas">
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star_half</span>
-                      </div>
-                      <span class="texto-lectores">4.7 (31 lectores)</span>
-                    </div>
-                    <p class="descripcion-libro">
-                      Una lúcida indagación sobre el anhelo más universal: desentrañar la dicha desde la emoción, el duelo y los vínculos humanos.
-                    </p>
-                  </div>
-                  <div class="acciones-tarjeta">
-                    <button class="boton-accion-primario" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
-                      <span>Reservar</span>
-                    </button>
-                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de La felicidad" title="Ver detalles y opiniones" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
-                    </button>
-                  </div>
-                </article>
-
-                <!-- Libro 3 -->
-                <article class="tarjeta-libro" data-categorias="clasicos" data-formatos="impreso">
-                  <div class="cuerpo-tarjeta">
-                    <div class="contenedor-portada">
-                      <img class="imagen-portada" src="img/portada-don-quijote.jpg" alt="Portada de Don Quijote de la Mancha de Miguel de Cervantes" loading="lazy" decoding="async" />
-                      <div class="sombra-lomo"></div>
-                      <div class="insignia-disponibilidad sala">
-                        <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
-                        <span>En Sala de Lectura</span>
-                      </div>
-                    </div>
-                    <div class="genero-libro">
-                      <span aria-hidden="true" class="material-symbols-outlined">history_edu</span>
-                      <span>Clásico Universal</span>
-                    </div>
-                    <h3 class="titulo-libro">Don Quijote de la Mancha</h3>
-                    <p class="autor-libro">Miguel de Cervantes</p>
-                    <div class="calificacion-libro">
-                      <div class="estrellas">
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                      </div>
-                      <span class="texto-lectores">5.0 (64 lectores)</span>
-                    </div>
-                    <p class="descripcion-libro">
-                      La cumbre de la literatura en castellano, en una magnífica edición disponible para consulta en mesas de estudio y jardín.
-                    </p>
-                  </div>
-                  <div class="acciones-tarjeta">
-                    <button class="boton-accion-secundario" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">chair</span>
-                      <span>Pedir en Sala</span>
-                    </button>
-                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de Don Quijote de la Mancha" title="Ver detalles y opiniones" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
-                    </button>
-                  </div>
-                </article>
-
-                <!-- Libro 4 -->
-                <article class="tarjeta-libro" data-categorias="clasicos infantil" data-formatos="impreso ilustrado">
-                  <div class="cuerpo-tarjeta">
-                    <div class="contenedor-portada">
-                      <img class="imagen-portada" src="img/portada-el-principito.jpg" alt="Portada de El Principito de Antoine de Saint-Exupéry" loading="lazy" decoding="async" />
-                      <div class="sombra-lomo"></div>
-                      <div class="insignia-disponibilidad disponible">
-                        <span class="punto-estado"></span>
-                        <span>5 Disponibles</span>
-                      </div>
-                    </div>
-                    <div class="genero-libro">
-                      <span aria-hidden="true" class="material-symbols-outlined">child_care</span>
-                      <span>Infantil / Filosofía</span>
-                    </div>
-                    <h3 class="titulo-libro">El principito</h3>
-                    <p class="autor-libro">Antoine de Saint-Exupéry</p>
-                    <div class="calificacion-libro">
-                      <div class="estrellas">
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                      </div>
-                      <span class="texto-lectores">5.0 (92 lectores)</span>
-                    </div>
-                    <p class="descripcion-libro">
-                      "Lo esencial es invisible a los ojos". Una fábula inmortal con las acuarelas originales del autor para disfrutar en familia.
-                    </p>
-                  </div>
-                  <div class="acciones-tarjeta">
-                    <button class="boton-accion-primario" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
-                      <span>Reservar</span>
-                    </button>
-                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de El principito" title="Ver detalles y opiniones" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
-                    </button>
-                  </div>
-                </article>
-
-                <!-- Libro 5 -->
-                <article class="tarjeta-libro" data-categorias="novela historia" data-formatos="impreso">
-                  <div class="cuerpo-tarjeta">
-                    <div class="contenedor-portada">
-                      <img class="imagen-portada" src="img/portada-el-murmullo-de-las-abejas.jpg" alt="Portada de El murmullo de las abejas de Sofía Segovia" loading="lazy" decoding="async" />
-                      <div class="sombra-lomo"></div>
-                      <div class="insignia-disponibilidad novedad">
-                        <span aria-hidden="true" class="material-symbols-outlined">auto_awesome</span>
-                        <span>Novedad Donada</span>
-                      </div>
-                    </div>
-                    <div class="genero-libro">
-                      <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
-                      <span>Ficción Histórica</span>
-                    </div>
-                    <h3 class="titulo-libro">El murmullo de las abejas</h3>
-                    <p class="autor-libro">Sofía Segovia</p>
-                    <div class="calificacion-libro">
-                      <div class="estrellas">
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star_half</span>
-                      </div>
-                      <span class="texto-lectores">4.8 (19 lectores)</span>
-                    </div>
-                    <p class="descripcion-libro">
-                      En medio de la Revolución mexicana, un niño con un velo de abejas transforma para siempre el destino de una familia en Linares.
-                    </p>
-                  </div>
-                  <div class="acciones-tarjeta">
-                    <button class="boton-accion-primario" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
-                      <span>Reservar</span>
-                    </button>
-                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de El murmullo de las abejas" title="Ver detalles y opiniones" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
-                    </button>
-                  </div>
-                </article>
-
-                <!-- Libro 6 -->
-                <article class="tarjeta-libro" data-categorias="ciencia" data-formatos="impreso">
-                  <div class="cuerpo-tarjeta">
-                    <div class="contenedor-portada">
-                      <img class="imagen-portada" src="img/portada-vida-secreta-plantas.jpg" alt="Portada de La vida secreta de las plantas de Peter Tompkins y Christopher Bird" loading="lazy" decoding="async" />
-                      <div class="sombra-lomo"></div>
-                      <div class="insignia-disponibilidad disponible">
-                        <span class="punto-estado"></span>
-                        <span>1 Disponible</span>
-                      </div>
-                    </div>
-                    <div class="genero-libro">
-                      <span aria-hidden="true" class="material-symbols-outlined">eco</span>
-                      <span>Botánica & Naturaleza</span>
-                    </div>
-                    <h3 class="titulo-libro">La vida secreta de las plantas</h3>
-                    <p class="autor-libro">Peter Tompkins & Christopher Bird</p>
-                    <div class="calificacion-libro">
-                      <div class="estrellas">
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star_outline</span>
-                      </div>
-                      <span class="texto-lectores">4.3 (22 lectores)</span>
-                    </div>
-                    <p class="descripcion-libro">
-                      Fascinante viaje por las relaciones físicas y emocionales entre plantas y seres humanos. La inspiración de nuestro jardín.
-                    </p>
-                  </div>
-                  <div class="acciones-tarjeta">
-                    <button class="boton-accion-primario" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
-                      <span>Reservar</span>
-                    </button>
-                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de La vida secreta de las plantas" title="Ver detalles y opiniones" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
-                    </button>
-                  </div>
-                </article>
-
-                <!-- Libro 7 -->
-                <article class="tarjeta-libro" data-categorias="novela" data-formatos="impreso">
-                  <div class="cuerpo-tarjeta">
-                    <div class="contenedor-portada">
-                      <img class="imagen-portada" src="img/portada-rayuela.jpg" alt="Portada de Rayuela de Julio Cortázar" loading="lazy" decoding="async" />
-                      <div class="sombra-lomo"></div>
-                      <div class="insignia-disponibilidad disponible">
-                        <span class="punto-estado"></span>
-                        <span>2 Disponibles</span>
-                      </div>
-                    </div>
-                    <div class="genero-libro">
-                      <span aria-hidden="true" class="material-symbols-outlined">menu_book</span>
-                      <span>Literatura Latinoamericana</span>
-                    </div>
-                    <h3 class="titulo-libro">Rayuela</h3>
-                    <p class="autor-libro">Julio Cortázar</p>
-                    <div class="calificacion-libro">
-                      <div class="estrellas">
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                      </div>
-                      <span class="texto-lectores">4.9 (53 lectores)</span>
-                    </div>
-                    <p class="descripcion-libro">
-                      Un contranovelón lúdico y deslumbrante entre París y Buenos Aires, donde cada lector elige su propio laberinto de lectura.
-                    </p>
-                  </div>
-                  <div class="acciones-tarjeta">
-                    <button class="boton-accion-primario" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
-                      <span>Reservar</span>
-                    </button>
-                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de Rayuela" title="Ver detalles y opiniones" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
-                    </button>
-                  </div>
-                </article>
-
-                <!-- Libro 8 -->
-                <article class="tarjeta-libro" data-categorias="poesia" data-formatos="impreso">
-                  <div class="cuerpo-tarjeta">
-                    <div class="contenedor-portada">
-                      <img class="imagen-portada" src="img/portada-veinte-poemas.jpg" alt="Portada de Veinte poemas de amor y una canción desesperada de Pablo Neruda" loading="lazy" decoding="async" />
-                      <div class="sombra-lomo"></div>
-                      <div class="insignia-disponibilidad disponible">
-                        <span class="punto-estado"></span>
-                        <span>1 Disponible</span>
-                      </div>
-                    </div>
-                    <div class="genero-libro">
-                      <span aria-hidden="true" class="material-symbols-outlined">draw</span>
-                      <span>Poesía Iberoamericana</span>
-                    </div>
-                    <h3 class="titulo-libro">Veinte poemas de amor</h3>
-                    <p class="autor-libro">Pablo Neruda</p>
-                    <div class="calificacion-libro">
-                      <div class="estrellas">
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star_half</span>
-                      </div>
-                      <span class="texto-lectores">4.8 (41 lectores)</span>
-                    </div>
-                    <p class="descripcion-libro">
-                      El libro lírico más leído y compartido del siglo XX. Incluye versos célebres como "Puedo escribir los versos más tristes esta noche".
-                    </p>
-                  </div>
-                  <div class="acciones-tarjeta">
-                    <button class="boton-accion-primario" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
-                      <span>Reservar</span>
-                    </button>
-                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de Veinte poemas de amor" title="Ver detalles y opiniones" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
-                    </button>
-                  </div>
-                </article>
-
-                <!-- Libro 9 -->
-                <article class="tarjeta-libro" data-categorias="infantil" data-formatos="impreso">
-                  <div class="cuerpo-tarjeta">
-                    <div class="contenedor-portada">
-                      <img class="imagen-portada" src="img/portada-el-jardin-secreto.jpg" alt="Portada de El jardín secreto de Frances Hodgson Burnett" loading="lazy" decoding="async" />
-                      <div class="sombra-lomo"></div>
-                      <div class="insignia-disponibilidad disponible">
-                        <span class="punto-estado"></span>
-                        <span>3 Disponibles</span>
-                      </div>
-                    </div>
-                    <div class="genero-libro">
-                      <span aria-hidden="true" class="material-symbols-outlined">yard</span>
-                      <span>Infantil & Juvenil</span>
-                    </div>
-                    <h3 class="titulo-libro">El jardín secreto</h3>
-                    <p class="autor-libro">Frances Hodgson Burnett</p>
-                    <div class="calificacion-libro">
-                      <div class="estrellas">
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                        <span aria-hidden="true" class="material-symbols-outlined">star</span>
-                      </div>
-                      <span class="texto-lectores">4.9 (38 lectores)</span>
-                    </div>
-                    <p class="descripcion-libro">
-                      El poder curativo de la naturaleza y la amistad contado a través de un jardín olvidado que vuelve a la vida gracias a tres niños.
-                    </p>
-                  </div>
-                  <div class="acciones-tarjeta">
-                    <button class="boton-accion-primario" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">bookmark_add</span>
-                      <span>Reservar</span>
-                    </button>
-                    <button class="boton-accion-info" aria-label="Ver detalles y opiniones de El jardín secreto" title="Ver detalles y opiniones" type="button">
-                      <span aria-hidden="true" class="material-symbols-outlined">info</span>
-                    </button>
-                  </div>
-                </article>
+                <!-- Las tarjetas se generan desde datos/libros.js (ver biblioteca.js) -->
               </div>
 
               <!-- CRECIMIENTO COLABORATIVO ... -->
@@ -1243,9 +869,9 @@
           });
         }
       });
-      // Reservar / Pedir en sala: se activan y se desactivan; se guardan solo en este navegador (el sitio es una maqueta).
+      // Reservar / Pedir en sala: se activan y se desactivan; se guardan solo en este navegador (el sitio es una maqueta). Corre al cargar la página, cuando ya existen las tarjetas generadas desde datos/libros.js.
       // El botón de información abre una ventana con los detalles de la tarjeta.
-      (() => {
+      document.addEventListener("DOMContentLoaded", () => {
         const CLAVE = "bibliotecaPedidos";
         let guardados = [];
         try {
@@ -1323,7 +949,8 @@
             campo("dialogoGenero").textContent = tarjeta.querySelector(".genero-libro span:last-child").textContent.trim();
             campo("dialogoTitulo").textContent = titulo;
             campo("dialogoAutor").textContent = tarjeta.querySelector(".autor-libro").textContent.trim();
-            campo("dialogoLectores").textContent = "Valoración " + tarjeta.querySelector(".texto-lectores").textContent.trim();
+            const lectores = tarjeta.querySelector(".texto-lectores").textContent.trim();
+            campo("dialogoLectores").textContent = /^\d/.test(lectores) ? "Valoración " + lectores : lectores;
             campo("dialogoDescripcion").textContent = tarjeta.querySelector(".descripcion-libro").textContent.trim();
             const insignia = tarjeta.querySelector(".insignia-disponibilidad span:last-child");
             campo("dialogoDisponibilidad").textContent = insignia ? insignia.textContent.trim() : "";
@@ -1337,7 +964,7 @@
         dialogo.addEventListener("click", (e) => {
           if (e.target === dialogo) dialogo.close();
         });
-      })();
+      });
     </script>
   </body>
 </html>
