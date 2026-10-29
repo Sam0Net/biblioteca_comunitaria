@@ -116,8 +116,8 @@
             <p class="texto-admin">
               Aquí aparecen las cuentas creadas en este navegador. Esta maqueta no tiene servidor, así que no se ven las que se crearon en otros equipos.
             </p>
-            <div class="contenedor-tabla-responsiva">
-              <table class="tabla-botanica">
+            <div class="contenedor-tabla-responsiva" tabindex="0" role="region" aria-label="Tabla de cuentas registradas">
+              <table class="tabla-botanica tabla-apilable">
                 <caption>Cuentas de usuario registradas en este navegador</caption>
                 <thead>
                   <tr>
@@ -139,8 +139,8 @@
             </p>
             <p class="aviso-admin" id="avisoLibros" role="status" hidden></p>
 
-            <div class="contenedor-tabla-responsiva" id="contenedorLibros">
-              <table class="tabla-botanica">
+            <div class="contenedor-tabla-responsiva" id="contenedorLibros" tabindex="0" role="region" aria-label="Tabla de libros del catálogo">
+              <table class="tabla-botanica tabla-apilable">
                 <caption>Libros del catálogo</caption>
                 <thead>
                   <tr>
@@ -458,7 +458,11 @@
           cuerpo.replaceChildren();
           lista.forEach((libro) => {
             const fila = nodo("tr");
-            fila.append(nodo("td", "", libro.titulo), nodo("td", "", libro.autor), nodo("td", "", Biblioteca.textoEstado(libro)));
+            [["Título", libro.titulo], ["Autor", libro.autor], ["Estado", Biblioteca.textoEstado(libro)]].forEach(([etiqueta, texto]) => {
+              const celda = nodo("td", "", texto);
+              celda.dataset.etiqueta = etiqueta;
+              fila.append(celda);
+            });
             const acciones = nodo("td", "celda-acciones");
             const editar = nodo("button", "boton-tabla", "Editar");
             editar.type = "button";
@@ -619,8 +623,9 @@
         const formato = new Intl.DateTimeFormat("es", { day: "numeric", month: "long", year: "numeric" });
         usuarios.forEach((u) => {
           const fila = document.createElement("tr");
-          [u.nombre, u.correo, u.fecha ? formato.format(new Date(u.fecha)) : ""].forEach((texto) => {
+          [u.nombre, u.correo, u.fecha ? formato.format(new Date(u.fecha)) : ""].forEach((texto, i) => {
             const celda = document.createElement("td");
+            celda.dataset.etiqueta = ["Nombre", "Correo", "Registro"][i];
             celda.textContent = texto; // textContent: lo que escribió el usuario nunca se interpreta como HTML
             fila.appendChild(celda);
           });
