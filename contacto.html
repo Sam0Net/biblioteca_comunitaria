@@ -606,31 +606,6 @@
           }, 3500);
         }, 800);
       }
-
-      // Menú Hamburguesa Móvil
-      document.addEventListener("DOMContentLoaded", () => {
-        const btnMenu = document.getElementById("btnMenuMovil");
-        const menuMovil = document.getElementById("menuMovilDesplegable");
-        if (btnMenu && menuMovil) {
-          btnMenu.addEventListener("click", () => {
-            const abierto = menuMovil.classList.toggle("abierto");
-            btnMenu.classList.toggle("activo", abierto);
-            btnMenu.setAttribute("aria-expanded", abierto);
-            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-            menuMovil.setAttribute("aria-hidden", !abierto);
-          });
-
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
-              menuMovil.classList.remove("abierto");
-              btnMenu.classList.remove("activo");
-              btnMenu.setAttribute("aria-expanded", "false");
-              btnMenu.setAttribute("aria-label", "Abrir menú");
-              menuMovil.setAttribute("aria-hidden", "true");
-            }
-          });
-        }
-      });
     </script>
   </body>
 </html>

@@ -588,12 +588,32 @@
         const alerta = document.getElementById("alertaExitoCarnet");
         const form = document.getElementById("formRegistroCarnet");
 
+        const nombres = document.getElementById("nombres")?.value.trim() || "";
+        const apellidos = document.getElementById("apellidos")?.value.trim() || "";
+        const correo = document.getElementById("correo")?.value.trim() || "";
+        const dni = document.getElementById("dni")?.value.trim() || "";
+        const telefono = document.getElementById("telefono")?.value.trim() || "";
+        const direccion = document.getElementById("direccion")?.value.trim() || "";
+
         // Estado de carga temporal
         const textoOriginal = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">hourglass_top</span><span>Emitiendo carnet...</span>';
 
         setTimeout(() => {
+          if (window.Auth && correo) {
+            const nombreCompleto = (nombres + " " + apellidos).trim() || "Vecino Lector";
+            // Registrar cuenta asociada al carnet si no existe
+            window.Auth.registrar({
+              nombre: nombreCompleto,
+              correo: correo,
+              clave: "Carnet2026!",
+              direccion: direccion,
+              telefono: telefono,
+              dni: dni
+            });
+          }
+
           btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">check</span><span>¡Carnet Emitido!</span>';
           alerta.classList.add("visible");
           form.reset();
@@ -608,31 +628,6 @@
           }, 3500);
         }, 800);
       }
-
-      // Menú Hamburguesa Móvil
-      document.addEventListener("DOMContentLoaded", () => {
-        const btnMenu = document.getElementById("btnMenuMovil");
-        const menuMovil = document.getElementById("menuMovilDesplegable");
-        if (btnMenu && menuMovil) {
-          btnMenu.addEventListener("click", () => {
-            const abierto = menuMovil.classList.toggle("abierto");
-            btnMenu.classList.toggle("activo", abierto);
-            btnMenu.setAttribute("aria-expanded", abierto);
-            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-            menuMovil.setAttribute("aria-hidden", !abierto);
-          });
-
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
-              menuMovil.classList.remove("abierto");
-              btnMenu.classList.remove("activo");
-              btnMenu.setAttribute("aria-expanded", "false");
-              btnMenu.setAttribute("aria-label", "Abrir menú");
-              menuMovil.setAttribute("aria-hidden", "true");
-            }
-          });
-        }
-      });
     </script>
   </body>
 </html>

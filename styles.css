@@ -4800,6 +4800,404 @@ section[id] {
 }
 
 /* ==========================================================================
+   34B. MEJORAS DEL PANEL DE ADMINISTRACIÓN: MÉTRICAS, BÚSQUEDAS, RESERVAS Y CARNET
+   ========================================================================== */
+.grid-metricas-admin {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.tarjeta-metrica {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-suave);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.tarjeta-metrica:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-media);
+}
+
+.icono-metrica {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radio-lg);
+  background-color: var(--sage-container);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.icono-metrica .material-symbols-outlined {
+  font-size: 28px;
+}
+
+.datos-metrica {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.valor-metrica {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--primary);
+}
+
+.etiqueta-metrica {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.subetiqueta-metrica {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+}
+
+.badge-metrica {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radio-completo);
+  background-color: var(--amber-subtle);
+  color: var(--amber-strong);
+  margin-top: 0.25rem;
+  width: fit-content;
+}
+
+.barra-herramientas-admin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.grupo-filtros-admin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1 1 auto;
+}
+
+.contenedor-busqueda-admin {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 220px;
+  max-width: 380px;
+  flex: 1 1 auto;
+}
+
+.contenedor-busqueda-admin .icono-en-campo {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--text-tertiary);
+  pointer-events: none;
+  font-size: 20px;
+}
+
+.input-busqueda-admin {
+  width: 100%;
+  height: 42px;
+  padding: 0.4rem 1rem 0.4rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background-color: var(--surface-secondary);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-completo);
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.input-busqueda-admin:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(26, 77, 59, 0.15);
+}
+
+.select-filtro-admin {
+  height: 42px;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background-color: var(--surface-secondary);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radio-completo);
+  cursor: pointer;
+}
+
+.select-filtro-admin:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.conteo-admin {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Portada y detalles de libro en tabla */
+.celda-libro-info {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: left;
+}
+
+.portada-miniatura-tabla {
+  width: 36px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.libro-texto-tabla {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.libro-titulo-tabla {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.libro-autor-tabla {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+/* Insignias de rol y carnet */
+.insignia-rol {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--radio-completo);
+}
+
+.insignia-rol.admin {
+  background-color: #e8f4ec;
+  color: var(--primary);
+  border: 1px solid rgba(26, 77, 59, 0.2);
+}
+
+.insignia-rol.usuario {
+  background-color: var(--surface-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-hairline);
+}
+
+.insignia-carnet {
+  font-family: monospace;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radio-sm);
+  background-color: var(--sage-container);
+  color: var(--primary);
+  border: 1px solid rgba(26, 77, 59, 0.15);
+}
+
+.insignia-tipo-pedido {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: var(--radio-completo);
+}
+
+.insignia-tipo-pedido.reserva {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid rgba(3, 105, 161, 0.2);
+}
+
+.insignia-tipo-pedido.sala {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid rgba(146, 64, 14, 0.2);
+}
+
+/* Avatar de usuario en tabla */
+.celda-usuario-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar-usuario-tabla {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+/* Modal de Carnet Vecinal */
+.modal-carnet-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.25rem 2rem 2rem;
+}
+
+.tarjeta-carnet-credencial {
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(135deg, #1a4d3b 0%, #123b2d 100%);
+  color: #fef9f0;
+  border-radius: var(--radio-lg);
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 16px 36px rgba(18, 59, 45, 0.35);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tarjeta-carnet-credencial::after {
+  content: "";
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230, 168, 83, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.carnet-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(254, 249, 240, 0.2);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.carnet-marca {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+.carnet-subtitulo {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+.carnet-cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.carnet-nombre {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.carnet-codigo {
+  font-family: monospace;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: #e6a853;
+  font-weight: 700;
+}
+
+.carnet-pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(254, 249, 240, 0.25);
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.carnet-barra-simulada {
+  font-family: monospace;
+  letter-spacing: 0.25em;
+  font-size: 1.1rem;
+  opacity: 0.6;
+}
+
+@media (max-width: 640px) {
+  .grid-metricas-admin {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .barra-herramientas-admin {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .grupo-filtros-admin {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contenedor-busqueda-admin {
+    max-width: 100%;
+  }
+
+  .tarjeta-admin .tabla-apilable tbody td .celda-libro-info,
+  .tarjeta-admin .tabla-apilable tbody td .celda-usuario-info {
+    justify-content: flex-end;
+  }
+}
+
+/* ==========================================================================
    35. CARRUSEL DE LOS LIBROS MÁS LEÍDOS (index.html)
    Tres planos en un arco suave: el libro del centro, nítido y al frente; los de los lados, más pequeños,
    girados hacia el centro y desenfocados. Todo se mueve con transform, filter y opacity.

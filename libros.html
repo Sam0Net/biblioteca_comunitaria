@@ -14,7 +14,11 @@
     <meta name="author" content="Biblioteca Comunitaria Leer nos une" />
     <title>Libros - Leer nos une | Biblioteca Comunitaria</title>
     <meta name="theme-color" content="#1a4d3b" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%231a4d3b'/%3E%3Cg transform='translate%285 5%29 scale%28.58%29'%3E%3Cpath fill='%23fef9f0' d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z'/%3E%3C/g%3E%3C/svg%3E" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%231a4d3b'/%3E%3Cg transform='translate%285 5%29 scale%28.58%29'%3E%3Cpath fill='%23fef9f0' d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.2 9.2 0 0 0 17 8zM21 3c-6.63 0-12 5.37-12 12 0 .34.02.67.05 1C12.19 14.54 16.5 12 21 3z'/%3E%3C/g%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,14 +36,18 @@
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
-    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+    <a class="saltar-enlace" href="#contenido-principal"
+      >Saltar al contenido principal</a
+    >
 
     <!-- MENÚS (ENCABEZADO Y NAVEGACIÓN CON FLEXBOX) -->
     <header class="encabezado">
       <div class="contenedor-encabezado">
         <a class="marca-sitio" href="index.html" data-path="inicio">
           <div class="icono-marca">
-            <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
+            <span aria-hidden="true" class="material-symbols-outlined"
+              >local_florist</span
+            >
           </div>
           <div class="texto-marca">
             <span class="nombre-marca">Leer nos une</span>
@@ -49,14 +57,31 @@
 
         <nav class="navegacion-principal" aria-label="Navegación principal">
           <a class="enlace-nav" href="index.html" data-path="inicio">Inicio</a>
-          <a class="enlace-nav activo" href="libros.html" aria-current="page" data-path="libros">Libros</a>
-          <a class="enlace-nav" href="servicios.html" data-path="servicios">Servicios</a>
-          <a class="enlace-nav" href="contacto.html" data-path="contacto">Contacto</a>
+          <a
+            class="enlace-nav activo"
+            href="libros.html"
+            aria-current="page"
+            data-path="libros"
+            >Libros</a
+          >
+          <a class="enlace-nav" href="servicios.html" data-path="servicios"
+            >Servicios</a
+          >
+          <a class="enlace-nav" href="contacto.html" data-path="contacto"
+            >Contacto</a
+          >
         </nav>
 
         <div class="acciones-usuario">
-          <a class="boton-carnet" href="login.html#crear-cuenta" data-path="carnet-digital" aria-label="Sacar mi carnet">
-            <span aria-hidden="true" class="material-symbols-outlined">badge</span>
+          <a
+            class="boton-carnet"
+            href="login.html#crear-cuenta"
+            data-path="carnet-digital"
+            aria-label="Sacar mi carnet"
+          >
+            <span aria-hidden="true" class="material-symbols-outlined"
+              >badge</span
+            >
             <span>Sacar mi carnet</span>
           </a>
           <a
@@ -65,41 +90,85 @@
             title="Mi Cuenta e Inicio de Sesión"
             aria-label="Mi cuenta: iniciar sesión"
           >
-            <img
-              alt=""
-              src="img/tresLibrosPlantitas.png"
-            />
+            <img alt="" src="img/tresLibrosPlantitas.png" />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
-          <button class="boton-menu-movil" id="btnMenuMovil" aria-controls="menuMovilDesplegable" aria-label="Abrir menú" aria-expanded="false" type="button">
-            <span aria-hidden="true" class="material-symbols-outlined icono-menu-abrir">menu</span>
-            <span aria-hidden="true" class="material-symbols-outlined icono-menu-cerrar">close</span>
+          <button
+            class="boton-menu-movil"
+            id="btnMenuMovil"
+            aria-controls="menuMovilDesplegable"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="material-symbols-outlined icono-menu-abrir"
+              >menu</span
+            >
+            <span
+              aria-hidden="true"
+              class="material-symbols-outlined icono-menu-cerrar"
+              >close</span
+            >
           </button>
         </div>
       </div>
 
       <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
-      <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
+      <div
+        class="menu-movil-desplegable"
+        id="menuMovilDesplegable"
+        aria-hidden="true"
+      >
         <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span aria-hidden="true" class="material-symbols-outlined">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined"
+              >home</span
+            >
             <span>Inicio</span>
-            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span
+              aria-hidden="true"
+              class="material-symbols-outlined flecha-nav"
+              >chevron_right</span
+            >
           </a>
-          <a class="enlace-nav-movil activo" href="libros.html" aria-current="page">
-            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
+          <a
+            class="enlace-nav-movil activo"
+            href="libros.html"
+            aria-current="page"
+          >
+            <span aria-hidden="true" class="material-symbols-outlined"
+              >auto_stories</span
+            >
             <span>Libros</span>
-            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span
+              aria-hidden="true"
+              class="material-symbols-outlined flecha-nav"
+              >chevron_right</span
+            >
           </a>
           <a class="enlace-nav-movil" href="servicios.html">
-            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
+            <span aria-hidden="true" class="material-symbols-outlined"
+              >spa</span
+            >
             <span>Servicios</span>
-            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span
+              aria-hidden="true"
+              class="material-symbols-outlined flecha-nav"
+              >chevron_right</span
+            >
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
+            <span aria-hidden="true" class="material-symbols-outlined"
+              >chat</span
+            >
             <span>Contacto</span>
-            <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
+            <span
+              aria-hidden="true"
+              class="material-symbols-outlined flecha-nav"
+              >chevron_right</span
+            >
           </a>
         </nav>
       </div>
@@ -113,14 +182,22 @@
 
         <header class="cabecera-pagina">
           <h1 class="titulo-pagina">Catálogo de libros</h1>
-          <p class="subtitulo-pagina">Busca un título, resérvalo o pídelo para leer en sala.</p>
+          <p class="subtitulo-pagina">
+            Busca un título, resérvalo o pídelo para leer en sala.
+          </p>
         </header>
 
         <div class="contenedor-catalogo">
-          <div class="columna-filtros" role="search" aria-label="Buscar y filtrar libros">
+          <div
+            class="columna-filtros"
+            role="search"
+            aria-label="Buscar y filtrar libros"
+          >
             <div class="fila-herramientas">
               <div class="campo-texto campo-busqueda">
-                <span aria-hidden="true" class="material-symbols-outlined">search</span>
+                <span aria-hidden="true" class="material-symbols-outlined"
+                  >search</span
+                >
                 <input
                   class="entrada-busqueda"
                   aria-label="Buscar en el catálogo"
@@ -137,7 +214,9 @@
                 aria-expanded="false"
                 aria-controls="panelFiltros"
               >
-                <span aria-hidden="true" class="material-symbols-outlined">tune</span>
+                <span aria-hidden="true" class="material-symbols-outlined"
+                  >tune</span
+                >
                 <span>Filtros</span>
                 <span class="contador-filtros-activos" hidden>0</span>
               </button>
@@ -166,30 +245,142 @@
                 <fieldset class="seccion-filtro">
                   <legend class="subtitulo-filtro">Formato</legend>
                   <div class="grupo-pildoras-formato">
-                    <button class="pildora-formato" type="button" data-formato="impreso" aria-pressed="false">Impreso</button>
-                    <button class="pildora-formato" type="button" data-formato="audiolibro" aria-pressed="false">Audiolibro</button>
-                    <button class="pildora-formato" type="button" data-formato="letra-grande" aria-pressed="false">Letra grande</button>
-                    <button class="pildora-formato" type="button" data-formato="ilustrado" aria-pressed="false">Ilustrado</button>
+                    <button
+                      class="pildora-formato"
+                      type="button"
+                      data-formato="impreso"
+                      aria-pressed="false"
+                    >
+                      Impreso
+                    </button>
+                    <button
+                      class="pildora-formato"
+                      type="button"
+                      data-formato="audiolibro"
+                      aria-pressed="false"
+                    >
+                      Audiolibro
+                    </button>
+                    <button
+                      class="pildora-formato"
+                      type="button"
+                      data-formato="letra-grande"
+                      aria-pressed="false"
+                    >
+                      Letra grande
+                    </button>
+                    <button
+                      class="pildora-formato"
+                      type="button"
+                      data-formato="ilustrado"
+                      aria-pressed="false"
+                    >
+                      Ilustrado
+                    </button>
                   </div>
                 </fieldset>
               </div>
               <div class="acciones-filtros">
-                <button class="boton-limpiar" title="Quitar todos los filtros" type="button">Limpiar filtros</button>
-                <button class="boton-ver-resultados" type="button">Ver resultados</button>
+                <button
+                  class="boton-limpiar"
+                  title="Quitar todos los filtros"
+                  type="button"
+                >
+                  Limpiar filtros
+                </button>
+                <button class="boton-ver-resultados" type="button">
+                  Ver resultados
+                </button>
               </div>
             </div>
           </div>
 
           <nav class="navegacion-categorias" aria-label="Categorías">
             <ul class="lista-categorias">
-              <li><button class="item-categoria activo" type="button" data-categoria="todos" aria-pressed="true"><span>Todos</span><span class="contador-categoria"></span></button></li>
-              <li><button class="item-categoria" type="button" data-categoria="novela" aria-pressed="false"><span>Novela</span><span class="contador-categoria"></span></button></li>
-              <li><button class="item-categoria" type="button" data-categoria="psicoanalisis" aria-pressed="false"><span>Psicoanálisis</span><span class="contador-categoria"></span></button></li>
-              <li><button class="item-categoria" type="button" data-categoria="clasicos" aria-pressed="false"><span>Clásicos</span><span class="contador-categoria"></span></button></li>
-              <li><button class="item-categoria" type="button" data-categoria="infantil" aria-pressed="false"><span>Infantil y juvenil</span><span class="contador-categoria"></span></button></li>
-              <li><button class="item-categoria" type="button" data-categoria="ciencia" aria-pressed="false"><span>Ciencia y huertos</span><span class="contador-categoria"></span></button></li>
-              <li><button class="item-categoria" type="button" data-categoria="poesia" aria-pressed="false"><span>Poesía y teatro</span><span class="contador-categoria"></span></button></li>
-              <li><button class="item-categoria" type="button" data-categoria="historia" aria-pressed="false"><span>Historia</span><span class="contador-categoria"></span></button></li>
+              <li>
+                <button
+                  class="item-categoria activo"
+                  type="button"
+                  data-categoria="todos"
+                  aria-pressed="true"
+                >
+                  <span>Todos</span><span class="contador-categoria"></span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="item-categoria"
+                  type="button"
+                  data-categoria="novela"
+                  aria-pressed="false"
+                >
+                  <span>Novela</span><span class="contador-categoria"></span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="item-categoria"
+                  type="button"
+                  data-categoria="psicoanalisis"
+                  aria-pressed="false"
+                >
+                  <span>Psicoanálisis</span
+                  ><span class="contador-categoria"></span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="item-categoria"
+                  type="button"
+                  data-categoria="clasicos"
+                  aria-pressed="false"
+                >
+                  <span>Clásicos</span><span class="contador-categoria"></span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="item-categoria"
+                  type="button"
+                  data-categoria="infantil"
+                  aria-pressed="false"
+                >
+                  <span>Infantil y juvenil</span
+                  ><span class="contador-categoria"></span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="item-categoria"
+                  type="button"
+                  data-categoria="ciencia"
+                  aria-pressed="false"
+                >
+                  <span>Ciencia y huertos</span
+                  ><span class="contador-categoria"></span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="item-categoria"
+                  type="button"
+                  data-categoria="poesia"
+                  aria-pressed="false"
+                >
+                  <span>Poesía y teatro</span
+                  ><span class="contador-categoria"></span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="item-categoria"
+                  type="button"
+                  data-categoria="historia"
+                  aria-pressed="false"
+                >
+                  <span>Historia</span><span class="contador-categoria"></span>
+                </button>
+              </li>
             </ul>
           </nav>
 
@@ -199,7 +390,9 @@
               <p class="insignia-conteo" aria-live="polite"></p>
               <div class="ajustes-vista">
                 <div class="selector-orden">
-                  <label class="etiqueta-orden" for="ordenCatalogo">Ordenar por</label>
+                  <label class="etiqueta-orden" for="ordenCatalogo"
+                    >Ordenar por</label
+                  >
                   <select class="menu-orden" id="ordenCatalogo">
                     <option value="populares" selected>Más leídos</option>
                     <option value="recientes">Recién llegados</option>
@@ -208,52 +401,96 @@
                   </select>
                 </div>
                 <div class="conmutador-vistas">
-                  <button class="boton-vista activo" title="Vista en cuadrícula" aria-label="Vista en cuadrícula" aria-pressed="true" type="button">
-                    <span aria-hidden="true" class="material-symbols-outlined">grid_view</span>
+                  <button
+                    class="boton-vista activo"
+                    title="Vista en cuadrícula"
+                    aria-label="Vista en cuadrícula"
+                    aria-pressed="true"
+                    type="button"
+                  >
+                    <span aria-hidden="true" class="material-symbols-outlined"
+                      >grid_view</span
+                    >
                   </button>
-                  <button class="boton-vista" title="Vista en lista" aria-label="Vista en lista" aria-pressed="false" type="button">
-                    <span aria-hidden="true" class="material-symbols-outlined">format_list_bulleted</span>
+                  <button
+                    class="boton-vista"
+                    title="Vista en lista"
+                    aria-label="Vista en lista"
+                    aria-pressed="false"
+                    type="button"
+                  >
+                    <span aria-hidden="true" class="material-symbols-outlined"
+                      >format_list_bulleted</span
+                    >
                   </button>
                 </div>
               </div>
             </div>
 
-              <p class="estado-vacio-catalogo" id="estadoVacioCatalogo" hidden>
-                No encontramos libros con estos filtros. Quita alguno o pulsa «Limpiar» para ver toda la colección.
-              </p>
+            <p class="estado-vacio-catalogo" id="estadoVacioCatalogo" hidden>
+              No encontramos libros con estos filtros. Quita alguno o pulsa
+              «Limpiar» para ver toda la colección.
+            </p>
 
-              <div class="rejilla-libros">
-                <!-- Las tarjetas se generan desde datos/libros.js (ver biblioteca.js) -->
-              </div>
+            <div class="rejilla-libros">
+              <!-- Las tarjetas se generan desde datos/libros.js (ver biblioteca.js) -->
+            </div>
 
-              <!-- CRECIMIENTO COLABORATIVO ... -->
-              <div class="banner-comunitario">
-                <div class="contenido-banner">
-                  <div class="icono-banner">
-                    <img alt="" src="img/libroAnimadoPlantitas.png" width="1024" height="1024" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="texto-banner">
-                    <h3 class="titulo-banner">¿No encuentras el libro que buscas?</h3>
-                    <p class="descripcion-banner">
-                      Sugiere un título para que lo consideremos en las próximas compras, o dona los libros que ya leíste para que otros vecinos los disfruten.
-                    </p>
-                  </div>
+            <!-- CRECIMIENTO COLABORATIVO ... -->
+            <div class="banner-comunitario">
+              <div class="contenido-banner">
+                <div class="icono-banner">
+                  <img
+                    alt=""
+                    src="img/libroAnimadoPlantitas.png"
+                    width="1024"
+                    height="1024"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-                <div class="botones-banner">
-                  <a class="boton-banner-primario" href="contacto.html">Sugerir un título</a>
-                  <button class="boton-banner-secundario" id="botonDonar" type="button">Donar libros</button>
+                <div class="texto-banner">
+                  <h3 class="titulo-banner">
+                    ¿No encuentras el libro que buscas?
+                  </h3>
+                  <p class="descripcion-banner">
+                    Sugiere un título para que lo consideremos en las próximas
+                    compras, o dona los libros que ya leíste para que otros
+                    vecinos los disfruten.
+                  </p>
                 </div>
               </div>
+              <div class="botones-banner">
+                <a class="boton-banner-primario" href="contacto.html"
+                  >Sugerir un título</a
+                >
+                <button
+                  class="boton-banner-secundario"
+                  id="botonDonar"
+                  type="button"
+                >
+                  Donar libros
+                </button>
+              </div>
+            </div>
 
-              <nav aria-label="Páginas del catálogo" class="paginacion-catalogo" id="paginacionCatalogo" hidden>
-                <p class="texto-paginacion"></p>
-                <div class="botones-paginacion"></div>
-              </nav>
-            </section>
+            <nav
+              aria-label="Páginas del catálogo"
+              class="paginacion-catalogo"
+              id="paginacionCatalogo"
+              hidden
+            >
+              <p class="texto-paginacion"></p>
+              <div class="botones-paginacion"></div>
+            </nav>
+          </section>
         </div>
 
         <!-- Invitación a sacar el carnet (se oculta si ya hay sesión) -->
-        <section class="seccion-normas sin-relleno-superior" data-solo-visitantes>
+        <section
+          class="seccion-normas sin-relleno-superior"
+          data-solo-visitantes
+        >
           <div class="contenedor-normas">
             <div class="tarjeta-llamado-accion">
               <div class="texto-llamado">
@@ -262,11 +499,14 @@
                     ¿Aún no tienes tu carnet vecinal?
                   </h2>
                   <p class="subtitulo-llamado">
-                    Es gratis. Con él reservas libros y pides ejemplares para leer en sala desde esta página.
+                    Es gratis. Con él reservas libros y pides ejemplares para
+                    leer en sala desde esta página.
                   </p>
                 </div>
               </div>
-              <a class="boton-llamado" href="login.html#crear-cuenta">Sacar mi carnet gratis</a>
+              <a class="boton-llamado" href="login.html#crear-cuenta"
+                >Sacar mi carnet gratis</a
+              >
             </div>
           </div>
         </section>
@@ -295,7 +535,9 @@
             <ul class="lista-horarios">
               <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
               <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
-              <li><strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs</li>
+              <li>
+                <strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs
+              </li>
               <li class="estado-salas">
                 <span class="punto-estado"></span>
                 <span>Salas de lectura abiertas</span>
@@ -307,34 +549,52 @@
             <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
             <nav aria-label="Enlaces rápidos">
               <ul class="enlaces-pie">
-              <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="index.html" data-path="inicio">Inicio</a>
-              </li>
-              <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="libros.html" data-path="libros">Libros</a>
-              </li>
-              <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="servicios.html" data-path="servicios">Servicios</a>
-              </li>
-              <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
-              </li>
-              <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="contacto.html" data-path="contacto">Contacto</a>
-              </li>
-              <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="login.html#crear-cuenta" data-path="crear-cuenta">Crear cuenta</a>
-              </li>
-              <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
-                <a href="login.html" data-path="login">Iniciar sesión</a>
-              </li>
+                <li>
+                  <span aria-hidden="true" class="material-symbols-outlined"
+                    >chevron_right</span
+                  >
+                  <a href="index.html" data-path="inicio">Inicio</a>
+                </li>
+                <li>
+                  <span aria-hidden="true" class="material-symbols-outlined"
+                    >chevron_right</span
+                  >
+                  <a href="libros.html" data-path="libros">Libros</a>
+                </li>
+                <li>
+                  <span aria-hidden="true" class="material-symbols-outlined"
+                    >chevron_right</span
+                  >
+                  <a href="servicios.html" data-path="servicios">Servicios</a>
+                </li>
+                <li>
+                  <span aria-hidden="true" class="material-symbols-outlined"
+                    >chevron_right</span
+                  >
+                  <a href="servicios.html#actividades" data-path="actividades"
+                    >Clubes de lectura</a
+                  >
+                </li>
+                <li>
+                  <span aria-hidden="true" class="material-symbols-outlined"
+                    >chevron_right</span
+                  >
+                  <a href="contacto.html" data-path="contacto">Contacto</a>
+                </li>
+                <li>
+                  <span aria-hidden="true" class="material-symbols-outlined"
+                    >chevron_right</span
+                  >
+                  <a href="login.html#crear-cuenta" data-path="crear-cuenta"
+                    >Crear cuenta</a
+                  >
+                </li>
+                <li>
+                  <span aria-hidden="true" class="material-symbols-outlined"
+                    >chevron_right</span
+                  >
+                  <a href="login.html" data-path="login">Iniciar sesión</a>
+                </li>
               </ul>
             </nav>
           </div>
@@ -369,14 +629,27 @@
     </footer>
 
     <!-- INTERACCIÓN DEL CATÁLOGO (BÚSQUEDA FLUIDA Y CONMUTADOR DE VISTAS) -->
-    <dialog class="dialogo-libro" id="dialogoLibro" aria-labelledby="dialogoTitulo">
+    <dialog
+      class="dialogo-libro"
+      id="dialogoLibro"
+      aria-labelledby="dialogoTitulo"
+    >
       <form method="dialog">
         <button class="dialogo-cerrar" aria-label="Cerrar detalles del libro">
-          <span aria-hidden="true" class="material-symbols-outlined">close</span>
+          <span aria-hidden="true" class="material-symbols-outlined"
+            >close</span
+          >
         </button>
       </form>
       <div class="dialogo-cuerpo">
-        <img class="dialogo-portada" id="dialogoPortada" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="400" height="600" />
+        <img
+          class="dialogo-portada"
+          id="dialogoPortada"
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          alt=""
+          width="400"
+          height="600"
+        />
         <div class="dialogo-texto">
           <p class="dialogo-genero" id="dialogoGenero"></p>
           <h2 class="dialogo-titulo" id="dialogoTitulo"></h2>
@@ -384,61 +657,120 @@
           <p class="dialogo-lectores" id="dialogoLectores"></p>
           <p class="dialogo-descripcion" id="dialogoDescripcion"></p>
           <p class="dialogo-disponibilidad" id="dialogoDisponibilidad"></p>
-          <button class="boton-heroe-primario" id="dialogoAccion" type="button"></button>
+          <button
+            class="boton-heroe-primario"
+            id="dialogoAccion"
+            type="button"
+          ></button>
         </div>
       </div>
     </dialog>
 
-    <dialog class="dialogo-libro dialogo-donar" id="dialogoDonar" aria-labelledby="donarTitulo">
+    <dialog
+      class="dialogo-libro dialogo-donar"
+      id="dialogoDonar"
+      aria-labelledby="donarTitulo"
+    >
       <form method="dialog">
         <button class="dialogo-cerrar" aria-label="Cerrar ventana de donación">
-          <span aria-hidden="true" class="material-symbols-outlined">close</span>
+          <span aria-hidden="true" class="material-symbols-outlined"
+            >close</span
+          >
         </button>
       </form>
       <div class="donar-cuerpo">
         <h2 class="dialogo-titulo" id="donarTitulo">Donar un libro</h2>
 
         <div class="donar-aviso" id="donarSinSesion" hidden>
-          <p class="dialogo-descripcion">Para donar un libro necesitas una cuenta. Así el equipo sabe quién lo dona y puede avisarte la respuesta.</p>
+          <p class="dialogo-descripcion">
+            Para donar un libro necesitas una cuenta. Así el equipo sabe quién
+            lo dona y puede avisarte la respuesta.
+          </p>
           <div class="fila-acciones-admin">
             <a class="boton-heroe-primario" href="login.html">Iniciar sesión</a>
-            <a class="boton-heroe-secundario" href="login.html#crear-cuenta">Crear cuenta</a>
+            <a class="boton-heroe-secundario" href="login.html#crear-cuenta"
+              >Crear cuenta</a
+            >
           </div>
         </div>
 
         <div class="donar-aviso" id="donarAdmin" hidden>
-          <p class="dialogo-descripcion">Como administrador no necesitas donar: agrega los libros directamente y revisa las donaciones recibidas desde el panel.</p>
+          <p class="dialogo-descripcion">
+            Como administrador no necesitas donar: agrega los libros
+            directamente y revisa las donaciones recibidas desde el panel.
+          </p>
           <a class="boton-heroe-primario" href="admin.html">Ir al panel</a>
         </div>
 
         <form class="formulario-libro" id="formularioDonar" novalidate hidden>
-          <p class="dialogo-descripcion">El equipo revisará tu solicitud. Verás aquí si fue aceptada o rechazada.</p>
+          <p class="dialogo-descripcion">
+            El equipo revisará tu solicitud. Verás aquí si fue aceptada o
+            rechazada.
+          </p>
           <div class="grupo-campo">
-            <label class="etiqueta-campo" for="donarCampoTitulo">Título <span class="campo-obligatorio">*</span></label>
-            <input class="input-contacto campo-sin-icono" id="donarCampoTitulo" type="text" maxlength="120" autocomplete="off" required />
+            <label class="etiqueta-campo" for="donarCampoTitulo"
+              >Título <span class="campo-obligatorio">*</span></label
+            >
+            <input
+              class="input-contacto campo-sin-icono"
+              id="donarCampoTitulo"
+              type="text"
+              maxlength="120"
+              autocomplete="off"
+              required
+            />
           </div>
           <div class="grupo-campo">
-            <label class="etiqueta-campo" for="donarCampoAutor">Autor o autora <span class="campo-obligatorio">*</span></label>
-            <input class="input-contacto campo-sin-icono" id="donarCampoAutor" type="text" maxlength="80" autocomplete="off" required />
+            <label class="etiqueta-campo" for="donarCampoAutor"
+              >Autor o autora <span class="campo-obligatorio">*</span></label
+            >
+            <input
+              class="input-contacto campo-sin-icono"
+              id="donarCampoAutor"
+              type="text"
+              maxlength="80"
+              autocomplete="off"
+              required
+            />
           </div>
           <div class="grupo-campo">
-            <label class="etiqueta-campo" for="donarCampoEstado">Estado del libro <span class="campo-obligatorio">*</span></label>
-            <select class="select-contacto campo-sin-icono" id="donarCampoEstado" required></select>
+            <label class="etiqueta-campo" for="donarCampoEstado"
+              >Estado del libro <span class="campo-obligatorio">*</span></label
+            >
+            <select
+              class="select-contacto campo-sin-icono"
+              id="donarCampoEstado"
+              required
+            ></select>
           </div>
           <div class="grupo-campo">
-            <label class="etiqueta-campo" for="donarCampoComentario">Comentario (opcional)</label>
-            <textarea class="textarea-contacto campo-sin-icono" id="donarCampoComentario" maxlength="300" rows="3"></textarea>
+            <label class="etiqueta-campo" for="donarCampoComentario"
+              >Comentario (opcional)</label
+            >
+            <textarea
+              class="textarea-contacto campo-sin-icono"
+              id="donarCampoComentario"
+              maxlength="300"
+              rows="3"
+            ></textarea>
           </div>
           <p class="mensaje-formulario" id="donarError" role="alert" hidden></p>
           <button class="boton-heroe-primario" type="submit">
-            <span aria-hidden="true" class="material-symbols-outlined">volunteer_activism</span>
+            <span aria-hidden="true" class="material-symbols-outlined"
+              >volunteer_activism</span
+            >
             <span>Enviar donación</span>
           </button>
         </form>
 
         <p class="aviso-admin" id="donarGracias" role="status" hidden></p>
 
-        <section class="donar-mias" id="donarMias" aria-labelledby="donarMiasTitulo" hidden>
+        <section
+          class="donar-mias"
+          id="donarMias"
+          aria-labelledby="donarMiasTitulo"
+          hidden
+        >
           <h3 class="subtitulo-admin" id="donarMiasTitulo">Tus donaciones</h3>
           <ul class="lista-donaciones" id="listaMisDonaciones"></ul>
         </section>
@@ -450,26 +782,41 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const inputBusqueda = document.getElementById("busquedaCatalogoInput");
-        const tarjetasLibro = Array.from(document.querySelectorAll(".rejilla-libros .tarjeta-libro"));
+        const tarjetasLibro = Array.from(
+          document.querySelectorAll(".rejilla-libros .tarjeta-libro"),
+        );
         const contadorConteo = document.querySelector(".insignia-conteo");
         const botonesEtiquetas = document.querySelectorAll(".boton-etiqueta");
         const itemsCategoria = document.querySelectorAll(".item-categoria");
         const btnLimpiar = document.querySelector(".boton-limpiar");
         const rejillaLibros = document.querySelector(".rejilla-libros");
-        const botonesVista = document.querySelectorAll(".conmutador-vistas .boton-vista");
+        const botonesVista = document.querySelectorAll(
+          ".conmutador-vistas .boton-vista",
+        );
         let categoriaActiva = "todos";
         let paginaActual = 1;
         const TAMANO_PAGINA = 12; // libros por página (cambia este número para ajustar la paginación)
         const selectOrden = document.getElementById("ordenCatalogo");
-        const casillasDisponibilidad = Array.from(document.querySelectorAll("input[data-disponibilidad]"));
-        const pildorasFormato = Array.from(document.querySelectorAll(".pildora-formato[data-formato]"));
+        const casillasDisponibilidad = Array.from(
+          document.querySelectorAll("input[data-disponibilidad]"),
+        );
+        const pildorasFormato = Array.from(
+          document.querySelectorAll(".pildora-formato[data-formato]"),
+        );
         const estadoVacio = document.getElementById("estadoVacioCatalogo");
         const navPaginacion = document.getElementById("paginacionCatalogo");
-        const textoPaginacion = navPaginacion?.querySelector(".texto-paginacion");
-        const contenedorPaginas = navPaginacion?.querySelector(".botones-paginacion");
+        const textoPaginacion =
+          navPaginacion?.querySelector(".texto-paginacion");
+        const contenedorPaginas = navPaginacion?.querySelector(
+          ".botones-paginacion",
+        );
         const barraControles = document.querySelector(".barra-controles");
         const comparador = new Intl.Collator("es", { sensitivity: "base" });
-        const sinTildes = (texto) => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        const sinTildes = (texto) =>
+          texto
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase();
 
         // Datos de cada libro, leídos una sola vez de su tarjeta (los pone biblioteca.js)
         const datos = new Map(
@@ -479,26 +826,40 @@
               lectores: Number(tarjeta.dataset.lectores) || 0,
               nota: Number(tarjeta.dataset.nota) || 0,
               estado: tarjeta.dataset.estado || "",
-              titulo: tarjeta.querySelector(".titulo-libro")?.textContent.trim() || "",
-              autor: tarjeta.querySelector(".autor-libro")?.textContent.trim() || "",
+              titulo:
+                tarjeta.querySelector(".titulo-libro")?.textContent.trim() ||
+                "",
+              autor:
+                tarjeta.querySelector(".autor-libro")?.textContent.trim() || "",
             },
-          ])
+          ]),
         );
 
         // Cuántos libros hay en cada categoría (se cuentan los libros reales); una categoría vacía no se muestra
         itemsCategoria.forEach((item) => {
           const id = item.dataset.categoria;
-          const n = id === "todos" ? tarjetasLibro.length : tarjetasLibro.filter((t) => (t.dataset.categorias || "").split(" ").includes(id)).length;
+          const n =
+            id === "todos"
+              ? tarjetasLibro.length
+              : tarjetasLibro.filter((t) =>
+                  (t.dataset.categorias || "").split(" ").includes(id),
+                ).length;
           item.querySelector(".contador-categoria").textContent = String(n);
           if (n === 0) item.closest("li").hidden = true;
         });
 
         const criteriosOrden = {
-          populares: (a, b) => datos.get(b).lectores - datos.get(a).lectores || datos.get(b).nota - datos.get(a).nota,
+          populares: (a, b) =>
+            datos.get(b).lectores - datos.get(a).lectores ||
+            datos.get(b).nota - datos.get(a).nota,
           recientes: (a, b) =>
-            (datos.get(b).estado === "novedad") - (datos.get(a).estado === "novedad") || criteriosOrden.populares(a, b),
-          titulo: (a, b) => comparador.compare(datos.get(a).titulo, datos.get(b).titulo),
-          autor: (a, b) => comparador.compare(datos.get(a).autor, datos.get(b).autor),
+            (datos.get(b).estado === "novedad") -
+              (datos.get(a).estado === "novedad") ||
+            criteriosOrden.populares(a, b),
+          titulo: (a, b) =>
+            comparador.compare(datos.get(a).titulo, datos.get(b).titulo),
+          autor: (a, b) =>
+            comparador.compare(datos.get(a).autor, datos.get(b).autor),
         };
 
         // Marca una categoría como activa (clase visual + estado para lectores de pantalla)
@@ -515,41 +876,73 @@
         // Sin nada marcado en un grupo, ese grupo no filtra.
         function tarjetaCoincide(tarjeta) {
           const termino = sinTildes(inputBusqueda?.value || "").trim();
-          const coincideTexto = !termino || sinTildes(tarjeta.dataset.busqueda || "").includes(termino);
+          const terminos = termino ? termino.split(/\s+/).filter(Boolean) : [];
+          const textoBusqueda = sinTildes(tarjeta.dataset.busqueda || "");
+          const coincideTexto =
+            !terminos.length ||
+            terminos.every((t) => textoBusqueda.includes(t));
 
           const categorias = (tarjeta.dataset.categorias || "").split(" ");
-          const coincideCategoria = categoriaActiva === "todos" || categorias.includes(categoriaActiva);
+          const coincideCategoria =
+            categoriaActiva === "todos" || categorias.includes(categoriaActiva);
 
-          const estados = casillasDisponibilidad.filter((c) => c.checked).map((c) => c.dataset.disponibilidad);
-          const coincideDisponibilidad = !estados.length || estados.includes(datos.get(tarjeta).estado);
+          const estados = casillasDisponibilidad
+            .filter((c) => c.checked)
+            .map((c) => c.dataset.disponibilidad);
+          const coincideDisponibilidad =
+            !estados.length || estados.includes(datos.get(tarjeta).estado);
 
           const formatosPedidos = pildorasFormato
             .filter((p) => p.getAttribute("aria-pressed") === "true")
             .map((p) => p.dataset.formato);
           const formatosLibro = (tarjeta.dataset.formatos || "").split(" ");
-          const coincideFormato = !formatosPedidos.length || formatosPedidos.some((f) => formatosLibro.includes(f));
+          const coincideFormato =
+            !formatosPedidos.length ||
+            formatosPedidos.some((f) => formatosLibro.includes(f));
 
-          return coincideTexto && coincideCategoria && coincideDisponibilidad && coincideFormato;
+          return (
+            coincideTexto &&
+            coincideCategoria &&
+            coincideDisponibilidad &&
+            coincideFormato
+          );
         }
 
         // Números de página a mostrar: todos si son pocos; si no, primera, última y las vecinas de la actual
         function numerosPagina(total) {
           if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
-          const lista = [...new Set([1, total, paginaActual - 1, paginaActual, paginaActual + 1])]
+          const lista = [
+            ...new Set([
+              1,
+              total,
+              paginaActual - 1,
+              paginaActual,
+              paginaActual + 1,
+            ]),
+          ]
             .filter((n) => n >= 1 && n <= total)
             .sort((a, b) => a - b);
           const salida = [];
           lista.forEach((n, i) => {
-            if (i && n - lista[i - 1] > 1) salida.push("…");
+            if (i && n - lista[i - 1] > 1) salida.push("...");
             salida.push(n);
           });
           return salida;
         }
 
-        function crearBotonPagina({ etiqueta, destino, icono, actual = false, desactivado = false }) {
+        function crearBotonPagina({
+          etiqueta,
+          destino,
+          icono,
+          actual = false,
+          desactivado = false,
+        }) {
           const boton = document.createElement("button");
           boton.type = "button";
-          boton.className = "boton-pagina" + (actual ? " pagina-actual" : "") + (desactivado ? " inactivo" : "");
+          boton.className =
+            "boton-pagina" +
+            (actual ? " pagina-actual" : "") +
+            (desactivado ? " inactivo" : "");
           boton.dataset.pagina = destino;
           boton.setAttribute("aria-label", etiqueta);
           if (actual) boton.setAttribute("aria-current", "page");
@@ -574,28 +967,50 @@
             textoPaginacion.textContent = `Página ${paginaActual} de ${totalPaginas} (${totalLibros} obras)`;
           }
           const elementos = [
-            crearBotonPagina({ etiqueta: "Página anterior", destino: "anterior", icono: "chevron_left", desactivado: paginaActual === 1 }),
+            crearBotonPagina({
+              etiqueta: "Página anterior",
+              destino: "anterior",
+              icono: "chevron_left",
+              desactivado: paginaActual === 1,
+            }),
             ...numerosPagina(totalPaginas).map((n) => {
-              if (n === "…") {
+              if (n === "...") {
                 const separador = document.createElement("span");
                 separador.className = "separador-pagina";
                 separador.setAttribute("aria-hidden", "true");
-                separador.textContent = "…";
+                separador.textContent = "...";
                 return separador;
               }
-              return crearBotonPagina({ etiqueta: `Ir a la página ${n}`, destino: String(n), actual: n === paginaActual });
+              return crearBotonPagina({
+                etiqueta: `Ir a la página ${n}`,
+                destino: String(n),
+                actual: n === paginaActual,
+              });
             }),
-            crearBotonPagina({ etiqueta: "Página siguiente", destino: "siguiente", icono: "chevron_right", desactivado: paginaActual === totalPaginas }),
+            crearBotonPagina({
+              etiqueta: "Página siguiente",
+              destino: "siguiente",
+              icono: "chevron_right",
+              desactivado: paginaActual === totalPaginas,
+            }),
           ];
           contenedorPaginas.replaceChildren(...elementos);
         }
 
         // Filtrar → ordenar → paginar, y actualizar contador, mensaje de "sin resultados" y paginación
         function actualizarCatalogo() {
-          const criterio = criteriosOrden[selectOrden?.value] || criteriosOrden.populares;
-          const coinciden = tarjetasLibro.filter(tarjetaCoincide).sort(criterio);
-          const restantes = tarjetasLibro.filter((tarjeta) => !coinciden.includes(tarjeta));
-          const totalPaginas = Math.max(1, Math.ceil(coinciden.length / TAMANO_PAGINA));
+          const criterio =
+            criteriosOrden[selectOrden?.value] || criteriosOrden.populares;
+          const coinciden = tarjetasLibro
+            .filter(tarjetaCoincide)
+            .sort(criterio);
+          const restantes = tarjetasLibro.filter(
+            (tarjeta) => !coinciden.includes(tarjeta),
+          );
+          const totalPaginas = Math.max(
+            1,
+            Math.ceil(coinciden.length / TAMANO_PAGINA),
+          );
           paginaActual = Math.min(Math.max(paginaActual, 1), totalPaginas);
           const inicio = (paginaActual - 1) * TAMANO_PAGINA;
           const enPagina = coinciden.slice(inicio, inicio + TAMANO_PAGINA);
@@ -607,9 +1022,16 @@
 
           if (contadorConteo) {
             const n = coinciden.length;
-            const rango = enPagina.length > 1 ? `${inicio + 1}–${inicio + enPagina.length}` : `${inicio + 1}`;
+            const rango =
+              enPagina.length > 1
+                ? `${inicio + 1}–${inicio + enPagina.length}`
+                : `${inicio + 1}`;
             contadorConteo.textContent =
-              n === 0 ? "Sin resultados" : totalPaginas > 1 ? `${rango} de ${n} títulos` : `${n} ${n === 1 ? "título" : "títulos"}`;
+              n === 0
+                ? "Sin resultados"
+                : totalPaginas > 1
+                  ? `${rango} de ${n} títulos`
+                  : `${n} ${n === 1 ? "título" : "títulos"}`;
           }
           if (estadoVacio) estadoVacio.hidden = coinciden.length > 0;
           dibujarPaginacion(totalPaginas, coinciden.length);
@@ -624,11 +1046,16 @@
 
         inputBusqueda?.addEventListener("input", reiniciarYActualizar);
         selectOrden?.addEventListener("change", reiniciarYActualizar);
-        casillasDisponibilidad.forEach((casilla) => casilla.addEventListener("change", reiniciarYActualizar));
+        casillasDisponibilidad.forEach((casilla) =>
+          casilla.addEventListener("change", reiniciarYActualizar),
+        );
 
         pildorasFormato.forEach((pildora) => {
           pildora.addEventListener("click", () => {
-            pildora.setAttribute("aria-pressed", String(pildora.getAttribute("aria-pressed") !== "true"));
+            pildora.setAttribute(
+              "aria-pressed",
+              String(pildora.getAttribute("aria-pressed") !== "true"),
+            );
             reiniciarYActualizar();
           });
         });
@@ -655,8 +1082,12 @@
           btnLimpiar.addEventListener("click", () => {
             if (inputBusqueda) inputBusqueda.value = "";
             marcarCategoria("todos");
-            casillasDisponibilidad.forEach((casilla) => (casilla.checked = false));
-            pildorasFormato.forEach((pildora) => pildora.setAttribute("aria-pressed", "false"));
+            casillasDisponibilidad.forEach(
+              (casilla) => (casilla.checked = false),
+            );
+            pildorasFormato.forEach((pildora) =>
+              pildora.setAttribute("aria-pressed", "false"),
+            );
             reiniciarYActualizar();
           });
         }
@@ -665,18 +1096,34 @@
           const boton = evento.target.closest("button[data-pagina]");
           if (!boton || boton.disabled) return;
           const destino = boton.dataset.pagina;
-          paginaActual = destino === "anterior" ? paginaActual - 1 : destino === "siguiente" ? paginaActual + 1 : Number(destino);
+          paginaActual =
+            destino === "anterior"
+              ? paginaActual - 1
+              : destino === "siguiente"
+                ? paginaActual + 1
+                : Number(destino);
           actualizarCatalogo();
-          const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          barraControles?.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "start" });
-          contenedorPaginas.querySelector('[aria-current="page"]')?.focus({ preventScroll: true });
+          const sinMovimiento = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+          ).matches;
+          barraControles?.scrollIntoView({
+            behavior: sinMovimiento ? "auto" : "smooth",
+            block: "start",
+          });
+          contenedorPaginas
+            .querySelector('[aria-current="page"]')
+            ?.focus({ preventScroll: true });
         });
 
         // Panel de filtros plegable: solo por debajo de 1024px; en escritorio siempre está visible
         const columnaFiltros = document.querySelector(".columna-filtros");
         const botonFiltros = document.getElementById("botonFiltrosMovil");
-        const botonVerResultados = document.querySelector(".boton-ver-resultados");
-        const contadorFiltros = document.querySelector(".contador-filtros-activos");
+        const botonVerResultados = document.querySelector(
+          ".boton-ver-resultados",
+        );
+        const contadorFiltros = document.querySelector(
+          ".contador-filtros-activos",
+        );
 
         function abrirFiltros(abrir) {
           columnaFiltros?.classList.toggle("filtros-abiertos", abrir);
@@ -688,21 +1135,26 @@
           const activos =
             (categoriaActiva !== "todos" ? 1 : 0) +
             casillasDisponibilidad.filter((c) => c.checked).length +
-            pildorasFormato.filter((p) => p.getAttribute("aria-pressed") === "true").length;
+            pildorasFormato.filter(
+              (p) => p.getAttribute("aria-pressed") === "true",
+            ).length;
           if (contadorFiltros) {
             contadorFiltros.textContent = String(activos);
             contadorFiltros.hidden = activos === 0;
           }
           botonFiltros?.setAttribute(
             "aria-label",
-            activos ? `Filtros, ${activos} ${activos === 1 ? "activo" : "activos"}` : "Filtros"
+            activos
+              ? `Filtros, ${activos} ${activos === 1 ? "activo" : "activos"}`
+              : "Filtros",
           );
           if (botonVerResultados) {
             botonVerResultados.textContent =
-              totalResultados === 0 ? "Cerrar filtros" : `Ver ${totalResultados} ${totalResultados === 1 ? "título" : "títulos"}`;
+              totalResultados === 0
+                ? "Cerrar filtros"
+                : `Ver ${totalResultados} ${totalResultados === 1 ? "título" : "títulos"}`;
           }
         }
-
 
         botonFiltros?.addEventListener("click", () => {
           abrirFiltros(!columnaFiltros.classList.contains("filtros-abiertos"));
@@ -710,13 +1162,22 @@
 
         botonVerResultados?.addEventListener("click", () => {
           abrirFiltros(false);
-          const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          barraControles?.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "start" });
+          const sinMovimiento = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+          ).matches;
+          barraControles?.scrollIntoView({
+            behavior: sinMovimiento ? "auto" : "smooth",
+            block: "start",
+          });
           botonFiltros?.focus({ preventScroll: true });
         });
 
         document.addEventListener("keydown", (evento) => {
-          if (evento.key === "Escape" && columnaFiltros?.classList.contains("plegable") && columnaFiltros.classList.contains("filtros-abiertos")) {
+          if (
+            evento.key === "Escape" &&
+            columnaFiltros?.classList.contains("plegable") &&
+            columnaFiltros.classList.contains("filtros-abiertos")
+          ) {
             abrirFiltros(false);
             botonFiltros?.focus();
           }
@@ -730,17 +1191,32 @@
         // donde está ese libro, se desplaza hasta él y se marca unos segundos
         function irAlLibroDeLaDireccion() {
           const m = location.hash.match(/^#libro-(.+)$/);
-          const tarjeta = m && document.getElementById("libro-" + decodeURIComponent(m[1]));
+          const tarjeta =
+            m && document.getElementById("libro-" + decodeURIComponent(m[1]));
           if (!tarjeta) return;
           if (inputBusqueda) inputBusqueda.value = "";
           marcarCategoria("todos");
-          casillasDisponibilidad.forEach((casilla) => (casilla.checked = false));
-          pildorasFormato.forEach((pildora) => pildora.setAttribute("aria-pressed", "false"));
-          const criterio = criteriosOrden[selectOrden?.value] || criteriosOrden.populares;
-          paginaActual = Math.floor(tarjetasLibro.slice().sort(criterio).indexOf(tarjeta) / TAMANO_PAGINA) + 1;
+          casillasDisponibilidad.forEach(
+            (casilla) => (casilla.checked = false),
+          );
+          pildorasFormato.forEach((pildora) =>
+            pildora.setAttribute("aria-pressed", "false"),
+          );
+          const criterio =
+            criteriosOrden[selectOrden?.value] || criteriosOrden.populares;
+          paginaActual =
+            Math.floor(
+              tarjetasLibro.slice().sort(criterio).indexOf(tarjeta) /
+                TAMANO_PAGINA,
+            ) + 1;
           actualizarCatalogo();
-          const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          tarjeta.scrollIntoView({ behavior: sinMovimiento ? "auto" : "smooth", block: "center" });
+          const sinMovimiento = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+          ).matches;
+          tarjeta.scrollIntoView({
+            behavior: sinMovimiento ? "auto" : "smooth",
+            block: "center",
+          });
           tarjeta.classList.add("resaltado");
           setTimeout(() => tarjeta.classList.remove("resaltado"), 3500);
         }
@@ -750,22 +1226,35 @@
         // Al pasar el cursor (o enfocar con el teclado) el libro crece, los demás se desenfocan y en la parte baja de su
         // portada aparece una flechita: al pulsarla, un panel de cristal con la sinopsis sube dentro de la portada; al
         // volver a pulsarla, baja. Solo con ratón, en pantallas de al menos 700px y en la vista de cuadrícula.
-        const conRaton = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 700px)");
+        const conRaton = window.matchMedia(
+          "(hover: hover) and (pointer: fine) and (min-width: 700px)",
+        );
         let tarjetaActiva = null;
         let esperaActivar;
         let esperaSoltar;
 
         function mostrarSinopsis(tarjeta, abrir) {
           const flecha = tarjeta.querySelector(".boton-sinopsis");
-          const titulo = tarjeta.querySelector(".titulo-libro")?.textContent.trim() || "";
+          const titulo =
+            tarjeta.querySelector(".titulo-libro")?.textContent.trim() || "";
           tarjeta.classList.toggle("sinopsis-abierta", abrir);
           flecha.setAttribute("aria-expanded", String(abrir));
-          flecha.setAttribute("aria-label", (abrir ? "Cerrar la sinopsis de " : "Ver la sinopsis de ") + titulo);
-          flecha.querySelector(".material-symbols-outlined").textContent = abrir ? "keyboard_arrow_down" : "keyboard_arrow_up";
+          flecha.setAttribute(
+            "aria-label",
+            (abrir ? "Cerrar la sinopsis de " : "Ver la sinopsis de ") + titulo,
+          );
+          flecha.querySelector(".material-symbols-outlined").textContent = abrir
+            ? "keyboard_arrow_down"
+            : "keyboard_arrow_up";
         }
 
         function activarTarjeta(tarjeta) {
-          if (!conRaton.matches || rejillaLibros.classList.contains("vista-lista") || tarjeta === tarjetaActiva) return;
+          if (
+            !conRaton.matches ||
+            rejillaLibros.classList.contains("vista-lista") ||
+            tarjeta === tarjetaActiva
+          )
+            return;
           clearTimeout(esperaSoltar);
           clearTimeout(esperaActivar);
           esperaActivar = setTimeout(() => {
@@ -786,23 +1275,49 @@
           mostrarSinopsis(tarjeta, false);
           tarjetaActiva = null;
           // Los demás libros siguen desenfocados un instante: así no parpadean al pasar de un libro al siguiente
-          esperaSoltar = setTimeout(() => rejillaLibros.classList.remove("hay-activa"), 140);
+          esperaSoltar = setTimeout(
+            () => rejillaLibros.classList.remove("hay-activa"),
+            140,
+          );
         }
 
         tarjetasLibro.forEach((tarjeta) => {
-          tarjeta.addEventListener("pointerenter", (e) => e.pointerType === "mouse" && activarTarjeta(tarjeta));
-          tarjeta.addEventListener("pointerleave", () => soltarTarjeta(tarjeta));
-          tarjeta.addEventListener("focusin", (e) => e.target.matches(":focus-visible") && activarTarjeta(tarjeta));
-          tarjeta.addEventListener("focusout", (e) => !tarjeta.contains(e.relatedTarget) && soltarTarjeta(tarjeta));
-          tarjeta.querySelector(".boton-sinopsis").addEventListener("click", () => mostrarSinopsis(tarjeta, !tarjeta.classList.contains("sinopsis-abierta")));
+          tarjeta.addEventListener(
+            "pointerenter",
+            (e) => e.pointerType === "mouse" && activarTarjeta(tarjeta),
+          );
+          tarjeta.addEventListener("pointerleave", () =>
+            soltarTarjeta(tarjeta),
+          );
+          tarjeta.addEventListener(
+            "focusin",
+            (e) =>
+              e.target.matches(":focus-visible") && activarTarjeta(tarjeta),
+          );
+          tarjeta.addEventListener(
+            "focusout",
+            (e) => !tarjeta.contains(e.relatedTarget) && soltarTarjeta(tarjeta),
+          );
+          tarjeta
+            .querySelector(".boton-sinopsis")
+            .addEventListener("click", () =>
+              mostrarSinopsis(
+                tarjeta,
+                !tarjeta.classList.contains("sinopsis-abierta"),
+              ),
+            );
         });
         // Escape cierra primero la sinopsis y, si ya estaba cerrada, deja de resaltar el libro
         document.addEventListener("keydown", (e) => {
           if (e.key !== "Escape" || !tarjetaActiva) return;
-          if (tarjetaActiva.classList.contains("sinopsis-abierta")) mostrarSinopsis(tarjetaActiva, false);
+          if (tarjetaActiva.classList.contains("sinopsis-abierta"))
+            mostrarSinopsis(tarjetaActiva, false);
           else soltarTarjeta(tarjetaActiva);
         });
-        conRaton.addEventListener("change", () => tarjetaActiva && soltarTarjeta(tarjetaActiva));
+        conRaton.addEventListener(
+          "change",
+          () => tarjetaActiva && soltarTarjeta(tarjetaActiva),
+        );
 
         // Conmutador de Vistas (Cuadrícula / Lista)
         botonesVista.forEach((btn, index) => {
@@ -820,51 +1335,16 @@
             }
           });
         });
-
-        // Menú Hamburguesa Móvil
-        const btnMenu = document.getElementById("btnMenuMovil");
-        const menuMovil = document.getElementById("menuMovilDesplegable");
-        if (btnMenu && menuMovil) {
-          btnMenu.addEventListener("click", () => {
-            const abierto = menuMovil.classList.toggle("abierto");
-            btnMenu.classList.toggle("activo", abierto);
-            btnMenu.setAttribute("aria-expanded", abierto);
-            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-            menuMovil.setAttribute("aria-hidden", !abierto);
-          });
-
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
-              menuMovil.classList.remove("abierto");
-              btnMenu.classList.remove("activo");
-              btnMenu.setAttribute("aria-expanded", "false");
-              btnMenu.setAttribute("aria-label", "Abrir menú");
-              menuMovil.setAttribute("aria-hidden", "true");
-            }
-          });
-        }
       });
-      // Reservar / Pedir en sala: se activan y se desactivan; se guardan solo en este navegador (el sitio es una maqueta). Corre al cargar la página, cuando ya existen las tarjetas generadas desde datos/libros.js.
-      // El botón de información abre una ventana con los detalles de la tarjeta.
+      // Reservar / Pedir en sala: sincronizado con el módulo central Biblioteca
       document.addEventListener("DOMContentLoaded", () => {
-        const CLAVE = "bibliotecaPedidos";
-        let guardados = [];
-        try {
-          guardados = JSON.parse(localStorage.getItem(CLAVE) || "[]");
-        } catch (error) {
-          guardados = [];
-        }
-        const guardar = () => {
-          try {
-            localStorage.setItem(CLAVE, JSON.stringify(guardados));
-          } catch (error) {
-            /* sin almacenamiento: el estado dura mientras la página está abierta */
-          }
-        };
+        const sesion = window.Auth ? Auth.sesion() : null;
+        const misPedidos = window.Biblioteca ? Biblioteca.misPedidos() : [];
 
         const aviso = document.getElementById("avisoCatalogo");
         let temporizador;
         const avisar = (texto) => {
+          if (!aviso) return;
           aviso.textContent = texto;
           aviso.classList.add("visible");
           clearTimeout(temporizador);
@@ -877,68 +1357,121 @@
         let botonAbierto = null;
 
         function sincronizarDialogo() {
-          if (!botonAbierto) return;
-          botonDialogo.textContent = botonAbierto.querySelector("span:last-child").textContent;
-          botonDialogo.setAttribute("aria-pressed", botonAbierto.getAttribute("aria-pressed"));
+          if (!botonAbierto || !botonDialogo) return;
+          const etiqueta = botonAbierto.querySelector("span:last-child");
+          botonDialogo.textContent = etiqueta ? etiqueta.textContent : "Reservar";
+          botonDialogo.setAttribute(
+            "aria-pressed",
+            botonAbierto.getAttribute("aria-pressed") || "false",
+          );
         }
 
-        document.querySelectorAll(".rejilla-libros .tarjeta-libro").forEach((tarjeta) => {
-          const titulo = tarjeta.querySelector(".titulo-libro").textContent.trim();
-          const boton = tarjeta.querySelector(".boton-accion-primario, .boton-accion-secundario");
-          const info = tarjeta.querySelector(".titulo-boton");
-          const sala = boton.classList.contains("boton-accion-secundario");
-          const etiqueta = boton.querySelector("span:last-child");
-          const icono = boton.querySelector(".material-symbols-outlined");
-          const original = { texto: etiqueta.textContent.trim(), icono: icono.textContent.trim() };
-          const clave = titulo + (sala ? "|sala" : "|reserva");
-
-          const pintar = (activo) => {
-            boton.setAttribute("aria-pressed", String(activo));
-            etiqueta.textContent = activo ? (sala ? "Pedido para sala" : "Reservado") : original.texto;
-            icono.textContent = activo ? "check_circle" : original.icono;
-          };
-          pintar(guardados.includes(clave));
-
-          boton.addEventListener("click", () => {
-            const activo = boton.getAttribute("aria-pressed") !== "true";
-            guardados = activo ? [...guardados, clave] : guardados.filter((c) => c !== clave);
-            guardar();
-            pintar(activo);
-            avisar(
-              activo
-                ? sala
-                  ? "Pediste «" + titulo + "» para leer en sala. Pulsa de nuevo el botón si quieres cancelarlo."
-                  : "Reservaste «" + titulo + "». Pulsa de nuevo el botón si quieres cancelar la reserva."
-                : sala
-                  ? "Cancelaste el pedido de «" + titulo + "»."
-                  : "Cancelaste la reserva de «" + titulo + "»."
+        document
+          .querySelectorAll(".rejilla-libros .tarjeta-libro")
+          .forEach((tarjeta) => {
+            const id = tarjeta.dataset.id;
+            const titulo = tarjeta
+              .querySelector(".titulo-libro")
+              ?.textContent.trim() || "";
+            const boton = tarjeta.querySelector(
+              ".boton-accion-primario, .boton-accion-secundario",
             );
-            if (botonAbierto === boton) sincronizarDialogo();
+            const info = tarjeta.querySelector(".titulo-boton");
+            if (!boton || !info) return;
+
+            const sala = boton.classList.contains("boton-accion-secundario");
+            const tipo = sala ? "sala" : "reserva";
+            const etiqueta = boton.querySelector("span:last-child");
+            const icono = boton.querySelector(".material-symbols-outlined");
+            const original = {
+              texto: etiqueta ? etiqueta.textContent.trim() : (sala ? "Pedir en sala" : "Reservar"),
+              icono: icono ? icono.textContent.trim() : (sala ? "chair" : "bookmark_add"),
+            };
+
+            const estaPedido = misPedidos.some((p) => p.idLibro === id && p.tipo === tipo);
+
+            const pintar = (activo) => {
+              boton.setAttribute("aria-pressed", String(activo));
+              if (etiqueta) {
+                etiqueta.textContent = activo
+                  ? sala
+                    ? "Pedido para sala"
+                    : "Reservado"
+                  : original.texto;
+              }
+              if (icono) {
+                icono.textContent = activo ? "check_circle" : original.icono;
+              }
+            };
+
+            pintar(estaPedido);
+
+            boton.addEventListener("click", () => {
+              if (!sesion) {
+                avisar("Inicia sesión para reservar o pedir libros en sala.");
+                return;
+              }
+
+              const res = Biblioteca.pedir({ idLibro: id, tipo });
+              if (!res.ok) {
+                avisar(res.error);
+                return;
+              }
+
+              const activo = res.accion === "creado";
+              pintar(activo);
+
+              avisar(
+                activo
+                  ? sala
+                    ? 'Pediste "' + titulo + '" para leer en sala. Pulsa de nuevo para cancelar.'
+                    : 'Reservaste "' + titulo + '". Pulsa de nuevo si deseas cancelar la reserva.'
+                  : sala
+                    ? 'Cancelaste el pedido de lectura en sala de "' + titulo + '".'
+                    : 'Cancelaste la reserva de "' + titulo + '".',
+              );
+
+              if (botonAbierto === boton) sincronizarDialogo();
+            });
+
+            info.addEventListener("click", () => {
+              botonAbierto = boton;
+              const libro = Biblioteca.libros().find((l) => l.id === id);
+              if (!libro) return;
+              campo("dialogoPortada").src = libro.portada;
+              campo("dialogoPortada").alt =
+                "Portada de " + libro.titulo + " de " + libro.autor;
+              campo("dialogoGenero").textContent = libro.genero;
+              campo("dialogoTitulo").textContent = libro.titulo;
+              campo("dialogoAutor").textContent = libro.autor;
+              campo("dialogoLectores").textContent =
+                libro.lectores > 0 && libro.nota > 0
+                  ? "Valoración " +
+                    libro.nota.toFixed(1) +
+                    " (" +
+                    libro.lectores +
+                    " lectores)"
+                  : "Aún sin valoraciones";
+              campo("dialogoDescripcion").textContent = libro.descripcion;
+              campo("dialogoDisponibilidad").textContent =
+                Biblioteca.textoEstado(libro);
+              sincronizarDialogo();
+              dialogo.showModal();
+            });
           });
 
-          info.addEventListener("click", () => {
-            botonAbierto = boton;
-            const libro = Biblioteca.libros().find((l) => l.id === tarjeta.dataset.id);
-            if (!libro) return;
-            campo("dialogoPortada").src = libro.portada;
-            campo("dialogoPortada").alt = "Portada de " + libro.titulo + " de " + libro.autor;
-            campo("dialogoGenero").textContent = libro.genero;
-            campo("dialogoTitulo").textContent = libro.titulo;
-            campo("dialogoAutor").textContent = libro.autor;
-            campo("dialogoLectores").textContent =
-              libro.lectores > 0 && libro.nota > 0 ? "Valoración " + libro.nota.toFixed(1) + " (" + libro.lectores + " lectores)" : "Aún sin valoraciones";
-            campo("dialogoDescripcion").textContent = libro.descripcion;
-            campo("dialogoDisponibilidad").textContent = Biblioteca.textoEstado(libro);
-            sincronizarDialogo();
-            dialogo.showModal();
-          });
-        });
+        if (botonDialogo) {
+          botonDialogo.addEventListener(
+            "click",
+            () => botonAbierto && botonAbierto.click(),
+          );
+        }
 
-        botonDialogo.addEventListener("click", () => botonAbierto && botonAbierto.click());
-        // Clic en el fondo oscuro: cierra
-        dialogo.addEventListener("click", (e) => {
-          if (e.target === dialogo) dialogo.close();
-        });
+        if (dialogo) {
+          dialogo.addEventListener("click", (e) => {
+            if (e.target === dialogo) dialogo.close();
+          });
+        }
       });
       // Donar un libro: el usuario con sesión envía la solicitud y el administrador la revisa en admin.html
       document.addEventListener("DOMContentLoaded", () => {
@@ -966,11 +1499,24 @@
             ...lista.map((d) => {
               const item = nodo("li", "donacion-item");
               const texto = nodo("div", "donacion-texto");
-              texto.append(nodo("strong", "", d.titulo), nodo("span", "", d.autor));
-              if (d.situacion === "rechazada" && d.motivo) texto.append(nodo("span", "donacion-motivo", "Motivo: " + d.motivo));
-              item.append(texto, nodo("span", "situacion situacion-" + d.situacion, Biblioteca.situaciones[d.situacion]));
+              texto.append(
+                nodo("strong", "", d.titulo),
+                nodo("span", "", d.autor),
+              );
+              if (d.situacion === "rechazada" && d.motivo)
+                texto.append(
+                  nodo("span", "donacion-motivo", "Motivo: " + d.motivo),
+                );
+              item.append(
+                texto,
+                nodo(
+                  "span",
+                  "situacion situacion-" + d.situacion,
+                  Biblioteca.situaciones[d.situacion],
+                ),
+              );
               return item;
-            })
+            }),
           );
         }
 
@@ -989,12 +1535,21 @@
           if (e.target === dialogo) dialogo.close();
         });
 
-        const campos = { titulo: "donarCampoTitulo", autor: "donarCampoAutor", estado: "donarCampoEstado", comentario: "donarCampoComentario" };
+        const campos = {
+          titulo: "donarCampoTitulo",
+          autor: "donarCampoAutor",
+          estado: "donarCampoEstado",
+          comentario: "donarCampoComentario",
+        };
 
-        formulario.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
+        formulario.addEventListener("input", (e) =>
+          e.target.removeAttribute("aria-invalid"),
+        );
         formulario.addEventListener("submit", (e) => {
           e.preventDefault();
-          formulario.querySelectorAll("[aria-invalid]").forEach((c) => c.removeAttribute("aria-invalid"));
+          formulario
+            .querySelectorAll("[aria-invalid]")
+            .forEach((c) => c.removeAttribute("aria-invalid"));
           const r = Biblioteca.donar({
             titulo: $("donarCampoTitulo").value,
             autor: $("donarCampoAutor").value,
@@ -1013,7 +1568,10 @@
           }
           $("donarError").hidden = true;
           formulario.reset();
-          $("donarGracias").textContent = "Recibimos la donación de «" + r.donacion.titulo + "». El equipo la revisará y verás su estado aquí abajo.";
+          $("donarGracias").textContent =
+            "Recibimos la donación de «" +
+            r.donacion.titulo +
+            "». El equipo la revisará y verás su estado aquí abajo.";
           $("donarGracias").hidden = false;
           pintarMias();
           $("donarGracias").scrollIntoView({ block: "nearest" });
