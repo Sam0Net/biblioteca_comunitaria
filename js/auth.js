@@ -269,13 +269,15 @@
     }
 
     const esPaginaAdmin = window.location.pathname.endsWith("admin.html") || window.location.href.includes("admin.html");
+    const enSubcarpeta = window.location.pathname.includes("/pages/") || window.location.pathname.includes("\\pages\\");
+    const rutaAdmin = enSubcarpeta ? "admin.html" : "pages/admin.html";
 
     if (sesion.rol === "admin") {
       const nav = document.querySelector(".navegacion-principal");
       if (nav && !nav.querySelector('a[href="admin.html"]')) {
         const enlace = document.createElement("a");
         enlace.className = "enlace-nav" + (esPaginaAdmin ? " activo" : "");
-        enlace.href = "admin.html";
+        enlace.href = rutaAdmin;
         enlace.textContent = "Panel admin";
         if (esPaginaAdmin) enlace.setAttribute("aria-current", "page");
         nav.appendChild(enlace);
@@ -284,7 +286,7 @@
       if (navMovil && !navMovil.querySelector('a[href="admin.html"]')) {
         const enlace = document.createElement("a");
         enlace.className = "enlace-nav-movil" + (esPaginaAdmin ? " activo" : "");
-        enlace.href = "admin.html";
+        enlace.href = rutaAdmin;
         if (esPaginaAdmin) enlace.setAttribute("aria-current", "page");
         enlace.innerHTML =
           '<span aria-hidden="true" class="material-symbols-outlined">admin_panel_settings</span><span>Panel admin</span>' +

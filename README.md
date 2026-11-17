@@ -27,27 +27,34 @@ y entra en `http://localhost:8000`.
 | Archivo | Qué es |
 |---|---|
 | `index.html` | Inicio: bienvenida, libros destacados, agenda, video y audio, normas de convivencia |
-| `libros.html` | Catálogo en estantería de portadas: búsqueda, categorías, filtros, orden, paginación y vista en cuadrícula o lista. Las tarjetas salen de `datos/libros.js` |
-| `servicios.html` | Servicios, salas y jardín, cronograma semanal (tabla) |
-| `contacto.html` | Formulario de contacto, canales de atención, tabla de plazos y preguntas frecuentes |
-| `login.html` | Iniciar sesión y crear cuenta (se abre en "Crear cuenta" con `login.html#crear-cuenta`). Las cuentas son reales dentro del navegador, ver "Cuentas y roles" |
-| `admin.html` | Panel del administrador: cuentas registradas y gestión de libros (agregar, editar, quitar). Solo entra el rol admin |
-| `registro.html` | Solicitud completa de carnet vecinal (con DNI y dirección). Hoy ninguna página enlaza a ella |
-| `actividades.html`, `catalogo.html` | Páginas de paso que redirigen a `servicios.html` y `libros.html` |
+| `pages/libros.html` | Catálogo en estantería de portadas: búsqueda, categorías, filtros, orden, paginación y vista en cuadrícula o lista. Las tarjetas salen de `datos/libros.js` |
+| `pages/servicios.html` | Servicios, salas y jardín, cronograma semanal (tabla) |
+| `pages/contacto.html` | Formulario de contacto, canales de atención, tabla de plazos y preguntas frecuentes |
+| `pages/login.html` | Iniciar sesión y crear cuenta (se abre en "Crear cuenta" con `login.html#crear-cuenta`). Las cuentas son reales dentro del navegador, ver "Cuentas y roles" |
+| `pages/admin.html` | Panel del administrador: cuentas registradas y gestión de libros (agregar, editar, quitar). Solo entra el rol admin |
+| `pages/registro.html` | Solicitud completa de carnet vecinal (con DNI y dirección) |
+| `pages/actividades.html`, `pages/catalogo.html` | Páginas de paso que redirigen a `servicios.html` y `libros.html` |
 
 ## Estructura
 
 ```
 biblioteca_comunitaria/
-├── index.html, libros.html, servicios.html, contacto.html,
-│   login.html, admin.html, registro.html, actividades.html, catalogo.html
-├── auth.js           Cuentas, sesión y roles (se guardan en el navegador)
-├── biblioteca.js     Libros: dibuja el catálogo y guarda los cambios del admin
-├── datos/libros.js   Los libros del catálogo (el archivo que se publica)
-├── styles.css        Hoja de estilos única (índice de 34 secciones al inicio)
-├── DESIGN.md         Sistema de diseño: colores, tipografía, formas y componentes
-├── img/              Imágenes del sitio
-└── multimedia/       Video del recorrido y audio de música relajante
+├── index.html            Página de inicio principal
+├── css/
+│   └── styles.css        Hoja de estilos central (índice de 37 secciones)
+├── js/
+│   ├── auth.js           Cuentas, sesión y roles (se guardan en el navegador)
+│   └── biblioteca.js     Libros: dibuja el catálogo y guarda los cambios del admin
+├── pages/
+│   ├── libros.html, servicios.html, contacto.html,
+│   └── login.html, admin.html, registro.html
+├── datos/
+│   └── libros.js         Los libros del catálogo (el archivo que se publica)
+├── img/                  Imágenes del sitio y portadas
+├── multimedia/           Video del recorrido y audio ambiental
+├── README.md             Guía rápida del repositorio
+├── DESIGN.md             Sistema de diseño: colores, tipografía, formas y componentes
+└── DOCUMENTACION.md      Informe formal del proyecto web
 ```
 
 ## Decisiones de diseño y de código

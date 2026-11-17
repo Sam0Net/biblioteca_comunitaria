@@ -485,7 +485,7 @@
 
       const contenedor = el("div", "contenedor-portada");
       const imagen = el("img", "imagen-portada");
-      imagen.src = libro.portada;
+      imagen.src = resolverRuta(libro.portada);
       imagen.alt = "Portada de " + libro.titulo + " de " + libro.autor;
       imagen.width = 400;
       imagen.height = 600;
@@ -509,7 +509,7 @@
       // Sinopsis cristalina
       const panel = el("div", "panel-sinopsis");
       panel.id = "sinopsis-" + libro.id;
-      panel.style.setProperty("--portada", 'url("' + encodeURI(libro.portada).replace(/"/g, "%22") + '")');
+      panel.style.setProperty("--portada", 'url("' + encodeURI(resolverRuta(libro.portada)).replace(/"/g, "%22") + '")');
       const fondo = el("div", "panel-fondo");
       fondo.setAttribute("aria-hidden", "true");
       const panelEstado = el("p", "panel-estado");
@@ -538,6 +538,7 @@
     },
   };
 
+  Biblioteca.resolverRuta = resolverRuta;
   window.Biblioteca = Biblioteca;
 
   // ---- Carrusel de los libros más leídos (index.html) ----
@@ -588,7 +589,7 @@
       enlace.href = "libros.html#libro-" + libro.id;
       const portada = el("span", "carrusel-portada");
       const imagen = el("img");
-      imagen.src = libro.portada;
+      imagen.src = resolverRuta(libro.portada);
       imagen.alt = "";
       imagen.width = 400;
       imagen.height = 600;
