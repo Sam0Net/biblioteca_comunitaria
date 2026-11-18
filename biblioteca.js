@@ -439,12 +439,16 @@
     });
     escena.append(pista);
 
+    // Las flechas van a los lados de la escena, siempre visibles; la pausa queda en una fila debajo
     const anterior = boton("chevron_left", "Libro anterior");
     const siguiente = boton("chevron_right", "Libro siguiente");
+    anterior.classList.add("boton-carrusel-lado", "lado-izq");
+    siguiente.classList.add("boton-carrusel-lado", "lado-der");
+    escena.append(anterior, siguiente);
     const pausa = boton("pause", "Pausar el carrusel");
     pausa.classList.add("boton-pausa");
     const controles = el("div", "carrusel-controles");
-    controles.append(anterior, pausa, siguiente);
+    controles.append(pausa);
     const estado = el("p", "visualmente-oculto");
     estado.setAttribute("aria-live", "polite");
     // Si el equipo pide menos animaciones, no se mueve solo y se explica por qué (en vez de parecer roto)
@@ -535,6 +539,36 @@
         revisar();
       }
     });
+
+    // Rueda del ratón o gesto de dos dedos sobre el carrusel: cada gesto pasa un libro. Se suma lo que gira la rueda y,
+    // al pasar el umbral, se mueve uno; mientras dura el movimiento (y la inercia del trackpad) se ignora el resto,
+    // así un gesto largo avanza libro a libro con calma en vez de saltar varios de golpe.
+    const UMBRAL_RUEDA = 40;
+    const PAUSA_RUEDA = 520;
+    let acumuladoRueda = 0;
+    let bloqueoRueda = 0;
+    let ultimaRueda = 0;
+    escena.addEventListener(
+      "wheel",
+      (e) => {
+        if (e.ctrlKey) return; // el zoom con la rueda no se toca
+        // Predomina el eje horizontal si el gesto es lateral; si no, la rueda normal (vertical) también mueve el carrusel
+        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        if (!delta) return;
+        e.preventDefault();
+        const ahora = performance.now();
+        if (ahora - ultimaRueda > 220) acumuladoRueda = 0; // gesto nuevo
+        ultimaRueda = ahora;
+        if (ahora < bloqueoRueda) return;
+        acumuladoRueda += e.deltaMode === 1 ? delta * 32 : delta;
+        if (Math.abs(acumuladoRueda) >= UMBRAL_RUEDA) {
+          mover(acumuladoRueda > 0 ? 1 : -1, true);
+          acumuladoRueda = 0;
+          bloqueoRueda = ahora + PAUSA_RUEDA;
+        }
+      },
+      { passive: false }
+    );
 
     // En el celular: deslizar cambia de libro; tocar detiene el giro unos segundos
     let inicioX = null;

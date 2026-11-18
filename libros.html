@@ -67,7 +67,7 @@
           >
             <img
               alt=""
-              src="img/tresLibrosPlantitas.png"
+              src="img/tresLibrosPlantitas.png" width="1024" height="1024"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
@@ -87,12 +87,10 @@
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil activo" href="libros.html" aria-current="page">
-            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="servicios.html">
-            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -282,20 +280,16 @@
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
-              Un espacio botánico y acogedor para cultivar el conocimiento, la
-              imaginación y la convivencia vecinal en armonía.
+              Biblioteca de barrio con préstamo gratuito, salas de lectura y un jardín para leer al aire libre.
             </p>
-            <div class="insignia-semillero">
-              <span>Semillero de saberes comunitarios</span>
             </div>
-          </div>
 
           <div>
             <h3 class="titulo-columna-pie">Horarios de Atención</h3>
             <ul class="lista-horarios">
-              <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
-              <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
-              <li><strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs</li>
+              <li><strong>Lunes a Viernes:</strong> 8:30&nbsp;hrs - 19:30&nbsp;hrs</li>
+              <li><strong>Sábados de Lectura:</strong> 9:00&nbsp;hrs - 16:00&nbsp;hrs</li>
+              <li><strong>Domingos Culturales:</strong> 10:00&nbsp;hrs - 14:00&nbsp;hrs</li>
               <li class="estado-salas">
                 <span class="punto-estado"></span>
                 <span>Salas de lectura abiertas</span>
@@ -788,6 +782,55 @@
           // Los demás libros siguen desenfocados un instante: así no parpadean al pasar de un libro al siguiente
           esperaSoltar = setTimeout(() => rejillaLibros.classList.remove("hay-activa"), 140);
         }
+
+        // Suelta el libro y quita el desenfoque de los demás, sin esperar a que el cursor "salga" de una tarjeta
+        function soltarTodo() {
+          clearTimeout(esperaActivar);
+          if (tarjetaActiva) soltarTarjeta(tarjetaActiva);
+          else {
+            clearTimeout(esperaSoltar);
+            rejillaLibros.classList.remove("hay-activa");
+          }
+        }
+
+        // Red de seguridad: el navegador no avisa (pointerleave) cuando la página se mueve bajo un cursor quieto
+        // (rueda o barra de desplazamiento), cuando cambia la página del catálogo o cuando el cursor sale de la ventana.
+        // Por eso, tras cada uno de esos casos se mira qué hay realmente bajo el cursor.
+        let puntoCursor = null;
+        let esperaRevisar = 0;
+        function revisarBajoElCursor() {
+          esperaRevisar = 0;
+          if (!puntoCursor || !conRaton.matches) return soltarTodo();
+          const bajo = document.elementFromPoint(puntoCursor.x, puntoCursor.y);
+          const tarjeta = bajo && bajo.closest(".tarjeta-libro");
+          if (tarjeta && rejillaLibros.contains(tarjeta)) return activarTarjeta(tarjeta);
+          const conTeclado = tarjetaActiva && tarjetaActiva.contains(document.activeElement) && document.activeElement.matches(":focus-visible");
+          if (!conTeclado) soltarTodo();
+        }
+        function pedirRevision() {
+          if (!esperaRevisar) esperaRevisar = requestAnimationFrame(revisarBajoElCursor);
+        }
+        document.addEventListener(
+          "pointermove",
+          (e) => {
+            if (e.pointerType !== "mouse") return;
+            puntoCursor = { x: e.clientX, y: e.clientY };
+            pedirRevision();
+          },
+          { passive: true }
+        );
+        window.addEventListener("scroll", pedirRevision, { passive: true });
+        window.addEventListener("resize", pedirRevision, { passive: true });
+        new MutationObserver(pedirRevision).observe(rejillaLibros, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden", "class", "style"] });
+        document.documentElement.addEventListener("pointerleave", () => {
+          puntoCursor = null;
+          soltarTodo();
+        });
+        window.addEventListener("blur", () => {
+          puntoCursor = null;
+          soltarTodo();
+        });
+        document.addEventListener("visibilitychange", () => document.hidden && soltarTodo());
 
         tarjetasLibro.forEach((tarjeta) => {
           tarjeta.addEventListener("pointerenter", (e) => e.pointerType === "mouse" && activarTarjeta(tarjeta));

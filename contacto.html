@@ -65,7 +65,7 @@
           >
             <img
               alt=""
-              src="img/tresLibrosPlantitas.png"
+              src="img/tresLibrosPlantitas.png" width="1024" height="1024"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
@@ -85,12 +85,10 @@
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="libros.html">
-            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="servicios.html">
-            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -114,8 +112,8 @@
           <div class="tarjeta-heroe">
             <div class="silueta-botanica">
               <img
-                alt="Silueta botánica decorativa"
-                src="img/tresLibrosPlantitas.png"
+                alt=""
+                src="img/tresLibrosPlantitas.png" width="1024" height="1024" loading="lazy" decoding="async"
               />
             </div>
 
@@ -268,7 +266,7 @@
                         class="textarea-contacto"
                         id="mensajeContacto"
                         name="mensaje"
-                        placeholder="Escribe aquí tu consulta con el mayor detalle posible..."
+                        placeholder="Escribe aquí tu consulta con el mayor detalle posible…"
                         required
                         rows="4"
                       ></textarea>
@@ -369,7 +367,7 @@
             </div>
 
             <div class="contenedor-tabla-responsiva">
-              <table class="tabla-botanica">
+              <table class="tabla-botanica tabla-apilable">
                 <caption>Canales de atención y plazos</caption>
                 <thead>
                   <tr>
@@ -378,46 +376,41 @@
                     <th scope="col">Horario</th>
                     <th scope="col">Tiempo de respuesta</th>
                     <th scope="col">Responsable</th>
-                    <th scope="col">Estado</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td><strong>Formulario Web</strong></td>
-                    <td>Consultas generales y carnet digital</td>
-                    <td>24 horas (recepción continua)</td>
-                    <td>Menos de 24 horas</td>
-                    <td>Mesa de Coordinación</td>
-                    <td><span class="insignia-tabla-estado tabla-disponible"><span class="punto-pulso"></span> Operativo</span></td>
+                    <td data-etiqueta="Tipo de solicitud">Consultas generales y carnet digital</td>
+                    <td data-etiqueta="Horario">24 horas (recepción continua)</td>
+                    <td data-etiqueta="Respuesta">Menos de 24 horas</td>
+                    <td data-etiqueta="Responsable">Mesa de Coordinación</td>
                   </tr>
                   <tr>
                     <td><strong>WhatsApp Vecinal</strong></td>
-                    <td>Renovaciones de préstamos y disponibilidad</td>
-                    <td>Lunes a Sábado: 8:30 - 18:00</td>
-                    <td>10 a 30 minutos</td>
-                    <td>Orientación de Sala</td>
-                    <td><span class="insignia-tabla-estado tabla-disponible"><span class="punto-pulso"></span> Activo</span></td>
+                    <td data-etiqueta="Tipo de solicitud">Renovaciones de préstamos y disponibilidad</td>
+                    <td data-etiqueta="Horario">Lunes a Sábado: 8:30⁠–⁠18:00</td>
+                    <td data-etiqueta="Respuesta">10 a 30 minutos</td>
+                    <td data-etiqueta="Responsable">Orientación de Sala</td>
                   </tr>
                   <tr>
                     <td><strong>Módulo Presencial</strong></td>
-                    <td>Préstamo a domicilio y carnet físico</td>
-                    <td>Lunes a Viernes: 8:30 - 19:30</td>
-                    <td>Inmediato (en mostrador)</td>
-                    <td>Bibliotecario de Turno</td>
-                    <td><span class="insignia-tabla-estado tabla-sala">Presencial</span></td>
+                    <td data-etiqueta="Tipo de solicitud">Préstamo a domicilio y carnet físico</td>
+                    <td data-etiqueta="Horario">Lunes a Viernes: 8:30⁠–⁠19:30</td>
+                    <td data-etiqueta="Respuesta">Inmediato (en mostrador)</td>
+                    <td data-etiqueta="Responsable">Bibliotecario de Turno</td>
                   </tr>
                   <tr>
                     <td><strong>Correo Electrónico</strong></td>
-                    <td>Donaciones masivas y proyectos educativos</td>
-                    <td>Lunes a Viernes: 9:00 - 17:00</td>
-                    <td>24 a 48 horas</td>
-                    <td>Comité de Extensión</td>
-                    <td><span class="insignia-tabla-estado tabla-prestamo">En Revisión</span></td>
+                    <td data-etiqueta="Tipo de solicitud">Donaciones masivas y proyectos educativos</td>
+                    <td data-etiqueta="Horario">Lunes a Viernes: 9:00⁠–⁠17:00</td>
+                    <td data-etiqueta="Respuesta">24 a 48 horas</td>
+                    <td data-etiqueta="Responsable">Comité de Extensión</td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colspan="4"><strong>Canales abiertos:</strong> 4 modalidades de atención ciudadana</td>
+                    <td colspan="3"><strong>Canales abiertos:</strong> 4 modalidades de atención ciudadana</td>
                     <td colspan="2"><strong>Cobertura:</strong> 100% Gratuita para todo el vecindario</td>
                   </tr>
                 </tfoot>
@@ -439,40 +432,28 @@
 
             <div class="rejilla-faq">
               <div class="item-faq">
-                <h3 class="pregunta-faq">
-                  <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
-                  <span>¿Cómo solicito mi carnet digital de biblioteca?</span>
-                </h3>
+                <h3 class="pregunta-faq">¿Cómo solicito mi carnet digital de biblioteca?</h3>
                 <p class="respuesta-faq">
                   El carnet digital es <strong>100% gratuito</strong>. Puedes solicitarlo de forma presencial con tu documento de identidad o mediante el botón "Sacar mi carnet" de nuestro portal. Con él podrás llevarte hasta 3 libros a domicilio.
                 </p>
               </div>
 
               <div class="item-faq">
-                <h3 class="pregunta-faq">
-                  <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
-                  <span>¿Puedo donar libros que ya no utilice en casa?</span>
-                </h3>
+                <h3 class="pregunta-faq">¿Puedo donar libros que ya no utilice en casa?</h3>
                 <p class="respuesta-faq">
                   ¡Por supuesto! Recibimos literatura infantil, novelas, enciclopedias, textos escolares y divulgación científica en buen estado. Puedes traerlos a la sede en nuestro horario de atención o coordinar una entrega con este formulario.
                 </p>
               </div>
 
               <div class="item-faq">
-                <h3 class="pregunta-faq">
-                  <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
-                  <span>¿Tienen salas para reuniones o grupos de estudio?</span>
-                </h3>
+                <h3 class="pregunta-faq">¿Tienen salas para reuniones o grupos de estudio?</h3>
                 <p class="respuesta-faq">
                   Sí, disponemos de 2 salas de lectura silenciosa equipadas con luz natural y un área de jardín exterior para clubes de lectura, tareas grupales y talleres comunitarios. La reserva previa no tiene ningún costo.
                 </p>
               </div>
 
               <div class="item-faq">
-                <h3 class="pregunta-faq">
-                  <span aria-hidden="true" class="material-symbols-outlined">check_circle</span>
-                  <span>¿Cuál es el tiempo de préstamo y cómo se renueva?</span>
-                </h3>
+                <h3 class="pregunta-faq">¿Cuál es el tiempo de préstamo y cómo se renueva?</h3>
                 <p class="respuesta-faq">
                   El plazo estándar de préstamo es de 14 días calendario. Si necesitas más tiempo para terminar tu lectura, puedes renovarlo por 7 días adicionales enviándonos un mensaje por WhatsApp o comunicándote al mostrador.
                 </p>
@@ -492,20 +473,16 @@
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
-              Un espacio botánico y acogedor para cultivar el conocimiento, la
-              imaginación y la convivencia vecinal en armonía.
+              Biblioteca de barrio con préstamo gratuito, salas de lectura y un jardín para leer al aire libre.
             </p>
-            <div class="insignia-semillero">
-              <span>Semillero de saberes comunitarios</span>
             </div>
-          </div>
 
           <div>
             <h3 class="titulo-columna-pie">Horarios de Atención</h3>
             <ul class="lista-horarios">
-              <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
-              <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
-              <li><strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs</li>
+              <li><strong>Lunes a Viernes:</strong> 8:30&nbsp;hrs - 19:30&nbsp;hrs</li>
+              <li><strong>Sábados de Lectura:</strong> 9:00&nbsp;hrs - 16:00&nbsp;hrs</li>
+              <li><strong>Domingos Culturales:</strong> 10:00&nbsp;hrs - 14:00&nbsp;hrs</li>
               <li class="estado-salas">
                 <span class="punto-estado"></span>
                 <span>Salas de lectura abiertas</span>
@@ -589,7 +566,7 @@
         // Estado de carga temporal
         const textoOriginal = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">hourglass_top</span><span>Enviando mensaje...</span>';
+        btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">hourglass_top</span><span>Enviando mensaje…</span>';
 
         setTimeout(() => {
           btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">check</span><span>¡Enviado!</span>';

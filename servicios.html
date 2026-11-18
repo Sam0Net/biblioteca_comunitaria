@@ -65,7 +65,7 @@
           >
             <img
               alt=""
-              src="img/tresLibrosPlantitas.png"
+              src="img/tresLibrosPlantitas.png" width="1024" height="1024"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
@@ -85,12 +85,10 @@
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="libros.html">
-            <span aria-hidden="true" class="material-symbols-outlined">auto_stories</span>
             <span>Libros</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil activo" href="servicios.html" aria-current="page">
-            <span aria-hidden="true" class="material-symbols-outlined">spa</span>
             <span>Servicios</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -131,13 +129,13 @@
                   </li>
                   <li>
                     <span aria-hidden="true" class="material-symbols-outlined">check</span>
-                    <span>Separadores botánicos de regalo</span>
+                    <span>Separadores de regalo</span>
                   </li>
                 </ul>
               </div>
 
               <div class="tarjeta-servicio-inicio">
-                <h2 class="titulo-servicio-inicio">Salas y jardín botánico</h2>
+                <h2 class="titulo-servicio-inicio">Salas y jardín</h2>
                 <p class="descripcion-servicio-inicio">
                   Espacios de lectura silenciosa, mesas para estudio individual y un patio verde al aire libre con iluminación natural y wifi comunitario.
                 </p>
@@ -173,7 +171,7 @@
               <div class="tarjeta-servicio-inicio">
                 <h2 class="titulo-servicio-inicio">Rincón infantil y cuentacuentos</h2>
                 <p class="descripcion-servicio-inicio">
-                  Área dedicada a los más pequeños con cuentos ilustrados, cojines cómodos y sesiones de narración oral para cultivar la imaginación.
+                  Área dedicada a los más pequeños con cuentos ilustrados, cojines cómodos y sesiones de narración oral.
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
@@ -193,12 +191,9 @@
               <img
                 alt="Libro botánico animado con plantas"
                 class="imagen-ilustracion-servicios"
-                src="img/libroAnimadoPlantitas.png"
+                src="img/libroAnimadoPlantitas.png" width="1024" height="1024" loading="lazy" decoding="async"
               />
-              <blockquote class="cita-botanica-servicios">
-                "Un libro es una semilla que germina en el pensamiento y hace florecer a toda una comunidad."
-              </blockquote>
-              <cite class="autor-cita-servicios">— Proyecto "Leer nos une"</cite>
+              <p class="cita-botanica-servicios">Préstamo, salas y talleres son gratuitos. Solo necesitas tu carnet vecinal.</p>
               <a class="boton-heroe-primario" href="contacto.html">
                 <span aria-hidden="true" class="material-symbols-outlined">mail</span>
                 <span>Consultar por un servicio</span>
@@ -218,7 +213,7 @@
             </div>
 
             <div class="contenedor-tabla-responsiva">
-              <table class="tabla-botanica">
+              <table class="tabla-botanica tabla-apilable">
                 <caption>Horario semanal por espacio</caption>
                 <thead>
                   <tr>
@@ -227,54 +222,48 @@
                     <th scope="col">Horario</th>
                     <th scope="col">Actividad</th>
                     <th scope="col">Aforo</th>
-                    <th scope="col">Estado</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td><strong>Lunes a Viernes</strong></td>
-                    <td>Sala de Lectura Silenciosa</td>
-                    <td>08:30 - 19:30 hrs</td>
-                    <td>Estudio individual, lectura e investigación</td>
-                    <td>35 personas</td>
-                    <td><span class="insignia-tabla-estado tabla-disponible"><span class="punto-pulso"></span> Abierto</span></td>
+                    <td data-etiqueta="Espacio">Sala de Lectura Silenciosa</td>
+                    <td data-etiqueta="Horario">08:30⁠–⁠19:30&nbsp;hrs</td>
+                    <td data-etiqueta="Actividad">Estudio individual, lectura e investigación</td>
+                    <td data-etiqueta="Aforo">35 personas</td>
                   </tr>
                   <tr>
                     <td><strong>Lunes a Viernes</strong></td>
-                    <td>Jardín Botánico & Mesas de Trabajo</td>
-                    <td>09:00 - 18:30 hrs</td>
-                    <td>Lectura al aire libre, wifi y tertulias</td>
-                    <td>45 personas</td>
-                    <td><span class="insignia-tabla-estado tabla-disponible"><span class="punto-pulso"></span> Abierto</span></td>
+                    <td data-etiqueta="Espacio">Jardín Botánico & Mesas de Trabajo</td>
+                    <td data-etiqueta="Horario">09:00⁠–⁠18:30&nbsp;hrs</td>
+                    <td data-etiqueta="Actividad">Lectura al aire libre, wifi y tertulias</td>
+                    <td data-etiqueta="Aforo">45 personas</td>
                   </tr>
                   <tr>
                     <td><strong>Miércoles</strong></td>
-                    <td>Rincón Infantil</td>
-                    <td>16:00 - 17:30 hrs</td>
-                    <td>Taller infantil de cuentacuentos y títeres</td>
-                    <td>20 niños + tutores</td>
-                    <td><span class="insignia-tabla-estado tabla-sala">Taller Especial</span></td>
+                    <td data-etiqueta="Espacio">Rincón Infantil</td>
+                    <td data-etiqueta="Horario">16:00⁠–⁠17:30&nbsp;hrs</td>
+                    <td data-etiqueta="Actividad">Taller infantil de cuentacuentos y títeres</td>
+                    <td data-etiqueta="Aforo">20 niños + tutores</td>
                   </tr>
                   <tr>
                     <td><strong>Sábados</strong></td>
-                    <td>Sala Botánica Principal</td>
-                    <td>09:00 - 16:00 hrs</td>
-                    <td>Clubes de lectura y café literario</td>
-                    <td>30 personas</td>
-                    <td><span class="insignia-tabla-estado tabla-disponible"><span class="punto-pulso"></span> Club Activo</span></td>
+                    <td data-etiqueta="Espacio">Sala Botánica Principal</td>
+                    <td data-etiqueta="Horario">09:00⁠–⁠16:00&nbsp;hrs</td>
+                    <td data-etiqueta="Actividad">Clubes de lectura y café literario</td>
+                    <td data-etiqueta="Aforo">30 personas</td>
                   </tr>
                   <tr>
                     <td><strong>Domingos</strong></td>
-                    <td>Patio Exterior</td>
-                    <td>10:00 - 14:00 hrs</td>
-                    <td>Intercambio de libros y donaciones vecinales</td>
-                    <td>50 personas</td>
-                    <td><span class="insignia-tabla-estado tabla-prestamo">Dominical</span></td>
+                    <td data-etiqueta="Espacio">Patio Exterior</td>
+                    <td data-etiqueta="Horario">10:00⁠–⁠14:00&nbsp;hrs</td>
+                    <td data-etiqueta="Actividad">Intercambio de libros y donaciones vecinales</td>
+                    <td data-etiqueta="Aforo">50 personas</td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colspan="4"><strong>Capacidad total de la sede:</strong> 130 personas</td>
+                    <td colspan="3"><strong>Capacidad total de la sede:</strong> 130 personas</td>
                     <td colspan="2"><strong>Acceso:</strong> Libre y gratuito</td>
                   </tr>
                 </tfoot>
@@ -313,20 +302,16 @@
               <span class="nombre-marca-pie">Leer nos une</span>
             </div>
             <p class="descripcion-pie">
-              Un espacio botánico y acogedor para cultivar el conocimiento, la
-              imaginación y la convivencia vecinal en armonía.
+              Biblioteca de barrio con préstamo gratuito, salas de lectura y un jardín para leer al aire libre.
             </p>
-            <div class="insignia-semillero">
-              <span>Semillero de saberes comunitarios</span>
             </div>
-          </div>
 
           <div>
             <h3 class="titulo-columna-pie">Horarios de Atención</h3>
             <ul class="lista-horarios">
-              <li><strong>Lunes a Viernes:</strong> 8:30 hrs - 19:30 hrs</li>
-              <li><strong>Sábados de Lectura:</strong> 9:00 hrs - 16:00 hrs</li>
-              <li><strong>Domingos Culturales:</strong> 10:00 hrs - 14:00 hrs</li>
+              <li><strong>Lunes a Viernes:</strong> 8:30&nbsp;hrs - 19:30&nbsp;hrs</li>
+              <li><strong>Sábados de Lectura:</strong> 9:00&nbsp;hrs - 16:00&nbsp;hrs</li>
+              <li><strong>Domingos Culturales:</strong> 10:00&nbsp;hrs - 14:00&nbsp;hrs</li>
               <li class="estado-salas">
                 <span class="punto-estado"></span>
                 <span>Salas de lectura abiertas</span>
