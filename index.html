@@ -27,8 +27,11 @@
     />
     <link href="styles.css" rel="stylesheet" />
     <script src="auth.js" defer></script>
+    <script src="datos/agenda.js" defer></script>
+    <script src="agenda.js" defer></script>
     <script src="datos/libros.js" defer></script>
     <script src="biblioteca.js" defer></script>
+    <script src="sitio.js" defer></script>
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
@@ -84,7 +87,6 @@
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
         <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil activo" href="index.html" aria-current="page">
-            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -97,7 +99,6 @@
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -161,62 +162,8 @@
 
         <!-- LECTURAS FAVORITAS DEL BARRIO. LIBROS MÁS LEÍDOS DE LA COMUNIDAD -->
         <section class="seccion-destacados-inicio" id="libros-destacados">
-          <!-- Dibujos del título (hojas, flores y enredadera): se definen una vez y se reutilizan con <use> -->
-          <svg class="visualmente-oculto" width="0" height="0" aria-hidden="true" focusable="false">
-            <defs>
-              <g id="hoja">
-                <path d="M0 0C6-13 26-17 44 0C26 17 6 13 0 0Z" />
-                <path class="nervio" d="M3 0H38" />
-              </g>
-              <g id="flor">
-                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" />
-                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" transform="rotate(72)" />
-                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" transform="rotate(144)" />
-                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" transform="rotate(216)" />
-                <ellipse class="petalo" cx="0" cy="-9" rx="5" ry="8" transform="rotate(288)" />
-                <circle class="centro-flor" r="4" />
-              </g>
-              <symbol id="rama" viewBox="0 0 200 120">
-                <g class="mecer">
-                <path class="tallo" d="M196 100C160 100 126 88 98 66C78 50 56 36 22 30" />
-                <path class="tallo" d="M98 66C90 78 72 86 58 90" />
-                <g transform="translate(172 99) rotate(-122) scale(.9)"><g class="balanceo b1"><use href="#hoja" class="hoja-a" /></g></g>
-                <g transform="translate(150 95) rotate(118) scale(.8)"><g class="balanceo b2"><use href="#hoja" class="hoja-b" /></g></g>
-                <g transform="translate(128 87) rotate(-108)"><g class="balanceo b3"><use href="#hoja" class="hoja-c" /></g></g>
-                <g transform="translate(112 76) rotate(142) scale(.85)"><g class="balanceo b1"><use href="#hoja" class="hoja-a" /></g></g>
-                <g transform="translate(92 62) rotate(-134) scale(1.05)"><g class="balanceo b2"><use href="#hoja" class="hoja-d" /></g></g>
-                <g transform="translate(76 50) rotate(150) scale(.8)"><g class="balanceo b3"><use href="#hoja" class="hoja-b" /></g></g>
-                <g transform="translate(56 38) rotate(-152) scale(.95)"><g class="balanceo b1"><use href="#hoja" class="hoja-c" /></g></g>
-                <g transform="translate(24 30) rotate(-176) scale(1.1)"><g class="balanceo b2"><use href="#hoja" class="hoja-a" /></g></g>
-                <g transform="translate(58 90)"><g class="florecer"><use href="#flor" /></g></g>
-                <path class="chispa c1" d="M28 66L20 62" />
-                <path class="chispa c2" d="M24 78L15 78" />
-                <path class="chispa c3" d="M150 54L158 46" />
-                <path class="chispa c1" d="M164 70L174 68" />
-                </g>
-              </symbol>
-              <symbol id="enredadera" viewBox="0 0 600 40">
-                <g class="onda">
-                  <path class="tallo" d="M40 20C90 6 140 34 190 20S290 6 340 20 440 34 490 20 540 8 560 20" />
-                  <g transform="translate(120 27) rotate(40) scale(.5)"><g class="balanceo b1"><use href="#hoja" class="hoja-a" /></g></g>
-                  <g transform="translate(160 22) rotate(-150) scale(.45)"><g class="balanceo b2"><use href="#hoja" class="hoja-c" /></g></g>
-                  <g transform="translate(250 12) rotate(-40) scale(.5)"><g class="balanceo b3"><use href="#hoja" class="hoja-b" /></g></g>
-                  <g transform="translate(300 17) rotate(160) scale(.5)"><g class="balanceo b1"><use href="#hoja" class="hoja-d" /></g></g>
-                  <g transform="translate(400 27) rotate(40) scale(.5)"><g class="balanceo b2"><use href="#hoja" class="hoja-a" /></g></g>
-                  <g transform="translate(445 24) rotate(-150) scale(.45)"><g class="balanceo b3"><use href="#hoja" class="hoja-c" /></g></g>
-                  <g transform="translate(300 24)"><g class="florecer"><use href="#flor" transform="scale(.7)" /></g></g>
-                  <g transform="translate(40 20)"><g class="florecer"><use href="#flor" transform="scale(.6)" /></g></g>
-                  <g transform="translate(560 20)"><g class="florecer"><use href="#flor" transform="scale(.6)" /></g></g>
-                </g>
-              </symbol>
-            </defs>
-          </svg>
-
-          <div class="cabecera-seccion cabecera-seccion-centro encabezado-hojas">
-            <svg class="rama rama-izq" viewBox="0 0 200 120" aria-hidden="true" focusable="false"><use href="#rama" width="200" height="120" /></svg>
+          <div class="cabecera-seccion cabecera-seccion-centro">
             <h2 class="titulo-seccion-inicio titulo-destacados">Los libros más leídos del barrio</h2>
-            <svg class="rama rama-der" viewBox="0 0 200 120" aria-hidden="true" focusable="false"><use href="#rama" width="200" height="120" /></svg>
-            <svg class="enredadera" viewBox="0 0 600 40" aria-hidden="true" focusable="false"><use href="#enredadera" width="600" height="40" /></svg>
           </div>
 
           <!-- El carrusel se arma desde datos/libros.js (ver biblioteca.js): los 7 libros con más lectores -->
@@ -243,99 +190,9 @@
               </p>
             </div>
 
-            <div class="rejilla-agenda-inicio">
-              <!-- Evento 1 -->
-              <div class="tarjeta-evento-inicio">
-                <div class="cabecera-evento-inicio">
-                  <div class="chip-fecha-evento">
-                    <span class="chip-dia-evento">12</span>
-                    <span class="chip-mes-evento">Sep</span>
-                  </div>
-                  <span class="insignia-modalidad-evento">Presencial</span>
-                </div>
-                <h3 class="titulo-evento-inicio">
-                  Club de lectura: «Cien años de soledad»
-                </h3>
-                <p class="descripcion-evento-inicio">
-                  Conversación en grupo sobre los primeros capítulos de la novela de García Márquez. Hay café y té para acompañar la charla.
-                </p>
-                <div class="detalles-meta-evento">
-                  <span>
-                    <span aria-hidden="true" class="material-symbols-outlined">schedule</span>
-                    Sábado, 10:00 a 12:00
-                  </span>
-                  <span>
-                    <span aria-hidden="true" class="material-symbols-outlined">place</span>
-                    Sala de lectura botánica
-                  </span>
-                </div>
-                <a class="boton-inscribirse-evento" href="contacto.html">
-                  <span>Inscribirse gratis</span>
-                  <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
-                </a>
-              </div>
-
-              <!-- Evento 2 -->
-              <div class="tarjeta-evento-inicio">
-                <div class="cabecera-evento-inicio">
-                  <div class="chip-fecha-evento">
-                    <span class="chip-dia-evento">16</span>
-                    <span class="chip-mes-evento">Sep</span>
-                  </div>
-                  <span class="insignia-modalidad-evento">Familiar</span>
-                </div>
-                <h3 class="titulo-evento-inicio">
-                  Taller infantil: sembrando un cuento
-                </h3>
-                <p class="descripcion-evento-inicio">
-                  Sesión lúdica para niñas y niños de 5 a 11 años: lectura dramatizada de fábulas y creación de su propio libro plegable.
-                </p>
-                <div class="detalles-meta-evento">
-                  <span>
-                    <span aria-hidden="true" class="material-symbols-outlined">schedule</span>
-                    Miércoles, 16:00 a 17:30
-                  </span>
-                  <span>
-                    <span aria-hidden="true" class="material-symbols-outlined">place</span>
-                    Rincón infantil
-                  </span>
-                </div>
-                <a class="boton-inscribirse-evento" href="contacto.html">
-                  <span>Inscribirse gratis</span>
-                  <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
-                </a>
-              </div>
-
-              <!-- Evento 3 -->
-              <div class="tarjeta-evento-inicio">
-                <div class="cabecera-evento-inicio">
-                  <div class="chip-fecha-evento">
-                    <span class="chip-dia-evento">19</span>
-                    <span class="chip-mes-evento">Sep</span>
-                  </div>
-                  <span class="insignia-modalidad-evento">Comunidad</span>
-                </div>
-                <h3 class="titulo-evento-inicio">
-                  Jornada de donación e intercambio
-                </h3>
-                <p class="descripcion-evento-inicio">
-                  Trae los libros que ya leíste y llévate otros. Las donaciones amplían la colección de la biblioteca.
-                </p>
-                <div class="detalles-meta-evento">
-                  <span>
-                    <span aria-hidden="true" class="material-symbols-outlined">schedule</span>
-                    Sábado, 10:00 a 16:00
-                  </span>
-                  <span>
-                    <span aria-hidden="true" class="material-symbols-outlined">place</span>
-                    Patio exterior de la sede
-                  </span>
-                </div>
-                <a class="boton-inscribirse-evento" href="contacto.html">
-                  <span>Participar</span>
-                  <span aria-hidden="true" class="material-symbols-outlined">arrow_forward</span>
-                </a>
-              </div>
+            <!-- Las actividades salen del arreglo de datos/agenda.js (ver agenda.js) -->
+            <div class="rejilla-agenda-inicio" id="listaActividades">
+              <p class="agenda-vacia">Cargando las actividades del mes…</p>
             </div>
           </div>
         </section>
@@ -482,6 +339,45 @@
       </div>
     </main>
 
+    <!-- Ventana para inscribirse en una actividad (la abre agenda.js) -->
+    <dialog class="dialogo-inscripcion" id="dialogoInscripcion" aria-labelledby="inscripcionTitulo">
+      <div class="dialogo-inscripcion-cuerpo">
+        <button class="dialogo-cerrar" type="button" data-cerrar aria-label="Cerrar la ventana">
+          <span aria-hidden="true" class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="inscripcion-titulo" id="inscripcionTitulo">Inscripción</h2>
+        <p class="inscripcion-detalle" id="inscripcionDetalle"></p>
+
+        <form class="formulario-inscripcion" id="formInscripcion" novalidate>
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="inscripcionNombre">Tu nombre</label>
+            <input class="input-contacto sin-icono" id="inscripcionNombre" name="nombre" type="text" autocomplete="name" maxlength="80" required />
+            <p class="error-campo" id="errorNombre" hidden></p>
+          </div>
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="inscripcionCorreo">Tu correo</label>
+            <input class="input-contacto sin-icono" id="inscripcionCorreo" name="correo" type="email" autocomplete="email" spellcheck="false" maxlength="120" required />
+            <p class="error-campo" id="errorCorreo" hidden></p>
+          </div>
+          <p class="inscripcion-nota">Te escribiremos un día antes para recordártelo.</p>
+          <div class="fila-botones-dialogo">
+            <button class="boton-heroe-primario" type="submit">Confirmar inscripción</button>
+            <button class="boton-heroe-secundario" type="button" data-cerrar>Ahora no</button>
+          </div>
+        </form>
+
+        <div class="inscripcion-hecha" id="inscripcionHecha" hidden>
+          <p id="inscripcionHechaTexto"></p>
+          <div class="fila-botones-dialogo">
+            <button class="boton-heroe-primario" type="button" data-cerrar>Listo</button>
+            <button class="boton-heroe-secundario" type="button" id="cancelarInscripcion">Cancelar mi inscripción</button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <p class="aviso-flotante" id="avisoAgenda" role="status"></p>
+
     <!-- FOOTER (PIE DE PÁGINA) -->
     <footer class="pie-pagina">
       <div class="contenedor-pie">
@@ -496,48 +392,40 @@
             </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
+            <h3 class="titulo-columna-pie">Horario</h3>
             <ul class="lista-horarios">
-              <li><strong>Lunes a Viernes:</strong> 8:30&nbsp;hrs - 19:30&nbsp;hrs</li>
-              <li><strong>Sábados de Lectura:</strong> 9:00&nbsp;hrs - 16:00&nbsp;hrs</li>
-              <li><strong>Domingos Culturales:</strong> 10:00&nbsp;hrs - 14:00&nbsp;hrs</li>
-              <li class="estado-salas">
-                <span class="punto-estado"></span>
-                <span>Salas de lectura abiertas</span>
-              </li>
+              <li><span>Lunes a viernes</span> <span>8:30⁠–⁠19:30</span></li>
+              <li><span>Sábados</span> <span>9:00⁠–⁠16:00</span></li>
+              <li><span>Domingos</span> <span>10:00⁠–⁠14:00</span></li>
             </ul>
           </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
+            <h3 class="titulo-columna-pie">Enlaces</h3>
             <nav aria-label="Enlaces rápidos">
               <ul class="enlaces-pie">
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Libros</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="contacto.html" data-path="contacto">Contacto</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="login.html#crear-cuenta" data-path="crear-cuenta">Crear cuenta</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="registro.html">Carnet físico</a>
+              </li>
+              <li>
                 <a href="login.html" data-path="login">Iniciar sesión</a>
               </li>
               </ul>
@@ -545,7 +433,7 @@
           </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
+            <h3 class="titulo-columna-pie">Dónde estamos</h3>
             <address class="sede-pie">
               <p class="direccion-pie">
                 Sector San José<br />
@@ -573,32 +461,5 @@
       </div>
     </footer>
 
-    <!-- INTERACCIÓN DEL MENÚ MÓVIL ESTILO APPLE -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const btnMenu = document.getElementById("btnMenuMovil");
-        const menuMovil = document.getElementById("menuMovilDesplegable");
-        if (btnMenu && menuMovil) {
-          btnMenu.addEventListener("click", () => {
-            const abierto = menuMovil.classList.toggle("abierto");
-            btnMenu.classList.toggle("activo", abierto);
-            btnMenu.setAttribute("aria-expanded", abierto);
-            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-            menuMovil.setAttribute("aria-hidden", !abierto);
-          });
-
-          // Cerrar al presionar Escape o hacer clic fuera
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
-              menuMovil.classList.remove("abierto");
-              btnMenu.classList.remove("activo");
-              btnMenu.setAttribute("aria-expanded", "false");
-              btnMenu.setAttribute("aria-label", "Abrir menú");
-              menuMovil.setAttribute("aria-hidden", "true");
-            }
-          });
-        }
-      });
-    </script>
   </body>
 </html>

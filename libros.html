@@ -29,6 +29,7 @@
     <script src="auth.js" defer></script>
     <script src="datos/libros.js" defer></script>
     <script src="biblioteca.js" defer></script>
+    <script src="sitio.js" defer></script>
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
@@ -82,7 +83,6 @@
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
         <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -95,7 +95,6 @@
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -238,7 +237,7 @@
                   </div>
                 </div>
                 <div class="botones-banner">
-                  <a class="boton-banner-primario" href="contacto.html">Sugerir un título</a>
+                  <a class="boton-banner-primario" href="contacto.html?asunto=sugerencia#formularioContacto">Sugerir un título</a>
                   <button class="boton-banner-secundario" id="botonDonar" type="button">Donar libros</button>
                 </div>
               </div>
@@ -285,48 +284,40 @@
             </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
+            <h3 class="titulo-columna-pie">Horario</h3>
             <ul class="lista-horarios">
-              <li><strong>Lunes a Viernes:</strong> 8:30&nbsp;hrs - 19:30&nbsp;hrs</li>
-              <li><strong>Sábados de Lectura:</strong> 9:00&nbsp;hrs - 16:00&nbsp;hrs</li>
-              <li><strong>Domingos Culturales:</strong> 10:00&nbsp;hrs - 14:00&nbsp;hrs</li>
-              <li class="estado-salas">
-                <span class="punto-estado"></span>
-                <span>Salas de lectura abiertas</span>
-              </li>
+              <li><span>Lunes a viernes</span> <span>8:30⁠–⁠19:30</span></li>
+              <li><span>Sábados</span> <span>9:00⁠–⁠16:00</span></li>
+              <li><span>Domingos</span> <span>10:00⁠–⁠14:00</span></li>
             </ul>
           </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
+            <h3 class="titulo-columna-pie">Enlaces</h3>
             <nav aria-label="Enlaces rápidos">
               <ul class="enlaces-pie">
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Libros</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="contacto.html" data-path="contacto">Contacto</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="login.html#crear-cuenta" data-path="crear-cuenta">Crear cuenta</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="registro.html">Carnet físico</a>
+              </li>
+              <li>
                 <a href="login.html" data-path="login">Iniciar sesión</a>
               </li>
               </ul>
@@ -334,7 +325,7 @@
           </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
+            <h3 class="titulo-columna-pie">Dónde estamos</h3>
             <address class="sede-pie">
               <p class="direccion-pie">
                 Sector San José<br />
@@ -864,28 +855,6 @@
           });
         });
 
-        // Menú Hamburguesa Móvil
-        const btnMenu = document.getElementById("btnMenuMovil");
-        const menuMovil = document.getElementById("menuMovilDesplegable");
-        if (btnMenu && menuMovil) {
-          btnMenu.addEventListener("click", () => {
-            const abierto = menuMovil.classList.toggle("abierto");
-            btnMenu.classList.toggle("activo", abierto);
-            btnMenu.setAttribute("aria-expanded", abierto);
-            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-            menuMovil.setAttribute("aria-hidden", !abierto);
-          });
-
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
-              menuMovil.classList.remove("abierto");
-              btnMenu.classList.remove("activo");
-              btnMenu.setAttribute("aria-expanded", "false");
-              btnMenu.setAttribute("aria-label", "Abrir menú");
-              menuMovil.setAttribute("aria-hidden", "true");
-            }
-          });
-        }
       });
       // Reservar / Pedir en sala: se activan y se desactivan; se guardan solo en este navegador (el sitio es una maqueta). Corre al cargar la página, cuando ya existen las tarjetas generadas desde datos/libros.js.
       // El botón de información abre una ventana con los detalles de la tarjeta.

@@ -27,6 +27,9 @@
     />
     <link href="styles.css" rel="stylesheet" />
     <script src="auth.js" defer></script>
+    <script src="datos/agenda.js" defer></script>
+    <script src="agenda.js" defer></script>
+    <script src="sitio.js" defer></script>
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
@@ -80,7 +83,6 @@
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
         <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -93,7 +95,6 @@
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil" href="contacto.html">
-            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -124,11 +125,9 @@
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Renovación por 7 días adicionales</span>
                   </li>
                   <li>
-                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Separadores de regalo</span>
                   </li>
                 </ul>
@@ -141,11 +140,9 @@
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Conexión Wi-Fi de alta velocidad</span>
                   </li>
                   <li>
-                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Ambiente silencioso y climatizado</span>
                   </li>
                 </ul>
@@ -158,11 +155,9 @@
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Clubes juveniles y para adultos</span>
                   </li>
                   <li>
-                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Participación 100% gratuita</span>
                   </li>
                 </ul>
@@ -175,11 +170,9 @@
                 </p>
                 <ul class="lista-puntos-servicio">
                   <li>
-                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
-                    <span>Cuentacuentos los fines de semana</span>
+                    <span>Cuentacuentos los miércoles por la tarde</span>
                   </li>
                   <li>
-                    <span aria-hidden="true" class="material-symbols-outlined">check</span>
                     <span>Material didáctico y juegos de letras</span>
                   </li>
                 </ul>
@@ -191,7 +184,7 @@
               <img
                 alt="Libro botánico animado con plantas"
                 class="imagen-ilustracion-servicios"
-                src="img/libroAnimadoPlantitas.png" width="1024" height="1024" loading="lazy" decoding="async"
+                src="img/libroAnimadoPlantitas.png" width="1024" height="1024"
               />
               <p class="cita-botanica-servicios">Préstamo, salas y talleres son gratuitos. Solo necesitas tu carnet vecinal.</p>
               <a class="boton-heroe-primario" href="contacto.html">
@@ -208,67 +201,29 @@
             <div class="cabecera-seccion">
               <h2 class="titulo-seccion-inicio">Horario de las salas</h2>
               <p class="descripcion-seccion-inicio">
-                Cuándo abre cada espacio, qué se hace y cuántas personas caben.
+                Cuándo abre cada espacio, qué se hace y cuántas personas caben. La barra verde marca qué parte del día, de 8 a 20 h, está abierto.
               </p>
             </div>
 
-            <div class="contenedor-tabla-responsiva">
+            <div class="contenedor-tabla-responsiva tabla-con-superficie">
               <table class="tabla-botanica tabla-apilable">
                 <caption>Horario semanal por espacio</caption>
                 <thead>
                   <tr>
                     <th scope="col">Día</th>
                     <th scope="col">Espacio</th>
-                    <th scope="col">Horario</th>
+                    <th scope="col" class="columna-clave">Horario <span class="eje-horario" aria-hidden="true"><span>8 h</span><span>12 h</span><span>16 h</span><span>20 h</span></span></th>
                     <th scope="col">Actividad</th>
                     <th scope="col">Aforo</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Lunes a Viernes</strong></td>
-                    <td data-etiqueta="Espacio">Sala de Lectura Silenciosa</td>
-                    <td data-etiqueta="Horario">08:30⁠–⁠19:30&nbsp;hrs</td>
-                    <td data-etiqueta="Actividad">Estudio individual, lectura e investigación</td>
-                    <td data-etiqueta="Aforo">35 personas</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Lunes a Viernes</strong></td>
-                    <td data-etiqueta="Espacio">Jardín Botánico & Mesas de Trabajo</td>
-                    <td data-etiqueta="Horario">09:00⁠–⁠18:30&nbsp;hrs</td>
-                    <td data-etiqueta="Actividad">Lectura al aire libre, wifi y tertulias</td>
-                    <td data-etiqueta="Aforo">45 personas</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Miércoles</strong></td>
-                    <td data-etiqueta="Espacio">Rincón Infantil</td>
-                    <td data-etiqueta="Horario">16:00⁠–⁠17:30&nbsp;hrs</td>
-                    <td data-etiqueta="Actividad">Taller infantil de cuentacuentos y títeres</td>
-                    <td data-etiqueta="Aforo">20 niños + tutores</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Sábados</strong></td>
-                    <td data-etiqueta="Espacio">Sala Botánica Principal</td>
-                    <td data-etiqueta="Horario">09:00⁠–⁠16:00&nbsp;hrs</td>
-                    <td data-etiqueta="Actividad">Clubes de lectura y café literario</td>
-                    <td data-etiqueta="Aforo">30 personas</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Domingos</strong></td>
-                    <td data-etiqueta="Espacio">Patio Exterior</td>
-                    <td data-etiqueta="Horario">10:00⁠–⁠14:00&nbsp;hrs</td>
-                    <td data-etiqueta="Actividad">Intercambio de libros y donaciones vecinales</td>
-                    <td data-etiqueta="Aforo">50 personas</td>
-                  </tr>
+                <!-- Las filas salen del arreglo HORARIO_SALAS de datos/agenda.js (ver agenda.js) -->
+                <tbody id="cuerpoHorario">
+                  <tr><td colspan="5">Cargando el horario…</td></tr>
                 </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="3"><strong>Capacidad total de la sede:</strong> 130 personas</td>
-                    <td colspan="2"><strong>Acceso:</strong> Libre y gratuito</td>
-                  </tr>
-                </tfoot>
               </table>
             </div>
+            <p class="nota-tabla">Entre todos los espacios caben <span id="capacidadTotal">130</span> personas. La entrada es libre y gratuita.</p>
           </div>
         </section>
 
@@ -307,48 +262,40 @@
             </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
+            <h3 class="titulo-columna-pie">Horario</h3>
             <ul class="lista-horarios">
-              <li><strong>Lunes a Viernes:</strong> 8:30&nbsp;hrs - 19:30&nbsp;hrs</li>
-              <li><strong>Sábados de Lectura:</strong> 9:00&nbsp;hrs - 16:00&nbsp;hrs</li>
-              <li><strong>Domingos Culturales:</strong> 10:00&nbsp;hrs - 14:00&nbsp;hrs</li>
-              <li class="estado-salas">
-                <span class="punto-estado"></span>
-                <span>Salas de lectura abiertas</span>
-              </li>
+              <li><span>Lunes a viernes</span> <span>8:30⁠–⁠19:30</span></li>
+              <li><span>Sábados</span> <span>9:00⁠–⁠16:00</span></li>
+              <li><span>Domingos</span> <span>10:00⁠–⁠14:00</span></li>
             </ul>
           </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
+            <h3 class="titulo-columna-pie">Enlaces</h3>
             <nav aria-label="Enlaces rápidos">
               <ul class="enlaces-pie">
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Libros</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="contacto.html" data-path="contacto">Contacto</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="login.html#crear-cuenta" data-path="crear-cuenta">Crear cuenta</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="registro.html">Carnet físico</a>
+              </li>
+              <li>
                 <a href="login.html" data-path="login">Iniciar sesión</a>
               </li>
               </ul>
@@ -356,7 +303,7 @@
           </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
+            <h3 class="titulo-columna-pie">Dónde estamos</h3>
             <address class="sede-pie">
               <p class="direccion-pie">
                 Sector San José<br />
@@ -384,31 +331,5 @@
       </div>
     </footer>
 
-    <!-- INTERACCIÓN DEL MENÚ MÓVIL ESTILO APPLE -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const btnMenu = document.getElementById("btnMenuMovil");
-        const menuMovil = document.getElementById("menuMovilDesplegable");
-        if (btnMenu && menuMovil) {
-          btnMenu.addEventListener("click", () => {
-            const abierto = menuMovil.classList.toggle("abierto");
-            btnMenu.classList.toggle("activo", abierto);
-            btnMenu.setAttribute("aria-expanded", abierto);
-            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-            menuMovil.setAttribute("aria-hidden", !abierto);
-          });
-
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
-              menuMovil.classList.remove("abierto");
-              btnMenu.classList.remove("activo");
-              btnMenu.setAttribute("aria-expanded", "false");
-              btnMenu.setAttribute("aria-label", "Abrir menú");
-              menuMovil.setAttribute("aria-hidden", "true");
-            }
-          });
-        }
-      });
-    </script>
   </body>
 </html>

@@ -32,7 +32,7 @@ y entra en `http://localhost:8000`.
 | `contacto.html` | Formulario de contacto, canales de atención, tabla de plazos y preguntas frecuentes |
 | `login.html` | Iniciar sesión y crear cuenta (se abre en "Crear cuenta" con `login.html#crear-cuenta`). Las cuentas son reales dentro del navegador, ver "Cuentas y roles" |
 | `admin.html` | Panel del administrador: cuentas registradas y gestión de libros (agregar, editar, quitar). Solo entra el rol admin |
-| `registro.html` | Solicitud completa de carnet vecinal (con DNI y dirección). Hoy ninguna página enlaza a ella |
+| `registro.html` | Solicitud del carnet físico (con DNI y dirección). Se llega desde el pie de página y las preguntas frecuentes |
 | `actividades.html`, `catalogo.html` | Páginas de paso que redirigen a `servicios.html` y `libros.html` |
 
 ## Estructura
@@ -43,7 +43,10 @@ biblioteca_comunitaria/
 │   login.html, admin.html, registro.html, actividades.html, catalogo.html
 ├── auth.js           Cuentas, sesión y roles (se guardan en el navegador)
 ├── biblioteca.js     Libros: dibuja el catálogo y guarda los cambios del admin
+├── agenda.js         Actividades del inicio (con inscripción) y tabla de horario de servicios
+├── sitio.js          Menú del celular y validación de formularios (todas las páginas)
 ├── datos/libros.js   Los libros del catálogo (el archivo que se publica)
+├── datos/agenda.js   Actividades del mes y horario de las salas (arreglos)
 ├── styles.css        Hoja de estilos única (índice de 34 secciones al inicio)
 ├── DESIGN.md         Sistema de diseño: colores, tipografía, formas y componentes
 ├── img/              Imágenes del sitio
@@ -57,7 +60,6 @@ biblioteca_comunitaria/
 - **Encabezado y pie repetidos:** están copiados en cada página, **idénticos** (solo cambia el enlace activo del menú). Es deliberado: cargarlos con JavaScript no funciona al abrir los archivos con doble clic, y el HTML se ve completo en el código fuente.
 - **Estantería de portadas:** cada libro muestra su portada entera (proporción 2:3), título, autor y disponibilidad; la descripción y la valoración están en la ventana de detalles. Todo el libro es un solo objetivo (el título abre los detalles). 4 columnas en escritorio y 2 en celular.
 - **Carrusel del inicio:** los 7 libros más leídos giran en un arco suave: el del centro va al frente y nítido, los de los lados quedan atrás, más pequeños, girados y desenfocados. En escritorio avanza solo cada 3 segundos y se detiene al pasar el cursor, enfocar con el teclado o salir de la pantalla; sus botones (pausa y flechas) no se ven, pero aparecen al llegar a ellos con la tecla Tab. En el celular no avanza solo: tiene las dos flechas y se desliza con el dedo. Con "reducir movimiento" activado en el sistema tampoco se mueve solo, y la página lo explica junto a un botón para activarlo. El libro del frente es un poco más grande y proyecta una sombra sobre los de atrás. Al pulsar un libro, `libros.html#libro-<id>` abre el catálogo en ese libro y lo marca unos segundos.
-- **Título con hojas y flores:** "Los libros más leídos del barrio" va en el verde de la página, con dos ramas a los lados y una enredadera debajo, dibujadas en SVG con los verdes y el ámbar de la paleta. Las hojas, las flores y las chispas se mecen despacio de lado a lado; con "reducir movimiento" quedan quietas. En el celular solo queda la enredadera.
 - **Ritmo de espacios:** dos medidas fijas (`--ritmo-seccion`, entre todas las secciones y hasta el pie, y `--espacio-titulo`, entre un título y su contenido) mandan en todas las páginas. En el carrusel, el hueco entre el título y el libro del frente y el hueco entre su nombre y el botón del catálogo salen de la misma variable (`--aire`), y los libros de los lados quedan a la misma distancia de cada borde.
 - **Sinopsis al pasar el cursor (catálogo):** en computadoras, el libro bajo el cursor crece un poco, los demás se desenfocan y la parte baja de su portada se oscurece para mostrar una flechita. Al pulsarla, un panel de cristal con la sinopsis (con la portada desenfocada de fondo) sube dentro de la propia portada; la flecha pasa a mirar hacia abajo y, al pulsarla, el panel baja. También funciona con la tecla Tab y se cierra con Escape. En el celular no hay flechita: se toca el libro y se abre la ventana de detalles.
 - **Menos cajas:** la bienvenida, las normas, los servicios y las preguntas frecuentes van directamente sobre la página, con una línea superior como único adorno; solo lo que se puede pulsar o contiene un formulario tiene caja. No hay etiquetas en mayúsculas sobre los títulos ni cifras de relleno.
@@ -65,6 +67,20 @@ biblioteca_comunitaria/
 - **Textos:** mayúscula solo al inicio de la frase, verbos en los botones ("Reservar", "Donar libros") y mensajes que dicen qué pasó y qué hacer.
 - **Sin estilos en línea:** todo el estilo está en `styles.css`. Las portadas de los libros son imágenes (`<img>`) con texto alternativo.
 - **JavaScript:** cada página lleva su script al final del HTML. Se usa para el menú móvil, el catálogo (filtros, orden, paginación y panel plegable), la validación de `login.html` y el deslizamiento entre "Iniciar sesión" y "Crear cuenta".
+
+## JavaScript: dónde está cada tema del curso
+
+| Tema | Dónde verlo |
+|---|---|
+| Arreglos de objetos | `datos/libros.js` (libros), `datos/agenda.js` (`ACTIVIDADES` y `HORARIO_SALAS`) |
+| Métodos de arreglos | `map`, `filter`, `find`, `sort`, `reduce` en `biblioteca.js` y `agenda.js` (por ejemplo, el aforo total se suma con `reduce`) |
+| Estructuras de control | `agenda.js`: `while` y `for` agrupan las filas del mismo día; `if / else if / else` decide si una actividad muestra "Inscribirse", "Estás inscrito" o "Sin cupos" |
+| Manipulación del DOM | El catálogo, el carrusel, la agenda y la tabla de horario se crean con `createElement`, `append` y `replaceChildren`; los textos van con `textContent` |
+| Eventos | Clics, envío de formularios, teclado (Escape y flechas), rueda del ratón en el carrusel |
+| Menú responsivo | `sitio.js`: un solo código para todas las páginas; se cierra con Escape, al pulsar fuera o al elegir un enlace |
+| Ventanas | `<dialog>`: detalles del libro y donar (`libros.html`), inscribirse en una actividad (`index.html`), confirmar en el panel (`admin.html`) |
+| Validación de formularios | Inicio de sesión, inscripción, contacto y registro: el error aparece debajo del campo y dice cómo corregirlo (`sitio.js`, `agenda.js`) |
+| Almacenamiento | `localStorage` para cuentas, libros del admin, donaciones, pedidos e inscripciones |
 
 ## Cuentas y roles
 
@@ -114,8 +130,6 @@ Lo que **no** se ha probado: lectores de pantalla reales (NVDA, VoiceOver) ni di
 
 - **Portadas:** las 22 están en `img/` (Open Library y catálogos de librerías). Son imágenes de baja resolución (unos 330 px de ancho): bastan para la pantalla, pero se verían suaves si se amplían mucho.
 - **Video del recorrido:** sin subtítulos ni descripción en texto; algunos textos de la sección de video y audio no coinciden con el contenido.
-- **Catálogo:** el botón "Buscar", el selector "Todos los campos" y "Sugerir un título" todavía no tienen función propia. Los contadores de las categorías (840, 320…) son cifras de ejemplo.
-- **`registro.html`:** existe pero no está enlazada desde el sitio.
 
 ## Ramas de Git
 

@@ -27,6 +27,7 @@
     />
     <link href="styles.css" rel="stylesheet" />
     <script src="auth.js" defer></script>
+    <script src="sitio.js" defer></script>
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO (Accesibilidad WCAG) -->
@@ -80,7 +81,6 @@
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
         <nav class="navegacion-movil" aria-label="Navegación móvil">
           <a class="enlace-nav-movil" href="index.html">
-            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span>Inicio</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -93,7 +93,6 @@
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
           <a class="enlace-nav-movil activo" href="contacto.html" aria-current="page">
-            <span aria-hidden="true" class="material-symbols-outlined">chat</span>
             <span>Contacto</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -141,7 +140,7 @@
                 </p>
               </div>
 
-              <form class="formulario-botanico" id="formularioContacto" onsubmit="enviarFormulario(event)">
+              <form class="formulario-botanico" id="formularioContacto" onsubmit="enviarFormulario(event)" data-validar novalidate>
                 <p class="aviso-obligatorio">Los campos con <span class="campo-obligatorio">*</span> son obligatorios.</p>
                 <!-- Fieldset 1: Datos Personales del Lector -->
                 <fieldset class="fieldset-botanico">
@@ -362,102 +361,84 @@
             <div class="cabecera-seccion">
               <h2 class="titulo-seccion-inicio">Canales de atención y plazos</h2>
               <p class="descripcion-seccion-inicio">
-                Elige el canal según lo que necesites y cuánto tardamos en responder.
+                Elige el canal según lo que necesites. Están ordenados del que responde más rápido al más lento: cuanto más corta la barra, menos esperas.
               </p>
             </div>
 
-            <div class="contenedor-tabla-responsiva">
+            <div class="contenedor-tabla-responsiva tabla-con-superficie">
               <table class="tabla-botanica tabla-apilable">
-                <caption>Canales de atención y plazos</caption>
+                <caption>Canales de atención, del más rápido al más lento</caption>
                 <thead>
                   <tr>
                     <th scope="col">Canal</th>
-                    <th scope="col">Tipo de solicitud</th>
+                    <th scope="col">Para qué sirve</th>
                     <th scope="col">Horario</th>
-                    <th scope="col">Tiempo de respuesta</th>
-                    <th scope="col">Responsable</th>
+                    <th scope="col" class="columna-clave">Tiempo de respuesta</th>
+                    <th scope="col">Quién responde</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong>Formulario Web</strong></td>
-                    <td data-etiqueta="Tipo de solicitud">Consultas generales y carnet digital</td>
-                    <td data-etiqueta="Horario">24 horas (recepción continua)</td>
-                    <td data-etiqueta="Respuesta">Menos de 24 horas</td>
-                    <td data-etiqueta="Responsable">Mesa de Coordinación</td>
+                    <th scope="row"><span class="canal"><span class="icono-canal material-symbols-outlined" aria-hidden="true">storefront</span>Mostrador</span></th>
+                    <td data-etiqueta="Para qué">Préstamo a domicilio y carnet físico</td>
+                    <td data-etiqueta="Horario">Mientras la sede está abierta</td>
+                    <td data-etiqueta="Respuesta" class="columna-clave">En el momento<span class="medida-espera" aria-hidden="true"><span class="espera-1"></span></span></td>
+                    <td data-etiqueta="Quién">Bibliotecario de turno</td>
                   </tr>
                   <tr>
-                    <td><strong>WhatsApp Vecinal</strong></td>
-                    <td data-etiqueta="Tipo de solicitud">Renovaciones de préstamos y disponibilidad</td>
-                    <td data-etiqueta="Horario">Lunes a Sábado: 8:30⁠–⁠18:00</td>
-                    <td data-etiqueta="Respuesta">10 a 30 minutos</td>
-                    <td data-etiqueta="Responsable">Orientación de Sala</td>
+                    <th scope="row"><span class="canal"><span class="icono-canal material-symbols-outlined" aria-hidden="true">chat</span>WhatsApp</span></th>
+                    <td data-etiqueta="Para qué">Renovar préstamos y preguntar si hay un libro</td>
+                    <td data-etiqueta="Horario">Lunes a sábado, 8:30⁠–⁠18:00</td>
+                    <td data-etiqueta="Respuesta" class="columna-clave">De 10 a 30 minutos<span class="medida-espera" aria-hidden="true"><span class="espera-2"></span></span></td>
+                    <td data-etiqueta="Quién">Orientación de sala</td>
                   </tr>
                   <tr>
-                    <td><strong>Módulo Presencial</strong></td>
-                    <td data-etiqueta="Tipo de solicitud">Préstamo a domicilio y carnet físico</td>
-                    <td data-etiqueta="Horario">Lunes a Viernes: 8:30⁠–⁠19:30</td>
-                    <td data-etiqueta="Respuesta">Inmediato (en mostrador)</td>
-                    <td data-etiqueta="Responsable">Bibliotecario de Turno</td>
+                    <th scope="row"><span class="canal"><span class="icono-canal material-symbols-outlined" aria-hidden="true">edit_note</span>Formulario web</span></th>
+                    <td data-etiqueta="Para qué">Consultas generales y carnet digital</td>
+                    <td data-etiqueta="Horario">Todos los días, a cualquier hora</td>
+                    <td data-etiqueta="Respuesta" class="columna-clave">Menos de 24 horas<span class="medida-espera" aria-hidden="true"><span class="espera-3"></span></span></td>
+                    <td data-etiqueta="Quién">Mesa de coordinación</td>
                   </tr>
                   <tr>
-                    <td><strong>Correo Electrónico</strong></td>
-                    <td data-etiqueta="Tipo de solicitud">Donaciones masivas y proyectos educativos</td>
-                    <td data-etiqueta="Horario">Lunes a Viernes: 9:00⁠–⁠17:00</td>
-                    <td data-etiqueta="Respuesta">24 a 48 horas</td>
-                    <td data-etiqueta="Responsable">Comité de Extensión</td>
+                    <th scope="row"><span class="canal"><span class="icono-canal material-symbols-outlined" aria-hidden="true">mail</span>Correo electrónico</span></th>
+                    <td data-etiqueta="Para qué">Donaciones grandes y proyectos educativos</td>
+                    <td data-etiqueta="Horario">Lunes a viernes, 9:00⁠–⁠17:00</td>
+                    <td data-etiqueta="Respuesta" class="columna-clave">De 24 a 48 horas<span class="medida-espera" aria-hidden="true"><span class="espera-4"></span></span></td>
+                    <td data-etiqueta="Quién">Comité de extensión</td>
                   </tr>
                 </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="3"><strong>Canales abiertos:</strong> 4 modalidades de atención ciudadana</td>
-                    <td colspan="2"><strong>Cobertura:</strong> 100% Gratuita para todo el vecindario</td>
-                  </tr>
-                </tfoot>
               </table>
             </div>
+            <p class="nota-tabla">Todos los canales son gratuitos.</p>
           </div>
         </section>
 
         <!-- SECCIÓN: PREGUNTAS FRECUENTES DE LA COMUNIDAD -->
-        <section class="seccion-faq-contacto">
+        <section class="seccion-faq-contacto" id="preguntas-frecuentes">
           <div class="tarjeta-faq-contenedor">
-            <h2 class="titulo-faq-seccion">
-              <span aria-hidden="true" class="material-symbols-outlined">help</span>
-              <span>Preguntas frecuentes</span>
-            </h2>
-            <p class="subtitulo-faq-seccion">
-              Respuestas rápidas sobre servicios, préstamos y donaciones.
-            </p>
+            <div class="cabecera-faq">
+              <h2 class="titulo-faq-seccion">Preguntas frecuentes</h2>
+              <p class="subtitulo-faq-seccion">Respuestas rápidas sobre el carnet, los préstamos, las salas y las donaciones.</p>
+              <p class="otra-pregunta-faq">¿No está tu pregunta? <a href="#formularioContacto">Escríbenos</a> y te respondemos en menos de 24 horas.</p>
+            </div>
 
-            <div class="rejilla-faq">
-              <div class="item-faq">
-                <h3 class="pregunta-faq">¿Cómo solicito mi carnet digital de biblioteca?</h3>
-                <p class="respuesta-faq">
-                  El carnet digital es <strong>100% gratuito</strong>. Puedes solicitarlo de forma presencial con tu documento de identidad o mediante el botón "Sacar mi carnet" de nuestro portal. Con él podrás llevarte hasta 3 libros a domicilio.
-                </p>
-              </div>
-
-              <div class="item-faq">
-                <h3 class="pregunta-faq">¿Puedo donar libros que ya no utilice en casa?</h3>
-                <p class="respuesta-faq">
-                  ¡Por supuesto! Recibimos literatura infantil, novelas, enciclopedias, textos escolares y divulgación científica en buen estado. Puedes traerlos a la sede en nuestro horario de atención o coordinar una entrega con este formulario.
-                </p>
-              </div>
-
-              <div class="item-faq">
-                <h3 class="pregunta-faq">¿Tienen salas para reuniones o grupos de estudio?</h3>
-                <p class="respuesta-faq">
-                  Sí, disponemos de 2 salas de lectura silenciosa equipadas con luz natural y un área de jardín exterior para clubes de lectura, tareas grupales y talleres comunitarios. La reserva previa no tiene ningún costo.
-                </p>
-              </div>
-
-              <div class="item-faq">
-                <h3 class="pregunta-faq">¿Cuál es el tiempo de préstamo y cómo se renueva?</h3>
-                <p class="respuesta-faq">
-                  El plazo estándar de préstamo es de 14 días calendario. Si necesitas más tiempo para terminar tu lectura, puedes renovarlo por 7 días adicionales enviándonos un mensaje por WhatsApp o comunicándote al mostrador.
-                </p>
-              </div>
+            <div class="lista-faq">
+              <details class="item-faq" open>
+                <summary class="pregunta-faq"><span>¿Cómo saco mi carnet?</span><span class="icono-faq" aria-hidden="true"></span></summary>
+                <p class="respuesta-faq">Es <strong>gratis</strong>. Puedes sacarlo en el mostrador con tu documento de identidad, pedir el carnet físico con el <a href="registro.html">formulario de carnet</a> o crear tu cuenta en línea con el botón "Sacar mi carnet". Con él te llevas hasta 3 libros a casa.</p>
+              </details>
+              <details class="item-faq">
+                <summary class="pregunta-faq"><span>¿Cuánto dura un préstamo y cómo lo renuevo?</span><span class="icono-faq" aria-hidden="true"></span></summary>
+                <p class="respuesta-faq">Cada préstamo dura 14 días. Si necesitas más tiempo, lo renuevas por 7 días más con un mensaje por WhatsApp o en el mostrador.</p>
+              </details>
+              <details class="item-faq">
+                <summary class="pregunta-faq"><span>¿Tienen salas para estudiar en grupo?</span><span class="icono-faq" aria-hidden="true"></span></summary>
+                <p class="respuesta-faq">Sí. La sala botánica principal y el jardín sirven para clubes de lectura, tareas en grupo y talleres; la sala de lectura silenciosa es para estudio individual. Reservar no cuesta nada.</p>
+              </details>
+              <details class="item-faq">
+                <summary class="pregunta-faq"><span>¿Puedo donar libros que ya no uso?</span><span class="icono-faq" aria-hidden="true"></span></summary>
+                <p class="respuesta-faq">Sí. Recibimos novelas, libros infantiles, enciclopedias, textos escolares y divulgación científica en buen estado. Tráelos en el horario de la sede o, si son muchos, escríbenos por correo para coordinar la entrega.</p>
+              </details>
             </div>
           </div>
         </section>
@@ -478,48 +459,40 @@
             </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Horarios de Atención</h3>
+            <h3 class="titulo-columna-pie">Horario</h3>
             <ul class="lista-horarios">
-              <li><strong>Lunes a Viernes:</strong> 8:30&nbsp;hrs - 19:30&nbsp;hrs</li>
-              <li><strong>Sábados de Lectura:</strong> 9:00&nbsp;hrs - 16:00&nbsp;hrs</li>
-              <li><strong>Domingos Culturales:</strong> 10:00&nbsp;hrs - 14:00&nbsp;hrs</li>
-              <li class="estado-salas">
-                <span class="punto-estado"></span>
-                <span>Salas de lectura abiertas</span>
-              </li>
+              <li><span>Lunes a viernes</span> <span>8:30⁠–⁠19:30</span></li>
+              <li><span>Sábados</span> <span>9:00⁠–⁠16:00</span></li>
+              <li><span>Domingos</span> <span>10:00⁠–⁠14:00</span></li>
             </ul>
           </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Enlaces Rápidos</h3>
+            <h3 class="titulo-columna-pie">Enlaces</h3>
             <nav aria-label="Enlaces rápidos">
               <ul class="enlaces-pie">
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="libros.html" data-path="libros">Libros</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html" data-path="servicios">Servicios</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="servicios.html#actividades" data-path="actividades">Clubes de lectura</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="contacto.html" data-path="contacto">Contacto</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
                 <a href="login.html#crear-cuenta" data-path="crear-cuenta">Crear cuenta</a>
               </li>
               <li>
-                <span aria-hidden="true" class="material-symbols-outlined">chevron_right</span>
+                <a href="registro.html">Carnet físico</a>
+              </li>
+              <li>
                 <a href="login.html" data-path="login">Iniciar sesión</a>
               </li>
               </ul>
@@ -527,7 +500,7 @@
           </div>
 
           <div>
-            <h3 class="titulo-columna-pie">Sede Comunitaria</h3>
+            <h3 class="titulo-columna-pie">Dónde estamos</h3>
             <address class="sede-pie">
               <p class="direccion-pie">
                 Sector San José<br />
@@ -557,6 +530,17 @@
 
     <!-- INTERACCIÓN DEL FORMULARIO -->
     <script>
+      // Si se llega desde "Sugerir un título" (libros.html), el asunto ya viene elegido
+      document.addEventListener("DOMContentLoaded", () => {
+        const asunto = new URLSearchParams(location.search).get("asunto");
+        const selector = document.getElementById("asuntoContacto");
+        if (asunto && selector && selector.querySelector('option[value="' + asunto + '"]')) {
+          selector.value = asunto;
+          const mensaje = document.getElementById("mensajeContacto");
+          if (mensaje && !mensaje.value) mensaje.placeholder = "Título y autor del libro que te gustaría leer en la biblioteca";
+        }
+      });
+
       function enviarFormulario(event) {
         event.preventDefault();
         const btn = document.getElementById("btnEnviarContacto");
@@ -584,30 +568,6 @@
         }, 800);
       }
 
-      // Menú Hamburguesa Móvil
-      document.addEventListener("DOMContentLoaded", () => {
-        const btnMenu = document.getElementById("btnMenuMovil");
-        const menuMovil = document.getElementById("menuMovilDesplegable");
-        if (btnMenu && menuMovil) {
-          btnMenu.addEventListener("click", () => {
-            const abierto = menuMovil.classList.toggle("abierto");
-            btnMenu.classList.toggle("activo", abierto);
-            btnMenu.setAttribute("aria-expanded", abierto);
-            btnMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-            menuMovil.setAttribute("aria-hidden", !abierto);
-          });
-
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && menuMovil.classList.contains("abierto")) {
-              menuMovil.classList.remove("abierto");
-              btnMenu.classList.remove("activo");
-              btnMenu.setAttribute("aria-expanded", "false");
-              btnMenu.setAttribute("aria-label", "Abrir menú");
-              menuMovil.setAttribute("aria-hidden", "true");
-            }
-          });
-        }
-      });
     </script>
   </body>
 </html>
