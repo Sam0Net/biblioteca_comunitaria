@@ -1,56 +1,12 @@
 /* ==========================================================================
    COMPORTAMIENTO COMÚN A TODAS LAS PÁGINAS
-   1. Menú del celular: antes estaba copiado en cada página; ahora vive solo aquí.
-      Se abre y cierra con el botón, y también se cierra con Escape, al pulsar fuera
-      del menú, al elegir un enlace o al pasar a una pantalla ancha.
-   2. Formularios con el atributo data-validar (contacto y registro): en vez de los avisos
+   El menú del celular vive en js/auth.js (se carga en todas las páginas).
+   Formularios con el atributo data-validar (contacto y registro): en vez de los avisos
       del navegador, el error aparece debajo de cada campo, en español y diciendo cómo corregirlo.
    ========================================================================== */
 (() => {
   // =====================================================================
-  // 1. MENÚ DEL CELULAR
-  // =====================================================================
-  const boton = document.getElementById("btnMenuMovil");
-  const menu = document.getElementById("menuMovilDesplegable");
-
-  if (boton && menu) {
-    const estaAbierto = () => menu.classList.contains("abierto");
-
-    function mostrarMenu(abrir) {
-      menu.classList.toggle("abierto", abrir);
-      boton.classList.toggle("activo", abrir);
-      boton.setAttribute("aria-expanded", String(abrir));
-      boton.setAttribute("aria-label", abrir ? "Cerrar menú" : "Abrir menú");
-      menu.setAttribute("aria-hidden", String(!abrir));
-    }
-
-    boton.addEventListener("click", () => mostrarMenu(!estaAbierto()));
-
-    document.addEventListener("keydown", (evento) => {
-      if (evento.key === "Escape" && estaAbierto()) {
-        mostrarMenu(false);
-        boton.focus();
-      }
-    });
-
-    // Pulsar en cualquier parte fuera del menú (y fuera del botón) lo cierra
-    document.addEventListener("click", (evento) => {
-      if (estaAbierto() && !menu.contains(evento.target) && !boton.contains(evento.target)) mostrarMenu(false);
-    });
-
-    // Elegir una opción también lo cierra (útil en enlaces a la misma página, como #actividades)
-    menu.addEventListener("click", (evento) => {
-      if (evento.target.closest("a")) mostrarMenu(false);
-    });
-
-    // Si la pantalla se agranda (girar el celular, ventana más ancha) el menú del celular se cierra
-    window.matchMedia("(min-width: 768px)").addEventListener("change", (consulta) => {
-      if (consulta.matches) mostrarMenu(false);
-    });
-  }
-
-  // =====================================================================
-  // 2. VALIDACIÓN DE FORMULARIOS JUNTO AL CAMPO
+  // VALIDACIÓN DE FORMULARIOS JUNTO AL CAMPO
   // =====================================================================
   // El mensaje según qué falló (validity es el estado de validación que el propio navegador calcula)
   function mensajeDeError(campo) {

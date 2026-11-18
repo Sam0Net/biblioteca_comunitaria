@@ -45,7 +45,7 @@ window.ACTIVIDADES = [
     cuando: "Sábado, 10:00 a 16:00",
     lugar: "Patio exterior de la sede",
     cupos: null,
-    enlace: "contacto.html#preguntas-frecuentes",
+    enlace: "pages/contacto.html#preguntas-frecuentes",
     textoEnlace: "Cómo donar",
   },
 ];

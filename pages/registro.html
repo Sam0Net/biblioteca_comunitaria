@@ -31,9 +31,9 @@
     />
 
     <!-- HOJA DE ESTILOS EXTERNA -->
-    <link href="styles.css" rel="stylesheet" />
-    <script src="auth.js" defer></script>
-    <script src="sitio.js" defer></script>
+    <link href="../css/styles.css" rel="stylesheet" />
+    <script src="../js/auth.js" defer></script>
+    <script src="../js/sitio.js" defer></script>
   </head>
   <body class="cuerpo-sitio">
     <!-- ENLACE ACCESIBLE DE SALTO AL CONTENIDO -->
@@ -42,7 +42,7 @@
     <!-- MENÚS (ENCABEZADO Y NAVEGACIÓN PRINCIPAL CON FLEXBOX) -->
     <header class="encabezado">
       <div class="contenedor-encabezado">
-        <a class="marca-sitio" href="index.html" data-path="inicio">
+        <a class="marca-sitio" href="../index.html" data-path="inicio">
           <div class="icono-marca">
             <span aria-hidden="true" class="material-symbols-outlined">local_florist</span>
           </div>
@@ -53,7 +53,7 @@
         </a>
 
         <nav class="navegacion-principal" aria-label="Navegación principal">
-          <a class="enlace-nav" href="index.html" data-path="inicio">Inicio</a>
+          <a class="enlace-nav" href="../index.html" data-path="inicio">Inicio</a>
           <a class="enlace-nav" href="libros.html" data-path="libros">Libros</a>
           <a class="enlace-nav" href="servicios.html" data-path="servicios">Servicios</a>
           <a class="enlace-nav" href="contacto.html" data-path="contacto">Contacto</a>
@@ -72,7 +72,7 @@
           >
             <img
               alt=""
-              src="img/tresLibrosPlantitas.png" width="1024" height="1024"
+              src="../img/tresLibrosPlantitas.png" width="1024" height="1024"
             />
           </a>
           <!-- BOTÓN HAMBURGUESA MÓVIL (Apple Style) -->
@@ -86,7 +86,7 @@
       <!-- MENÚ DESPLEGABLE MÓVIL ESTILO APPLE -->
       <div class="menu-movil-desplegable" id="menuMovilDesplegable" aria-hidden="true">
         <nav class="navegacion-movil" aria-label="Navegación móvil">
-          <a class="enlace-nav-movil" href="index.html">
+          <a class="enlace-nav-movil" href="../index.html">
             <span>Inicio</span>
             <span aria-hidden="true" class="material-symbols-outlined flecha-nav">chevron_right</span>
           </a>
@@ -118,7 +118,7 @@
             <div class="silueta-botanica">
               <img
                 alt=""
-                src="img/tresLibrosPlantitas.png" width="1024" height="1024" loading="lazy" decoding="async"
+                src="../img/tresLibrosPlantitas.png" width="1024" height="1024" loading="lazy" decoding="async"
               />
             </div>
 
@@ -432,7 +432,7 @@
 
                 <div class="cuerpo-carnet-mockup">
                   <div class="avatar-carnet-mockup">
-                    <img alt="Foto o avatar del titular del carnet" src="img/tresLibrosPlantitas.png" width="1024" height="1024" />
+                    <img alt="Foto o avatar del titular del carnet" src="../img/tresLibrosPlantitas.png" width="1024" height="1024" />
                   </div>
                   <div class="datos-carnet-mockup">
                     <span class="nombre-titular-mockup">Carmen Rosa Silva P.</span>
@@ -509,7 +509,7 @@
             <nav aria-label="Enlaces rápidos">
               <ul class="enlaces-pie">
               <li>
-                <a href="index.html" data-path="inicio">Inicio</a>
+                <a href="../index.html" data-path="inicio">Inicio</a>
               </li>
               <li>
                 <a href="libros.html" data-path="libros">Libros</a>
@@ -573,12 +573,32 @@
         const alerta = document.getElementById("alertaExitoCarnet");
         const form = document.getElementById("formRegistroCarnet");
 
+        const nombres = document.getElementById("nombres")?.value.trim() || "";
+        const apellidos = document.getElementById("apellidos")?.value.trim() || "";
+        const correo = document.getElementById("correo")?.value.trim() || "";
+        const dni = document.getElementById("dni")?.value.trim() || "";
+        const telefono = document.getElementById("telefono")?.value.trim() || "";
+        const direccion = document.getElementById("direccion")?.value.trim() || "";
+
         // Estado de carga temporal
         const textoOriginal = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">hourglass_top</span><span>Emitiendo carnet…</span>';
 
         setTimeout(() => {
+          if (window.Auth && correo) {
+            const nombreCompleto = (nombres + " " + apellidos).trim() || "Vecino Lector";
+            // Registrar cuenta asociada al carnet si no existe
+            window.Auth.registrar({
+              nombre: nombreCompleto,
+              correo: correo,
+              clave: "Carnet2026!",
+              direccion: direccion,
+              telefono: telefono,
+              dni: dni
+            });
+          }
+
           btn.innerHTML = '<span aria-hidden="true" class="material-symbols-outlined">check</span><span>¡Carnet Emitido!</span>';
           alerta.classList.add("visible");
           form.reset();
