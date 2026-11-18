@@ -10,3 +10,10 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
+
+# Documentación y especificaciones
+DESIGN.md
+design.md
+DOCUMENTACION.md
+documentacion.md
+
