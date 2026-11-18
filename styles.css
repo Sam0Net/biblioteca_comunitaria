@@ -5171,7 +5171,9 @@ section[id] {
 }
 
 .situacion {
+  display: inline-block;
   flex-shrink: 0;
+  white-space: nowrap; /* en la tabla del panel la columna es angosta: "Rechazada" no debe partirse */
   padding: 0.2rem 0.75rem;
   font-size: 0.8125rem;
   font-weight: 700;
