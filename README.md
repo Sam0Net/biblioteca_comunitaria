@@ -1,7 +1,5 @@
 # Biblioteca Comunitaria «Leer nos une» — Plataforma Web Fullstack
 
-Proyecto académico del **Taller de Programación Web** (Ciclo 5).
-
 Plataforma web completa y funcional con arquitectura desacoplada: **Backend RESTful en Node.js + Express con TypeScript**, base de datos relacional **PostgreSQL con Prisma ORM**, y cliente **Frontend SPA en React con Vite**.
 
 ---
