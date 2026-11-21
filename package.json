@@ -1,0 +1,23 @@
+{
+  "name": "biblioteca-comunitaria-fullstack",
+  "version": "2.0.0",
+  "description": "Plataforma Fullstack de la Biblioteca Comunitaria 'Leer nos une' - Taller de Programación Web",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "prisma:seed": "npm --prefix backend run prisma:seed",
+    "prisma:push": "npm --prefix backend run prisma:push"
+  },
+  "keywords": [
+    "fullstack",
+    "react",
+    "express",
+    "typescript",
+    "postgresql",
+    "prisma"
+  ],
+  "author": "sam0net-taller-web",
+  "license": "ISC"
+}

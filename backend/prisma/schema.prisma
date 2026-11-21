@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  VECINO
+}
+
+enum BookStatus {
+  DISPONIBLE
+  SALA
+  NOVEDAD
+  PRESTAMO
+}
+
+enum LoanStatus {
+  PENDIENTE
+  ACTIVO
+  DEVUELTO
+  RECHAZADO
+}
+
+model User {
+  id            String                 @id @default(uuid())
+  nombre        String
+  email         String                 @unique
+  password      String
+  rol           Role                   @default(VECINO)
+  carnet        String?                @unique
+  dni           String?
+  direccion     String?
+  telefono      String?
+  activo        Boolean                @default(true)
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+
+  loans         Loan[]
+  registrations ActivityRegistration[]
+
+  @@map("users")
+}
+
+model Book {
+  id          String      @id
+  titulo      String
+  autor       String
+  genero      String
+  icono       String      @default("menu_book")
+  categorias  String[]
+  formatos    String[]
+  estado      BookStatus  @default(DISPONIBLE)
+  copias      Int         @default(1)
+  nota        Float       @default(4.5)
+  lectores    Int         @default(0)
+  descripcion String      @db.Text
+  portada     String
+  destacado   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  loans       Loan[]
+
+  @@map("books")
+}
+
+model Loan {
+  id                      String      @id @default(uuid())
+  userId                  String
+  user                    User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookId                  String
+  book                    Book        @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  fechaSolicitud          DateTime    @default(now())
+  fechaDevolucionEsperada DateTime
+  fechaDevolucionReal     DateTime?
+  estado                  LoanStatus  @default(PENDIENTE)
+  notas                   String?
+  createdAt               DateTime    @default(now())
+  updatedAt               DateTime    @updatedAt
+
+  @@map("loans")
+}
+
+model Activity {
+  id            String                 @id @default(uuid())
+  titulo        String
+  fecha         String
+  hora          String
+  lugar         String
+  cupos         Int                    @default(20)
+  categoria     String
+  descripcion   String                 @db.Text
+  icono         String                 @default("event")
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+
+  registrations ActivityRegistration[]
+
+  @@map("activities")
+}
+
+model ActivityRegistration {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activityId  String
+  activity    Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  fecha       DateTime @default(now())
+
+  @@unique([userId, activityId])
+  @@map("activity_registrations")
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  nombre    String
+  correo    String
+  asunto    String
+  mensaje   String   @db.Text
+  leido     Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("contact_messages")
+}

@@ -1,144 +1,96 @@
-# Biblioteca Comunitaria "Leer nos une"
+# Biblioteca Comunitaria «Leer nos une» — Plataforma Web Fullstack
 
-Sitio web de una biblioteca comunitaria de barrio: catálogo de libros, servicios y salas, contacto y acceso para vecinos.
-Proyecto académico del **Taller de Programación Web**.
+Proyecto académico del **Taller de Programación Web** (Ciclo 5).
 
-Es un sitio **estático**: HTML, CSS y JavaScript sin frameworks, sin servidor y sin base de datos.
-Los formularios son una **maqueta**: validan y muestran avisos, pero no envían datos a ningún sitio.
+Plataforma web completa y funcional con arquitectura desacoplada: **Backend RESTful en Node.js + Express con TypeScript**, base de datos relacional **PostgreSQL con Prisma ORM**, y cliente **Frontend SPA en React con Vite**.
 
-## Cómo verlo
+---
 
-1. Descarga o clona el repositorio.
-2. Abre `index.html` con doble clic (o clic derecho → Abrir con tu navegador).
-3. Navega por el menú. No hay que instalar nada.
+## 🚀 Arquitectura y Tecnologías
 
-Necesita **conexión a internet** solo para las fuentes (Fredoka y Plus Jakarta Sans) y los iconos (Material Symbols), que se cargan desde Google Fonts, y para las portadas de algunos libros. Sin conexión el sitio funciona, pero con letras e iconos de respaldo.
+| Capa | Tecnologías | Descripción |
+|---|---|---|
+| **Backend** | Node.js, Express, TypeScript, Zod, JWT, Bcrypt, Multer | API RESTful con autenticación robusta por tokens y cookies HttpOnly, autorización por roles y subida de portadas |
+| **Frontend** | React 18, Vite, TypeScript, React Router DOM, Axios | SPA reactiva con componentes modulares basada en el sistema de diseño botánico de `DESIGN.md` |
+| **Base de Datos** | PostgreSQL, Prisma ORM | Modelos relacionales con integridad referencial: usuarios, libros, préstamos, actividades y contacto |
+| **Almacenamiento** | Servidor estático `/uploads` + soporte de URLs externas | Gestión dual para portadas locales históricas, nuevas subidas multipart y enlaces externos |
 
-Si prefieres abrirlo con un servidor local (opcional):
+---
+
+## 👥 Cuentas de Acceso Preconfiguradas
+
+| Rol | Usuario / Correo | Contraseña | Carnet Digital |
+|---|---|---|---|
+| **Admin sam0net** | `sam0net-taller-web@leernosune.org` *(o `sam0net-taller-web`)* | `sam0net2026` | `ADMIN-SAM0NET` |
+| **Admin Principal** | `admin@leernosune.org` | `Admin2025!` | `ADMIN-2026` |
+| **Lector Vecino** | `vecino@leernosune.org` | `Vecino2026!` | `VEC-2026-001` |
+
+*También puedes registrar un nuevo vecino en cualquier momento desde `/registro` para obtener un carnet generado automáticamente.*
+
+---
+
+## 🛠️ Requisitos Previos
+
+- **Node.js** (v18 o superior) y **npm**
+- **PostgreSQL** activo en el puerto 5432 con la base de datos `biblioteca_db` (ya configurada con el usuario `sam0net_taller_web`).
+
+---
+
+## 📦 Puesta en Marcha
+
+### 1. Iniciar el Backend (Puerto 4000)
+
+En una terminal:
 
 ```bash
-python -m http.server 8000
+cd backend
+npm install
+npx prisma db push
+npx tsx prisma/seed.ts   # Si deseas re-sembrar los 22 libros y usuarios iniciales
+npm run dev
 ```
 
-y entra en `http://localhost:8000`.
+El servidor quedará disponible en `http://localhost:4000`.
 
-## Páginas
+### 2. Iniciar el Frontend (Puerto 5173)
 
-| Archivo | Qué es |
-|---|---|
-| `index.html` | Inicio: bienvenida, libros destacados, agenda, video y audio, normas de convivencia |
-| `pages/libros.html` | Catálogo en estantería de portadas: búsqueda, categorías, filtros, orden, paginación y vista en cuadrícula o lista. Las tarjetas salen de `datos/libros.js` |
-| `pages/servicios.html` | Servicios, salas y jardín, cronograma semanal (tabla) |
-| `pages/contacto.html` | Formulario de contacto, canales de atención, tabla de plazos y preguntas frecuentes |
-| `pages/login.html` | Iniciar sesión y crear cuenta (se abre en "Crear cuenta" con `login.html#crear-cuenta`). Las cuentas son reales dentro del navegador, ver "Cuentas y roles" |
-| `pages/admin.html` | Panel del administrador: cuentas registradas y gestión de libros (agregar, editar, quitar). Solo entra el rol admin |
-| `pages/registro.html` | Solicitud completa de carnet vecinal (con DNI y dirección) |
-| `pages/actividades.html`, `pages/catalogo.html` | Páginas de paso que redirigen a `servicios.html` y `libros.html` |
+En otra terminal:
 
-## Estructura
-
-```
-biblioteca_comunitaria/
-├── index.html            Página de inicio principal
-├── css/
-│   └── styles.css        Hoja de estilos central (índice de 37 secciones)
-├── js/
-│   ├── auth.js           Cuentas, sesión, roles y menú del celular
-│   ├── biblioteca.js     Libros: dibuja el catálogo y guarda los cambios del admin
-│   ├── agenda.js         Actividades del inicio (con inscripción) y tabla de horario de servicios
-│   └── sitio.js          Validación de formularios junto a cada campo
-├── pages/
-│   ├── libros.html, servicios.html, contacto.html,
-│   └── login.html, admin.html, registro.html
-├── datos/
-│   ├── libros.js         Los libros del catálogo (el archivo que se publica)
-│   └── agenda.js         Actividades del mes y horario de las salas (arreglos)
-├── img/                  Imágenes del sitio y portadas
-├── multimedia/           Video del recorrido y audio ambiental
-├── README.md             Guía rápida del repositorio
-├── DESIGN.md             Sistema de diseño: colores, tipografía, formas y componentes
-└── DOCUMENTACION.md      Informe formal del proyecto web
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
-## Decisiones de diseño y de código
+Abre tu navegador en `http://localhost:5173`.
 
-- **Dirección de arte:** "biblioteca de barrio con jardín": pergamino, verde bosque, salvia y ámbar. Títulos en Fredoka y texto en Plus Jakarta Sans. El detalle está en `DESIGN.md`.
-- **Variables CSS:** todos los colores, espacios, radios, sombras y curvas de movimiento salen de las variables de la sección 1 de `styles.css`. Se cambian en un solo lugar.
-- **Encabezado y pie repetidos:** están copiados en cada página, **idénticos** (solo cambia el enlace activo del menú). Es deliberado: cargarlos con JavaScript no funciona al abrir los archivos con doble clic, y el HTML se ve completo en el código fuente.
-- **Estantería de portadas:** cada libro muestra su portada entera (proporción 2:3), título, autor y disponibilidad; la descripción y la valoración están en la ventana de detalles. Todo el libro es un solo objetivo (el título abre los detalles). 4 columnas en escritorio y 2 en celular.
-- **Carrusel del inicio:** los 7 libros más leídos giran en un arco suave: el del centro va al frente y nítido, los de los lados quedan atrás, más pequeños, girados y desenfocados. En escritorio avanza solo cada 3 segundos y se detiene al pasar el cursor, enfocar con el teclado o salir de la pantalla; sus botones (pausa y flechas) no se ven, pero aparecen al llegar a ellos con la tecla Tab. En el celular no avanza solo: tiene las dos flechas y se desliza con el dedo. Con "reducir movimiento" activado en el sistema tampoco se mueve solo, y la página lo explica junto a un botón para activarlo. El libro del frente es un poco más grande y proyecta una sombra sobre los de atrás. Al pulsar un libro, `libros.html#libro-<id>` abre el catálogo en ese libro y lo marca unos segundos.
-- **Ritmo de espacios:** dos medidas fijas (`--ritmo-seccion`, entre todas las secciones y hasta el pie, y `--espacio-titulo`, entre un título y su contenido) mandan en todas las páginas. En el carrusel, el hueco entre el título y el libro del frente y el hueco entre su nombre y el botón del catálogo salen de la misma variable (`--aire`), y los libros de los lados quedan a la misma distancia de cada borde.
-- **Sinopsis al pasar el cursor (catálogo):** en computadoras, el libro bajo el cursor crece un poco, los demás se desenfocan y la parte baja de su portada se oscurece para mostrar una flechita. Al pulsarla, un panel de cristal con la sinopsis (con la portada desenfocada de fondo) sube dentro de la propia portada; la flecha pasa a mirar hacia abajo y, al pulsarla, el panel baja. También funciona con la tecla Tab y se cierra con Escape. En el celular no hay flechita: se toca el libro y se abre la ventana de detalles.
-- **Menos cajas:** la bienvenida, las normas, los servicios y las preguntas frecuentes van directamente sobre la página, con una línea superior como único adorno; solo lo que se puede pulsar o contiene un formulario tiene caja. No hay etiquetas en mayúsculas sobre los títulos ni cifras de relleno.
-- **Escala:** los tamaños de letra salen de una escala corta (12 valores, ninguno bajo 12px), los radios de 6 a 36px y el color de texto ámbar (`#8a5320`) pasa el contraste AA.
-- **Textos:** mayúscula solo al inicio de la frase, verbos en los botones ("Reservar", "Donar libros") y mensajes que dicen qué pasó y qué hacer.
-- **Sin estilos en línea:** todo el estilo está en `styles.css`. Las portadas de los libros son imágenes (`<img>`) con texto alternativo.
-- **JavaScript:** cada página lleva su script al final del HTML. Se usa para el menú móvil, el catálogo (filtros, orden, paginación y panel plegable), la validación de `login.html` y el deslizamiento entre "Iniciar sesión" y "Crear cuenta".
+---
 
-## JavaScript: dónde está cada tema del curso
+## 🌟 Módulos y Funcionalidades Implementadas
 
-| Tema | Dónde verlo |
-|---|---|
-| Arreglos de objetos | `datos/libros.js` (libros), `datos/agenda.js` (`ACTIVIDADES` y `HORARIO_SALAS`) |
-| Métodos de arreglos | `map`, `filter`, `find`, `sort`, `reduce` en `js/biblioteca.js` y `js/agenda.js` (por ejemplo, el aforo total se suma con `reduce`) |
-| Estructuras de control | `js/agenda.js`: `while` y `for` agrupan las filas del mismo día; `if / else if / else` decide si una actividad muestra "Inscribirse", "Estás inscrito" o "Sin cupos" |
-| Manipulación del DOM | El catálogo, el carrusel, la agenda y la tabla de horario se crean con `createElement`, `append` y `replaceChildren`; los textos van con `textContent` |
-| Eventos | Clics, envío de formularios, teclado (Escape y flechas), rueda del ratón en el carrusel |
-| Menú responsivo | `js/auth.js`: un solo código para todas las páginas; se cierra con Escape, al pulsar fuera o al elegir un enlace |
-| Ventanas | `<dialog>`: detalles del libro y donar (`pages/libros.html`), inscribirse en una actividad (`index.html`), confirmar en el panel (`pages/admin.html`) |
-| Validación de formularios | Inicio de sesión, inscripción, contacto y registro: el error aparece debajo del campo y dice cómo corregirlo (`js/sitio.js`, `js/agenda.js`) |
-| Almacenamiento | `localStorage` para cuentas, libros del admin, donaciones, pedidos e inscripciones |
+### 📖 Catálogo y Libros (`/libros`)
+- Búsqueda en tiempo real por texto (título, autor, sinopsis).
+- Filtros dinámicos por categorías (`#novela`, `#clasicos`, `#filosofia`, `#infantil`, etc.).
+- Filtro por estado: Disponibles, Lectura en sala, Novedades.
+- Alternador de vista en **Cuadrícula** o **Lista**.
+- Modal de ficha técnica interactiva.
 
-## Cuentas y roles
+### 📋 Préstamos a Domicilio
+- Solicitud de préstamo en 1 clic para vecinos registrados con elección de plazo (7, 14 o 21 días).
+- Validación de copias en tiempo real (descuenta stock en la base de datos PostgreSQL).
+- Control de ejemplares exclusivos para sala de lectura.
 
-No hay servidor ni base de datos, así que las cuentas viven **en el navegador de cada persona** (`localStorage`) y la sesión dura hasta cerrar la pestaña (`sessionStorage`). Todo está en `auth.js`.
+### 👑 Panel de Administración (`/admin`)
+- **Métricas:** Conteo en tiempo real de títulos, usuarios registrados, préstamos en curso y pendientes.
+- **Gestión de Libros (CRUD):** Agregar libros subiendo imagen local o ingresando URL externa, editar datos y eliminar.
+- **Gestión de Préstamos:** Aprobar entregas pendientes, registrar devoluciones y restaurar copias al inventario.
+- **Padrón de Vecinos:** Lista de lectores registrados y control de activación/suspensión de cuentas.
+- **Bandeja de Entrada:** Recepción de mensajes del formulario de contacto.
 
-- **Usuario:** cualquiera que cree su cuenta en `login.html#crear-cuenta`. No puede entrar a `admin.html`.
-- **Administrador (cuenta de demostración):** correo `admin@leernosune.org`, contraseña `Admin2025!`. Al iniciar sesión va a `admin.html`.
-- El encabezado cambia con la sesión: el botón pasa a "Cerrar sesión" y el admin ve "Panel admin".
-- `admin.html` lista las cuentas creadas **en ese mismo navegador**. No muestra las de otros equipos: eso necesita un servidor.
-- **Límite importante:** es una simulación. Las contraseñas se guardan sin cifrar y quien abra las herramientas del navegador puede cambiar los datos. Los roles con seguridad real necesitan servidor.
-- Para que las cuentas se compartan entre páginas conviene abrir el sitio con `python -m http.server` o con Chrome; algunos navegadores aíslan los archivos abiertos con doble clic.
+### 📅 Agenda y Horario de Salas (`/servicios`)
+- Cronograma semanal de espacios y aforos.
+- Inscripción interactiva a talleres comunitarios con control de cupos máximos.
 
-## Libros: agregar y quitar (solo el administrador)
-
-Los libros ya no están escritos en `libros.html`: viven en `datos/libros.js` y el catálogo los dibuja al cargar.
-
-1. Entra con la cuenta de administrador y abre **Panel admin → Libros del catálogo**.
-2. **Agregar:** completa el formulario (título, autor, categorías, descripción, disponibilidad, portada). La portada es una imagen que copiaste antes a la carpeta `img/` (se escribe `img/mi-libro.jpg`) o un enlace `https://`. Debajo del campo se ve una vista previa.
-3. **Editar** y **Quitar** están en cada fila. Quitar pide confirmación. **Restaurar libros originales** deshace todo lo hecho en ese navegador.
-4. Los cambios se ven al instante **en ese navegador**. Para que los vea todo el mundo: pulsa **Descargar libros actualizados**, reemplaza `datos/libros.js` con el archivo descargado (`libros.js`) y súbelo al repositorio.
-
-Los 4 libros "más leídos" de `index.html` salen de los mismos datos (los que tienen más lectores), así que si el admin quita uno, el inicio muestra el siguiente. Un libro nuevo empieza con 0 lectores y por eso aparece en el catálogo, no en el inicio.
-
-Un usuario normal no ve estos botones, y las funciones de `biblioteca.js` rechazan cualquier cambio si la sesión no es de administrador. Igual que las cuentas, es una simulación: sin servidor no hay seguridad real.
-
-## Donar libros
-
-El botón **Donar Libros** del catálogo abre una ventana:
-
-1. **Sin sesión:** pide iniciar sesión o crear cuenta (así se sabe quién dona).
-2. **Usuario con sesión:** llena título, autor, estado del libro y un comentario opcional. La solicitud queda "Pendiente" y el usuario ve en esa misma ventana si fue **aceptada** o **rechazada** (con el motivo).
-3. **Administrador:** en `admin.html`, sección **Donaciones recibidas**. **Aceptar** abre el formulario de libros con título y autor ya escritos; al guardar el libro, la donación queda aceptada. **Rechazar** pide un motivo opcional.
-
-Solo el admin puede ver todas las donaciones y resolverlas. Se guardan en el navegador de quien las envía (`localStorage`), así que el admin solo ve las enviadas desde su mismo navegador; con servidor esto se resolvería. "Sugerir un título" sigue siendo un enlace al formulario de contacto.
-
-## Accesibilidad
-
-- Contraste de texto AA medido; foco visible (anillo sólido de 3px); enlace "Saltar al contenido principal".
-- Un único `<h1>` por página y jerarquía de encabezados sin saltos; menús y navegaciones con nombre propio.
-- Formularios con etiquetas asociadas y `autocomplete` en los datos personales. El inicio de sesión muestra mensajes de error propios junto al campo; contacto y registro usan los avisos del navegador.
-- Objetivos táctiles de 44px en pantallas táctiles y soporte de `prefers-reduced-motion` (sin deslizamientos ni fundidos).
-- Diseño adaptable probado de 320 a 1440px, sin desbordes horizontales.
-
-Lo que **no** se ha probado: lectores de pantalla reales (NVDA, VoiceOver) ni dispositivos táctiles físicos.
-
-## Conocido y pendiente
-
-- **Portadas:** las 22 están en `img/` (Open Library y catálogos de librerías). Son imágenes de baja resolución (unos 330 px de ancho): bastan para la pantalla, pero se verían suaves si se amplían mucho.
-- **Video del recorrido:** sin subtítulos ni descripción en texto; algunos textos de la sección de video y audio no coinciden con el contenido.
-
-## Ramas de Git
-
-- `main`: la versión de partida (Avance 2).
-- `features`: el rediseño visual, de accesibilidad y de estructura, hecho con Claude Code. Cada paso está en su propio commit (`git log --oneline`).
+### 📬 Contacto y FAQ (`/contacto`)
+- Formulario funcional con almacenamiento en base de datos.
+- Canales de atención y preguntas frecuentes.
